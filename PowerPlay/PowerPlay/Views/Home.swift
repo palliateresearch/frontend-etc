@@ -8,9 +8,26 @@
 import SwiftUI
 import Charts
 
+class Theme {
+    static func navigationBarColors(titleColor : UIColor? = nil, tintColor : UIColor? = nil ){
+        
+        let navigationAppearance = UINavigationBarAppearance()
+        navigationAppearance.configureWithOpaqueBackground()
+        
+        
+        navigationAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? .white]
+        navigationAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .white]
+       
+        UINavigationBar.appearance().standardAppearance = navigationAppearance    }
+}
+
 struct Home: View {
     
     @State var progress: CGFloat = 0.75
+    
+    init(){
+           Theme.navigationBarColors(titleColor: .white)
+        }
    
     var body: some View {
         NavigationStack{
@@ -190,9 +207,11 @@ struct Home: View {
                         }
                         
                     }
-                }
+                }.scrollIndicators(.visible)
+                
                 Spacer()
                 Spacer()
+                
                 Text("Fremont Park - January")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.title3)
@@ -413,12 +432,13 @@ struct Home: View {
                         }
                         
                     }
-                }
+                }.scrollIndicators(.visible)
             }
             .navigationBarTitle("PowerPlay")
             .foregroundColor(Color.white)
             .padding()
             .background(Color("darkModeBackground"))
+            .scrollIndicators(.hidden)
             
             
         }
