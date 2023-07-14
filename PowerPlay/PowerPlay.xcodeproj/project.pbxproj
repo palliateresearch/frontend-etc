@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9BA5EA702A61362100095099 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5EA6F2A61362100095099 /* StartView.swift */; };
+		9BA5EA722A619FC600095099 /* GuestHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5EA712A619FC600095099 /* GuestHome.swift */; };
+		9BA5EA742A61B6AB00095099 /* FindPark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5EA732A61B6AB00095099 /* FindPark.swift */; };
+		9BA5EA762A61BD1800095099 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5EA752A61BD1800095099 /* Login.swift */; };
 		C905D6232A5F4613009BF5DB /* Achievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6222A5F4613009BF5DB /* Achievements.swift */; };
 		C905D6262A5F4CA6009BF5DB /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6252A5F4CA6009BF5DB /* Discover.swift */; };
 		C905D6282A5F4DAA009BF5DB /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6272A5F4DAA009BF5DB /* Home.swift */; };
@@ -43,6 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9BA5EA6F2A61362100095099 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		9BA5EA712A619FC600095099 /* GuestHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestHome.swift; sourceTree = "<group>"; };
+		9BA5EA732A61B6AB00095099 /* FindPark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPark.swift; sourceTree = "<group>"; };
+		9BA5EA752A61BD1800095099 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		C905D6222A5F4613009BF5DB /* Achievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievements.swift; sourceTree = "<group>"; };
 		C905D6252A5F4CA6009BF5DB /* Discover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discover.swift; sourceTree = "<group>"; };
 		C905D6272A5F4DAA009BF5DB /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -97,6 +105,10 @@
 				C905D6292A5F4E2B009BF5DB /* Settings.swift */,
 				C905D6222A5F4613009BF5DB /* Achievements.swift */,
 				C905D6252A5F4CA6009BF5DB /* Discover.swift */,
+				9BA5EA6F2A61362100095099 /* StartView.swift */,
+				9BA5EA712A619FC600095099 /* GuestHome.swift */,
+				9BA5EA732A61B6AB00095099 /* FindPark.swift */,
+				9BA5EA752A61BD1800095099 /* Login.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -310,8 +322,12 @@
 			files = (
 				C905D6352A60C35D009BF5DB /* AchievmentsModel.swift in Sources */,
 				C905D62A2A5F4E2B009BF5DB /* Settings.swift in Sources */,
+				9BA5EA742A61B6AB00095099 /* FindPark.swift in Sources */,
 				C905D6262A5F4CA6009BF5DB /* Discover.swift in Sources */,
+				9BA5EA702A61362100095099 /* StartView.swift in Sources */,
 				C9219DD92A5CACC400A65277 /* ContentView.swift in Sources */,
+				9BA5EA762A61BD1800095099 /* Login.swift in Sources */,
+				9BA5EA722A619FC600095099 /* GuestHome.swift in Sources */,
 				C905D6322A609666009BF5DB /* HomeViewModel.swift in Sources */,
 				C905D62C2A5F609D009BF5DB /* HomeModel.swift in Sources */,
 				C905D6392A60EFAE009BF5DB /* CalendarView.swift in Sources */,
