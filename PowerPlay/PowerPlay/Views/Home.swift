@@ -8,30 +8,34 @@
 import SwiftUI
 import Charts
 
-class Theme {
-    static func navigationBarColors(titleColor : UIColor? = nil, tintColor : UIColor? = nil ){
-        
-        let navigationAppearance = UINavigationBarAppearance()
-        navigationAppearance.configureWithOpaqueBackground()
-        
-        
-        navigationAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? .white]
-        navigationAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .white]
-       
-        UINavigationBar.appearance().standardAppearance = navigationAppearance    }
-}
-
 struct Home: View {
     
     @State var progress: CGFloat = 0.75
+    //@State
     
-    init(){
-           Theme.navigationBarColors(titleColor: .white)
-        }
-   
     var body: some View {
         NavigationStack{
             ScrollView{
+                HStack{
+                    Text("PowerPlay")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.largeTitle)
+                        .bold()
+                        .padding(.vertical)
+                    Button(action: {
+                        // code here
+                    }
+                    , label: {
+                        HStack{
+                            Text("Nishka S.")
+                            Image(systemName: "person.crop.circle.fill")
+                                .scaleEffect(2.3)
+                                .padding()
+                                .foregroundColor(Color("lightningYellow"))
+                        }
+                        
+                    })
+                }
                 Text("Nishka's Achievements")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.title3)
@@ -144,6 +148,7 @@ struct Home: View {
                                             }
                                             .foregroundColor(Color.black)
                                             .padding(2)
+                                            .bold()
                                             
                                         }
                                     }
@@ -167,7 +172,7 @@ struct Home: View {
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                             
                             VStack{
-                                Text("Weekly Whatt Hours")
+                                Text("Weekly Watt Hours")
                                     .bold()
                                     .cornerRadius(7)
                                     .foregroundColor(Color.black)
@@ -260,6 +265,8 @@ struct Home: View {
                                             .foregroundColor(Color("lightningYellow"))
                                     }
                                 }
+                                
+                                Spacer()
                                 
                                 HStack{
                                     ZStack{
@@ -369,6 +376,7 @@ struct Home: View {
                                 
                             }
                             .padding(15)
+                            .bold()
                         }
                         
                     }
@@ -392,7 +400,7 @@ struct Home: View {
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                             
                             VStack{
-                                Text("Weekly Whatt Hours")
+                                Text("Weekly Watt Hours")
                                     .bold()
                                     .cornerRadius(7)
                                     .foregroundColor(Color.black)
@@ -434,14 +442,13 @@ struct Home: View {
                     }
                 }.scrollIndicators(.visible)
             }
-            .navigationBarTitle("PowerPlay")
             .foregroundColor(Color.white)
             .padding()
             .background(Color("darkModeBackground"))
             .scrollIndicators(.hidden)
             
             
-        }
+        }.preferredColorScheme(.dark)
     }
 }
 

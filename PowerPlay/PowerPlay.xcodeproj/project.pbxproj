@@ -12,6 +12,10 @@
 		C905D6282A5F4DAA009BF5DB /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6272A5F4DAA009BF5DB /* Home.swift */; };
 		C905D62A2A5F4E2B009BF5DB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6292A5F4E2B009BF5DB /* Settings.swift */; };
 		C905D62C2A5F609D009BF5DB /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D62B2A5F609D009BF5DB /* HomeModel.swift */; };
+		C905D6322A609666009BF5DB /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6312A609666009BF5DB /* HomeViewModel.swift */; };
+		C905D6352A60C35D009BF5DB /* AchievmentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6342A60C35D009BF5DB /* AchievmentsModel.swift */; };
+		C905D6372A60E210009BF5DB /* AchievementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6362A60E210009BF5DB /* AchievementsViewModel.swift */; };
+		C905D6392A60EFAE009BF5DB /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6382A60EFAE009BF5DB /* CalendarView.swift */; };
 		C9219DD72A5CACC400A65277 /* PowerPlayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9219DD62A5CACC400A65277 /* PowerPlayApp.swift */; };
 		C9219DD92A5CACC400A65277 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9219DD82A5CACC400A65277 /* ContentView.swift */; };
 		C9219DDB2A5CACC600A65277 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9219DDA2A5CACC600A65277 /* Assets.xcassets */; };
@@ -44,6 +48,10 @@
 		C905D6272A5F4DAA009BF5DB /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		C905D6292A5F4E2B009BF5DB /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C905D62B2A5F609D009BF5DB /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		C905D6312A609666009BF5DB /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		C905D6342A60C35D009BF5DB /* AchievmentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievmentsModel.swift; sourceTree = "<group>"; };
+		C905D6362A60E210009BF5DB /* AchievementsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewModel.swift; sourceTree = "<group>"; };
+		C905D6382A60EFAE009BF5DB /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		C9219DD32A5CACC400A65277 /* PowerPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PowerPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9219DD62A5CACC400A65277 /* PowerPlayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerPlayApp.swift; sourceTree = "<group>"; };
 		C9219DD82A5CACC400A65277 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -97,13 +105,24 @@
 			isa = PBXGroup;
 			children = (
 				C905D62B2A5F609D009BF5DB /* HomeModel.swift */,
+				C905D6342A60C35D009BF5DB /* AchievmentsModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		C905D6332A60966B009BF5DB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C905D6312A609666009BF5DB /* HomeViewModel.swift */,
+				C905D6362A60E210009BF5DB /* AchievementsViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		C9219DCA2A5CACC400A65277 = {
 			isa = PBXGroup;
 			children = (
+				C905D6382A60EFAE009BF5DB /* CalendarView.swift */,
 				C9219DD52A5CACC400A65277 /* PowerPlay */,
 				C9219DE62A5CACC600A65277 /* PowerPlayTests */,
 				C9219DF02A5CACC600A65277 /* PowerPlayUITests */,
@@ -125,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				C9219DD62A5CACC400A65277 /* PowerPlayApp.swift */,
+				C905D6332A60966B009BF5DB /* ViewModels */,
 				C905D62D2A5F60F8009BF5DB /* Models */,
 				C905D6242A5F46F0009BF5DB /* Views */,
 				C9219DDA2A5CACC600A65277 /* Assets.xcassets */,
@@ -288,10 +308,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C905D6352A60C35D009BF5DB /* AchievmentsModel.swift in Sources */,
 				C905D62A2A5F4E2B009BF5DB /* Settings.swift in Sources */,
 				C905D6262A5F4CA6009BF5DB /* Discover.swift in Sources */,
 				C9219DD92A5CACC400A65277 /* ContentView.swift in Sources */,
+				C905D6322A609666009BF5DB /* HomeViewModel.swift in Sources */,
 				C905D62C2A5F609D009BF5DB /* HomeModel.swift in Sources */,
+				C905D6392A60EFAE009BF5DB /* CalendarView.swift in Sources */,
+				C905D6372A60E210009BF5DB /* AchievementsViewModel.swift in Sources */,
 				C905D6282A5F4DAA009BF5DB /* Home.swift in Sources */,
 				C905D6232A5F4613009BF5DB /* Achievements.swift in Sources */,
 				C9219DD72A5CACC400A65277 /* PowerPlayApp.swift in Sources */,
