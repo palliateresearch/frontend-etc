@@ -16,6 +16,7 @@
 		C905D6352A60C35D009BF5DB /* AchievmentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6342A60C35D009BF5DB /* AchievmentsModel.swift */; };
 		C905D6372A60E210009BF5DB /* AchievementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6362A60E210009BF5DB /* AchievementsViewModel.swift */; };
 		C905D6392A60EFAE009BF5DB /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6382A60EFAE009BF5DB /* CalendarView.swift */; };
+		C905D63D2A62006B009BF5DB /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D63C2A62006B009BF5DB /* Lesson.swift */; };
 		C9219DD72A5CACC400A65277 /* PowerPlayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9219DD62A5CACC400A65277 /* PowerPlayApp.swift */; };
 		C9219DD92A5CACC400A65277 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9219DD82A5CACC400A65277 /* ContentView.swift */; };
 		C9219DDB2A5CACC600A65277 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9219DDA2A5CACC600A65277 /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 		C905D6342A60C35D009BF5DB /* AchievmentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievmentsModel.swift; sourceTree = "<group>"; };
 		C905D6362A60E210009BF5DB /* AchievementsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewModel.swift; sourceTree = "<group>"; };
 		C905D6382A60EFAE009BF5DB /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		C905D63C2A62006B009BF5DB /* Lesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
 		C9219DD32A5CACC400A65277 /* PowerPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PowerPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9219DD62A5CACC400A65277 /* PowerPlayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerPlayApp.swift; sourceTree = "<group>"; };
 		C9219DD82A5CACC400A65277 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				C905D6292A5F4E2B009BF5DB /* Settings.swift */,
 				C905D6222A5F4613009BF5DB /* Achievements.swift */,
 				C905D6252A5F4CA6009BF5DB /* Discover.swift */,
+				C905D63C2A62006B009BF5DB /* Lesson.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				C905D6352A60C35D009BF5DB /* AchievmentsModel.swift in Sources */,
 				C905D62A2A5F4E2B009BF5DB /* Settings.swift in Sources */,
 				C905D6262A5F4CA6009BF5DB /* Discover.swift in Sources */,
+				C905D63D2A62006B009BF5DB /* Lesson.swift in Sources */,
 				C9219DD92A5CACC400A65277 /* ContentView.swift in Sources */,
 				C905D6322A609666009BF5DB /* HomeViewModel.swift in Sources */,
 				C905D62C2A5F609D009BF5DB /* HomeModel.swift in Sources */,
