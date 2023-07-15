@@ -37,9 +37,10 @@ struct Home: View {
                     })
                 }
                 Text("Nishka's Achievements")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.title3)
                     .bold()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.vertical)
+                         
                 ZStack (alignment: .leading){
                     ZStack (alignment: .topLeading) {
                         Rectangle()
