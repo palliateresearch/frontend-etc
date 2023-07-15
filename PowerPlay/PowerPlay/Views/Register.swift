@@ -1,14 +1,14 @@
 import SwiftUI
 import AuthenticationServices
 
-struct Login: View {
+struct Register: View {
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var userSelect: Bool = false
     @State private var passSelect: Bool = false
     @State private var isLoggedIn: Bool = false
     @State private var isRegister: Bool = false
-
+    
     var body: some View {
         GeometryReader { geometry in
             let width = geometry.size.width
@@ -28,7 +28,7 @@ struct Login: View {
                 }
                 .padding(.top, width * 0.04)
                 
-                Text("Login or Register")
+                Text("Login to Continue")
                     .font(.system(size: width * 0.08, weight: .bold))
                     .frame(width: width * 0.8)
                     .padding(.top, height * 0.03)
@@ -98,23 +98,20 @@ struct Login: View {
                         .foregroundColor(Color.black)
                         .opacity(0.8)
                         .cornerRadius(10)
-                }.padding(.top, height * 0.04)
+                }.padding(.top, height * 0.06)
                 
                 SignInWithAppleButton(.signIn) { request in
                     request.requestedScopes = [.fullName, .email]
-                        
                 } onCompletion: { result in
                     
-                }
-                .frame(width: width * 0.7, height: height * 0.06)
-               
+                    }
 
                 Button(action: {
-                    isRegister = true
+                    isLoggedIn = true
                 }){
                     Text("Don't have an account? Register")
-                        .font(.system(size: width * 0.05, weight: .bold))
-                        .frame(width: width * 0.8, height: height * 0.1)
+                        .font(.system(size: width * 0.03, weight: .bold))
+                        .frame(width: width * 0.5, height: height * 0.075)
                         .foregroundColor(Color("navyBlue"))
                         .cornerRadius(10)
                 }.padding(.top, height * 0.06)
@@ -126,13 +123,15 @@ struct Login: View {
             .fullScreenCover(isPresented: $isLoggedIn) {
                 ContentView()
             }
-            
+            .fullScreenCover(isPresented: $isLoggedIn) {
+                Register()
+            }
             .preferredColorScheme(.dark)
         }
     }
 }
 
-struct Login_Previews: PreviewProvider {
+struct Register_Previews: PreviewProvider {
     static var previews: some View {
         Login()
     }
