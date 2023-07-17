@@ -1,5 +1,5 @@
 import SwiftUI
-import AuthenticationServices
+//import Auth0
 
 struct Login: View {
     @State private var username: String = ""
@@ -99,14 +99,6 @@ struct Login: View {
                         .opacity(0.8)
                         .cornerRadius(10)
                 }.padding(.top, height * 0.04)
-                
-                SignInWithAppleButton(.signIn) { request in
-                    request.requestedScopes = [.fullName, .email]
-                        
-                } onCompletion: { result in
-                    
-                }
-                .frame(width: width * 0.7, height: height * 0.06)
                
 
                 Button(action: {
@@ -131,6 +123,21 @@ struct Login: View {
         }
     }
 }
+
+//extension Login {
+//    func login() {
+//        Auth0
+//            .webAuth()
+//            .start { result in
+//                switch result {
+//                case .success(let credentials):
+//                    self.user = User(from: credentials.idToken)
+//                case .failure(let error):
+//                    print("Failed with: \(error)")
+//                }
+//            }
+//    }
+//}
 
 struct Login_Previews: PreviewProvider {
     static var previews: some View {

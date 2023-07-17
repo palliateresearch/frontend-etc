@@ -5,7 +5,7 @@ struct FindPark: View {
 
     @State private var searchText = ""
     @State private var showGuestHome = false
-    @State private var park: String?
+    @EnvironmentObject var guestData: GuestData
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode> // Add the presentationMode property
 
@@ -24,7 +24,7 @@ struct FindPark: View {
                             List {
                                 ForEach(searchResults, id: \.self) { name in
                                     Button(action: {
-                                        park = name
+                                        guestData.park = name
                                         showGuestHome = true
                                     }) {
                                         Text(name)
@@ -53,7 +53,7 @@ struct FindPark: View {
                     .preferredColorScheme(.dark)
                 }
                 .fullScreenCover(isPresented: $showGuestHome) {
-                    GuestHome(park: $park)
+                    GuestContentView()
                 }
             }
         }

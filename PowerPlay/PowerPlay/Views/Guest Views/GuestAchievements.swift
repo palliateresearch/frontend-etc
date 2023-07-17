@@ -1,13 +1,13 @@
 //
-//  Achievements.swift
+//  GuestAchievements.swift
 //  PowerPlay
 //
-//  Created by Nishka Sharma on 7/12/23.
+//  Created by Nishka Sharma on 7/14/23.
 //
 
 import SwiftUI
 
-struct Achievements: View {
+struct GuestAchievements: View {
     
     private var adaptiveColumns = [GridItem(.adaptive(minimum: 100))]
     @State var selectedDate: Date = Date()
@@ -104,7 +104,7 @@ struct Achievements: View {
     
 }
 
-struct Achievements_Previews: PreviewProvider {
+struct GuestAchievements_Previews: PreviewProvider {
     static var previews: some View {
         Achievements()
     }

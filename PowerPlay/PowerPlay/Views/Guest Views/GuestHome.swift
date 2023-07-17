@@ -11,9 +11,8 @@ import Charts
 struct GuestHome: View {
     
     @State var progress: CGFloat = 0.75
-    @Binding var park: String?
     @State var toStart = false
-    //@State
+    @EnvironmentObject var guestData: GuestData
     
     var body: some View {
         NavigationStack{
@@ -38,7 +37,7 @@ struct GuestHome: View {
                         
                     })
                 }
-                Text("\(park ?? "") - January")
+                Text(guestData.park! + " - January")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.title3)
                     .bold()
@@ -69,7 +68,7 @@ struct GuestHome: View {
                             VStack{
                                 HStack{
                                     ZStack{
-                                        CircleProgress(progress: $progress)
+                                        CircleProgress(progress: guestData.parkProgress1)
                                             .frame(height: 70)
                                         Image(systemName:"lightbulb.fill")
                                             .scaleEffect(2)
@@ -78,7 +77,7 @@ struct GuestHome: View {
                                     }
                                     
                                     ZStack{
-                                        CircleProgress(progress: $progress)
+                                        CircleProgress(progress: guestData.parkProgress2)
                                             .frame(height: 70)
                                         Image(systemName:"hourglass")
                                             .scaleEffect(2)
@@ -91,7 +90,7 @@ struct GuestHome: View {
                                 
                                 HStack{
                                     ZStack{
-                                        CircleProgress(progress: $progress)
+                                        CircleProgress(progress: guestData.parkProgress3)
                                             .frame(height: 70)
                                         Image(systemName:"wand.and.stars.inverse")
                                             .scaleEffect(2)
@@ -100,7 +99,7 @@ struct GuestHome: View {
                                     }
                                     
                                     ZStack{
-                                        CircleProgress(progress: $progress)
+                                        CircleProgress(progress: guestData.parkProgress4)
                                             .frame(height: 70)
                                         Image(systemName:"figure.walk")
                                             .scaleEffect(2)

@@ -9,9 +9,8 @@ import SwiftUI
 import Charts
 
 struct Home: View {
-    
+    @EnvironmentObject private var homeData: Home_ViewModel_Data
     @State var progress: CGFloat = 0.75
-    //@State
     
     var body: some View {
         NavigationStack{
@@ -64,7 +63,7 @@ struct Home: View {
                            
                         HStack{
                             ZStack{
-                                CircleProgress(progress: $progress)
+                                CircleProgress(progress: homeData.getUserProgress1())
                                     .frame(height: 70)
                                 Image(systemName:"lightbulb.fill")
                                     .scaleEffect(2)
@@ -73,7 +72,7 @@ struct Home: View {
                             }
                                 
                             ZStack{
-                                CircleProgress(progress: $progress)
+                                CircleProgress(progress: homeData.getUserProgress2())
                                     .frame(height: 70)
                                 Image(systemName:"hourglass")
                                     .scaleEffect(2)
@@ -82,7 +81,7 @@ struct Home: View {
                             }
                                 
                             ZStack{
-                                CircleProgress(progress: $progress)
+                                CircleProgress(progress: homeData.getUserProgress3())
                                     .frame(height: 70)
                                 Image(systemName:"wand.and.stars.inverse")
                                     .scaleEffect(2)
@@ -91,7 +90,7 @@ struct Home: View {
                             }
                             
                             ZStack{
-                                CircleProgress(progress: $progress)
+                                CircleProgress(progress: homeData.getUserProgress4())
                                     .frame(height: 70)
                                 Image(systemName:"figure.walk")
                                     .scaleEffect(2)
@@ -249,7 +248,7 @@ struct Home: View {
                             VStack{
                                 HStack{
                                     ZStack{
-                                        CircleProgress(progress: $progress)
+                                        CircleProgress(progress: homeData.getParkProgress1())
                                             .frame(height: 70)
                                         Image(systemName:"lightbulb.fill")
                                             .scaleEffect(2)
@@ -258,7 +257,7 @@ struct Home: View {
                                     }
                                     
                                     ZStack{
-                                        CircleProgress(progress: $progress)
+                                        CircleProgress(progress: homeData.getUserProgress2())
                                             .frame(height: 70)
                                         Image(systemName:"hourglass")
                                             .scaleEffect(2)
@@ -271,7 +270,7 @@ struct Home: View {
                                 
                                 HStack{
                                     ZStack{
-                                        CircleProgress(progress: $progress)
+                                        CircleProgress(progress: homeData.getUserProgress3())
                                             .frame(height: 70)
                                         Image(systemName:"wand.and.stars.inverse")
                                             .scaleEffect(2)
@@ -280,7 +279,7 @@ struct Home: View {
                                     }
                                     
                                     ZStack{
-                                        CircleProgress(progress: $progress)
+                                        CircleProgress(progress: homeData.getUserProgress4())
                                             .frame(height: 70)
                                         Image(systemName:"figure.walk")
                                             .scaleEffect(2)
@@ -461,7 +460,7 @@ struct Home_Previews: PreviewProvider {
 }
 
 struct CircleProgress: View {
-    @Binding var progress: CGFloat
+    var progress: CGFloat
     
     var currentPercentage: Int {
         Int(progress*100)
