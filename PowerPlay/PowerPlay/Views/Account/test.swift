@@ -2,14 +2,19 @@ import SwiftUI
 import AuthenticationServices
 
 struct test: View {
-    @ObservedObject var userData = UserData()
+    @ObservedObject var userData = UserViewData()
     
     var body: some View {
         VStack {
-            Text(userData.firstName)
-            Text("1031")
+            Button (action: {
+                print("userData: \(userData.username)")
+            }) {
+                Text("hello world")
+            
+            }
         }
     }
+    
 }
 
 

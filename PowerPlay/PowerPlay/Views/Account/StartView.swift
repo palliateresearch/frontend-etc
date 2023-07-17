@@ -7,8 +7,8 @@ struct StartView: View {
     @State private var loginAsGuestHovered = false
     @State private var loginViewActive = false
     @State private var guestViewActive = false
-    @ObservedObject var userData = UserData()
     
+    @ObservedObject var userData = UserViewData()
 
 
     

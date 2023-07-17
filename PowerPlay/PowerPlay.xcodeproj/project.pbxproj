@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		9B094E0D2A65997C008C39B3 /* EnterChildren.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B094E0C2A65997C008C39B3 /* EnterChildren.swift */; };
 		9B094E0F2A659B4E008C39B3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B094E0E2A659B4E008C39B3 /* Settings.swift */; };
+		9B094E112A65B724008C39B3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B094E102A65B724008C39B3 /* UserModel.swift */; };
+		9B094E152A65BE73008C39B3 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B094E142A65BE73008C39B3 /* UserViewModel.swift */; };
+		9B094E192A65DF12008C39B3 /* parkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B094E182A65DF12008C39B3 /* parkList.swift */; };
 		9B556FE52A64A6150098E16E /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B556FE42A64A6150098E16E /* Register.swift */; };
-		9B556FE72A64ACBB0098E16E /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B556FE62A64ACBB0098E16E /* UserData.swift */; };
 		9B556FEB2A64E1F30098E16E /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B556FEA2A64E1F30098E16E /* test.swift */; };
 		9BA5EA702A61362100095099 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5EA6F2A61362100095099 /* StartView.swift */; };
 		9BA5EA722A619FC600095099 /* GuestHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5EA712A619FC600095099 /* GuestHome.swift */; };
@@ -54,9 +56,11 @@
 /* Begin PBXFileReference section */
 		9B094E0C2A65997C008C39B3 /* EnterChildren.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterChildren.swift; sourceTree = "<group>"; };
 		9B094E0E2A659B4E008C39B3 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		9B094E102A65B724008C39B3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		9B094E142A65BE73008C39B3 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		9B094E182A65DF12008C39B3 /* parkList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = parkList.swift; sourceTree = "<group>"; };
 		9B556FE32A64A5100098E16E /* PowerPlay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PowerPlay.entitlements; sourceTree = "<group>"; };
 		9B556FE42A64A6150098E16E /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
-		9B556FE62A64ACBB0098E16E /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		9B556FEA2A64E1F30098E16E /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		9BA5EA6F2A61362100095099 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		9BA5EA712A619FC600095099 /* GuestHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestHome.swift; sourceTree = "<group>"; };
@@ -108,6 +112,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B094E1A2A65E0A2008C39B3 /* ParkResources */ = {
+			isa = PBXGroup;
+			children = (
+				9B094E182A65DF12008C39B3 /* parkList.swift */,
+				9BA5EA732A61B6AB00095099 /* FindPark.swift */,
+			);
+			path = ParkResources;
+			sourceTree = "<group>";
+		};
 		9B556FE82A64C2670098E16E /* Parent */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,20 +147,11 @@
 			path = Account;
 			sourceTree = "<group>";
 		};
-		9B556FEE2A64E8CC0098E16E /* Database */ = {
-			isa = PBXGroup;
-			children = (
-				9B556FE62A64ACBB0098E16E /* UserData.swift */,
-			);
-			path = Database;
-			sourceTree = "<group>";
-		};
 		C905D6242A5F46F0009BF5DB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9B556FEE2A64E8CC0098E16E /* Database */,
+				9B094E1A2A65E0A2008C39B3 /* ParkResources */,
 				9B556FE82A64C2670098E16E /* Parent */,
-				9BA5EA732A61B6AB00095099 /* FindPark.swift */,
 				9B556FE92A64C2A00098E16E /* Account */,
 			);
 			path = Views;
@@ -158,6 +162,7 @@
 			children = (
 				C905D62B2A5F609D009BF5DB /* HomeModel.swift */,
 				C905D6342A60C35D009BF5DB /* AchievmentsModel.swift */,
+				9B094E102A65B724008C39B3 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 			children = (
 				C905D6312A609666009BF5DB /* HomeViewModel.swift */,
 				C905D6362A60E210009BF5DB /* AchievementsViewModel.swift */,
+				9B094E142A65BE73008C39B3 /* UserViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -362,6 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C905D6352A60C35D009BF5DB /* AchievmentsModel.swift in Sources */,
+				9B094E112A65B724008C39B3 /* UserModel.swift in Sources */,
 				9B556FE52A64A6150098E16E /* Register.swift in Sources */,
 				9BA5EA742A61B6AB00095099 /* FindPark.swift in Sources */,
 				C905D6262A5F4CA6009BF5DB /* Discover.swift in Sources */,
@@ -373,13 +380,14 @@
 				9BA5EA722A619FC600095099 /* GuestHome.swift in Sources */,
 				C905D6322A609666009BF5DB /* HomeViewModel.swift in Sources */,
 				C905D62C2A5F609D009BF5DB /* HomeModel.swift in Sources */,
-				9B556FE72A64ACBB0098E16E /* UserData.swift in Sources */,
 				9B094E0D2A65997C008C39B3 /* EnterChildren.swift in Sources */,
 				9B094E0F2A659B4E008C39B3 /* Settings.swift in Sources */,
 				C905D6392A60EFAE009BF5DB /* CalendarView.swift in Sources */,
 				C905D6372A60E210009BF5DB /* AchievementsViewModel.swift in Sources */,
 				C905D6282A5F4DAA009BF5DB /* Home.swift in Sources */,
 				C905D6232A5F4613009BF5DB /* Achievements.swift in Sources */,
+				9B094E192A65DF12008C39B3 /* parkList.swift in Sources */,
+				9B094E152A65BE73008C39B3 /* UserViewModel.swift in Sources */,
 				C9219DD72A5CACC400A65277 /* PowerPlayApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

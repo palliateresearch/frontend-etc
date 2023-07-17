@@ -1,7 +1,9 @@
 import SwiftUI
 
 struct EnterChildren: View {
-    @ObservedObject var userData = UserData()
+    
+    @ObservedObject var userData = UserViewData()
+    
     @State private var lenChildren: Int = 0
     @State private var current: Int = 0
     @State private var isSubmitted = false
@@ -18,7 +20,6 @@ struct EnterChildren: View {
                     .fontWeight(.bold)
                     .padding()
                     .frame(maxWidth: .infinity)
-                   
                     .foregroundColor(Color.white)
                 
                 HStack {
@@ -32,12 +33,12 @@ struct EnterChildren: View {
                             .font(.system(size: 24))
                             .foregroundColor(Color("lightningYellow"))
                     }
-                    .padding(.trailing, 16)
+                    .padding(.trailing, width * 0.05)
                     .padding(.top, 16)
                 }
                 
                 ScrollView {
-                    VStack(spacing: 16) {
+                    VStack() {
                         ForEach(0..<lenChildren, id: \.self) { num in
                             ChildView(removeAction: {
                                 // Remove the child
@@ -58,7 +59,6 @@ struct EnterChildren: View {
                             )).padding(.top, geometry.size.height * 0.1)
                         }
                     }
-                    .padding(.horizontal, 16)
                     .frame(maxWidth: .infinity)
                 }
                 
@@ -88,32 +88,64 @@ struct EnterChildren: View {
 struct ChildView: View {
     var removeAction: () -> Void
     @Binding var text: String
-    
+    @State private var isEditing: Bool = false
+
     var body: some View {
         GeometryReader { geometry in
+            let width = geometry.size.width
+            let height = geometry.size.height
+            let boxWidth = width * 0.8
+            let boxHeight = height * 8
+            let spacing = width * 0.01
+            let scaleFactor = width / 375.0 // Adjust the base width (375.0) as per your design
+
             HStack {
-                RoundedRectangle(cornerRadius: 12)
-                    .foregroundColor(Color("navyBlue"))
-                    .frame(width: geometry.size.width * 0.8, height: geometry.size.width * 0.15)
-                    .overlay(
-                        TextField("Enter child's name", text: $text)
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .padding()
-                            .foregroundColor(Color.white)
-                        
-                    )
-                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 12)
+                        .foregroundColor(Color("navyBlue"))
+                        .frame(width: boxWidth, height: boxHeight)
+                        .onTapGesture {
+                            isEditing.toggle() // Toggle the isEditing state on tap
+                        }
+
+                    if isEditing {
+                        TextField("", text: $text, onEditingChanged: { editing in
+                            // This will be called when the editing begins and ends
+                            if !editing {
+                                isEditing = false // Set isEditing to false when editing is finished
+                            }
+                        })
+                        .font(.system(size: 16 * scaleFactor, weight: .bold))
+                        .padding(width * 0.03)
+                        .foregroundColor(Color.white)
+                    } else {
+                        if text.isEmpty {
+                            Text("Enter child's username")
+                                .font(.system(size: 16 * scaleFactor, weight: .bold))
+                                .foregroundColor(Color.gray)
+                                .padding(.horizontal, width * 0.03)
+                        } else {
+                            Text(text)
+                                .font(.system(size: 16 * scaleFactor, weight: .bold))
+                                .foregroundColor(Color.white)
+                        }
+                    }
+                }
+
                 Spacer()
-                
+
                 Button(action: {
                     removeAction()
                 }) {
                     Image(systemName: "minus.circle")
-                        .font(.system(size: 24))
+                        .font(.system(size: 24 * scaleFactor))
                         .foregroundColor(Color("lightningYellow"))
                 }
-            }.padding()
+                .padding(.trailing, width * 0.04)
+                .padding(.leading, width * 0.05)
+                // Add padding between the minus sign and the box
+            }
+            .padding(.horizontal, spacing) // Add horizontal padding with the same spacing
         }
     }
 }

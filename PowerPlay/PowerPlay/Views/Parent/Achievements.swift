@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Achievements: View {
     
+    
     private var adaptiveColumns = [GridItem(.adaptive(minimum: 100))]
     @State var selectedDate: Date = Date()
     

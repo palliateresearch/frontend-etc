@@ -10,6 +10,8 @@ import Charts
 
 struct Settings: View {
     
+    @ObservedObject var userData = UserViewData()
+    
     
     var body: some View {
         Text("hello world")

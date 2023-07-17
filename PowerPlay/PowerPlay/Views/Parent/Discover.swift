@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Discover: View {
+    @ObservedObject var userData = UserViewData()
     @State var progress: CGFloat = 0.75
     var body: some View {
         NavigationStack{

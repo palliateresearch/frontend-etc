@@ -9,8 +9,8 @@ import SwiftUI
 import Charts
 
 struct GuestHome: View {
+    @ObservedObject var userData = UserViewData()
     
-    @ObservedObject var userData: UserData
     @State var progress: CGFloat = 0.75
     @State var toStart = false
     //@State
@@ -278,8 +278,8 @@ struct GuestHome: View {
 
 struct GuestHome_Previews: PreviewProvider {
     static var previews: some View {
-        Home(userData: UserData()).environment(\.colorScheme, .light)
-        Home(userData: UserData()).environment(\.colorScheme, .dark)
+        Home().environment(\.colorScheme, .light)
+        Home().environment(\.colorScheme, .dark)
     }
 }
 

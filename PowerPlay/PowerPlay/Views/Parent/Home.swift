@@ -9,11 +9,12 @@ import SwiftUI
 import Charts
 
 struct Home: View {
-    @ObservedObject var userData = UserData()
+    @ObservedObject var userData = UserViewData()
     @State var progress: CGFloat = 0.75
     //@State
     
     var body: some View {
+        
         NavigationStack{
             ScrollView{
                 HStack{
@@ -108,6 +109,7 @@ struct Home: View {
                     
                 }
                 .padding([.bottom])
+                
                 
                 ScrollView(.horizontal) {
                     HStack(spacing: 14) {
@@ -455,8 +457,8 @@ struct Home: View {
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home(userData: UserData()).environment(\.colorScheme, .light)
-        Home(userData: UserData()).environment(\.colorScheme, .dark)
+        Home(userData: UserViewData()).environment(\.colorScheme, .light)
+        Home(userData: UserViewData()).environment(\.colorScheme, .dark)
     }
 }
 

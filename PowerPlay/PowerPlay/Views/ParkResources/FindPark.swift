@@ -2,9 +2,9 @@ import SwiftUI
 
 struct FindPark: View {
     
-    @ObservedObject var userData: UserData
+    @ObservedObject var userData = UserViewData()
+    var p = parkList()
     
-    let names = ["Fremont Park", "Calabazas Park", "Planet Fitness", "Bellarmin College Prepatory Playground Site", "Nishka's Playground","Valerie's Playground", "Vaughn's Playground", "Eddie's Playground", "Aadit's Playground"]
 
     @State private var searchText = ""
     @State private var showGuestHome = false
@@ -29,7 +29,7 @@ struct FindPark: View {
                             List {
                                 ForEach(searchResults, id: \.self) { name in
                                     Button(action: {
-                                        userData.parkID = name
+                                        
                                         if (userData.firstName == "") { // if logged in
                                             showGuestHome = true
                                         } else {
@@ -74,9 +74,12 @@ struct FindPark: View {
 
     var searchResults: [String] {
         if searchText.isEmpty {
-            return names
+            return p.names
         } else {
-            return names.filter { $0.contains(searchText) }
+            return p.names.filter { $0.contains(searchText) }
         }
     }
 }
+
+
+
