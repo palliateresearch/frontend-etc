@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		490D29252A61F8CE0051625E /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490D29242A61F8CE0051625E /* SettingsModel.swift */; };
+		490D29272A61FAE60051625E /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490D29262A61FAE60051625E /* SettingsViewModel.swift */; };
 		C905D6232A5F4613009BF5DB /* Achievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6222A5F4613009BF5DB /* Achievements.swift */; };
 		C905D6262A5F4CA6009BF5DB /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6252A5F4CA6009BF5DB /* Discover.swift */; };
 		C905D6282A5F4DAA009BF5DB /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6272A5F4DAA009BF5DB /* Home.swift */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		490D29242A61F8CE0051625E /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		490D29262A61FAE60051625E /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		C905D6222A5F4613009BF5DB /* Achievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievements.swift; sourceTree = "<group>"; };
 		C905D6252A5F4CA6009BF5DB /* Discover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discover.swift; sourceTree = "<group>"; };
 		C905D6272A5F4DAA009BF5DB /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -106,6 +110,7 @@
 			children = (
 				C905D62B2A5F609D009BF5DB /* HomeModel.swift */,
 				C905D6342A60C35D009BF5DB /* AchievmentsModel.swift */,
+				490D29242A61F8CE0051625E /* SettingsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 			children = (
 				C905D6312A609666009BF5DB /* HomeViewModel.swift */,
 				C905D6362A60E210009BF5DB /* AchievementsViewModel.swift */,
+				490D29262A61FAE60051625E /* SettingsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -308,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				490D29252A61F8CE0051625E /* SettingsModel.swift in Sources */,
 				C905D6352A60C35D009BF5DB /* AchievmentsModel.swift in Sources */,
 				C905D62A2A5F4E2B009BF5DB /* Settings.swift in Sources */,
 				C905D6262A5F4CA6009BF5DB /* Discover.swift in Sources */,
@@ -315,6 +322,7 @@
 				C905D6322A609666009BF5DB /* HomeViewModel.swift in Sources */,
 				C905D62C2A5F609D009BF5DB /* HomeModel.swift in Sources */,
 				C905D6392A60EFAE009BF5DB /* CalendarView.swift in Sources */,
+				490D29272A61FAE60051625E /* SettingsViewModel.swift in Sources */,
 				C905D6372A60E210009BF5DB /* AchievementsViewModel.swift in Sources */,
 				C905D6282A5F4DAA009BF5DB /* Home.swift in Sources */,
 				C905D6232A5F4613009BF5DB /* Achievements.swift in Sources */,
