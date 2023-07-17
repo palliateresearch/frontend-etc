@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct PowerPlayApp: App {
+    
+    let guestData = GuestData()
+    let homeData = Home_ViewModel_Data()
+    
+    @State var park = ""
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            StartView()
+                .environmentObject(guestData)
+                .environmentObject(homeData)
         }
     }
 }

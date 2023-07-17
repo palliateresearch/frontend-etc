@@ -1,8 +1,14 @@
+//
+//  GuestContentView.swift
+//  PowerPlay
+//
+//  Created by Nishka Sharma on 7/14/23.
+//
+
 import SwiftUI
 
-struct ContentView: View {
+struct GuestContentView: View {
     @State private var tabColor: Color!
-    @State private var park: String = ""
 
     init() {
         UITabBar.appearance().unselectedItemTintColor = UIColor.white
@@ -11,7 +17,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             TabView {
-                Home() // Pass the park binding to the Home view
+                GuestHome() 
                     .tabItem {
                         Label("Home", systemImage: "house")
                     }
@@ -42,9 +48,10 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct GuestContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.colorScheme, .light)
-        ContentView().environment(\.colorScheme, .dark)
+        GuestContentView().environment(\.colorScheme, .light)
+        GuestContentView().environment(\.colorScheme, .dark)
     }
 }
+
