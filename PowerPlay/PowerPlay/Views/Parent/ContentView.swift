@@ -3,15 +3,12 @@ import SwiftUI
 struct ContentView: View {
     @State private var tabColor: Color!
     @State private var park: String = ""
-
-    init() {
-        UITabBar.appearance().unselectedItemTintColor = UIColor.white
-    }
+    @ObservedObject var userData: UserData
 
     var body: some View {
         VStack {
             TabView {
-                Home() // Pass the park binding to the Home view
+                Home(userData: userData) // Pass the park binding to the Home view
                     .tabItem {
                         Label("Home", systemImage: "house")
                     }
@@ -45,7 +42,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.colorScheme, .light)
-        ContentView().environment(\.colorScheme, .dark)
+        ContentView(userData: UserData()).environment(\.colorScheme, .light)
+        ContentView(userData: UserData()).environment(\.colorScheme, .dark)
     }
 }

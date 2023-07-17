@@ -10,8 +10,8 @@ import Charts
 
 struct GuestHome: View {
     
+    @ObservedObject var userData: UserData
     @State var progress: CGFloat = 0.75
-    @Binding var park: String?
     @State var toStart = false
     //@State
     
@@ -38,7 +38,7 @@ struct GuestHome: View {
                         
                     })
                 }
-                Text("\(park ?? "") - January")
+                Text("\(userData.parkID) - January")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.title3)
                     .bold()
@@ -278,8 +278,8 @@ struct GuestHome: View {
 
 struct GuestHome_Previews: PreviewProvider {
     static var previews: some View {
-        Home().environment(\.colorScheme, .light)
-        Home().environment(\.colorScheme, .dark)
+        Home(userData: UserData()).environment(\.colorScheme, .light)
+        Home(userData: UserData()).environment(\.colorScheme, .dark)
     }
 }
 

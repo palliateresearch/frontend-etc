@@ -1,13 +1,18 @@
 import SwiftUI
 
 struct FindPark: View {
+    
+    @ObservedObject var userData: UserData
+    
     let names = ["Fremont Park", "Calabazas Park", "Planet Fitness", "Bellarmin College Prepatory Playground Site", "Nishka's Playground","Valerie's Playground", "Vaughn's Playground", "Eddie's Playground", "Aadit's Playground"]
 
     @State private var searchText = ""
     @State private var showGuestHome = false
+    @State private var showHome = false
     @State private var park: String?
+    @State private var isSelected = false
     
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode> // Add the presentationMode property
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
         NavigationView {
@@ -24,8 +29,12 @@ struct FindPark: View {
                             List {
                                 ForEach(searchResults, id: \.self) { name in
                                     Button(action: {
-                                        park = name
-                                        showGuestHome = true
+                                        userData.parkID = name
+                                        if (userData.firstName == "") { // if logged in
+                                            showGuestHome = true
+                                        } else {
+                                            showHome = true
+                                        }
                                     }) {
                                         Text(name)
                                             .font(.system(size: width * 0.05, weight: .bold))
@@ -53,7 +62,11 @@ struct FindPark: View {
                     .preferredColorScheme(.dark)
                 }
                 .fullScreenCover(isPresented: $showGuestHome) {
-                    GuestHome(park: $park)
+                    GuestHome(userData: userData)
+                }
+
+                .fullScreenCover(isPresented: $showHome) {
+                    ContentView(userData: userData)
                 }
             }
         }

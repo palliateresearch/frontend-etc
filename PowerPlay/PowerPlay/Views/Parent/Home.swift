@@ -9,7 +9,7 @@ import SwiftUI
 import Charts
 
 struct Home: View {
-    
+    @ObservedObject var userData = UserData()
     @State var progress: CGFloat = 0.75
     //@State
     
@@ -23,11 +23,11 @@ struct Home: View {
                         .bold()
                         .padding(.vertical)
                     Button(action: {
-                        // code here
+
                     }
                     , label: {
                         HStack{
-                            Text("Nishka S.")
+                            Text("\(userData.firstName)")
                             Image(systemName: "person.crop.circle.fill")
                                 .scaleEffect(2.3)
                                 .padding()
@@ -36,7 +36,7 @@ struct Home: View {
                         
                     })
                 }
-                Text("Nishka's Achievements")
+                Text("\(userData.firstName)'s Achievements")
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical)
@@ -218,7 +218,7 @@ struct Home: View {
                 Spacer()
                 Spacer()
                 
-                Text("Fremont Park - January")
+                Text("\(userData.parkID) - January")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.title3)
                     .bold()
@@ -455,8 +455,8 @@ struct Home: View {
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home().environment(\.colorScheme, .light)
-        Home().environment(\.colorScheme, .dark)
+        Home(userData: UserData()).environment(\.colorScheme, .light)
+        Home(userData: UserData()).environment(\.colorScheme, .dark)
     }
 }
 

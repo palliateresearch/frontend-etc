@@ -1,7 +1,7 @@
 import SwiftUI
 import AuthenticationServices
 
-struct Register: View {
+struct Login: View {
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var userSelect: Bool = false
@@ -9,6 +9,7 @@ struct Register: View {
     @State private var isLoggedIn: Bool = false
     @State private var isRegister: Bool = false
     
+    @ObservedObject var userData = UserData()
     var body: some View {
         GeometryReader { geometry in
             let width = geometry.size.width
@@ -28,7 +29,7 @@ struct Register: View {
                 }
                 .padding(.top, width * 0.04)
                 
-                Text("Login to Continue")
+                Text("Login")
                     .font(.system(size: width * 0.08, weight: .bold))
                     .frame(width: width * 0.8)
                     .padding(.top, height * 0.03)
@@ -78,7 +79,7 @@ struct Register: View {
                         }
                     VStack {
                        
-                        TextField("Password", text: $password)
+                        SecureField("Password", text: $password)
                             .font(.system(size: width * 0.06, weight: .bold))
                             .foregroundColor(.white)
                             .disabled(!passSelect)
@@ -98,40 +99,46 @@ struct Register: View {
                         .foregroundColor(Color.black)
                         .opacity(0.8)
                         .cornerRadius(10)
-                }.padding(.top, height * 0.06)
+                }.padding(.top, height * 0.04)
                 
                 SignInWithAppleButton(.signIn) { request in
                     request.requestedScopes = [.fullName, .email]
+                        
                 } onCompletion: { result in
                     
-                    }
+                }
+                .frame(width: width * 0.7, height: height * 0.06)
+                .padding(.top, height * 0.05)
+               
 
                 Button(action: {
-                    isLoggedIn = true
+                    isRegister = true
                 }){
                     Text("Don't have an account? Register")
-                        .font(.system(size: width * 0.03, weight: .bold))
-                        .frame(width: width * 0.5, height: height * 0.075)
+                        .font(.system(size: width * 0.05, weight: .bold))
+                        .frame(width: width * 0.8, height: height * 0.1)
                         .foregroundColor(Color("navyBlue"))
                         .cornerRadius(10)
-                }.padding(.top, height * 0.06)
+                }.padding(.bottom, height * 0.04)
+
 
 
 
                 .padding(.horizontal, width * 0.1)
             }
             .fullScreenCover(isPresented: $isLoggedIn) {
-                ContentView()
+                FindPark(userData: userData)
             }
-            .fullScreenCover(isPresented: $isLoggedIn) {
-                Register()
+            .fullScreenCover(isPresented: $isRegister) {
+                Register(userData: UserData())
             }
+            
             .preferredColorScheme(.dark)
         }
     }
 }
 
-struct Register_Previews: PreviewProvider {
+struct Login_Previews: PreviewProvider {
     static var previews: some View {
         Login()
     }
