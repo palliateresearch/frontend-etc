@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		490D29252A61F8CE0051625E /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490D29242A61F8CE0051625E /* SettingsModel.swift */; };
+		490D29272A61FAE60051625E /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490D29262A61FAE60051625E /* SettingsViewModel.swift */; };
 		9BA5EA702A61362100095099 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5EA6F2A61362100095099 /* StartView.swift */; };
 		9BA5EA722A619FC600095099 /* GuestHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5EA712A619FC600095099 /* GuestHome.swift */; };
 		9BA5EA742A61B6AB00095099 /* FindPark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5EA732A61B6AB00095099 /* FindPark.swift */; };
@@ -53,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		490D29242A61F8CE0051625E /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		490D29262A61FAE60051625E /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		9BA5EA6F2A61362100095099 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		9BA5EA712A619FC600095099 /* GuestHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestHome.swift; sourceTree = "<group>"; };
 		9BA5EA732A61B6AB00095099 /* FindPark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPark.swift; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 				C905D62B2A5F609D009BF5DB /* HomeModel.swift */,
 				C905D6412A623E3D009BF5DB /* GuestHomeModel.swift */,
 				C905D6342A60C35D009BF5DB /* AchievmentsModel.swift */,
+				490D29242A61F8CE0051625E /* SettingsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 				C905D6312A609666009BF5DB /* HomeViewModel.swift */,
 				C905D6432A623E7E009BF5DB /* GuestHomeViewModel.swift */,
 				C905D6362A60E210009BF5DB /* AchievementsViewModel.swift */,
+				490D29262A61FAE60051625E /* SettingsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -348,6 +354,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				490D29252A61F8CE0051625E /* SettingsModel.swift in Sources */,
 				C905D6352A60C35D009BF5DB /* AchievmentsModel.swift in Sources */,
 				C905D62A2A5F4E2B009BF5DB /* Settings.swift in Sources */,
 				9BA5EA742A61B6AB00095099 /* FindPark.swift in Sources */,
@@ -362,6 +369,7 @@
 				C905D6322A609666009BF5DB /* HomeViewModel.swift in Sources */,
 				C905D62C2A5F609D009BF5DB /* HomeModel.swift in Sources */,
 				C905D6392A60EFAE009BF5DB /* CalendarView.swift in Sources */,
+				490D29272A61FAE60051625E /* SettingsViewModel.swift in Sources */,
 				C905D6402A623D98009BF5DB /* GuestContentView.swift in Sources */,
 				C905D6372A60E210009BF5DB /* AchievementsViewModel.swift in Sources */,
 				C905D6282A5F4DAA009BF5DB /* Home.swift in Sources */,
