@@ -124,10 +124,10 @@
 				C905D6222A5F4613009BF5DB /* Achievements.swift */,
 				C905D6252A5F4CA6009BF5DB /* Discover.swift */,
 				C905D6482A65A891009BF5DB /* Learning.swift */,
+				C905D63C2A62006B009BF5DB /* Lesson.swift */,
 				9BA5EA6F2A61362100095099 /* StartView.swift */,
 				9BA5EA732A61B6AB00095099 /* FindPark.swift */,
 				9BA5EA752A61BD1800095099 /* Login.swift */,
-				C905D63C2A62006B009BF5DB /* Lesson.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

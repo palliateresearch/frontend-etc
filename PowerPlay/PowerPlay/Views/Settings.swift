@@ -23,7 +23,7 @@ struct Settings: View {
                     VStack{
                         Image("personfillyellow")
                             .aspectRatio(contentMode: .fill)
-                            .scaleEffect(1.15)
+                            .scaleEffect(1)
                             .foregroundColor(Color("lightningYellow"))
                         Text(SettingsData().getName())
                             .frame(maxWidth: .infinity, alignment: .center)
@@ -35,46 +35,46 @@ struct Settings: View {
                         HStack{
                             Text("Account Type")
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                                .font(.title2)
+                                .font(.title3)
                                 .foregroundColor(Color("lightningYellow"))
                                 .padding()
                             Text(String(SettingsData().getIsParent()))
                                 .frame(maxWidth: .infinity, alignment: .trailing)
-                                .font(.title2)
+                                .font(.title3)
                                 .padding()
                         }
                         HStack{
                             Text("Username")
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                                .font(.title2)
+                                .font(.title3)
                                 .foregroundColor(Color("lightningYellow"))
                                 .padding()
                             Text(SettingsData().getUsername())
                                 .frame(maxWidth: .infinity, alignment: .trailing)
-                                .font(.title2)
+                                .font(.title3)
                                 .padding()
                         }
                         HStack{
                             Text("Park")
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                                .font(.title2)
+                                .font(.title3)
                                 .foregroundColor(Color("lightningYellow"))
                                 .padding()
                             Text(SettingsData().getPark())
                                 .frame(maxWidth: .infinity, alignment: .trailing)
-                                .font(.title2)
+                                .font(.title3)
                                 .padding()
                         }
                         HStack{
                             Text("Children")
                                 .frame(maxWidth: .infinity, alignment: .topLeading)
-                                .font(.title2)
+                                .font(.title3)
                                 .foregroundColor(Color("lightningYellow"))
                                 .padding()
                             let children = SettingsData().getChildren()
                             Text(children.joined(separator: ", "))
                                 .frame(maxWidth: .infinity, alignment: .trailing)
-                                .font(.title2)
+                                .font(.title3)
                                 .padding()
                                 }
 
