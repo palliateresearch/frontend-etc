@@ -18,6 +18,7 @@
 		9BA5EA722A619FC600095099 /* GuestHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5EA712A619FC600095099 /* GuestHome.swift */; };
 		9BA5EA742A61B6AB00095099 /* FindPark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5EA732A61B6AB00095099 /* FindPark.swift */; };
 		9BA5EA762A61BD1800095099 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5EA752A61BD1800095099 /* Login.swift */; };
+		9BAAB0692A673578000BAF23 /* Learning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAB0682A673578000BAF23 /* Learning.swift */; };
 		C905D6232A5F4613009BF5DB /* Achievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6222A5F4613009BF5DB /* Achievements.swift */; };
 		C905D6262A5F4CA6009BF5DB /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6252A5F4CA6009BF5DB /* Discover.swift */; };
 		C905D6282A5F4DAA009BF5DB /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6272A5F4DAA009BF5DB /* Home.swift */; };
@@ -66,6 +67,7 @@
 		9BA5EA712A619FC600095099 /* GuestHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestHome.swift; sourceTree = "<group>"; };
 		9BA5EA732A61B6AB00095099 /* FindPark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPark.swift; sourceTree = "<group>"; };
 		9BA5EA752A61BD1800095099 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		9BAAB0682A673578000BAF23 /* Learning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Learning.swift; sourceTree = "<group>"; };
 		C905D6222A5F4613009BF5DB /* Achievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievements.swift; sourceTree = "<group>"; };
 		C905D6252A5F4CA6009BF5DB /* Discover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discover.swift; sourceTree = "<group>"; };
 		C905D6272A5F4DAA009BF5DB /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				C9219DD82A5CACC400A65277 /* ContentView.swift */,
 				9B094E0C2A65997C008C39B3 /* EnterChildren.swift */,
 				9B094E0E2A659B4E008C39B3 /* Settings.swift */,
+				9BAAB0682A673578000BAF23 /* Learning.swift */,
 			);
 			path = Parent;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				9B094E0F2A659B4E008C39B3 /* Settings.swift in Sources */,
 				C905D6392A60EFAE009BF5DB /* CalendarView.swift in Sources */,
 				C905D6372A60E210009BF5DB /* AchievementsViewModel.swift in Sources */,
+				9BAAB0692A673578000BAF23 /* Learning.swift in Sources */,
 				C905D6282A5F4DAA009BF5DB /* Home.swift in Sources */,
 				C905D6232A5F4613009BF5DB /* Achievements.swift in Sources */,
 				9B094E192A65DF12008C39B3 /* parkList.swift in Sources */,

@@ -35,6 +35,8 @@ struct FindPark: View {
                                         } else {
                                             showHome = true
                                         }
+                                        userData.park = name
+                                        
                                     }) {
                                         Text(name)
                                             .font(.system(size: width * 0.05, weight: .bold))

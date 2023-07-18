@@ -13,7 +13,7 @@ class UserViewData: ObservableObject {
     @Published var password: String = ""
     @Published var firstName: String = ""
     @Published var lastName: String = ""
-    @Published var parkID: String = ""
+    @Published var park: String = ""
     @Published var children: [String] = []
     @Published var isParent: Bool = false
 }

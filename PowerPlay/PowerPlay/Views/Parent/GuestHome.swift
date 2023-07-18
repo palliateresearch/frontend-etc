@@ -38,7 +38,7 @@ struct GuestHome: View {
                         
                     })
                 }
-                Text("\(userData.parkID) - January")
+                Text("\(userData.park) - January")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.title3)
                     .bold()
