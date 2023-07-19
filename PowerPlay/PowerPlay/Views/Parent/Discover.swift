@@ -43,7 +43,8 @@ struct Discover: View {
                 
             }.padding()
             .background(Color("darkModeBackground"))
-        }.preferredColorScheme(.dark)
+        }
+        .preferredColorScheme(.dark)
         
     }
 }

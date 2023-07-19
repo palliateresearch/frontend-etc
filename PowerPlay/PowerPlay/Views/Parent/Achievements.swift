@@ -9,9 +9,9 @@ import SwiftUI
 
 struct Achievements: View {
     
-    
     private var adaptiveColumns = [GridItem(.adaptive(minimum: 100))]
     @State var selectedDate: Date = Date()
+    @ObservedObject var achievementsData = AchievementsData()
     
     func getCurrentMonthAndYear() -> String {
         let currentDate = Date()
@@ -30,6 +30,7 @@ struct Achievements: View {
                         .font(.largeTitle)
                         .bold()
                         .padding()
+                        .padding(.horizontal)
                     HStack{
                         Spacer()
                         VStack{
@@ -96,7 +97,7 @@ struct Achievements: View {
                             
 
                             LazyVGrid(columns: adaptiveColumns, spacing: 20){
-                                ForEach(AchievementsData().setBadges(), id: \.self){image in
+                                ForEach(AchievementsData().setBadges().sorted(), id: \.self){image in
                                     ZStack {
                                         Image(image)
                                             .scaleEffect(0.065)
@@ -104,6 +105,8 @@ struct Achievements: View {
                                             .frame(width: 300, height: 100)
                                     }
                                 }
+                            }.onAppear{
+                                achievementsData.updateBadges()
                             }
                             VStack{
                                 Spacer()
@@ -116,7 +119,7 @@ struct Achievements: View {
                     
                 }
                 .background(Color("navyBlue"))
-        }.preferredColorScheme(.dark)
+        }.foregroundColor(Color.white)
             
         
     }
