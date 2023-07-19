@@ -13,7 +13,7 @@ struct PowerPlayApp: App {
     @State var park = ""
     var body: some Scene {
         WindowGroup {
-            childHome()
+            StartView()
         }
     }
 }
