@@ -8,12 +8,10 @@
 import SwiftUI
 import Charts
 
-struct Home: View {
+struct childHome: View {
     @ObservedObject var userData = UserViewData()
     @State var progress: CGFloat = 0.75
     @State var isSettings = false
-    //@State
-    
     var body: some View {
         
         NavigationStack{
@@ -24,13 +22,12 @@ struct Home: View {
                         .font(.largeTitle)
                         .bold()
                         .padding(.vertical)
-                        .fontDesign(.rounded)
                     Button(action: {
                         isSettings = true
                     }
                     , label: {
                         HStack{
-                            Text("\(userData.firstName)").fontDesign(.rounded)
+                            Text("\(userData.firstName)")
                             Image(systemName: "person.crop.circle.fill")
                                 .scaleEffect(2.3)
                                 .padding()
@@ -40,7 +37,6 @@ struct Home: View {
                     })
                 }
                 Text("\(userData.firstName)'s Achievements")
-                    .fontDesign(.rounded)
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical)
@@ -61,7 +57,6 @@ struct Home: View {
                             .bold()
                             .cornerRadius(10)
                             .foregroundColor(Color.black)
-                            .fontDesign(.rounded)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding([.horizontal], 15)
                             .padding([.vertical], 7)
@@ -136,24 +131,22 @@ struct Home: View {
                                     .padding([.horizontal], 15)
                                     .padding([.vertical], 7)
                                     .font(.title3)
-                                    .fontDesign(.rounded)
                                    
                                 HStack{
                                     VStack{
                                         Spacer()
                                         Spacer()
                                         Text("485")
-                                            .foregroundColor(Color.white)
+                                            .foregroundColor(Color.black)
                                             .font(.system(size: 60))
                                             .bold()
-                                            .fontDesign(.rounded)
 
                                         ZStack{
                                             Capsule()
-                                                .foregroundColor(Color.white)
+                                                .foregroundColor(Color.black)
                                             HStack{
-                                                Text("1").fontDesign(.rounded)
-                                                Text("Nishka").fontDesign(.rounded)
+                                                Text("1")
+                                                Text("Nishka")
                                             }
                                             .foregroundColor(Color.black)
                                             .padding(2)
@@ -189,34 +182,32 @@ struct Home: View {
                                     .padding([.horizontal], 15)
                                     .padding([.vertical], 7)
                                     .font(.title3)
-                                    .fontDesign(.rounded)
                                    
                                 Chart{
                                     ForEach(HomeData().viewDays){ viewDay in
                                         LineMark(x: .value("Date", viewDay.date, unit: .day), y: .value("Views", viewDay.viewCount))
                                     }
-                                    .foregroundStyle(Color.white)
+                                    .foregroundStyle(Color.black)
                                 }
                                 .frame(width: CGFloat(HomeData().viewDays.count)*35)
                                 .chartXAxisLabel(position: .bottom, alignment: .center) {
                                     Text("July")
-                                        .foregroundColor(Color.white)
-                                        .fontDesign(.rounded)
+                                        .foregroundColor(Color.black)
                                 }
                                 .chartXAxis{
                                     AxisMarks(values: HomeData().viewDays.map {$0.date}) {date in
-                                        AxisValueLabel(format: .dateTime.day()).foregroundStyle(Color.white)
+                                        AxisValueLabel(format: .dateTime.day()).foregroundStyle(Color.black)
                                         AxisGridLine().foregroundStyle(Color("lightningYellow"))
                                     }
                                 }
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(Color.black)
                                 .chartYAxis{
                                     AxisMarks(values: .automatic) { _ in
-                                        AxisValueLabel().foregroundStyle(Color.white)
+                                        AxisValueLabel().foregroundStyle(Color.black)
                                         AxisGridLine().foregroundStyle(Color("lightningYellow"))
                                     }
                                 }
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(Color.black)
                                 .padding()
                             }
                             
@@ -233,7 +224,6 @@ struct Home: View {
                     .font(.title3)
                     .bold()
                     .padding(.top)
-                    .fontDesign(.rounded)
                 
                 HStack{
                     ZStack (alignment: .leading){
@@ -256,7 +246,6 @@ struct Home: View {
                                 .padding([.horizontal], 15)
                                 .padding([.vertical], 7)
                                 .font(.title3)
-                                .fontDesign(.rounded)
                             
                             VStack{
                                 HStack{
@@ -329,16 +318,14 @@ struct Home: View {
                                 .padding([.horizontal], 15)
                                 .padding([.vertical], 7)
                                 .font(.title3)
-                                .fontDesign(.rounded)
                             
                             VStack{
                                 ZStack{
                                     Capsule()
-                                        .foregroundColor(Color.white)
+                                        .foregroundColor(Color.black)
                                     HStack{
                                         Text("1")
-                                            .fontDesign(.rounded)
-                                        Text("Nishka").fontDesign(.rounded)
+                                        Text("Nishka")
                                     }
                                     .foregroundColor(Color.black)
                                     .padding(2)
@@ -346,12 +333,10 @@ struct Home: View {
                                 }
                                 ZStack{
                                     Capsule()
-                                        .foregroundColor(Color.white)
+                                        .foregroundColor(Color.black)
                                     HStack{
                                         Text("2")
-                                            .fontDesign(.rounded)
                                         Text("Valerie")
-                                            .fontDesign(.rounded)
                                     }
                                     .foregroundColor(Color.black)
                                     .padding(2)
@@ -359,12 +344,10 @@ struct Home: View {
                                 }
                                 ZStack{
                                     Capsule()
-                                        .foregroundColor(Color.white)
+                                        .foregroundColor(Color.black)
                                     HStack{
                                         Text("3")
-                                            .fontDesign(.rounded)
                                         Text("Aadit")
-                                            .fontDesign(.rounded)
                                     }
                                     .foregroundColor(Color.black)
                                     .padding(2)
@@ -372,12 +355,10 @@ struct Home: View {
                                 }
                                 ZStack{
                                     Capsule()
-                                        .foregroundColor(Color.white)
+                                        .foregroundColor(Color.black)
                                     HStack{
                                         Text("4")
-                                            .fontDesign(.rounded)
                                         Text("Eddie")
-                                            .fontDesign(.rounded)
                                     }
                                     .foregroundColor(Color.black)
                                     .padding(2)
@@ -385,12 +366,10 @@ struct Home: View {
                                 }
                                 ZStack{
                                     Capsule()
-                                        .foregroundColor(Color.white)
+                                        .foregroundColor(Color.black)
                                     HStack{
                                         Text("5")
-                                            .fontDesign(.rounded)
                                         Text("Vaughn")
-                                            .fontDesign(.rounded)
                                     }
                                     .foregroundColor(Color.black)
                                     .padding(2)
@@ -431,33 +410,32 @@ struct Home: View {
                                     .padding([.horizontal], 15)
                                     .padding([.vertical], 7)
                                     .font(.title3)
-                                    .fontDesign(.rounded)
                                    
                                 Chart{
                                     ForEach(HomeData().viewDays){ viewDay in
                                         LineMark(x: .value("Date", viewDay.date, unit: .day), y: .value("Views", viewDay.viewCount))
                                     }
-                                    .foregroundStyle(Color.white)
+                                    .foregroundStyle(Color.black)
                                 }
                                 .frame(width: CGFloat(HomeData().viewDays.count)*35)
                                 .chartXAxisLabel(position: .bottom, alignment: .center) {
                                     Text("July")
-                                        .foregroundColor(Color.white)
+                                        .foregroundColor(Color.black)
                                 }
                                 .chartXAxis{
                                     AxisMarks(values: HomeData().viewDays.map {$0.date}) {date in
-                                        AxisValueLabel(format: .dateTime.day()).foregroundStyle(Color.white)
+                                        AxisValueLabel(format: .dateTime.day()).foregroundStyle(Color.black)
                                         AxisGridLine().foregroundStyle(Color("lightningYellow"))
                                     }
                                 }
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(Color.black)
                                 .chartYAxis{
                                     AxisMarks(values: .automatic) { _ in
-                                        AxisValueLabel().foregroundStyle(Color.white)
+                                        AxisValueLabel().foregroundStyle(Color.black)
                                         AxisGridLine().foregroundStyle(Color("lightningYellow"))
                                     }
                                 }
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(Color.black)
                                 .padding()
                             }
                             
@@ -466,39 +444,14 @@ struct Home: View {
                     }
                 }.scrollIndicators(.visible)
             }
-            .foregroundColor(Color.white)
+            .foregroundColor(Color.black)
             .padding()
-            .background(Color("darkModeBackground"))
             .scrollIndicators(.hidden)
             
             
-        }.preferredColorScheme(.dark)
+        }.preferredColorScheme(.light)
             .fullScreenCover(isPresented: $isSettings) {
-                Settings(userData: userData)
+                childSettings(userData: userData)
             }
-    }
-}
-
-struct Home_Previews: PreviewProvider {
-    static var previews: some View {
-        Home(userData: UserViewData()).environment(\.colorScheme, .light)
-        Home(userData: UserViewData()).environment(\.colorScheme, .dark)
-    }
-}
-
-struct CircleProgress: View {
-    @Binding var progress: CGFloat
-    
-    var currentPercentage: Int {
-        Int(progress*100)
-    }
-    
-    var body: some View {
-        Circle()
-            .trim(from: 0, to: progress)
-            .stroke(Color.white, style: StrokeStyle(lineWidth: 3, lineCap: .round))
-                .rotationEffect(.degrees(-90))
-                .background(Circle().stroke(Color.white.opacity(0.2), style: StrokeStyle(lineWidth: 3, lineCap: .round)))
-            
     }
 }
