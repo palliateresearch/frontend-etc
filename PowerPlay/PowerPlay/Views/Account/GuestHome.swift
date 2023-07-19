@@ -20,6 +20,7 @@ struct GuestHome: View {
             ScrollView{
                 HStack{
                     Text("PowerPlay")
+                        .fontDesign(.rounded)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.largeTitle)
                         .bold()
@@ -29,7 +30,8 @@ struct GuestHome: View {
                     }
                     , label: {
                         HStack{
-                            Text("Guest")
+                            Text("Guest").foregroundColor(Color.white)
+                                .fontDesign(.rounded)
                             Image(systemName: "person.crop.circle.fill")
                                 .scaleEffect(2.3)
                                 .padding()
@@ -38,12 +40,13 @@ struct GuestHome: View {
                         
                     })
                 }
-                Text("\(userData.park) - January")
+                Text("\(userData.park)- January")
+                    .fontDesign(.rounded)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.title3)
                     .bold()
                     .padding(.top)
-                
+                    .fontDesign(.rounded)
                 HStack{
                     ZStack (alignment: .leading){
                         ZStack (alignment: .topLeading) {
@@ -58,6 +61,7 @@ struct GuestHome: View {
                         
                         VStack{
                             Text("Goals")
+                                .fontDesign(.rounded)
                                 .bold()
                                 .cornerRadius(10)
                                 .foregroundColor(Color.black)
@@ -116,12 +120,11 @@ struct GuestHome: View {
                         
                     }
                     .padding([.trailing], 5)
-                    
-                    ZStack (alignment: .leading){
+                    ZStack {
                         ZStack (alignment: .topLeading) {
                             Rectangle()
                                 .foregroundColor(Color("navyBlue"))
-                            
+
                             Rectangle()
                                 .fill(Color("lightningYellow"))
                                 .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 40, alignment: .top)
@@ -129,75 +132,29 @@ struct GuestHome: View {
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                         
                         VStack{
-                            Text("Leaderboard")
+                            Text("Total Power")
                                 .bold()
-                                .cornerRadius(10)
                                 .foregroundColor(Color.black)
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .frame(maxWidth: .infinity, alignment: .center)
                                 .padding([.horizontal], 15)
                                 .padding([.vertical], 7)
                                 .font(.title3)
-                            
-                            VStack{
-                                ZStack{
-                                    Capsule()
+                                .fontDesign(.rounded)
+                               
+                            HStack{
+                                VStack{
+                                    Spacer()
+                                    Spacer()
+                                    Text("485")
                                         .foregroundColor(Color.white)
-                                    HStack{
-                                        Text("1")
-                                        Text("Nishka")
-                                    }
-                                    .foregroundColor(Color.black)
-                                    .padding(2)
-                                    
+                                        .font(.system(size: 70))
+                                        .bold()
+                                        .fontDesign(.rounded)
+                                        .frame(maxHeight: .infinity,alignment:.center)
                                 }
-                                ZStack{
-                                    Capsule()
-                                        .foregroundColor(Color.white)
-                                    HStack{
-                                        Text("2")
-                                        Text("Valerie")
-                                    }
-                                    .foregroundColor(Color.black)
-                                    .padding(2)
-                                    
-                                }
-                                ZStack{
-                                    Capsule()
-                                        .foregroundColor(Color.white)
-                                    HStack{
-                                        Text("3")
-                                        Text("Aadit")
-                                    }
-                                    .foregroundColor(Color.black)
-                                    .padding(2)
-                                    
-                                }
-                                ZStack{
-                                    Capsule()
-                                        .foregroundColor(Color.white)
-                                    HStack{
-                                        Text("4")
-                                        Text("Eddie")
-                                    }
-                                    .foregroundColor(Color.black)
-                                    .padding(2)
-                                    
-                                }
-                                ZStack{
-                                    Capsule()
-                                        .foregroundColor(Color.white)
-                                    HStack{
-                                        Text("5")
-                                        Text("Vaughn")
-                                    }
-                                    .foregroundColor(Color.black)
-                                    .padding(2)
-                                    
-                                }
-                                
                             }
-                            .padding(15)
-                            .bold()
+                            
+                        
                         }
                         
                     }
@@ -222,6 +179,7 @@ struct GuestHome: View {
                             
                             VStack{
                                 Text("Weekly Watt Hours")
+                                    .fontDesign(.rounded)
                                     .bold()
                                     .cornerRadius(7)
                                     .foregroundColor(Color.black)
@@ -264,12 +222,11 @@ struct GuestHome: View {
                 }.scrollIndicators(.visible)
             }
             .foregroundColor(Color.white)
-            .padding()
             .background(Color("darkModeBackground"))
             .scrollIndicators(.hidden)
             
-            
-        }.preferredColorScheme(.dark)
+        }.padding()
+            .background(Color("darkModeBackground"))
         .fullScreenCover(isPresented: $toStart) {
             StartView()
         }
@@ -278,8 +235,8 @@ struct GuestHome: View {
 
 struct GuestHome_Previews: PreviewProvider {
     static var previews: some View {
-        Home().environment(\.colorScheme, .light)
-        Home().environment(\.colorScheme, .dark)
+        GuestHome().environment(\.colorScheme, .light)
+        GuestHome().environment(\.colorScheme, .dark)
     }
 }
 

@@ -93,10 +93,18 @@ struct Settings: View {
                             .padding()
                     }
                 }
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
+                VStack{
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                }
                 Button {
                     isLogout = true
                 } label: {
@@ -111,7 +119,8 @@ struct Settings: View {
         .fullScreenCover(isPresented: $isLogout) {
                 StartView()
         .background(Color("darkModeBackground"))
-        }
+        }.padding()
+            .background(Color("darkModeBackground"))
     }
 }
 

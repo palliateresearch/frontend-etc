@@ -14,6 +14,13 @@ struct Home: View {
     @State var isSettings = false
     //@State
     
+    func getMonth() -> String{
+        let calendar = Calendar.current
+        let currentMonth = calendar.component(.month, from: Date())
+        let monthArr: [String] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        return monthArr[currentMonth]
+    }
+    
     var body: some View {
         
         NavigationStack{
@@ -39,11 +46,12 @@ struct Home: View {
                         
                     })
                 }
-                Text("\(userData.firstName)'s Achievements")
-                    .fontDesign(.rounded)
-                    .bold()
+                Text("\(userData.park)'s Achievements- " + getMonth())
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.vertical)
+                    .font(.title3)
+                    .bold()
+                    .padding(.top)
+                    .fontDesign(.rounded)
                          
                 ZStack (alignment: .leading){
                     ZStack (alignment: .topLeading) {
@@ -137,35 +145,19 @@ struct Home: View {
                                     .padding([.vertical], 7)
                                     .font(.title3)
                                     .fontDesign(.rounded)
-                                   
+                                Spacer()
+                                Spacer()
+                                
                                 HStack{
                                     VStack{
-                                        Spacer()
-                                        Spacer()
                                         Text("485")
                                             .foregroundColor(Color.white)
-                                            .font(.system(size: 60))
+                                            .font(.system(size: 70))
                                             .bold()
                                             .fontDesign(.rounded)
-
-                                        ZStack{
-                                            Capsule()
-                                                .foregroundColor(Color.white)
-                                            HStack{
-                                                Text("1").fontDesign(.rounded)
-                                                Text("Nishka").fontDesign(.rounded)
-                                            }
-                                            .foregroundColor(Color.black)
-                                            .padding(2)
-                                            .bold()
-                                            
-                                        }
+                                            .frame(maxHeight: .infinity,alignment:.center)
                                     }
-                                    .padding()
-                                        
-                                }
-                                
-                            
+                                }.padding()
                             }
                             
                         }
@@ -228,13 +220,7 @@ struct Home: View {
                 Spacer()
                 Spacer()
                 
-                Text("\(userData.park) - January")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.title3)
-                    .bold()
-                    .padding(.top)
-                    .fontDesign(.rounded)
-                
+                /*
                 HStack{
                     ZStack (alignment: .leading){
                         ZStack (alignment: .topLeading) {
@@ -465,13 +451,15 @@ struct Home: View {
                         
                     }
                 }.scrollIndicators(.visible)
+                 */
             }
-            .foregroundColor(Color.white)
             .background(Color("darkModeBackground"))
+            .foregroundColor(Color.white)
             .scrollIndicators(.hidden)
             
             
-        }.preferredColorScheme(.dark)
+        }.padding()
+        .background(Color("darkModeBackground"))
             .fullScreenCover(isPresented: $isSettings) {
                 Settings(userData: userData)
             }

@@ -34,6 +34,7 @@ struct Login: View {
                 .padding(.top, width * 0.04)
                 
                 Text("Login")
+                    .fontDesign(.rounded)
                     .font(.system(size: width * 0.08, weight: .bold))
                     .frame(width: width * 0.8)
                     .padding(.top, height * 0.03)
@@ -55,6 +56,7 @@ struct Login: View {
                         }
                     VStack {
                         TextField("Username", text: $userData.username)
+                            .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
                             .foregroundColor(.white)
                             .disabled(!userSelect)
@@ -65,6 +67,7 @@ struct Login: View {
                 .padding(.top, height * 0.05)
                 .overlay(
                     Text("Please enter your username")
+                        .fontDesign(.rounded)
                         .foregroundColor(.red)
                         .opacity(isUsernameValid ? 0 : 1)
    
@@ -88,6 +91,7 @@ struct Login: View {
                         }
                     VStack {
                         SecureField("Password", text: $userData.password)
+                            .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
                             .foregroundColor(.white)
                             .disabled(!passSelect)
@@ -98,6 +102,7 @@ struct Login: View {
                 .padding(.top, height * 0.05)
                 .overlay(
                     Text("Please enter your password")
+                        .fontDesign(.rounded)
                         .foregroundColor(.red)
                         .opacity(isPasswordValid ? 0 : 1)
               
@@ -116,6 +121,7 @@ struct Login: View {
                     }
                 }) {
                     Text("Sign In")
+                        .fontDesign(.rounded)
                         .font(.system(size: width * 0.06, weight: .bold))
                         .frame(width: width * 0.5, height: height * 0.075)
                         .background(Color.white)
@@ -130,6 +136,7 @@ struct Login: View {
                     isRegister = true
                 }) {
                     Text("Don't have an account? Register")
+                        .fontDesign(.rounded)
                         .font(.system(size: width * 0.05, weight: .bold))
                         .frame(width: width * 0.8, height: height * 0.1)
                         .foregroundColor(Color("lightningYellow")) // You can change the text color to match the link color
