@@ -35,7 +35,7 @@ struct ContentView: View {
         }
         
         .preferredColorScheme(.dark)
-        .padding()
+        //.padding()
         .foregroundColor(.white)
         .background(Color.black.opacity(0.5))
         .edgesIgnoringSafeArea(.bottom)

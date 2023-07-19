@@ -137,7 +137,8 @@ struct Home: View {
                                     VStack{
                                         Spacer()
                                         Spacer()
-                                        Text("485")
+                                        
+                                        Text(String(userData.jsonData.totalEnergy))
                                             .foregroundColor(Color.white)
                                             .font(.system(size: 60))
                                             .bold()
@@ -156,6 +157,9 @@ struct Home: View {
                                         }
                                     }
                                     .padding()
+                                    .onAppear(perform: {
+                                        userData.loadData()
+                                    })
                                         
                                 }
                                 
@@ -459,6 +463,7 @@ struct Home_Previews: PreviewProvider {
     static var previews: some View {
         Home(userData: UserViewData()).environment(\.colorScheme, .light)
         Home(userData: UserViewData()).environment(\.colorScheme, .dark)
+        
     }
 }
 
@@ -478,3 +483,4 @@ struct CircleProgress: View {
             
     }
 }
+
