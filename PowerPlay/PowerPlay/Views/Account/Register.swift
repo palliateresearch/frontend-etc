@@ -233,7 +233,7 @@ struct Register: View {
            
             
         }
-        .background(Color.black)
+        .background(Color("darkModeBackground"))
         .preferredColorScheme(.dark)
     }
 }

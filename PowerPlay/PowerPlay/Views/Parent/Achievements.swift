@@ -116,8 +116,6 @@ struct Achievements: View {
                     
                 }
                 .background(Color("navyBlue"))
-            
-
         }.preferredColorScheme(.dark)
             
         

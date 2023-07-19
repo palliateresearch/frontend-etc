@@ -166,7 +166,7 @@ struct Lesson: View, Hashable {
                         }
                     }
                 }
-            }
+            }.background(Color("darkModeBackground"))
         }
     }
 

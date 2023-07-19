@@ -466,7 +466,6 @@ struct Home: View {
                 }.scrollIndicators(.visible)
             }
             .foregroundColor(Color.white)
-            .padding()
             .background(Color("darkModeBackground"))
             .scrollIndicators(.hidden)
             
