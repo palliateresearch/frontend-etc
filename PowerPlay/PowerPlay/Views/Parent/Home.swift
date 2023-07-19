@@ -23,12 +23,13 @@ struct Home: View {
                         .font(.largeTitle)
                         .bold()
                         .padding(.vertical)
+                        .fontDesign(.rounded)
                     Button(action: {
 
                     }
                     , label: {
                         HStack{
-                            Text("\(userData.firstName)")
+                            Text("\(userData.firstName)").fontDesign(.rounded)
                             Image(systemName: "person.crop.circle.fill")
                                 .scaleEffect(2.3)
                                 .padding()
@@ -38,6 +39,7 @@ struct Home: View {
                     })
                 }
                 Text("\(userData.firstName)'s Achievements")
+                    .fontDesign(.rounded)
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical)
@@ -58,6 +60,7 @@ struct Home: View {
                             .bold()
                             .cornerRadius(10)
                             .foregroundColor(Color.black)
+                            .fontDesign(.rounded)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding([.horizontal], 15)
                             .padding([.vertical], 7)
@@ -132,6 +135,7 @@ struct Home: View {
                                     .padding([.horizontal], 15)
                                     .padding([.vertical], 7)
                                     .font(.title3)
+                                    .fontDesign(.rounded)
                                    
                                 HStack{
                                     VStack{
@@ -141,13 +145,14 @@ struct Home: View {
                                             .foregroundColor(Color.white)
                                             .font(.system(size: 60))
                                             .bold()
+                                            .fontDesign(.rounded)
 
                                         ZStack{
                                             Capsule()
                                                 .foregroundColor(Color.white)
                                             HStack{
-                                                Text("1")
-                                                Text("Nishka")
+                                                Text("1").fontDesign(.rounded)
+                                                Text("Nishka").fontDesign(.rounded)
                                             }
                                             .foregroundColor(Color.black)
                                             .padding(2)
@@ -183,6 +188,7 @@ struct Home: View {
                                     .padding([.horizontal], 15)
                                     .padding([.vertical], 7)
                                     .font(.title3)
+                                    .fontDesign(.rounded)
                                    
                                 Chart{
                                     ForEach(HomeData().viewDays){ viewDay in
@@ -194,6 +200,7 @@ struct Home: View {
                                 .chartXAxisLabel(position: .bottom, alignment: .center) {
                                     Text("July")
                                         .foregroundColor(Color.white)
+                                        .fontDesign(.rounded)
                                 }
                                 .chartXAxis{
                                     AxisMarks(values: HomeData().viewDays.map {$0.date}) {date in
@@ -225,6 +232,7 @@ struct Home: View {
                     .font(.title3)
                     .bold()
                     .padding(.top)
+                    .fontDesign(.rounded)
                 
                 HStack{
                     ZStack (alignment: .leading){
@@ -247,6 +255,7 @@ struct Home: View {
                                 .padding([.horizontal], 15)
                                 .padding([.vertical], 7)
                                 .font(.title3)
+                                .fontDesign(.rounded)
                             
                             VStack{
                                 HStack{
@@ -319,6 +328,7 @@ struct Home: View {
                                 .padding([.horizontal], 15)
                                 .padding([.vertical], 7)
                                 .font(.title3)
+                                .fontDesign(.rounded)
                             
                             VStack{
                                 ZStack{
@@ -326,7 +336,8 @@ struct Home: View {
                                         .foregroundColor(Color.white)
                                     HStack{
                                         Text("1")
-                                        Text("Nishka")
+                                            .fontDesign(.rounded)
+                                        Text("Nishka").fontDesign(.rounded)
                                     }
                                     .foregroundColor(Color.black)
                                     .padding(2)
@@ -337,7 +348,9 @@ struct Home: View {
                                         .foregroundColor(Color.white)
                                     HStack{
                                         Text("2")
+                                            .fontDesign(.rounded)
                                         Text("Valerie")
+                                            .fontDesign(.rounded)
                                     }
                                     .foregroundColor(Color.black)
                                     .padding(2)
@@ -348,7 +361,9 @@ struct Home: View {
                                         .foregroundColor(Color.white)
                                     HStack{
                                         Text("3")
+                                            .fontDesign(.rounded)
                                         Text("Aadit")
+                                            .fontDesign(.rounded)
                                     }
                                     .foregroundColor(Color.black)
                                     .padding(2)
@@ -359,7 +374,9 @@ struct Home: View {
                                         .foregroundColor(Color.white)
                                     HStack{
                                         Text("4")
+                                            .fontDesign(.rounded)
                                         Text("Eddie")
+                                            .fontDesign(.rounded)
                                     }
                                     .foregroundColor(Color.black)
                                     .padding(2)
@@ -370,7 +387,9 @@ struct Home: View {
                                         .foregroundColor(Color.white)
                                     HStack{
                                         Text("5")
+                                            .fontDesign(.rounded)
                                         Text("Vaughn")
+                                            .fontDesign(.rounded)
                                     }
                                     .foregroundColor(Color.black)
                                     .padding(2)
@@ -411,6 +430,7 @@ struct Home: View {
                                     .padding([.horizontal], 15)
                                     .padding([.vertical], 7)
                                     .font(.title3)
+                                    .fontDesign(.rounded)
                                    
                                 Chart{
                                     ForEach(HomeData().viewDays){ viewDay in

@@ -25,6 +25,7 @@ struct Achievements: View {
         NavigationStack{
             ScrollView{
                     Text("Achievements")
+                    .fontDesign(.rounded)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.largeTitle)
                         .bold()
@@ -35,9 +36,11 @@ struct Achievements: View {
                             Text("6 days")
                                 .font(.title2)
                                 .bold()
+                                .fontDesign(.rounded)
                             Text("current streak")
                                 .bold()
                                 .font(.subheadline)
+                                .fontDesign(.rounded)
                         }
                         .padding(.leading)
                         
@@ -51,9 +54,11 @@ struct Achievements: View {
                             Text("10 days")
                                 .font(.title2)
                                 .bold()
+                                .fontDesign(.rounded)
                             Text("longest streak")
                                 .bold()
                                 .font(.subheadline)
+                                .fontDesign(.rounded)
                         }
                         .padding(.trailing)
                         Spacer()
@@ -86,19 +91,26 @@ struct Achievements: View {
                             Text("Badges Earned")
                                 .padding()
                                 .frame(maxWidth: .infinity, alignment: .leading)
+                                .font(.title3)
+                                .fontDesign(.rounded)
                             
 
                             LazyVGrid(columns: adaptiveColumns, spacing: 20){
                                 ForEach(AchievementsData().setBadges(), id: \.self){image in
                                     ZStack {
-                                        Image(systemName: image)
-                                            .scaleEffect(2)
+                                        Image(image)
+                                            .scaleEffect(0.065)
                                             .foregroundColor(Color.white)
-                                            .padding()
+                                            .frame(width: 300, height: 100)
                                     }
-                                    .padding()
                                 }
                             }
+                            VStack{
+                                Spacer()
+                                Spacer()
+                                Spacer()
+                            }
+                            
                         }
                     }
                     
