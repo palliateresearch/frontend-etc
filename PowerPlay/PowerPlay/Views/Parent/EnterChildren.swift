@@ -97,8 +97,7 @@ struct ChildView: View {
             let boxWidth = width * 0.8
             let boxHeight = height * 8
             let spacing = width * 0.01
-            let scaleFactor = width / 375.0 // Adjust the base width (375.0) as per your design
-
+          
             HStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: 12)
@@ -115,19 +114,20 @@ struct ChildView: View {
                                 isEditing = false // Set isEditing to false when editing is finished
                             }
                         })
-                        .font(.system(size: 16 * scaleFactor, weight: .bold))
+                        .font(.system(size: width * 0.05, weight: .bold))
                         .padding(width * 0.03)
                         .foregroundColor(Color.white)
                     } else {
                         if text.isEmpty {
                             Text("Enter child's username")
-                                .font(.system(size: 16 * scaleFactor, weight: .bold))
                                 .foregroundColor(Color.gray)
-                                .padding(.horizontal, width * 0.03)
+                                .font(.system(size: width * 0.05, weight: .bold))
+                                .padding(width * 0.03)
                         } else {
                             Text(text)
-                                .font(.system(size: 16 * scaleFactor, weight: .bold))
-                                .foregroundColor(Color.white)
+                                .foregroundColor(Color.gray)
+                                .font(.system(size: width * 0.05, weight: .bold))
+                                .padding(width * 0.03)
                         }
                     }
                 }
@@ -138,10 +138,10 @@ struct ChildView: View {
                     removeAction()
                 }) {
                     Image(systemName: "minus.circle")
-                        .font(.system(size: 24 * scaleFactor))
+                        .font(.system(size: width * 0.06))
                         .foregroundColor(Color("lightningYellow"))
                 }
-                .padding(.trailing, width * 0.04)
+                .padding(.trailing, width * 0.045)
                 .padding(.leading, width * 0.05)
                 // Add padding between the minus sign and the box
             }

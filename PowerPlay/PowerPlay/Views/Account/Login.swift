@@ -124,33 +124,22 @@ struct Login: View {
                         .cornerRadius(10)
                 }
                 .padding(.top, height * 0.04)
-                
-                SignInWithAppleButton(.signIn) { request in
-                    request.requestedScopes = [.fullName, .email]
-                } onCompletion: { result in
-                    ContentView(userData: userData)
-                }
-                .frame(width: width * 0.7, height: height * 0.06)
-                .padding(.top, height * 0.05)
-                
                
+                Spacer()
                 Button(action: {
                     isRegister = true
                 }) {
                     Text("Don't have an account? Register")
                         .font(.system(size: width * 0.05, weight: .bold))
                         .frame(width: width * 0.8, height: height * 0.1)
-                        .foregroundColor(Color("navyBlue"))
-                        .cornerRadius(10)
+                        .foregroundColor(Color("lightningYellow")) // You can change the text color to match the link color
                 }
-                .padding(.bottom, height * 0.04)
+                .buttonStyle(PlainButtonStyle()) // Removes the default button style
+                .padding(.horizontal, width * 0.1)
                 .sheet(isPresented: $isRegister) {
                     Register(userData: userData)
                 }
-                .padding(.horizontal, width * 0.1)
-            }
-            
-            .fullScreenCover(isPresented: $isLoggedIn) {
+            }.fullScreenCover(isPresented: $isLoggedIn) {
                 ContentView(userData: userData)
             }
             .preferredColorScheme(.dark)

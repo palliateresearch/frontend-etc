@@ -8,12 +8,10 @@
 import SwiftUI
 import Charts
 
-struct Home: View {
+struct childHome: View {
     @ObservedObject var userData = UserViewData()
     @State var progress: CGFloat = 0.75
     @State var isSettings = false
-    //@State
-    
     var body: some View {
         
         NavigationStack{
@@ -139,13 +137,13 @@ struct Home: View {
                                         Spacer()
                                         Spacer()
                                         Text("485")
-                                            .foregroundColor(Color.white)
+                                            .foregroundColor(Color.black)
                                             .font(.system(size: 60))
                                             .bold()
 
                                         ZStack{
                                             Capsule()
-                                                .foregroundColor(Color.white)
+                                                .foregroundColor(Color.black)
                                             HStack{
                                                 Text("1")
                                                 Text("Nishka")
@@ -189,27 +187,27 @@ struct Home: View {
                                     ForEach(HomeData().viewDays){ viewDay in
                                         LineMark(x: .value("Date", viewDay.date, unit: .day), y: .value("Views", viewDay.viewCount))
                                     }
-                                    .foregroundStyle(Color.white)
+                                    .foregroundStyle(Color.black)
                                 }
                                 .frame(width: CGFloat(HomeData().viewDays.count)*35)
                                 .chartXAxisLabel(position: .bottom, alignment: .center) {
                                     Text("July")
-                                        .foregroundColor(Color.white)
+                                        .foregroundColor(Color.black)
                                 }
                                 .chartXAxis{
                                     AxisMarks(values: HomeData().viewDays.map {$0.date}) {date in
-                                        AxisValueLabel(format: .dateTime.day()).foregroundStyle(Color.white)
+                                        AxisValueLabel(format: .dateTime.day()).foregroundStyle(Color.black)
                                         AxisGridLine().foregroundStyle(Color("lightningYellow"))
                                     }
                                 }
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(Color.black)
                                 .chartYAxis{
                                     AxisMarks(values: .automatic) { _ in
-                                        AxisValueLabel().foregroundStyle(Color.white)
+                                        AxisValueLabel().foregroundStyle(Color.black)
                                         AxisGridLine().foregroundStyle(Color("lightningYellow"))
                                     }
                                 }
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(Color.black)
                                 .padding()
                             }
                             
@@ -324,7 +322,7 @@ struct Home: View {
                             VStack{
                                 ZStack{
                                     Capsule()
-                                        .foregroundColor(Color.white)
+                                        .foregroundColor(Color.black)
                                     HStack{
                                         Text("1")
                                         Text("Nishka")
@@ -335,7 +333,7 @@ struct Home: View {
                                 }
                                 ZStack{
                                     Capsule()
-                                        .foregroundColor(Color.white)
+                                        .foregroundColor(Color.black)
                                     HStack{
                                         Text("2")
                                         Text("Valerie")
@@ -346,7 +344,7 @@ struct Home: View {
                                 }
                                 ZStack{
                                     Capsule()
-                                        .foregroundColor(Color.white)
+                                        .foregroundColor(Color.black)
                                     HStack{
                                         Text("3")
                                         Text("Aadit")
@@ -357,7 +355,7 @@ struct Home: View {
                                 }
                                 ZStack{
                                     Capsule()
-                                        .foregroundColor(Color.white)
+                                        .foregroundColor(Color.black)
                                     HStack{
                                         Text("4")
                                         Text("Eddie")
@@ -368,7 +366,7 @@ struct Home: View {
                                 }
                                 ZStack{
                                     Capsule()
-                                        .foregroundColor(Color.white)
+                                        .foregroundColor(Color.black)
                                     HStack{
                                         Text("5")
                                         Text("Vaughn")
@@ -417,27 +415,27 @@ struct Home: View {
                                     ForEach(HomeData().viewDays){ viewDay in
                                         LineMark(x: .value("Date", viewDay.date, unit: .day), y: .value("Views", viewDay.viewCount))
                                     }
-                                    .foregroundStyle(Color.white)
+                                    .foregroundStyle(Color.black)
                                 }
                                 .frame(width: CGFloat(HomeData().viewDays.count)*35)
                                 .chartXAxisLabel(position: .bottom, alignment: .center) {
                                     Text("July")
-                                        .foregroundColor(Color.white)
+                                        .foregroundColor(Color.black)
                                 }
                                 .chartXAxis{
                                     AxisMarks(values: HomeData().viewDays.map {$0.date}) {date in
-                                        AxisValueLabel(format: .dateTime.day()).foregroundStyle(Color.white)
+                                        AxisValueLabel(format: .dateTime.day()).foregroundStyle(Color.black)
                                         AxisGridLine().foregroundStyle(Color("lightningYellow"))
                                     }
                                 }
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(Color.black)
                                 .chartYAxis{
                                     AxisMarks(values: .automatic) { _ in
-                                        AxisValueLabel().foregroundStyle(Color.white)
+                                        AxisValueLabel().foregroundStyle(Color.black)
                                         AxisGridLine().foregroundStyle(Color("lightningYellow"))
                                     }
                                 }
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(Color.black)
                                 .padding()
                             }
                             
@@ -446,39 +444,14 @@ struct Home: View {
                     }
                 }.scrollIndicators(.visible)
             }
-            .foregroundColor(Color.white)
+            .foregroundColor(Color.black)
             .padding()
-            .background(Color("darkModeBackground"))
             .scrollIndicators(.hidden)
             
             
-        }.preferredColorScheme(.dark)
+        }.preferredColorScheme(.light)
             .fullScreenCover(isPresented: $isSettings) {
-                Settings(userData: userData)
+                childSettings(userData: userData)
             }
-    }
-}
-
-struct Home_Previews: PreviewProvider {
-    static var previews: some View {
-        Home(userData: UserViewData()).environment(\.colorScheme, .light)
-        Home(userData: UserViewData()).environment(\.colorScheme, .dark)
-    }
-}
-
-struct CircleProgress: View {
-    @Binding var progress: CGFloat
-    
-    var currentPercentage: Int {
-        Int(progress*100)
-    }
-    
-    var body: some View {
-        Circle()
-            .trim(from: 0, to: progress)
-            .stroke(Color.white, style: StrokeStyle(lineWidth: 3, lineCap: .round))
-                .rotationEffect(.degrees(-90))
-                .background(Circle().stroke(Color.white.opacity(0.2), style: StrokeStyle(lineWidth: 3, lineCap: .round)))
-            
     }
 }
