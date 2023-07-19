@@ -25,9 +25,10 @@ struct Settings: View {
                     Spacer()
                     VStack{
                         Image("personfillyellow")
-                            .aspectRatio(contentMode: .fill)
-                            .scaleEffect(1)
+                            .scaleEffect(0.3)
                             .foregroundColor(Color("lightningYellow"))
+                            .frame(width: 300, height: 150)
+                            .aspectRatio(contentMode: .fit)
                         Text("\(userData.firstName) \(userData.lastName)")
                             .frame(maxWidth: .infinity, alignment: .center)
                             .font(.title2)

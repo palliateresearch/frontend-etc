@@ -25,7 +25,8 @@ struct StartView: View {
                     HStack {
                         Spacer()
                         
-                        Text("Welcome  To")
+                        Text("Welcome  to")
+                            .fontDesign(.rounded)
                             .font(.system(size: width * 0.09, weight: .bold))
                             .frame(width: width * 0.8)
                         
@@ -51,6 +52,7 @@ struct StartView: View {
                         Spacer()
                         
                         Text("PowerPlay")
+                            .fontDesign(.rounded)
                             .font(.system(size: width * 0.135, weight: .bold))
                             .frame(width: width * 0.8)
                         
@@ -75,7 +77,7 @@ struct StartView: View {
                                     
                                 
                                 Text("Get a PowerBand")
-                                    
+                                    .fontDesign(.rounded)
                                     .font(.system(size: width * 0.06, weight: .bold))
                                     .multilineTextAlignment(.center)
                                     .padding(.bottom, width * 0.05)
@@ -100,6 +102,7 @@ struct StartView: View {
                                     }
                                 
                                 Text("Scan a PowerBand")
+                                    .fontDesign(.rounded)
                                     .font(.system(size: width * 0.06, weight: .bold))
                                     .multilineTextAlignment(.center)
                                     .padding(.bottom, width * 0.05)
@@ -122,6 +125,7 @@ struct StartView: View {
                                     }
                                 
                                 Text("Login as Guest")
+                                    .fontDesign(.rounded)
                                     .font(.system(size: width * 0.06, weight: .bold))
                                     .multilineTextAlignment(.center)
                                     .padding(.bottom, width * 0.07)

@@ -13,7 +13,7 @@ class AchievementsData: ObservableObject {
     @Published var daysPartialGoalAchieved: [Int] = []
         
     func setBadges() -> [String] {
-        badges = ["keyboard", "keyboard.onehanded.left.fill", "scanner.fill", "play.display"]
+        badges = ["badgeStreak1", "badgeStreak2", "badgeStreak3", "badgeWh1", "badgeWh2", "badgeWh3", "badge100Elec", "badge100Ener", "badge100Green"]
         return badges
     }
     
