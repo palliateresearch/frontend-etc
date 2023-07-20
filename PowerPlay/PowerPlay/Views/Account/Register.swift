@@ -1,30 +1,28 @@
 import SwiftUI
-import AuthenticationServices
 
 struct Register: View {
-    @ObservedObject var userData = UserViewData()
-    
+    @EnvironmentObject private var pv: PV
+    var model = TestModel()
+
     @State private var userSelect: Bool = false
     @State private var passSelect: Bool = false
     @State private var firstSelect: Bool = false
     @State private var lastSelect: Bool = false
-    
-    @State private var isLoggedIn: Bool = false // Register vs Home
-    
+
+    @State private var isLoggedIn: Bool = false
     @State private var isParentLocal: Bool = false
-    
-    @State private var isLogin: Bool = false // Register vs Login
-    
+    @State private var isLogin: Bool = false
+
     @State private var isFirstNameValid: Bool = true
     @State private var isLastNameValid: Bool = true
     @State private var isUsernameValid: Bool = true
     @State private var isPasswordValid: Bool = true
-    
+
     var body: some View {
         GeometryReader { geometry in
             let width = geometry.size.width
             let height = geometry.size.height
-            
+
             VStack {
                 Text("Register")
                     .fontDesign(.rounded)
@@ -32,7 +30,7 @@ struct Register: View {
                     .frame(width: width * 0.8)
                     .padding(.top, height * 0.03)
                     .foregroundColor(Color.white)
-                
+
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color("navyBlue"))
@@ -49,10 +47,10 @@ struct Register: View {
                             passSelect = false
                         }
                     VStack {
-                        TextField("First Name", text: $userData.firstName)
+                        TextField("First Name", text: $pv.firstName)
                             .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
-                            .foregroundColor(firstSelect ? .white : .white) // Modify the foreground color
+                            .foregroundColor(firstSelect ? .white : .white)
                             .disabled(!firstSelect)
                             .opacity(firstSelect ? 1 : 0.4)
                             .padding(.leading, width * 0.15)
@@ -64,11 +62,10 @@ struct Register: View {
                         .fontDesign(.rounded)
                         .foregroundColor(.red)
                         .opacity(isFirstNameValid ? 0 : 1)
-                       
                         .padding(.leading, width * 0.1),
                     alignment: .topLeading
                 )
-                
+
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color("navyBlue"))
@@ -85,10 +82,10 @@ struct Register: View {
                             passSelect = false
                         }
                     VStack {
-                        TextField("Last Name", text: $userData.lastName)
+                        TextField("Last Name", text: $pv.lastName)
                             .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
-                            .foregroundColor(lastSelect ? .white : .white) // Modify the foreground color
+                            .foregroundColor(lastSelect ? .white : .white)
                             .disabled(!lastSelect)
                             .opacity(lastSelect ? 1 : 0.4)
                             .padding(.leading, width * 0.15)
@@ -100,11 +97,10 @@ struct Register: View {
                         .fontDesign(.rounded)
                         .foregroundColor(.red)
                         .opacity(isLastNameValid ? 0 : 1)
-                    
                         .padding(.leading, width * 0.1),
                     alignment: .topLeading
                 )
-                
+
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color("navyBlue"))
@@ -121,10 +117,10 @@ struct Register: View {
                             passSelect = false
                         }
                     VStack {
-                        TextField("Username", text: $userData.username)
+                        TextField("Username", text: $pv.username)
                             .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
-                            .foregroundColor(userSelect ? .white : .white) // Modify the foreground color
+                            .foregroundColor(userSelect ? .white : .white)
                             .disabled(!userSelect)
                             .opacity(userSelect ? 1 : 0.4)
                             .padding(.leading, width * 0.15)
@@ -136,11 +132,10 @@ struct Register: View {
                         .fontDesign(.rounded)
                         .foregroundColor(.red)
                         .opacity(isUsernameValid ? 0 : 1)
-                       
                         .padding(.leading, width * 0.1),
                     alignment: .topLeading
                 )
-                
+
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color("navyBlue"))
@@ -157,10 +152,10 @@ struct Register: View {
                             passSelect = true
                         }
                     VStack {
-                        SecureField("Password", text: $userData.password)
+                        SecureField("Password", text: $pv.password)
                             .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
-                            .foregroundColor(passSelect ? .white : .white) // Modify the foreground color
+                            .foregroundColor(passSelect ? .white : .white)
                             .disabled(!passSelect)
                             .opacity(passSelect ? 1 : 0.4)
                             .padding(.leading, width * 0.15)
@@ -173,12 +168,11 @@ struct Register: View {
                         .fontDesign(.rounded)
                         .foregroundColor(.red)
                         .opacity(isPasswordValid ? 0 : 1)
-                       
                         .padding(.leading, width * 0.1),
                     alignment: .topLeading
                 )
-                
-                Toggle(isOn: $isParentLocal) {
+
+                Toggle(isOn: $pv.isParent) {
                     Text("Create Parent Account?")
                         .fontDesign(.rounded)
                 }
@@ -186,19 +180,27 @@ struct Register: View {
                 .font(.system(size: width * 0.06, weight: .bold))
                 .foregroundColor(Color("lightningYellow"))
                 .padding(.top, height * 0.03)
-                
+
                 Button(action: {
                     // Perform validation checks
-                    isFirstNameValid = !userData.firstName.isEmpty
-                    isLastNameValid = !userData.lastName.isEmpty
-                    isUsernameValid = userData.username.count >= 4
-                    isPasswordValid = userData.password.count >= 4
-                    
+                    isFirstNameValid = !pv.firstName.isEmpty
+                    isLastNameValid = !pv.lastName.isEmpty
+                    isUsernameValid = pv.username.count >= 4
+                    isPasswordValid = pv.password.count >= 4
+
                     // Check if all validation checks passed
                     if isFirstNameValid && isLastNameValid && isUsernameValid && isPasswordValid {
                         // All entries are valid, proceed with registration
-                        userData.isParent = isParentLocal
+                        model.myUser?.firstName = pv.firstName
+                        model.myUser?.lastName = pv.lastName
+                        model.myUser?.username = pv.username
+                        model.myUser?.password = pv.password
+                        model.myUser?.isParent = pv.isParent // Save isParent value
+                        model.save()
+
+                        // Perform the appropriate action based on the isParent flag
                         isLoggedIn = true
+                       
                     }
                 }) {
                     Text("Register")
@@ -211,10 +213,9 @@ struct Register: View {
                         .cornerRadius(10)
                 }
                 .padding(.top, height * 0.03)
-               
-                
+
                 Spacer()
-                
+
                 Button(action: {
                     isLogin = true
                 }) {
@@ -222,26 +223,34 @@ struct Register: View {
                         .fontDesign(.rounded)
                         .font(.system(size: width * 0.05, weight: .bold))
                         .frame(width: width * 0.8, height: height * 0.1)
-                        .foregroundColor(Color("lightningYellow")) // You can change the text color to match the link color
+                        .foregroundColor(Color("lightningYellow"))
                 }
-                .buttonStyle(PlainButtonStyle()) // Removes the default button style
+                .buttonStyle(PlainButtonStyle())
                 .padding(.horizontal, width * 0.1)
-                
-
             }
             .fullScreenCover(isPresented: $isLoggedIn) {
-                if isParentLocal {
-                    EnterChildren(userData: userData)
+                if pv.isParent {
+                    EnterChildren()
+                } else if let user = model.myUser, !(user.park?.isEmpty ?? true) {
+                    ContentView()
                 } else {
-                    FindPark(userData: userData)
+                    FindPark()
                 }
             }
             .fullScreenCover(isPresented: $isLogin) {
                 Login()
             }
-            
-           
-            
+            .onAppear {
+                model.load()
+
+                DispatchQueue.main.async {
+                    pv.firstName = model.myUser?.firstName ?? ""
+                    pv.lastName = model.myUser?.lastName ?? ""
+                    pv.username = model.myUser?.username ?? ""
+                    pv.password = model.myUser?.password ?? ""
+                    pv.isParent = model.myUser?.isParent ?? false
+                }
+            }
         }
         .background(Color("darkModeBackground"))
         .preferredColorScheme(.dark)
@@ -250,7 +259,7 @@ struct Register: View {
 
 struct Register_Previews: PreviewProvider {
     static var previews: some View {
-        Register(userData: UserViewData())
+        Register()
     }
 }
 

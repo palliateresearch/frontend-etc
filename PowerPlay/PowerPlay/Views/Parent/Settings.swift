@@ -1,20 +1,14 @@
-//
-//  Settings.swift
-//  PowerPlay
-//
-//  Created by Nishka Sharma on 7/12/23.
-//
-
 import SwiftUI
 
 struct Settings: View {
-    @ObservedObject var userData = UserViewData()
+    var model = TestModel()
     @State var isLogout = false
-    
+    @Environment(\.managedObjectContext) private var viewContext
+
     var body: some View {
-        NavigationStack{
-            ScrollView{
-                VStack{
+        NavigationStack {
+            ScrollView {
+                VStack {
                     Text("Settings")
                         .fontDesign(.rounded)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -24,13 +18,13 @@ struct Settings: View {
                     Spacer()
                     Spacer()
                     Spacer()
-                    VStack{
+                    VStack {
                         Image("personfillyellow")
                             .scaleEffect(0.3)
                             .foregroundColor(Color("lightningYellow"))
                             .frame(width: 300, height: 150)
                             .aspectRatio(contentMode: .fit)
-                        Text("\(userData.firstName) \(userData.lastName)")
+                        Text("\(model.myUser?.firstName ?? "") \(model.myUser?.lastName ?? "")")
                             .fontDesign(.rounded)
                             .frame(maxWidth: .infinity, alignment: .center)
                             .font(.title2)
@@ -38,62 +32,64 @@ struct Settings: View {
                             .padding()
                     }
                 }
-                VStack{
-                    HStack{
+                VStack {
+                    HStack {
                         Text("Account Type")
                             .fontDesign(.rounded)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.title3)
                             .foregroundColor(Color("lightningYellow"))
                             .padding()
-                        Text(userData.isParent ? "Parent" : "Child")
+                        Text(model.myUser?.isParent ?? false ? "Parent" : "Child")
                             .fontDesign(.rounded)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                             .font(.title3)
                             .padding()
                     }
-                    HStack{
+                    HStack {
                         Text("Username")
                             .fontDesign(.rounded)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.title3)
                             .foregroundColor(Color("lightningYellow"))
                             .padding()
-                        Text(userData.username)
+                        Text(model.myUser?.username ?? "")
                             .fontDesign(.rounded)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                             .font(.title3)
                             .padding()
                     }
-                    HStack{
+                    HStack {
                         Text("Park")
                             .fontDesign(.rounded)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.title3)
                             .foregroundColor(Color("lightningYellow"))
                             .padding()
-                        Text(userData.park)
+                        Text(model.myUser?.park ?? "")
                             .fontDesign(.rounded)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                             .font(.title3)
                             .padding()
                     }
-                    HStack{
+                    HStack {
                         Text("Children")
                             .fontDesign(.rounded)
                             .frame(maxWidth: .infinity, alignment: .topLeading)
                             .font(.title3)
                             .foregroundColor(Color("lightningYellow"))
                             .padding()
-                        let children = userData.children
-                        Text(children.dropLast().joined(separator: ", "))
-                            .fontDesign(.rounded)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                            .font(.title3)
-                            .padding()
+                        
+                        VStack(alignment: .trailing, spacing: 8) {
+                            ForEach(model.myChildren) { child in
+                                Text(child.childName ?? "")
+                                    .fontDesign(.rounded)
+                                    .font(.title3)
+                            }
+                        }
                     }
                 }
-                VStack{
+                VStack {
                     Spacer()
                     Spacer()
                     Spacer()
@@ -106,6 +102,7 @@ struct Settings: View {
                     Spacer()
                 }
                 Button {
+                    model.deleteAllEntitiesData()
                     isLogout = true
                 } label: {
                     Text("Logout")
@@ -113,20 +110,21 @@ struct Settings: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(.red)
-            } .background(Color("darkModeBackground"))
-                .foregroundColor(Color.white)
+            }
+            .background(Color("darkModeBackground"))
+            .foregroundColor(Color.white)
         }
         .fullScreenCover(isPresented: $isLogout) {
-                StartView()
-        .background(Color("darkModeBackground"))
+            StartView()
+                .background(Color("darkModeBackground"))
         }.padding()
-            .background(Color("darkModeBackground"))
+        .background(Color("darkModeBackground"))
     }
 }
 
-
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
-        Settings()
+        let model = TestModel() // Initialize your TestModel here with sample data if needed
+        Settings(model: model)
     }
 }

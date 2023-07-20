@@ -1,45 +1,31 @@
 import SwiftUI
-import AuthenticationServices
+import CoreData
 
 struct Login: View {
-    @State private var username: String = ""
-    @State private var password: String = ""
+    @EnvironmentObject private var pv: PV
+    var model = TestModel()
+
     @State private var userSelect: Bool = false
     @State private var passSelect: Bool = false
     @State private var isLoggedIn: Bool = false
     @State private var isRegister: Bool = false
-    
-    @ObservedObject var userData = UserViewData()
-    
+
     @State private var isUsernameValid: Bool = true
     @State private var isPasswordValid: Bool = true
-    
+
     var body: some View {
         GeometryReader { geometry in
             let width = geometry.size.width
             let height = geometry.size.height
-            
+
             VStack {
-                HStack {
-                    Spacer()
-                    
-                    Image("palliateIcon")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: width * 0.55)
-                        .padding(.bottom, 10)
-                    
-                    Spacer()
-                }
-                .padding(.top, width * 0.04)
-                
                 Text("Login")
                     .fontDesign(.rounded)
                     .font(.system(size: width * 0.08, weight: .bold))
                     .frame(width: width * 0.8)
                     .padding(.top, height * 0.03)
                     .foregroundColor(Color.white)
-               
+
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color("navyBlue"))
@@ -49,16 +35,15 @@ struct Login: View {
                             RoundedRectangle(cornerRadius: 15)
                                 .stroke(Color("lightningYellow"), lineWidth: userSelect ? 2 : 0)
                         )
-                    
                         .onTapGesture {
                             userSelect = true
                             passSelect = false
                         }
                     VStack {
-                        TextField("Username", text: $userData.username)
+                        TextField("Username", text: $pv.username)
                             .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
-                            .foregroundColor(.white)
+                            .foregroundColor(userSelect ? .white : .white)
                             .disabled(!userSelect)
                             .opacity(userSelect ? 1 : 0.4)
                             .padding(.leading, width * 0.15)
@@ -70,11 +55,10 @@ struct Login: View {
                         .fontDesign(.rounded)
                         .foregroundColor(.red)
                         .opacity(isUsernameValid ? 0 : 1)
-   
                         .padding(.leading, width * 0.1),
                     alignment: .topLeading
                 )
-                
+
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color("navyBlue"))
@@ -84,16 +68,15 @@ struct Login: View {
                             RoundedRectangle(cornerRadius: 15)
                                 .stroke(Color("lightningYellow"), lineWidth: passSelect ? 2 : 0)
                         )
-                    
                         .onTapGesture {
                             userSelect = false
                             passSelect = true
                         }
                     VStack {
-                        SecureField("Password", text: $userData.password)
+                        SecureField("Password", text: $pv.password)
                             .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
-                            .foregroundColor(.white)
+                            .foregroundColor(passSelect ? .white : .white)
                             .disabled(!passSelect)
                             .opacity(passSelect ? 1 : 0.4)
                             .padding(.leading, width * 0.15)
@@ -105,18 +88,22 @@ struct Login: View {
                         .fontDesign(.rounded)
                         .foregroundColor(.red)
                         .opacity(isPasswordValid ? 0 : 1)
-              
                         .padding(.leading, width * 0.1),
                     alignment: .topLeading
                 )
+
                 Button(action: {
                     // Perform validation checks
-                    isUsernameValid = !userData.username.isEmpty
-                    isPasswordValid = !userData.password.isEmpty
-                    
+                    isUsernameValid = !pv.username.isEmpty
+                    isPasswordValid = !pv.password.isEmpty
+
                     // Check if all validation checks passed
                     if isUsernameValid && isPasswordValid {
                         // All entries are valid, proceed with login
+                        model.myUser?.username = pv.username
+                        model.myUser?.password = pv.password
+                        model.save()
+
                         isLoggedIn = true
                     }
                 }) {
@@ -130,7 +117,7 @@ struct Login: View {
                         .cornerRadius(10)
                 }
                 .padding(.top, height * 0.04)
-               
+
                 Spacer()
                 Button(action: {
                     isRegister = true
@@ -139,24 +126,29 @@ struct Login: View {
                         .fontDesign(.rounded)
                         .font(.system(size: width * 0.05, weight: .bold))
                         .frame(width: width * 0.8, height: height * 0.1)
-                        .foregroundColor(Color("lightningYellow")) // You can change the text color to match the link color
+                        .foregroundColor(Color("lightningYellow"))
                 }
-                .buttonStyle(PlainButtonStyle()) // Removes the default button style
+                .buttonStyle(PlainButtonStyle())
                 .padding(.horizontal, width * 0.1)
                 .sheet(isPresented: $isRegister) {
-                    Register(userData: userData)
+                     Register()
                 }
-            }.fullScreenCover(isPresented: $isLoggedIn) {
-                ContentView(userData: userData)
+            }
+            .fullScreenCover(isPresented: $isLoggedIn) {
+                ContentView()
             }
             .background(Color("darkModeBackground"))
             .preferredColorScheme(.dark)
+            .onAppear {
+                model.load()
+
+                DispatchQueue.main.async {
+                    pv.username = model.myUser?.username ?? ""
+                    pv.password = model.myUser?.password ?? ""
+                }
+            }
         }
     }
 }
 
-struct Login_Previews: PreviewProvider {
-    static var previews: some View {
-        Login()
-    }
-}
+// Rest of the code remains the same

@@ -9,11 +9,11 @@ import SwiftUI
 
 @main
 struct PowerPlayApp: App {
-    @ObservedObject var userData = UserViewData()
-    @State var park = ""
+    @StateObject private var pv = PV()
     var body: some Scene {
         WindowGroup {
-            EnterChildren(userData: userData)
+            StartView()
+                .environmentObject(pv)
         }
     }
 }
