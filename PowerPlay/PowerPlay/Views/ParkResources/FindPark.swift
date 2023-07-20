@@ -1,15 +1,13 @@
 import SwiftUI
+import CoreData
 
 struct FindPark: View {
-    
-    @ObservedObject var userData = UserViewData()
+    var model = TestModel()
     var p = parkList()
-    
 
     @State private var searchText = ""
     @State private var showGuestHome = false
     @State private var showHome = false
-    @State private var park: String?
     @State private var isSelected = false
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -29,14 +27,13 @@ struct FindPark: View {
                             List {
                                 ForEach(searchResults, id: \.self) { name in
                                     Button(action: {
-                                        
-                                        if (userData.firstName == "") { // if logged in
+                                        if model.myUser?.firstName == "" { // if not logged in
                                             showGuestHome = true
                                         } else {
                                             showHome = true
                                         }
-                                        userData.park = name
-                                        
+                                        model.myUser?.park = name
+                                        model.save()
                                     }) {
                                         Text(name)
                                             .font(.system(size: width * 0.05, weight: .bold))
@@ -64,11 +61,11 @@ struct FindPark: View {
                     .preferredColorScheme(.dark)
                 }
                 .fullScreenCover(isPresented: $showGuestHome) {
-                    GuestHome(userData: userData)
+                    GuestHome()
                 }
 
                 .fullScreenCover(isPresented: $showHome) {
-                    ContentView(userData: userData)
+                    ContentView()
                 }
             }
         }
@@ -82,6 +79,3 @@ struct FindPark: View {
         }
     }
 }
-
-
-

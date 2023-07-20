@@ -32,5 +32,23 @@ final class PowerPlayTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testModel() {
+        let model = TestModel()
+        model.myUser?.firstName = "Steve"
+        model.save()
+        model.myUser = nil
+        model.load()
+        XCTAssertEqual(model.myUser?.firstName, "Steve")
+    }
+    func testChild() {
+        let model = TestModel()
+        model.myChild?.childName = "Evan"
+        model.save()
+        model.myChild = nil
+        model.load()
+        XCTAssertEqual(model.myChild?.childName, "Evan")
+    }
+    
 
 }

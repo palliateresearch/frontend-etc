@@ -155,7 +155,7 @@ struct StartView: View {
                 Login()
         }
         .fullScreenCover(isPresented: $guestViewActive) {
-                FindPark(userData: userData)
+                FindPark()
         }
             
     }
