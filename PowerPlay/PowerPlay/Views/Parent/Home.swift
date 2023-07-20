@@ -157,18 +157,23 @@ struct Home: View {
                                 Spacer()
                                 Spacer()
                                 
-                                HStack {
-                                    VStack {
-                                        Text("485")
+
+                                HStack{
+                                    VStack{
+                                        Text(String(userData.jsonData.totalEnergy))
                                             .foregroundColor(Color.white)
                                             .font(.system(size: 70))
                                             .bold()
                                             .fontDesign(.rounded)
                                             .frame(maxHeight: .infinity,alignment:.center)
                                     }
-                                }.padding()
-                            }
-                            
+                                    .padding()
+                                    .onAppear(perform: {
+                                        userData.loadData()
+                                    })
+                                        
+                                }
+                            } 
                         }
                         ZStack (alignment: .leading){
                             ZStack (alignment: .topLeading) {
@@ -240,9 +245,8 @@ struct Home: View {
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        let model = TestModel() // Initialize your TestModel here with sample data if needed
-        Home(model: model).environment(\.colorScheme, .light)
-        Home(model: model).environment(\.colorScheme, .dark)
+        Home(userData: UserViewData()).environment(\.colorScheme, .light)
+        Home(userData: UserViewData()).environment(\.colorScheme, .dark)
     }
 }
 
@@ -261,3 +265,4 @@ struct CircleProgress: View {
                 .background(Circle().stroke(Color.white.opacity(0.2), style: StrokeStyle(lineWidth: 3, lineCap: .round)))
     }
 }
+

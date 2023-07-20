@@ -18,5 +18,27 @@ class UserViewData: ObservableObject {
     @Published var isParent: Bool = false
     @Published var badgesComplete: Set<String> = ["badgeStreak1", "badgeStreak2", "badgeStreak3", "badgeWh1", "badgeWh2", "badgeWh3", "badge100Elec", "badge100Ener", "badge100Green"]
     @Published var badgesIncomplete: Set<String> = []
+    @Published var jsonData = ArduinoData()
+
+    func loadData(){
+        
+        guard let url = URL(string: "http://172.16.91.144:5000/get") else {return}
+        
+        URLSession.shared.dataTask(with: url) { (data, res, err) in
+            do{
+                if let data = data {
+                    let result = try JSONDecoder().decode(ArduinoData.self, from: data)
+                    DispatchQueue.main.async{
+                        self.jsonData = result
+                        
+                    }
+                } else {
+                    print("No Data")
+                }
+            } catch (let error) {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
 }
 
