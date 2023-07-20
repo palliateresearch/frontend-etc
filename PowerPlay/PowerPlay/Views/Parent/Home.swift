@@ -77,7 +77,7 @@ struct Home: View {
                            
                         HStack{
                             ZStack{
-                                CircleProgress(progress: $progress)
+                                CircleProgress(progress: progress, colorFinish: Color.white, colorUnfinished: Color.white.opacity(0.2))
                                     .frame(height: 70)
                                 Image(systemName:"lightbulb.fill")
                                     .scaleEffect(2)
@@ -86,7 +86,7 @@ struct Home: View {
                             }
                                 
                             ZStack{
-                                CircleProgress(progress: $progress)
+                                CircleProgress(progress: progress, colorFinish: Color.white, colorUnfinished: Color.white.opacity(0.2))
                                     .frame(height: 70)
                                 Image(systemName:"hourglass")
                                     .scaleEffect(2)
@@ -95,7 +95,7 @@ struct Home: View {
                             }
                                 
                             ZStack{
-                                CircleProgress(progress: $progress)
+                                CircleProgress(progress: progress, colorFinish: Color.white, colorUnfinished: Color.white.opacity(0.2))
                                     .frame(height: 70)
                                 Image(systemName:"wand.and.stars.inverse")
                                     .scaleEffect(2)
@@ -104,7 +104,7 @@ struct Home: View {
                             }
                             
                             ZStack{
-                                CircleProgress(progress: $progress)
+                                CircleProgress(progress: progress, colorFinish: Color.white, colorUnfinished: Color.white.opacity(0.2))
                                     .frame(height: 70)
                                 Image(systemName:"figure.walk")
                                     .scaleEffect(2)
@@ -145,9 +145,6 @@ struct Home: View {
                                     .padding([.vertical], 7)
                                     .font(.title3)
                                     .fontDesign(.rounded)
-                                Spacer()
-                                Spacer()
-                                
                                 HStack{
                                     VStack{
                                         Text("485")
@@ -474,7 +471,9 @@ struct Home_Previews: PreviewProvider {
 }
 
 struct CircleProgress: View {
-    @Binding var progress: CGFloat
+    var progress: CGFloat
+    var colorFinish: Color
+    var colorUnfinished: Color
     
     var currentPercentage: Int {
         Int(progress*100)
@@ -483,9 +482,9 @@ struct CircleProgress: View {
     var body: some View {
         Circle()
             .trim(from: 0, to: progress)
-            .stroke(Color.white, style: StrokeStyle(lineWidth: 3, lineCap: .round))
+            .stroke(colorFinish, style: StrokeStyle(lineWidth: 10, lineCap: .round))
                 .rotationEffect(.degrees(-90))
-                .background(Circle().stroke(Color.white.opacity(0.2), style: StrokeStyle(lineWidth: 3, lineCap: .round)))
+                .background(Circle().stroke(colorUnfinished, style: StrokeStyle(lineWidth: 10, lineCap: .round)))
             
     }
 }
