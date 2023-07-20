@@ -27,6 +27,7 @@ struct Register: View {
             
             VStack {
                 Text("Register")
+                    .fontDesign(.rounded)
                     .font(.system(size: width * 0.08, weight: .bold))
                     .frame(width: width * 0.8)
                     .padding(.top, height * 0.03)
@@ -35,7 +36,7 @@ struct Register: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color("navyBlue"))
-                        .frame(width: width * 0.8, height: height * 0.08)
+                        .frame(width: width * 0.8, height: height * 0.1)
                         .opacity(firstSelect ? 1 : 0.4)
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
@@ -49,6 +50,7 @@ struct Register: View {
                         }
                     VStack {
                         TextField("First Name", text: $userData.firstName)
+                            .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
                             .foregroundColor(firstSelect ? .white : .white) // Modify the foreground color
                             .disabled(!firstSelect)
@@ -59,6 +61,7 @@ struct Register: View {
                 .padding(.top, height * 0.03)
                 .overlay(
                     Text("Please enter your first name")
+                        .fontDesign(.rounded)
                         .foregroundColor(.red)
                         .opacity(isFirstNameValid ? 0 : 1)
                        
@@ -69,7 +72,7 @@ struct Register: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color("navyBlue"))
-                        .frame(width: width * 0.8, height: height * 0.08)
+                        .frame(width: width * 0.8, height: height * 0.1)
                         .opacity(lastSelect ? 1 : 0.4)
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
@@ -83,6 +86,7 @@ struct Register: View {
                         }
                     VStack {
                         TextField("Last Name", text: $userData.lastName)
+                            .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
                             .foregroundColor(lastSelect ? .white : .white) // Modify the foreground color
                             .disabled(!lastSelect)
@@ -93,6 +97,7 @@ struct Register: View {
                 .padding(.top, height * 0.03)
                 .overlay(
                     Text("Please enter your last name")
+                        .fontDesign(.rounded)
                         .foregroundColor(.red)
                         .opacity(isLastNameValid ? 0 : 1)
                     
@@ -103,7 +108,7 @@ struct Register: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color("navyBlue"))
-                        .frame(width: width * 0.8, height: height * 0.08)
+                        .frame(width: width * 0.8, height: height * 0.1)
                         .opacity(userSelect ? 1 : 0.4)
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
@@ -117,6 +122,7 @@ struct Register: View {
                         }
                     VStack {
                         TextField("Username", text: $userData.username)
+                            .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
                             .foregroundColor(userSelect ? .white : .white) // Modify the foreground color
                             .disabled(!userSelect)
@@ -127,6 +133,7 @@ struct Register: View {
                 .padding(.top, height * 0.03)
                 .overlay(
                     Text("Username must be at least 4 characters long")
+                        .fontDesign(.rounded)
                         .foregroundColor(.red)
                         .opacity(isUsernameValid ? 0 : 1)
                        
@@ -137,7 +144,7 @@ struct Register: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color("navyBlue"))
-                        .frame(width: width * 0.8, height: height * 0.08)
+                        .frame(width: width * 0.8, height: height * 0.1)
                         .opacity(passSelect ? 1 : 0.4)
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
@@ -151,6 +158,7 @@ struct Register: View {
                         }
                     VStack {
                         SecureField("Password", text: $userData.password)
+                            .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
                             .foregroundColor(passSelect ? .white : .white) // Modify the foreground color
                             .disabled(!passSelect)
@@ -161,6 +169,8 @@ struct Register: View {
                 .padding(.top, height * 0.03)
                 .overlay(
                     Text("Password must be at least 4 characters long")
+                        .fontDesign(.rounded)
+                        .fontDesign(.rounded)
                         .foregroundColor(.red)
                         .opacity(isPasswordValid ? 0 : 1)
                        
@@ -170,6 +180,7 @@ struct Register: View {
                 
                 Toggle(isOn: $isParentLocal) {
                     Text("Create Parent Account?")
+                        .fontDesign(.rounded)
                 }
                 .toggleStyle(iOSCheckboxToggleStyle())
                 .font(.system(size: width * 0.06, weight: .bold))
@@ -191,6 +202,7 @@ struct Register: View {
                     }
                 }) {
                     Text("Register")
+                        .fontDesign(.rounded)
                         .font(.system(size: width * 0.06, weight: .bold))
                         .frame(width: width * 0.5, height: height * 0.075)
                         .background(Color.white)
@@ -199,25 +211,23 @@ struct Register: View {
                         .cornerRadius(10)
                 }
                 .padding(.top, height * 0.03)
+               
                 
-                SignInWithAppleButton(.signIn) { request in
-                    request.requestedScopes = [.fullName, .email]
-                } onCompletion: { result in
-                    isLoggedIn = true
-                }
-                .frame(width: width * 0.7, height: height * 0.06)
-                .padding(.top, height * 0.03)
+                Spacer()
                 
                 Button(action: {
                     isLogin = true
                 }) {
                     Text("Already have an account? Login")
+                        .fontDesign(.rounded)
                         .font(.system(size: width * 0.05, weight: .bold))
                         .frame(width: width * 0.8, height: height * 0.1)
-                        .foregroundColor(Color("navyBlue"))
-                        .cornerRadius(10)
+                        .foregroundColor(Color("lightningYellow")) // You can change the text color to match the link color
                 }
+                .buttonStyle(PlainButtonStyle()) // Removes the default button style
                 .padding(.horizontal, width * 0.1)
+                
+
             }
             .fullScreenCover(isPresented: $isLoggedIn) {
                 if isParentLocal {
@@ -233,7 +243,7 @@ struct Register: View {
            
             
         }
-        .background(Color.black)
+        .background(Color("darkModeBackground"))
         .preferredColorScheme(.dark)
     }
 }

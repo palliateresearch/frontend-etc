@@ -15,6 +15,7 @@ struct Discover: View {
                 
                 Text("Discover")
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .fontDesign(.rounded)
                     .font(.largeTitle)
                     .bold()
                     .padding(.vertical)
@@ -42,7 +43,8 @@ struct Discover: View {
                 
             }.padding()
             .background(Color("darkModeBackground"))
-        }.preferredColorScheme(.dark)
+        }
+        .preferredColorScheme(.dark)
         
     }
 }
@@ -59,14 +61,17 @@ struct Chapters: View{
                 Text(chapterTitle)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.title3)
+                    .fontDesign(.rounded)
                     .bold()
                 
                 ScrollView(.horizontal) {
                     HStack(spacing: 5) {
-                        
-                        Lessons(icon: icon, lessonName: "Experiement 1", lessonView: Learning())
-                        Lessons(icon: icon, lessonName: "Experiement 2", lessonView: Learning())
-                        Lessons(icon: icon, lessonName: "Experiement 3",  lessonView: Learning())
+//                        Lessons(icon: icon, lessonName: "Experiment 1", lessonView: Learning())
+//                        Lessons(icon: icon, lessonName: "Experiment 2", lessonView: Learning())
+//                        Lessons(icon: icon,lessonName: "Experiment 3", lessonView: Learning())
+                        Lessons(icon: icon, chapterTitle: chapterTitle, lessonName: "Experiment 1", lessonView: Learning(chapterTitle: chapterTitle, lessonName: "Experiment 1"))
+                        Lessons(icon: icon, chapterTitle: chapterTitle, lessonName: "Experiment 2", lessonView: Learning(chapterTitle: chapterTitle, lessonName: "Experiment 2"))
+                        Lessons(icon: icon,chapterTitle: chapterTitle, lessonName: "Experiment 3", lessonView: Learning(chapterTitle: chapterTitle, lessonName: "Experiment 3"))
                         
                     }
                     
@@ -81,8 +86,9 @@ struct Lessons: View{
     
     @State private var isShowingAnotherView = false
     var icon: String
+    var chapterTitle: String
     var lessonName: String
-    var lessonView: any View
+    var lessonView : any View
     
     var body: some View {
         Button(action: {
@@ -104,6 +110,7 @@ struct Lessons: View{
                                     .foregroundColor(Color.black)
                                 Text(lessonName)
                                     .foregroundColor(.black)
+                                    .fontDesign(.rounded)
                                 
                             }
                             
@@ -134,10 +141,9 @@ struct Lessons: View{
                 }
             }
         }
-    
-    NavigationLink(destination: Learning(), isActive: $isShowingAnotherView) {
-        EmptyView()
-    }
+        NavigationLink(destination: Learning(chapterTitle: chapterTitle, lessonName: lessonName), isActive: $isShowingAnotherView) {
+            EmptyView()
+        }
     }
 }
 

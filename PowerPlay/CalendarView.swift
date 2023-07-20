@@ -59,6 +59,7 @@ struct CalendarView: View {
             HStack {
                 ForEach(daysOfWeek, id: \.self) { day in
                     Text(day)
+                        .fontDesign(.rounded)
                         .font(.headline)
                         .frame(maxWidth: .infinity)
                 }
@@ -79,6 +80,7 @@ struct CalendarView: View {
                     
                     if (isFullDaySelected){
                         Text("\(day)")
+                            .fontDesign(.rounded)
                             .font(.headline)
                             .foregroundColor(isFullDaySelected ? Color("darkModeBackground") : .primary)
                             .frame(maxWidth: .infinity)
@@ -92,6 +94,7 @@ struct CalendarView: View {
                     }
                     else if (isPartialDaySelected){
                         Text("\(day)")
+                            .fontDesign(.rounded)
                             .font(.headline)
                             .foregroundColor(isPartialDaySelected ? .white : .primary)
                             .frame(maxWidth: .infinity)
@@ -109,6 +112,7 @@ struct CalendarView: View {
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding(8)
+                            .fontDesign(.rounded)
                     }
                     else {
                         Text("\(day)")
@@ -116,6 +120,7 @@ struct CalendarView: View {
                             .foregroundColor(.gray)
                             .frame(maxWidth: .infinity)
                             .padding(8)
+                            .fontDesign(.rounded)
                     }
                     
                 }
@@ -127,7 +132,9 @@ struct CalendarView: View {
                         .foregroundColor(Color("lightningYellow"))
                         .font(.system(size: 6))
                     Text("Goals Met")
+                        .fontDesign(.rounded)
                         .font(.caption)
+                        .fontDesign(.rounded)
                 }
                 HStack{
                     Image(systemName: "circle")
@@ -135,7 +142,9 @@ struct CalendarView: View {
                         .font(.system(size: 6))
                         .bold()
                     Text("Goals Unfinished")
+                        .fontDesign(.rounded)
                         .font(.caption)
+                        .fontDesign(.rounded)
                 }
             }
             

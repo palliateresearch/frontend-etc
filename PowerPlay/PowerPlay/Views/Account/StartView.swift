@@ -6,6 +6,7 @@ struct StartView: View {
     @State private var scanPowerBandHovered = false
     @State private var loginAsGuestHovered = false
     @State private var loginViewActive = false
+    @State private var registerViewAction = false
     @State private var guestViewActive = false
     
     @ObservedObject var userData = UserViewData()
@@ -25,7 +26,8 @@ struct StartView: View {
                     HStack {
                         Spacer()
                         
-                        Text("Welcome  To")
+                        Text("Welcome  to")
+                            .fontDesign(.rounded)
                             .font(.system(size: width * 0.09, weight: .bold))
                             .frame(width: width * 0.8)
                         
@@ -51,6 +53,7 @@ struct StartView: View {
                         Spacer()
                         
                         Text("PowerPlay")
+                            .fontDesign(.rounded)
                             .font(.system(size: width * 0.135, weight: .bold))
                             .frame(width: width * 0.8)
                         
@@ -74,8 +77,8 @@ struct StartView: View {
                                     
                                     
                                 
-                                Text("Get a PowerBand")
-                                    
+                                Text("Login")
+                                    .fontDesign(.rounded)
                                     .font(.system(size: width * 0.06, weight: .bold))
                                     .multilineTextAlignment(.center)
                                     .padding(.bottom, width * 0.05)
@@ -86,7 +89,7 @@ struct StartView: View {
                         .buttonStyle(PlainButtonStyle())
                         
                         Button(action: {
-                            loginViewActive = true
+                            registerViewAction = true
                             
                         }) {
                             ZStack(alignment: .center) {
@@ -99,7 +102,8 @@ struct StartView: View {
                                         scanPowerBandHovered = hover
                                     }
                                 
-                                Text("Scan a PowerBand")
+                                Text("Register")
+                                    .fontDesign(.rounded)
                                     .font(.system(size: width * 0.06, weight: .bold))
                                     .multilineTextAlignment(.center)
                                     .padding(.bottom, width * 0.05)
@@ -122,6 +126,7 @@ struct StartView: View {
                                     }
                                 
                                 Text("Login as Guest")
+                                    .fontDesign(.rounded)
                                     .font(.system(size: width * 0.06, weight: .bold))
                                     .multilineTextAlignment(.center)
                                     .padding(.bottom, width * 0.07)
@@ -149,6 +154,9 @@ struct StartView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .fullScreenCover(isPresented: $loginViewActive) {
                 Login()
+        }
+        .fullScreenCover(isPresented: $registerViewAction) {
+                Register()
         }
         .fullScreenCover(isPresented: $guestViewActive) {
                 FindPark(userData: userData)

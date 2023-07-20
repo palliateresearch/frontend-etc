@@ -8,12 +8,14 @@
 import Foundation
 
 class AchievementsData: ObservableObject {
-    @Published var badges: [String] = []
+    @Published var userData = UserViewData()
+    @Published var badges: Set<String> = []
     @Published var daysFullGoalAchieved: [Int] = []
     @Published var daysPartialGoalAchieved: [Int] = []
+    private var totalEnergy = 0
         
-    func setBadges() -> [String] {
-        badges = ["keyboard", "keyboard.onehanded.left.fill", "scanner.fill", "play.display"]
+    func setBadges() -> Set<String> {
+        badges = userData.badgesComplete
         return badges
     }
     
@@ -42,6 +44,16 @@ class AchievementsData: ObservableObject {
         return adjustedStartDayOfWeek
     }
     
-    
+    func updateBadges(){
+        if(totalEnergy >= 50){
+                userData.badgesComplete.insert("badgeWh1")
+        }
+        else if(totalEnergy >= 150){
+                userData.badgesComplete.insert("badgeWh2")
+        }
+        else if(totalEnergy >= 500){
+                userData.badgesComplete.insert("badgeWh3")
+        }
+    }
 
 }

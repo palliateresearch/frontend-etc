@@ -16,88 +16,111 @@ struct Settings: View {
             ScrollView{
                 VStack{
                     Text("Settings")
+                        .fontDesign(.rounded)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.largeTitle)
                         .bold()
-                        .padding(.vertical)
+                        .padding()
                     Spacer()
                     Spacer()
                     Spacer()
                     VStack{
                         Image("personfillyellow")
-                            .aspectRatio(contentMode: .fill)
-                            .scaleEffect(1)
+                            .scaleEffect(0.3)
                             .foregroundColor(Color("lightningYellow"))
+                            .frame(width: 300, height: 150)
+                            .aspectRatio(contentMode: .fit)
                         Text("\(userData.firstName) \(userData.lastName)")
+                            .fontDesign(.rounded)
                             .frame(maxWidth: .infinity, alignment: .center)
                             .font(.title2)
                             .bold()
                             .padding()
                     }
                 }
-                        HStack{
-                            Text("Account Type")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .font(.title3)
-                                .foregroundColor(Color("lightningYellow"))
-                                .padding()
-                            Text(userData.isParent ? "Parent" : "Child")
-                                .frame(maxWidth: .infinity, alignment: .trailing)
-                                .font(.title3)
-                                .padding()
-                        }
-                        HStack{
-                            Text("Username")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .font(.title3)
-                                .foregroundColor(Color("lightningYellow"))
-                                .padding()
-                            Text(userData.username)
-                                .frame(maxWidth: .infinity, alignment: .trailing)
-                                .font(.title3)
-                                .padding()
-                        }
-                        HStack{
-                            Text("Park")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .font(.title3)
-                                .foregroundColor(Color("lightningYellow"))
-                                .padding()
-                            Text(userData.park)
-                                .frame(maxWidth: .infinity, alignment: .trailing)
-                                .font(.title3)
-                                .padding()
-                        }
-                        HStack{
-                            Text("Children")
-                                .frame(maxWidth: .infinity, alignment: .topLeading)
-                                .font(.title3)
-                                .foregroundColor(Color("lightningYellow"))
-                                .padding()
-                            let children = userData.children
-                            Text(children.dropLast().joined(separator: ", "))
-                                .frame(maxWidth: .infinity, alignment: .trailing)
-                                .font(.title3)
-                                .padding()
-                                }
-
+                VStack{
+                    HStack{
+                        Text("Account Type")
+                            .fontDesign(.rounded)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.title3)
+                            .foregroundColor(Color("lightningYellow"))
+                            .padding()
+                        Text(userData.isParent ? "Parent" : "Child")
+                            .fontDesign(.rounded)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .font(.title3)
+                            .padding()
+                    }
+                    HStack{
+                        Text("Username")
+                            .fontDesign(.rounded)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.title3)
+                            .foregroundColor(Color("lightningYellow"))
+                            .padding()
+                        Text(userData.username)
+                            .fontDesign(.rounded)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .font(.title3)
+                            .padding()
+                    }
+                    HStack{
+                        Text("Park")
+                            .fontDesign(.rounded)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.title3)
+                            .foregroundColor(Color("lightningYellow"))
+                            .padding()
+                        Text(userData.park)
+                            .fontDesign(.rounded)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .font(.title3)
+                            .padding()
+                    }
+                    HStack{
+                        Text("Children")
+                            .fontDesign(.rounded)
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                            .font(.title3)
+                            .foregroundColor(Color("lightningYellow"))
+                            .padding()
+                        let children = userData.children
+                        Text(children.dropLast().joined(separator: ", "))
+                            .fontDesign(.rounded)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .font(.title3)
+                            .padding()
+                    }
                 }
-                Spacer()
-                Spacer()
-               
+                VStack{
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                }
                 Button {
                     isLogout = true
                 } label: {
                     Text("Logout")
                         .frame(maxWidth: .infinity)
                 }
-                
                 .buttonStyle(.borderedProminent)
                 .tint(.red)
-        }.padding().preferredColorScheme(.dark)
+            } .background(Color("darkModeBackground"))
+                .foregroundColor(Color.white)
+        }
         .fullScreenCover(isPresented: $isLogout) {
                 StartView()
-        }
+        .background(Color("darkModeBackground"))
+        }.padding()
+            .background(Color("darkModeBackground"))
     }
 }
 
