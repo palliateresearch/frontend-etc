@@ -30,6 +30,12 @@
 		C905D6372A60E210009BF5DB /* AchievementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6362A60E210009BF5DB /* AchievementsViewModel.swift */; };
 		C905D6392A60EFAE009BF5DB /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6382A60EFAE009BF5DB /* CalendarView.swift */; };
 		C905D63D2A62006B009BF5DB /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D63C2A62006B009BF5DB /* Lesson.swift */; };
+		C905D64B2A698C0E009BF5DB /* childDiscoverActive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D64A2A698C0E009BF5DB /* childDiscoverActive.swift */; };
+		C905D64D2A698D67009BF5DB /* childContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D64C2A698D67009BF5DB /* childContentView.swift */; };
+		C905D64F2A69922D009BF5DB /* childCustomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D64E2A69922D009BF5DB /* childCustomNavBar.swift */; };
+		C905D6512A69A1E8009BF5DB /* childDiscoverScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6502A69A1E8009BF5DB /* childDiscoverScroll.swift */; };
+		C905D6532A69B285009BF5DB /* childStartLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6522A69B285009BF5DB /* childStartLesson.swift */; };
+		C905D6552A69EB5F009BF5DB /* childDiscoverUnactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6542A69EB5F009BF5DB /* childDiscoverUnactive.swift */; };
 		C9219DD72A5CACC400A65277 /* PowerPlayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9219DD62A5CACC400A65277 /* PowerPlayApp.swift */; };
 		C9219DD92A5CACC400A65277 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9219DD82A5CACC400A65277 /* ContentView.swift */; };
 		C9219DDB2A5CACC600A65277 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9219DDA2A5CACC600A65277 /* Assets.xcassets */; };
@@ -81,6 +87,12 @@
 		C905D6362A60E210009BF5DB /* AchievementsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewModel.swift; sourceTree = "<group>"; };
 		C905D6382A60EFAE009BF5DB /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		C905D63C2A62006B009BF5DB /* Lesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
+		C905D64A2A698C0E009BF5DB /* childDiscoverActive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childDiscoverActive.swift; sourceTree = "<group>"; };
+		C905D64C2A698D67009BF5DB /* childContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childContentView.swift; sourceTree = "<group>"; };
+		C905D64E2A69922D009BF5DB /* childCustomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childCustomNavBar.swift; sourceTree = "<group>"; };
+		C905D6502A69A1E8009BF5DB /* childDiscoverScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childDiscoverScroll.swift; sourceTree = "<group>"; };
+		C905D6522A69B285009BF5DB /* childStartLesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childStartLesson.swift; sourceTree = "<group>"; };
+		C905D6542A69EB5F009BF5DB /* childDiscoverUnactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childDiscoverUnactive.swift; sourceTree = "<group>"; };
 		C9219DD32A5CACC400A65277 /* PowerPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PowerPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9219DD62A5CACC400A65277 /* PowerPlayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerPlayApp.swift; sourceTree = "<group>"; };
 		C9219DD82A5CACC400A65277 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -159,6 +171,12 @@
 			children = (
 				9BD9A68E2A6750090053E482 /* childHome.swift */,
 				9BD9A6902A6750BE0053E482 /* childSettings.swift */,
+				C905D64C2A698D67009BF5DB /* childContentView.swift */,
+				C905D64A2A698C0E009BF5DB /* childDiscoverActive.swift */,
+				C905D6522A69B285009BF5DB /* childStartLesson.swift */,
+				C905D6502A69A1E8009BF5DB /* childDiscoverScroll.swift */,
+				C905D6542A69EB5F009BF5DB /* childDiscoverUnactive.swift */,
+				C905D64E2A69922D009BF5DB /* childCustomNavBar.swift */,
 			);
 			path = Child;
 			sourceTree = "<group>";
@@ -393,15 +411,21 @@
 				C905D63D2A62006B009BF5DB /* Lesson.swift in Sources */,
 				9B556FEB2A64E1F30098E16E /* test.swift in Sources */,
 				C9219DD92A5CACC400A65277 /* ContentView.swift in Sources */,
+				C905D64B2A698C0E009BF5DB /* childDiscoverActive.swift in Sources */,
 				9BA5EA762A61BD1800095099 /* Login.swift in Sources */,
+				C905D6532A69B285009BF5DB /* childStartLesson.swift in Sources */,
 				9BA5EA722A619FC600095099 /* GuestHome.swift in Sources */,
 				C905D6322A609666009BF5DB /* HomeViewModel.swift in Sources */,
 				C905D62C2A5F609D009BF5DB /* HomeModel.swift in Sources */,
 				9B094E0D2A65997C008C39B3 /* EnterChildren.swift in Sources */,
 				9B094E0F2A659B4E008C39B3 /* Settings.swift in Sources */,
+				C905D6512A69A1E8009BF5DB /* childDiscoverScroll.swift in Sources */,
+				C905D6552A69EB5F009BF5DB /* childDiscoverUnactive.swift in Sources */,
 				9BD9A6912A6750BE0053E482 /* childSettings.swift in Sources */,
 				9BD9A68F2A6750090053E482 /* childHome.swift in Sources */,
 				C905D6392A60EFAE009BF5DB /* CalendarView.swift in Sources */,
+				C905D64F2A69922D009BF5DB /* childCustomNavBar.swift in Sources */,
+				C905D64D2A698D67009BF5DB /* childContentView.swift in Sources */,
 				C905D6372A60E210009BF5DB /* AchievementsViewModel.swift in Sources */,
 				9BAAB0692A673578000BAF23 /* Learning.swift in Sources */,
 				C905D6282A5F4DAA009BF5DB /* Home.swift in Sources */,
