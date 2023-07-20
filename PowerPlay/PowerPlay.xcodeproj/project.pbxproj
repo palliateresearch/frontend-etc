@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		49C2EFD12A69D69100814F4F /* childHomePark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C2EFD02A69D69100814F4F /* childHomePark.swift */; };
+		49C2EFD32A69E5C900814F4F /* childStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C2EFD22A69E5C900814F4F /* childStartView.swift */; };
 		9B094E0D2A65997C008C39B3 /* EnterChildren.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B094E0C2A65997C008C39B3 /* EnterChildren.swift */; };
 		9B094E0F2A659B4E008C39B3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B094E0E2A659B4E008C39B3 /* Settings.swift */; };
 		9B094E112A65B724008C39B3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B094E102A65B724008C39B3 /* UserModel.swift */; };
@@ -59,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		49C2EFD02A69D69100814F4F /* childHomePark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childHomePark.swift; sourceTree = "<group>"; };
+		49C2EFD22A69E5C900814F4F /* childStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childStartView.swift; sourceTree = "<group>"; };
 		9B094E0C2A65997C008C39B3 /* EnterChildren.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterChildren.swift; sourceTree = "<group>"; };
 		9B094E0E2A659B4E008C39B3 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		9B094E102A65B724008C39B3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				9BD9A68E2A6750090053E482 /* childHome.swift */,
 				49C2EFD02A69D69100814F4F /* childHomePark.swift */,
 				9BD9A6902A6750BE0053E482 /* childSettings.swift */,
+				49C2EFD22A69E5C900814F4F /* childStartView.swift */,
 			);
 			path = Child;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				C905D6322A609666009BF5DB /* HomeViewModel.swift in Sources */,
 				C905D62C2A5F609D009BF5DB /* HomeModel.swift in Sources */,
 				49C2EFD12A69D69100814F4F /* childHomePark.swift in Sources */,
+				49C2EFD32A69E5C900814F4F /* childStartView.swift in Sources */,
 				9B094E0D2A65997C008C39B3 /* EnterChildren.swift in Sources */,
 				9B094E0F2A659B4E008C39B3 /* Settings.swift in Sources */,
 				9BD9A6912A6750BE0053E482 /* childSettings.swift in Sources */,

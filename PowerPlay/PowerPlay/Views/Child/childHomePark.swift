@@ -48,9 +48,9 @@ struct childHomePark: View, Hashable{
                         }
                         
                         HStack{
-                            Text(userName ?? "Nishka S")
+                            Text(userName ?? "helhello")
                                 .minimumScaleFactor(0.03)
-                                .bold()
+                                .fontWeight(.heavy)
                                 .lineLimit(1)
                                 .foregroundColor(Color("lightningYellow"))
                                 .frame(maxWidth: .infinity, alignment: .center)
@@ -128,7 +128,7 @@ struct childHomePark: View, Hashable{
                                         .fontDesign(.rounded)
                                     Text(parkName ?? "Henery J. Kaiser Memorial Park (Remember Them: Champions For Humanity Monument)")
                                         .minimumScaleFactor(0.03)
-                                        .bold()
+                                        .fontWeight(.heavy)
                                         .foregroundColor(Color.white)
                                         .frame(maxWidth: 7000, alignment: .leading)
                                         .padding(EdgeInsets(top: 10, leading: 0, bottom: 7, trailing: 30))
@@ -156,7 +156,7 @@ struct childHomePark: View, Hashable{
                                         Text(getLightBulbHr() + " hours")
                                             .foregroundColor(Color("lightningYellow"))
                                             .font(.system(size: 24))
-                                            .bold()
+                                            .fontWeight(.heavy)
                                             .fontDesign(.rounded)
                                             .frame(maxHeight: .infinity,alignment:.center)
                                             .padding()
@@ -171,7 +171,7 @@ struct childHomePark: View, Hashable{
                                 .foregroundColor(Color.white)
                             VStack{
                                 Text("Missions")
-                                    .bold()
+                                    .fontWeight(.heavy)
                                     .cornerRadius(10)
                                     .foregroundColor(Color("darkBlue"))
                                     .fontDesign(.rounded)
@@ -183,7 +183,7 @@ struct childHomePark: View, Hashable{
                                     ZStack{
                                         VStack{
                                             ZStack{
-                                                CircleProgress(progress: CGFloat((mission1Completion ?? 0) / 10), colorFinish: Color("darkBlue"), colorUnfinished: Color("lightBlue"))
+                                                CircleProgress(progress: CGFloat((mission1Completion ?? 0) / 10), colorFinish: Color("darkBlue"), colorUnfinished: Color("lightBlue"), lineWidth: 10)
                                                     .frame(width: 70, height: 70, alignment: .leading)
                                                 Image(systemName:"lightbulb.fill")
                                                     .scaleEffect(2)
@@ -193,7 +193,7 @@ struct childHomePark: View, Hashable{
                                             Text("Park Power")
                                                 .foregroundColor(Color.black)
                                                 .font(.system(size: 12))
-                                                .bold()
+                                                .fontWeight(.heavy)
                                                 .fontDesign(.rounded)
                                                 .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
                                             Text(String(mission1Completion ?? 0) + "/10 watts")
@@ -207,7 +207,7 @@ struct childHomePark: View, Hashable{
                                     ZStack{
                                         VStack{
                                             ZStack{
-                                                CircleProgress(progress: CGFloat((mission2Completion ?? 0) / 30), colorFinish: Color("darkBlue"), colorUnfinished: Color("lightBlue"))
+                                                CircleProgress(progress: CGFloat((mission2Completion ?? 0) / 30), colorFinish: Color("darkBlue"), colorUnfinished: Color("lightBlue"), lineWidth: 10)
                                                     .frame(width: 70, height: 70)
                                                 Image(systemName:"hourglass")
                                                     .scaleEffect(2)
@@ -217,7 +217,7 @@ struct childHomePark: View, Hashable{
                                             Text("Park Time")
                                                 .foregroundColor(Color.black)
                                                 .font(.system(size: 12))
-                                                .bold()
+                                                .fontWeight(.heavy)
                                                 .fontDesign(.rounded)
                                                 .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
                                             Text(String(mission2Completion ?? 0) + "/30 minutes")
@@ -232,7 +232,7 @@ struct childHomePark: View, Hashable{
                                     ZStack{
                                         VStack{
                                             ZStack{
-                                                CircleProgress(progress: CGFloat((mission3Completion ?? 0) / 10), colorFinish: Color("darkBlue"), colorUnfinished: Color("lightBlue"))
+                                                CircleProgress(progress: CGFloat((mission3Completion ?? 0) / 10), colorFinish: Color("darkBlue"), colorUnfinished: Color("lightBlue"), lineWidth: 10)
                                                     .frame(width: 70, height: 70)
                                                 Image(systemName:"tent")
                                                     .scaleEffect(1.75)
@@ -242,7 +242,7 @@ struct childHomePark: View, Hashable{
                                             Text("Park Visited")
                                                 .foregroundColor(Color.black)
                                                 .font(.system(size: 12))
-                                                .bold()
+                                                .fontWeight(.heavy)
                                                 .fontDesign(.rounded)
                                                 .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
                                             Text(String(mission3Completion ?? 0) + "/10 parks")
@@ -257,7 +257,7 @@ struct childHomePark: View, Hashable{
                                     ZStack{
                                         VStack{
                                             ZStack{
-                                                CircleProgress(progress: CGFloat((mission4Completion ?? 0) / 10), colorFinish: Color("darkBlue"), colorUnfinished: Color("lightBlue"))
+                                                CircleProgress(progress: CGFloat((mission4Completion ?? 0) / 10), colorFinish: Color("darkBlue"), colorUnfinished: Color("lightBlue"), lineWidth: 10)
                                                     .frame(width: 70, height: 70)
                                                 Image(systemName:"book.closed")
                                                     .scaleEffect(2)
@@ -267,7 +267,7 @@ struct childHomePark: View, Hashable{
                                             Text("Discover")
                                                 .foregroundColor(Color.black)
                                                 .font(.system(size: 12))
-                                                .bold()
+                                                .fontWeight(.heavy)
                                                 .fontDesign(.rounded)
                                                 .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
                                             Text(String(mission4Completion ?? 0) + "/10 minutes")

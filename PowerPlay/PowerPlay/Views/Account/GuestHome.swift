@@ -73,7 +73,7 @@ struct GuestHome: View {
                             VStack{
                                 HStack{
                                     ZStack{
-                                        CircleProgress(progress: progress, colorFinish: Color.white, colorUnfinished: Color.white.opacity(0.2))
+                                        CircleProgress(progress: progress, colorFinish: Color.white, colorUnfinished: Color.white.opacity(0.2), lineWidth: 3)
                                             .frame(height: 70)
                                         Image(systemName:"lightbulb.fill")
                                             .scaleEffect(2)
@@ -82,7 +82,7 @@ struct GuestHome: View {
                                     }
                                     
                                     ZStack{
-                                        CircleProgress(progress: progress, colorFinish: Color.white, colorUnfinished: Color.white.opacity(0.2))
+                                        CircleProgress(progress: progress, colorFinish: Color.white, colorUnfinished: Color.white.opacity(0.2), lineWidth: 3)
                                             .frame(height: 70)
                                         Image(systemName:"hourglass")
                                             .scaleEffect(2)
@@ -95,7 +95,7 @@ struct GuestHome: View {
                                 
                                 HStack{
                                     ZStack{
-                                        CircleProgress(progress: progress, colorFinish: Color.white, colorUnfinished: Color.white.opacity(0.2))
+                                        CircleProgress(progress: progress, colorFinish: Color.white, colorUnfinished: Color.white.opacity(0.2), lineWidth: 3)
                                             .frame(height: 70)
                                         Image(systemName:"wand.and.stars.inverse")
                                             .scaleEffect(2)
@@ -104,7 +104,7 @@ struct GuestHome: View {
                                     }
                                     
                                     ZStack{
-                                        CircleProgress(progress: progress, colorFinish: Color.white, colorUnfinished: Color.white.opacity(0.2))
+                                        CircleProgress(progress: progress, colorFinish: Color.white, colorUnfinished: Color.white.opacity(0.2), lineWidth: 3)
                                             .frame(height: 70)
                                         Image(systemName:"figure.walk")
                                             .scaleEffect(2)
