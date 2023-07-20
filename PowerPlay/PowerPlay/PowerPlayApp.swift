@@ -9,7 +9,6 @@ import SwiftUI
 
 @main
 struct PowerPlayApp: App {
-    @ObservedObject var userData = UserViewData()
     @StateObject private var pv = PV()
     var body: some Scene {
         WindowGroup {

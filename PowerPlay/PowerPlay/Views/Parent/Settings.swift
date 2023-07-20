@@ -3,6 +3,7 @@ import SwiftUI
 struct Settings: View {
     var model = TestModel()
     @State var isLogout = false
+    @Environment(\.managedObjectContext) private var viewContext
 
     var body: some View {
         NavigationStack {
@@ -101,6 +102,7 @@ struct Settings: View {
                     Spacer()
                 }
                 Button {
+                    model.deleteAllEntitiesData()
                     isLogout = true
                 } label: {
                     Text("Logout")

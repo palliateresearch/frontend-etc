@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 class TestModel {
     
@@ -20,7 +21,7 @@ class TestModel {
             if let error = error {
                 fatalError("Failed to load store: \(error)")
             }
-
+            
             // Load or create the user object
             let userFetch = NSFetchRequest<User>(entityName: "User")
             do {
@@ -73,7 +74,7 @@ class TestModel {
             fatalError("Failed to fetch children: \(error)")
         }
     }
-
+    
     func delete() {
         if let userToDelete = myUser {
             container.viewContext.delete(userToDelete)
@@ -87,6 +88,29 @@ class TestModel {
         
         save()
     }
+    
+    func deleteAllEntitiesData() {
+        // Delete data from the "Child" entity
+        let childFetchRequest: NSFetchRequest<NSFetchRequestResult> = Child.fetchRequest()
+        let deleteChildRequest = NSBatchDeleteRequest(fetchRequest: childFetchRequest)
+        
+        // Delete data from the "User" entity
+        let userFetchRequest: NSFetchRequest<NSFetchRequestResult> = User.fetchRequest()
+        let deleteUserRequest = NSBatchDeleteRequest(fetchRequest: userFetchRequest)
+        
+        do {
+            // Use the TestModel's container's viewContext to execute the delete requests
+            try container.viewContext.execute(deleteChildRequest)
+            try container.viewContext.execute(deleteUserRequest)
+            
+            // Save the changes to the context
+            try container.viewContext.save()
+        } catch {
+            // Handle the error here
+            print("Error deleting all entities data: \(error)")
+        }
+    }
+    
 }
 
 class PV: ObservableObject {
@@ -97,3 +121,4 @@ class PV: ObservableObject {
     @Published var isParent: Bool = false
     @Published var childrenNames: [String] = [] // Separate array to hold child names
 }
+

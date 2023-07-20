@@ -9,12 +9,13 @@ import SwiftUI
 import Charts
 
 struct Home: View {
-    @ObservedObject var userData = UserViewData()
+    var model = TestModel()
+    
     @State var progress: CGFloat = 0.75
     @State var isSettings = false
     //@State
     
-    func getMonth() -> String{
+    func getMonth() -> String {
         let calendar = Calendar.current
         let currentMonth = calendar.component(.month, from: Date())
         let monthArr: [String] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -22,10 +23,9 @@ struct Home: View {
     }
     
     var body: some View {
-        
-        NavigationStack{
-            ScrollView{
-                HStack{
+        NavigationStack {
+            ScrollView {
+                HStack {
                     Text("PowerPlay")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.largeTitle)
@@ -36,8 +36,8 @@ struct Home: View {
                         isSettings = true
                     }
                     , label: {
-                        HStack{
-                            Text("\(userData.firstName)").fontDesign(.rounded)
+                        HStack {
+                            Text(model.myUser?.firstName ?? "").fontDesign(.rounded)
                             Image(systemName: "person.crop.circle.fill")
                                 .scaleEffect(2.3)
                                 .padding()
@@ -46,12 +46,23 @@ struct Home: View {
                         
                     })
                 }
-                Text("\(userData.park)'s Achievements- " + getMonth())
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.title3)
-                    .bold()
-                    .padding(.top)
-                    .fontDesign(.rounded)
+                if let parkName = model.myUser?.park {
+                    Text("\(parkName)'s Achievements - " + getMonth())
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.title3)
+                        .bold()
+                        .padding(.top)
+                        .fontDesign(.rounded)
+                } else {
+                    // Handle the case when parkName is nil (optional is not set)
+                    // You can display a default value or show a different message
+                    Text("User's Achievements - " + getMonth())
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.title3)
+                        .bold()
+                        .padding(.top)
+                        .fontDesign(.rounded)
+                }
                          
                 ZStack (alignment: .leading){
                     ZStack (alignment: .topLeading) {
@@ -64,7 +75,7 @@ struct Home: View {
                     }
                     .clipShape(RoundedRectangle(cornerRadius: 12))
                     
-                    VStack{
+                    VStack {
                         Text("Goals")
                             .bold()
                             .cornerRadius(10)
@@ -75,8 +86,8 @@ struct Home: View {
                             .padding([.vertical], 7)
                             .font(.title3)
                            
-                        HStack{
-                            ZStack{
+                        HStack {
+                            ZStack {
                                 CircleProgress(progress: $progress)
                                     .frame(height: 70)
                                 Image(systemName:"lightbulb.fill")
@@ -85,7 +96,7 @@ struct Home: View {
                                     .foregroundColor(Color("lightningYellow"))
                             }
                                 
-                            ZStack{
+                            ZStack {
                                 CircleProgress(progress: $progress)
                                     .frame(height: 70)
                                 Image(systemName:"hourglass")
@@ -94,7 +105,7 @@ struct Home: View {
                                     .foregroundColor(Color("lightningYellow"))
                             }
                                 
-                            ZStack{
+                            ZStack {
                                 CircleProgress(progress: $progress)
                                     .frame(height: 70)
                                 Image(systemName:"wand.and.stars.inverse")
@@ -103,7 +114,7 @@ struct Home: View {
                                     .foregroundColor(Color("lightningYellow"))
                             }
                             
-                            ZStack{
+                            ZStack {
                                 CircleProgress(progress: $progress)
                                     .frame(height: 70)
                                 Image(systemName:"figure.walk")
@@ -111,8 +122,6 @@ struct Home: View {
                                     .aspectRatio(contentMode: .fit)
                                     .foregroundColor(Color("lightningYellow"))
                             }
-                                
-                            
                                 
                         }
                         .padding(15)
@@ -136,7 +145,7 @@ struct Home: View {
                             }
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                             
-                            VStack{
+                            VStack {
                                 Text("Total Power")
                                     .bold()
                                     .foregroundColor(Color.black)
@@ -148,8 +157,8 @@ struct Home: View {
                                 Spacer()
                                 Spacer()
                                 
-                                HStack{
-                                    VStack{
+                                HStack {
+                                    VStack {
                                         Text("485")
                                             .foregroundColor(Color.white)
                                             .font(.system(size: 70))
@@ -172,7 +181,7 @@ struct Home: View {
                             }
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                             
-                            VStack{
+                            VStack {
                                 Text("Weekly Watt Hours")
                                     .bold()
                                     .cornerRadius(7)
@@ -183,8 +192,8 @@ struct Home: View {
                                     .font(.title3)
                                     .fontDesign(.rounded)
                                    
-                                Chart{
-                                    ForEach(HomeData().viewDays){ viewDay in
+                                Chart {
+                                    ForEach(HomeData().viewDays) { viewDay in
                                         LineMark(x: .value("Date", viewDay.date, unit: .day), y: .value("Views", viewDay.viewCount))
                                     }
                                     .foregroundStyle(Color.white)
@@ -195,14 +204,14 @@ struct Home: View {
                                         .foregroundColor(Color.white)
                                         .fontDesign(.rounded)
                                 }
-                                .chartXAxis{
-                                    AxisMarks(values: HomeData().viewDays.map {$0.date}) {date in
+                                .chartXAxis {
+                                    AxisMarks(values: HomeData().viewDays.map {$0.date}) { date in
                                         AxisValueLabel(format: .dateTime.day()).foregroundStyle(Color.white)
                                         AxisGridLine().foregroundStyle(Color("lightningYellow"))
                                     }
                                 }
                                 .foregroundStyle(Color.white)
-                                .chartYAxis{
+                                .chartYAxis {
                                     AxisMarks(values: .automatic) { _ in
                                         AxisValueLabel().foregroundStyle(Color.white)
                                         AxisGridLine().foregroundStyle(Color("lightningYellow"))
@@ -216,260 +225,24 @@ struct Home: View {
                         
                     }
                 }.scrollIndicators(.visible)
-                
-                Spacer()
-                Spacer()
-                
-                /*
-                HStack{
-                    ZStack (alignment: .leading){
-                        ZStack (alignment: .topLeading) {
-                            Rectangle()
-                                .foregroundColor(Color("navyBlue"))
-                            
-                            Rectangle()
-                                .fill(Color("lightningYellow"))
-                                .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 40, alignment: .top)
-                        }
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        
-                        VStack{
-                            Text("Goals")
-                                .bold()
-                                .cornerRadius(10)
-                                .foregroundColor(Color.black)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding([.horizontal], 15)
-                                .padding([.vertical], 7)
-                                .font(.title3)
-                                .fontDesign(.rounded)
-                            
-                            VStack{
-                                HStack{
-                                    ZStack{
-                                        CircleProgress(progress: $progress)
-                                            .frame(height: 70)
-                                        Image(systemName:"lightbulb.fill")
-                                            .scaleEffect(2)
-                                            .aspectRatio(contentMode: .fit)
-                                            .foregroundColor(Color("lightningYellow"))
-                                    }
-                                    
-                                    ZStack{
-                                        CircleProgress(progress: $progress)
-                                            .frame(height: 70)
-                                        Image(systemName:"hourglass")
-                                            .scaleEffect(2)
-                                            .aspectRatio(contentMode: .fit)
-                                            .foregroundColor(Color("lightningYellow"))
-                                    }
-                                }
-                                
-                                Spacer()
-                                
-                                HStack{
-                                    ZStack{
-                                        CircleProgress(progress: $progress)
-                                            .frame(height: 70)
-                                        Image(systemName:"wand.and.stars.inverse")
-                                            .scaleEffect(2)
-                                            .aspectRatio(contentMode: .fit)
-                                            .foregroundColor(Color("lightningYellow"))
-                                    }
-                                    
-                                    ZStack{
-                                        CircleProgress(progress: $progress)
-                                            .frame(height: 70)
-                                        Image(systemName:"figure.walk")
-                                            .scaleEffect(2)
-                                            .aspectRatio(contentMode: .fit)
-                                            .foregroundColor(Color("lightningYellow"))
-                                    }
-                                }
-                                
-                                
-                            }
-                            .padding(15)
-                        }
-                        
-                    }
-                    .padding([.trailing], 5)
-                    
-                    ZStack (alignment: .leading){
-                        ZStack (alignment: .topLeading) {
-                            Rectangle()
-                                .foregroundColor(Color("navyBlue"))
-                            
-                            Rectangle()
-                                .fill(Color("lightningYellow"))
-                                .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 40, alignment: .top)
-                        }
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        
-                        VStack{
-                            Text("Leaderboard")
-                                .bold()
-                                .cornerRadius(10)
-                                .foregroundColor(Color.black)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding([.horizontal], 15)
-                                .padding([.vertical], 7)
-                                .font(.title3)
-                                .fontDesign(.rounded)
-                            
-                            VStack{
-                                ZStack{
-                                    Capsule()
-                                        .foregroundColor(Color.white)
-                                    HStack{
-                                        Text("1")
-                                            .fontDesign(.rounded)
-                                        Text("Nishka").fontDesign(.rounded)
-                                    }
-                                    .foregroundColor(Color.black)
-                                    .padding(2)
-                                    
-                                }
-                                ZStack{
-                                    Capsule()
-                                        .foregroundColor(Color.white)
-                                    HStack{
-                                        Text("2")
-                                            .fontDesign(.rounded)
-                                        Text("Valerie")
-                                            .fontDesign(.rounded)
-                                    }
-                                    .foregroundColor(Color.black)
-                                    .padding(2)
-                                    
-                                }
-                                ZStack{
-                                    Capsule()
-                                        .foregroundColor(Color.white)
-                                    HStack{
-                                        Text("3")
-                                            .fontDesign(.rounded)
-                                        Text("Aadit")
-                                            .fontDesign(.rounded)
-                                    }
-                                    .foregroundColor(Color.black)
-                                    .padding(2)
-                                    
-                                }
-                                ZStack{
-                                    Capsule()
-                                        .foregroundColor(Color.white)
-                                    HStack{
-                                        Text("4")
-                                            .fontDesign(.rounded)
-                                        Text("Eddie")
-                                            .fontDesign(.rounded)
-                                    }
-                                    .foregroundColor(Color.black)
-                                    .padding(2)
-                                    
-                                }
-                                ZStack{
-                                    Capsule()
-                                        .foregroundColor(Color.white)
-                                    HStack{
-                                        Text("5")
-                                            .fontDesign(.rounded)
-                                        Text("Vaughn")
-                                            .fontDesign(.rounded)
-                                    }
-                                    .foregroundColor(Color.black)
-                                    .padding(2)
-                                    
-                                }
-                                
-                            }
-                            .padding(15)
-                            .bold()
-                        }
-                        
-                    }
-                
-                    
-                }
-                .padding([.bottom])
-                
-                ScrollView(.horizontal) {
-                    HStack(spacing: 14) {
-                    
-                        ZStack (alignment: .leading){
-                            ZStack (alignment: .topLeading) {
-                                Rectangle()
-                                    .foregroundColor(Color("navyBlue"))
-
-                                Rectangle()
-                                    .fill(Color("lightningYellow"))
-                                    .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 40, alignment: .top)
-                            }
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            
-                            VStack{
-                                Text("Weekly Watt Hours")
-                                    .bold()
-                                    .cornerRadius(7)
-                                    .foregroundColor(Color.black)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding([.horizontal], 15)
-                                    .padding([.vertical], 7)
-                                    .font(.title3)
-                                    .fontDesign(.rounded)
-                                   
-                                Chart{
-                                    ForEach(HomeData().viewDays){ viewDay in
-                                        LineMark(x: .value("Date", viewDay.date, unit: .day), y: .value("Views", viewDay.viewCount))
-                                    }
-                                    .foregroundStyle(Color.white)
-                                }
-                                .frame(width: CGFloat(HomeData().viewDays.count)*35)
-                                .chartXAxisLabel(position: .bottom, alignment: .center) {
-                                    Text("July")
-                                        .foregroundColor(Color.white)
-                                }
-                                .chartXAxis{
-                                    AxisMarks(values: HomeData().viewDays.map {$0.date}) {date in
-                                        AxisValueLabel(format: .dateTime.day()).foregroundStyle(Color.white)
-                                        AxisGridLine().foregroundStyle(Color("lightningYellow"))
-                                    }
-                                }
-                                .foregroundStyle(Color.white)
-                                .chartYAxis{
-                                    AxisMarks(values: .automatic) { _ in
-                                        AxisValueLabel().foregroundStyle(Color.white)
-                                        AxisGridLine().foregroundStyle(Color("lightningYellow"))
-                                    }
-                                }
-                                .foregroundStyle(Color.white)
-                                .padding()
-                            }
-                            
-                        }
-                        
-                    }
-                }.scrollIndicators(.visible)
-                 */
             }
             .background(Color("darkModeBackground"))
             .foregroundColor(Color.white)
             .scrollIndicators(.hidden)
             
-            
         }.padding()
         .background(Color("darkModeBackground"))
             .fullScreenCover(isPresented: $isSettings) {
-                Settings(userData: userData)
+                Settings()
             }
     }
 }
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home(userData: UserViewData()).environment(\.colorScheme, .light)
-        Home(userData: UserViewData()).environment(\.colorScheme, .dark)
+        let model = TestModel() // Initialize your TestModel here with sample data if needed
+        Home(model: model).environment(\.colorScheme, .light)
+        Home(model: model).environment(\.colorScheme, .dark)
     }
 }
 
@@ -486,6 +259,5 @@ struct CircleProgress: View {
             .stroke(Color.white, style: StrokeStyle(lineWidth: 3, lineCap: .round))
                 .rotationEffect(.degrees(-90))
                 .background(Circle().stroke(Color.white.opacity(0.2), style: StrokeStyle(lineWidth: 3, lineCap: .round)))
-            
     }
 }
