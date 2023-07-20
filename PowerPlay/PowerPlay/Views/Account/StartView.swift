@@ -77,7 +77,7 @@ struct StartView: View {
                                     
                                     
                                 
-                                Text("Sign in")
+                                Text("Login")
                                     .fontDesign(.rounded)
                                     .font(.system(size: width * 0.06, weight: .bold))
                                     .multilineTextAlignment(.center)
