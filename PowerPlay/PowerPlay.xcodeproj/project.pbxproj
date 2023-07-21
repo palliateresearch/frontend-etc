@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		493D94512A6AE38E0079FAE1 /* childCongrats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493D94502A6AE38E0079FAE1 /* childCongrats.swift */; };
+		493D94532A6B1EB90079FAE1 /* PV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493D94522A6B1EB90079FAE1 /* PV.swift */; };
+		493D94552A6B1FC40079FAE1 /* childRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493D94542A6B1FC40079FAE1 /* childRegister.swift */; };
 		49C2EFD12A69D69100814F4F /* childHomePark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C2EFD02A69D69100814F4F /* childHomePark.swift */; };
 		49C2EFD32A69E5C900814F4F /* childStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C2EFD22A69E5C900814F4F /* childStartView.swift */; };
 		49C2EFD52A69F69000814F4F /* childAchievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C2EFD42A69F69000814F4F /* childAchievements.swift */; };
@@ -75,6 +77,8 @@
 
 /* Begin PBXFileReference section */
 		493D94502A6AE38E0079FAE1 /* childCongrats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childCongrats.swift; sourceTree = "<group>"; };
+		493D94522A6B1EB90079FAE1 /* PV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PV.swift; sourceTree = "<group>"; };
+		493D94542A6B1FC40079FAE1 /* childRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childRegister.swift; sourceTree = "<group>"; };
 		49C2EFD02A69D69100814F4F /* childHomePark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childHomePark.swift; sourceTree = "<group>"; };
 		49C2EFD22A69E5C900814F4F /* childStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childStartView.swift; sourceTree = "<group>"; };
 		49C2EFD42A69F69000814F4F /* childAchievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childAchievements.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 				49C2EFD42A69F69000814F4F /* childAchievements.swift */,
 				9BD9A6902A6750BE0053E482 /* childSettings.swift */,
 				49C2EFD22A69E5C900814F4F /* childStartView.swift */,
+				493D94542A6B1FC40079FAE1 /* childRegister.swift */,
 				C905D64C2A698D67009BF5DB /* childContentView.swift */,
 				C905D64A2A698C0E009BF5DB /* childDiscoverActive.swift */,
 				C905D6522A69B285009BF5DB /* childStartLesson.swift */,
@@ -240,6 +245,7 @@
 				C905D6312A609666009BF5DB /* HomeViewModel.swift */,
 				C905D6362A60E210009BF5DB /* AchievementsViewModel.swift */,
 				9B094E142A65BE73008C39B3 /* UserViewModel.swift */,
+				493D94522A6B1EB90079FAE1 /* PV.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -445,6 +451,7 @@
 				9B094E112A65B724008C39B3 /* UserModel.swift in Sources */,
 				C905D65B2A6A34F8009BF5DB /* childEndingLessonMaterial.swift in Sources */,
 				9B556FE52A64A6150098E16E /* Register.swift in Sources */,
+				493D94532A6B1EB90079FAE1 /* PV.swift in Sources */,
 				9BA5EA742A61B6AB00095099 /* FindPark.swift in Sources */,
 				C905D6592A69FFDF009BF5DB /* childLessonMaterial.swift in Sources */,
 				C905D6572A69FE53009BF5DB /* childLesson.swift in Sources */,
@@ -480,6 +487,7 @@
 				9B094E192A65DF12008C39B3 /* parkList.swift in Sources */,
 				493D94512A6AE38E0079FAE1 /* childCongrats.swift in Sources */,
 				9B094E152A65BE73008C39B3 /* UserViewModel.swift in Sources */,
+				493D94552A6B1FC40079FAE1 /* childRegister.swift in Sources */,
 				C9219DD72A5CACC400A65277 /* PowerPlayApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,8 +19,8 @@ struct Settings: View {
                     Spacer()
                     Spacer()
                     VStack {
-                        Image("personfillyellow")
-                            .scaleEffect(0.3)
+                        Image("palliateIcon")
+                            .scaleEffect(0.1)
                             .foregroundColor(Color("lightningYellow"))
                             .frame(width: 300, height: 150)
                             .aspectRatio(contentMode: .fit)
@@ -40,7 +40,7 @@ struct Settings: View {
                             .font(.title3)
                             .foregroundColor(Color("lightningYellow"))
                             .padding()
-                        Text(model.myUser?.isParent ?? false ? "Parent" : "Child")
+                        Text( "Parent")
                             .fontDesign(.rounded)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                             .font(.title3)
@@ -105,10 +105,10 @@ struct Settings: View {
                     model.deleteAllEntitiesData()
                     isLogout = true
                 } label: {
-                    Text("Logout")
+                    Text("Delete Account")
                         .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(.borderedProminent)
+                . buttonStyle(.borderedProminent)
                 .tint(.red)
             }
             .background(Color("darkModeBackground"))

@@ -13,7 +13,7 @@ struct Discover: View {
         NavigationStack{
             ScrollView{
                 
-                Text("Discoåver")
+                Text("Discover")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .fontDesign(.rounded)
                     .font(.largeTitle)

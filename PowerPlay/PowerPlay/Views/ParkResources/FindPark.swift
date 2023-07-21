@@ -65,9 +65,18 @@ struct FindPark: View {
                 }
 
                 .fullScreenCover(isPresented: $showHome) {
-                    ContentView()
+                   
+                    if((model.myUser?.isParent) != nil){
+                        ContentView()
+                    } else {
+                        childContentView()
+                    }
+                   
                 }
             }
+        }
+        .onAppear{
+            model.load()
         }
     }
 

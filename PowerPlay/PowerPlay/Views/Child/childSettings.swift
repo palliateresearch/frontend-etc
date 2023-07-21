@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct childSettings: View {
-    @ObservedObject var userData = UserViewData()
+    @EnvironmentObject private var pv: PV
+    var model = TestModel()
     @State var isLogout = false
     
     var body: some View {
@@ -28,13 +29,16 @@ struct childSettings: View {
                             .frame(width: 200, height: 125)
                             .aspectRatio(contentMode: .fit)
 //                        Text("Palliate")
-                        Text("\(userData.firstName) \(userData.lastName)")
-                            .fontDesign(.rounded)
-                            .foregroundColor(Color("darkBlue"))
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .font(.system(size:30))
-                            .fontWeight(.heavy)
-                            .padding()
+                        if let firstName = model.myUser?.firstName {
+                            if let lastName = model.myUser?.lastName {
+                            Text("\(firstName) \(lastName)")
+                                .fontDesign(.rounded)
+                                .foregroundColor(Color("darkBlue"))
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .font(.system(size:30))
+                                .fontWeight(.heavy)
+                                .padding()
+                        }
                     }
                 }
                 VStack{
@@ -46,7 +50,7 @@ struct childSettings: View {
                             .foregroundColor(Color("darkBlue"))
                             .padding()
                             .bold()
-                        Text(userData.isParent ? "Parent" : "Child")
+                        Text("Child")
                             .fontDesign(.rounded)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                             .font(.title2)
@@ -61,12 +65,14 @@ struct childSettings: View {
                             .foregroundColor(Color("darkBlue"))
                             .bold()
                             .padding()
-                        Text(userData.username)
-                            .fontDesign(.rounded)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                            .font(.title2)
-                            .padding()
-                            .foregroundColor(Color.black)
+                        if let userName = model.myUser?.username {
+                            Text(userName)
+                                .fontDesign(.rounded)
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .font(.title2)
+                                .padding()
+                                .foregroundColor(Color.black)
+                        }
                     }
                     HStack{
                         Text("Park")
@@ -76,12 +82,14 @@ struct childSettings: View {
                             .foregroundColor(Color("darkBlue"))
                             .padding()
                             .bold()
-                        Text(userData.park)
-                            .fontDesign(.rounded)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                            .font(.title2)
-                            .padding()
-                            .foregroundColor(Color.black)
+                        if let parkName = model.myUser?.park {
+                            Text(parkName)
+                                .fontDesign(.rounded)
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .font(.title2)
+                                .padding()
+                                .foregroundColor(Color.black)
+                        }
                     }
                 }.padding()
                 VStack{
@@ -92,6 +100,7 @@ struct childSettings: View {
                     Spacer()
                 }
                 Button {
+                    model.deleteAllEntitiesData()
                     isLogout = true
                 } label: {
                     ZStack{
@@ -105,19 +114,21 @@ struct childSettings: View {
                             .frame(minHeight: 90)
                             .foregroundColor(Color("logoutRed"))
                             .overlay{
-                                Text("LOG OUT")
+                                Text("DELETE ACCOUNT")
                                     .foregroundColor(Color.white)
                                     .fontWeight(.heavy)
                                     .fontDesign(.rounded)
                                     .font(.title2)
                             }
-                        
+                        }
                     }
-                    .padding([.bottom], 70)
-                }.padding()
+                .padding([.bottom], 70)
+                .padding()
+                }
             }
             .fullScreenCover(isPresented: $isLogout) {
-                StartView()
+            
+                childStartView()
             }.background(Color("lightBlue"))
         }
     }
@@ -126,6 +137,9 @@ struct childSettings: View {
 
 struct childSettings_Previews: PreviewProvider {
     static var previews: some View {
-        childSettings()
+        let pv = PV() // Create a mock instance of PV
+
+        return childSettings()
+            .environmentObject(pv) // Inject the mock instance as an environment object
     }
 }

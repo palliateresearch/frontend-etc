@@ -9,6 +9,8 @@ import SwiftUI
 
 struct childStartView: View {
     @ObservedObject var userData = UserViewData()
+    @EnvironmentObject private var pv: PV
+    var model = TestModel()
     
     @State private var loginViewActive = false
     @State private var registerViewAction = false
@@ -17,7 +19,6 @@ struct childStartView: View {
     var body: some View {
         NavigationStack{
             VStack{
-                Spacer()
                 Spacer()
                 Text("Welcome  to")
                     .fontDesign(.rounded)
@@ -35,7 +36,6 @@ struct childStartView: View {
                     .fontWeight(.heavy)
                     .foregroundColor(Color("darkBlue"))
                     .padding()
-                Spacer()
                 Spacer()
                 VStack(spacing:0){
                     Button(action: {
@@ -106,7 +106,22 @@ struct childStartView: View {
                             
                         }
                     }).frame(maxHeight: 75)
+                    Button(action: {
+                        pv.isParent = true
+                        model.myUser?.isParent = pv.isParent
+                        model.save()
+                        
+                    }) {
+                        Text("Are you a parent?")
+                            .fontDesign(.rounded)
+                            .font(.system(size: 22, weight: .bold))
+                            .foregroundColor(Color("darkBlue"))
+                            .underline()
+                    }
+                    .padding(.horizontal)
                 }
+                Spacer()
+                Spacer()
             }.frame(maxHeight:.infinity).background(LinearGradient(
                 colors: [Color.white, Color("lightBlue")],
                 startPoint: .top, endPoint: .bottom))
@@ -115,13 +130,16 @@ struct childStartView: View {
             startPoint: .top, endPoint: .bottom))
         .navigationViewStyle(StackNavigationViewStyle())
         .fullScreenCover(isPresented: $loginViewActive) {
-                Login()
+                childLogin()
         }
         .fullScreenCover(isPresented: $registerViewAction) {
-                Register()
+                childRegister()
         }
         .fullScreenCover(isPresented: $guestViewActive) {
-                FindPark(userData: userData)
+                FindPark()
+        }
+        .fullScreenCover(isPresented: $pv.isParent) {
+                StartView()
         }
             
     }
@@ -129,6 +147,9 @@ struct childStartView: View {
 
 struct childStartView_Previews: PreviewProvider {
     static var previews: some View {
-        childStartView()
+        let pv = PV() // Create a mock instance of PV
+
+        return childStartView()
+            .environmentObject(pv) // Inject the mock instance as an environment object
     }
 }

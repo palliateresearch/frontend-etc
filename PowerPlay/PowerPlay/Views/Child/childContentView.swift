@@ -17,7 +17,7 @@ struct childContentView: View {
     var body: some View {
         VStack {
             TabView {
-                childHome(userData: userData) // Pass the park binding to the Home view
+                childHome() // Pass the park binding to the Home view
                     .tabItem {
                         Label("Home", systemImage: "house")
                     }
@@ -33,7 +33,7 @@ struct childContentView: View {
                         Label("Discover", systemImage: "books.vertical")
                     }
                 
-                childSettings(userData: userData)
+                childSettings()
                     .tabItem {
                         Label("Settings", systemImage: "gear")
                     }

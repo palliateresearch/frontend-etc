@@ -13,7 +13,7 @@ struct PowerPlayApp: App {
     @StateObject private var pv = PV()
     var body: some Scene {
         WindowGroup {
-            StartView()
+            childStartView()
                 .environmentObject(pv)
         }
     }

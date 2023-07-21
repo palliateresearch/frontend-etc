@@ -22,7 +22,6 @@ class TestModel {
                 fatalError("Failed to load store: \(error)")
             }
             
-            // Load or create the user object
             let userFetch = NSFetchRequest<User>(entityName: "User")
             do {
                 let results = try self.container.viewContext.fetch(userFetch)
@@ -31,7 +30,6 @@ class TestModel {
                 fatalError("Failed to fetch or create user: \(error)")
             }
             
-            // Load existing children
             let childFetch = NSFetchRequest<Child>(entityName: "Child")
             do {
                 let results = try self.container.viewContext.fetch(childFetch)
@@ -90,35 +88,23 @@ class TestModel {
     }
     
     func deleteAllEntitiesData() {
-        // Delete data from the "Child" entity
+    
         let childFetchRequest: NSFetchRequest<NSFetchRequestResult> = Child.fetchRequest()
         let deleteChildRequest = NSBatchDeleteRequest(fetchRequest: childFetchRequest)
         
-        // Delete data from the "User" entity
         let userFetchRequest: NSFetchRequest<NSFetchRequestResult> = User.fetchRequest()
         let deleteUserRequest = NSBatchDeleteRequest(fetchRequest: userFetchRequest)
         
         do {
-            // Use the TestModel's container's viewContext to execute the delete requests
+           
             try container.viewContext.execute(deleteChildRequest)
             try container.viewContext.execute(deleteUserRequest)
-            
-            // Save the changes to the context
+        
             try container.viewContext.save()
         } catch {
-            // Handle the error here
+            
             print("Error deleting all entities data: \(error)")
         }
     }
     
 }
-
-class PV: ObservableObject {
-    @Published var firstName: String = ""
-    @Published var lastName: String = ""
-    @Published var username: String = ""
-    @Published var password: String = ""
-    @Published var isParent: Bool = false
-    @Published var childrenNames: [String] = [] // Separate array to hold child names
-}
-

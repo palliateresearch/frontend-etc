@@ -217,7 +217,7 @@ struct GuestHome: View {
                         
                     }
                 }.scrollIndicators(.visible)
-            }
+            }.background(Color("darkModeBackground"))
         }
         .foregroundColor(Color.white)
         .background(Color("darkModeBackground"))
