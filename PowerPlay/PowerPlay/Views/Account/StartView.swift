@@ -10,6 +10,7 @@ struct StartView: View {
     @State private var guestViewActive = false
     
     @ObservedObject var userData = UserViewData()
+    var model = TestModel()
 
 
     

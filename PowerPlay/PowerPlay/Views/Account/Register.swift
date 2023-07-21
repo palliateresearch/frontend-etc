@@ -173,7 +173,7 @@ struct Register: View {
                 )
 
                 Toggle(isOn: $pv.isParent) {
-                    Text("Create Parent Account?")
+                    Text("Are You a Parent?")
                         .fontDesign(.rounded)
                 }
                 .toggleStyle(iOSCheckboxToggleStyle())
