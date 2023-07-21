@@ -16,9 +16,8 @@ class UserViewData: ObservableObject {
     @Published var park: String = ""
     @Published var children: [String] = []
     @Published var isParent: Bool = false
-    @Published var badgesComplete: Set<String> = ["badgeStreak1", "badgeStreak2", "badgeStreak3", "badgeWh1", "badgeWh2", "badgeWh3", "badge100Elec", "badge100Ener", "badge100Green"]
-    @Published var badgesIncomplete: Set<String> = []
     @Published var jsonData = ArduinoData()
+    
 
     func loadData(){
         

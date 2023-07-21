@@ -8,15 +8,17 @@
 import Foundation
 
 class AchievementsData: ObservableObject {
-    @Published var userData = UserViewData()
-    @Published var badges: Set<String> = []
+    @Published var badgesComplete: Set<String> = []
     @Published var daysFullGoalAchieved: [Int] = []
     @Published var daysPartialGoalAchieved: [Int] = []
+    @Published var userData = UserViewData()
     private var totalEnergy = 0
+    var model = TestModel()
+
         
-    func setBadges() -> Set<String> {
-        badges = userData.badgesComplete
-        return badges
+    func setBadges(badge: String){
+        model.myPark?.badges!.insert(badge)
+        model.save()
     }
     
     func setDaysFullGoalAchieved() -> [Int] {
@@ -45,14 +47,41 @@ class AchievementsData: ObservableObject {
     }
     
     func updateBadges(){
+        //all existing badges: "badgeStreak1", "badgeStreak2", "badgeStreak3", "badgeWh1", "badgeWh2", "badgeWh3", "badge100Elec", "badge100Ener", "badge100Green"
         if(totalEnergy >= 50){
-                userData.badgesComplete.insert("badgeWh1")
+                badgesComplete.insert("badgeWh1")
         }
         else if(totalEnergy >= 150){
-                userData.badgesComplete.insert("badgeWh2")
+                badgesComplete.insert("badgeWh2")
         }
         else if(totalEnergy >= 500){
-                userData.badgesComplete.insert("badgeWh3")
+                badgesComplete.insert("badgeWh3")
+        }
+    }
+    
+    func runAt1159PM() {
+        // Get the current date and time
+        //userData.jsonData.totalEnergy
+        let currentDate = Date()
+
+        // Create a Calendar instance
+        let calendar = Calendar.current
+
+        // Extract components from the current date
+        let components = calendar.dateComponents([.hour, .minute], from: currentDate)
+
+        // Get the hour and minute components
+        if let hour = components.hour, let minute = components.minute {
+            // Calculate the seconds until 11:59 PM
+            let secondsUntil1159PM = (23 - hour) * 3600 + (59 - minute) * 60
+
+            // Schedule the function to run after the calculated seconds
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(secondsUntil1159PM)) {
+                if ()
+                print("It's 11:59 PM now!")
+                
+               
+            }
         }
     }
 

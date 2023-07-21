@@ -13,6 +13,7 @@ class TestModel {
     
     var myUser: User?
     var myChildren: [Child] = [] // Changed to an array to hold multiple Child objects
+    var myPark: Park?
     
     let container: NSPersistentContainer = NSPersistentContainer(name: "Model")
     
