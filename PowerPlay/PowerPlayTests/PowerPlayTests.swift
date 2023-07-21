@@ -19,6 +19,16 @@ final class PowerPlayTests: XCTestCase {
     }
 
     func testExample() throws {
+
+//        let testData = ArduinoData(unix_timestamp: 123456789, totalEnergy: 1234)
+//
+//        let json_str = "{'timestamp': 123456789, 'totalEnergy': 1234}"
+//
+//        let output = testFunction()
+//
+//        XCTAssertEqual(testData, output)
+        
+        
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         // Any test you write for XCTest can be annotated as throws and async.
@@ -31,6 +41,11 @@ final class PowerPlayTests: XCTestCase {
         self.measure {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    func testArduinoFetch() throws {
+//        fetchDataFromServer {_ in }
+//        XCTAssertFalse(true)
     }
 
 }

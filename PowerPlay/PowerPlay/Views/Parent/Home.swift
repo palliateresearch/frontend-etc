@@ -147,16 +147,20 @@ struct Home: View {
                                     .fontDesign(.rounded)
                                 HStack{
                                     VStack{
-                                        Text("485")
+                                        Text(String(userData.jsonData.totalEnergy))
                                             .foregroundColor(Color.white)
                                             .font(.system(size: 70))
                                             .bold()
                                             .fontDesign(.rounded)
                                             .frame(maxHeight: .infinity,alignment:.center)
                                     }
-                                }.padding()
-                            }
-                            
+                                    .padding()
+                                    .onAppear(perform: {
+                                        userData.loadData()
+                                    })
+                                        
+                                }
+                            } 
                         }
                         ZStack (alignment: .leading){
                             ZStack (alignment: .topLeading) {
@@ -467,6 +471,7 @@ struct Home_Previews: PreviewProvider {
     static var previews: some View {
         Home(userData: UserViewData()).environment(\.colorScheme, .light)
         Home(userData: UserViewData()).environment(\.colorScheme, .dark)
+        
     }
 }
 
@@ -489,3 +494,4 @@ struct CircleProgress: View {
             
     }
 }
+
