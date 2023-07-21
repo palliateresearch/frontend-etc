@@ -8,8 +8,122 @@
 import SwiftUI
 
 struct childStartView: View {
+    @ObservedObject var userData = UserViewData()
+    
+    @State private var loginViewActive = false
+    @State private var registerViewAction = false
+    @State private var guestViewActive = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack{
+            VStack{
+                Spacer()
+                Spacer()
+                Text("Welcome  to")
+                    .fontDesign(.rounded)
+                    .font(.system(size: 40))
+                    .fontWeight(.heavy)
+                    .foregroundColor(Color("darkBlue"))
+                    .padding()
+                Image("Sparky")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(.bottom, 10)
+                Text("PowerPlay")
+                    .fontDesign(.rounded)
+                    .font(.system(size: 64))
+                    .fontWeight(.heavy)
+                    .foregroundColor(Color("darkBlue"))
+                    .padding()
+                Spacer()
+                Spacer()
+                VStack(spacing:0){
+                    Button(action: {
+                        registerViewAction = true
+                    }, label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 7)
+                                .padding()
+                                .frame(minHeight: 70)
+                                .foregroundColor(Color("dropShadowBlue"))
+                            RoundedRectangle(cornerRadius: 7)
+                                .padding()
+                                .padding([.bottom],6)
+                                .frame(minHeight: 90)
+                                .foregroundColor(Color("aliceBlue"))
+                                .overlay{
+                                    Text("REGISTER")
+                                        .foregroundColor(Color("darkBlue"))
+                                        .fontWeight(.heavy)
+                                        .font(.title2)
+                                        .fontDesign(.rounded)
+                                }
+                        }.frame(maxHeight: 75)
+                    })
+                    Button(action: {
+                        guestViewActive = true
+                    }, label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 7)
+                                .padding()
+                                .frame(minHeight: 80)
+                                .foregroundColor(Color("dropShadowBlue"))
+                            RoundedRectangle(cornerRadius: 7)
+                                .padding()
+                                .padding([.bottom],6)
+                                .frame(minHeight: 90)
+                                .foregroundColor(Color("aliceBlue"))
+                                .overlay{
+                                    Text("LOGIN AS GUEST")
+                                        .foregroundColor(Color("darkBlue"))
+                                        .fontWeight(.heavy)
+                                        .font(.title2)
+                                        .fontDesign(.rounded)
+                                }
+                            
+                        }
+                    }).frame(maxHeight: 75)
+                    Button(action: {
+                        loginViewActive = true
+                    }, label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 7)
+                                .padding()
+                                .frame(minHeight: 80)
+                                .foregroundColor(Color("dropShadowBlue"))
+                            RoundedRectangle(cornerRadius: 7)
+                                .padding()
+                                .padding([.bottom],6)
+                                .frame(minHeight: 90)
+                                .foregroundColor(Color("darkBlue"))
+                                .overlay{
+                                    Text("SIGN IN")
+                                        .foregroundColor(Color.white)
+                                        .fontWeight(.heavy)
+                                        .font(.title2)
+                                        .fontDesign(.rounded)
+                                }
+                            
+                        }
+                    }).frame(maxHeight: 75)
+                }
+            }.frame(maxHeight:.infinity).background(LinearGradient(
+                colors: [Color.white, Color("lightBlue")],
+                startPoint: .top, endPoint: .bottom))
+        }.padding().background(LinearGradient(
+            colors: [Color.white, Color("lightBlue")],
+            startPoint: .top, endPoint: .bottom))
+        .navigationViewStyle(StackNavigationViewStyle())
+        .fullScreenCover(isPresented: $loginViewActive) {
+                Login()
+        }
+        .fullScreenCover(isPresented: $registerViewAction) {
+                Register()
+        }
+        .fullScreenCover(isPresented: $guestViewActive) {
+                FindPark(userData: userData)
+        }
+            
     }
 }
 

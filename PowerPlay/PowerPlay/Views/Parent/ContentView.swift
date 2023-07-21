@@ -26,7 +26,7 @@ struct ContentView: View {
                         Label("Discover", systemImage: "books.vertical")
                     }
                 
-                childSettings(userData: userData)
+                Settings(userData: userData)
                     .tabItem {
                         Label("Settings", systemImage: "gear")
                     }

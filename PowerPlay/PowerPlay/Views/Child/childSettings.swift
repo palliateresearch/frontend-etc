@@ -90,6 +90,8 @@ struct childSettings: View {
                     Spacer()
                     Spacer()
                     Spacer()
+                    Spacer()
+                    Spacer()
                 }
                 Button {
                     isLogout = true

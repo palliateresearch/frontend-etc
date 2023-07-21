@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		49C2EFD12A69D69100814F4F /* childHomePark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C2EFD02A69D69100814F4F /* childHomePark.swift */; };
 		49C2EFD32A69E5C900814F4F /* childStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C2EFD22A69E5C900814F4F /* childStartView.swift */; };
+		49C2EFD52A69F69000814F4F /* childAchievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C2EFD42A69F69000814F4F /* childAchievements.swift */; };
 		9B094E0D2A65997C008C39B3 /* EnterChildren.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B094E0C2A65997C008C39B3 /* EnterChildren.swift */; };
 		9B094E0F2A659B4E008C39B3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B094E0E2A659B4E008C39B3 /* Settings.swift */; };
 		9B094E112A65B724008C39B3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B094E102A65B724008C39B3 /* UserModel.swift */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		49C2EFD02A69D69100814F4F /* childHomePark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childHomePark.swift; sourceTree = "<group>"; };
 		49C2EFD22A69E5C900814F4F /* childStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childStartView.swift; sourceTree = "<group>"; };
+		49C2EFD42A69F69000814F4F /* childAchievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childAchievements.swift; sourceTree = "<group>"; };
 		9B094E0C2A65997C008C39B3 /* EnterChildren.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterChildren.swift; sourceTree = "<group>"; };
 		9B094E0E2A659B4E008C39B3 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		9B094E102A65B724008C39B3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			children = (
 				9BD9A68E2A6750090053E482 /* childHome.swift */,
 				49C2EFD02A69D69100814F4F /* childHomePark.swift */,
+				49C2EFD42A69F69000814F4F /* childAchievements.swift */,
 				9BD9A6902A6750BE0053E482 /* childSettings.swift */,
 				49C2EFD22A69E5C900814F4F /* childStartView.swift */,
 			);
@@ -412,6 +415,7 @@
 				C905D6392A60EFAE009BF5DB /* CalendarView.swift in Sources */,
 				C905D6372A60E210009BF5DB /* AchievementsViewModel.swift in Sources */,
 				9BAAB0692A673578000BAF23 /* Learning.swift in Sources */,
+				49C2EFD52A69F69000814F4F /* childAchievements.swift in Sources */,
 				C905D6282A5F4DAA009BF5DB /* Home.swift in Sources */,
 				C905D6232A5F4613009BF5DB /* Achievements.swift in Sources */,
 				9B094E192A65DF12008C39B3 /* parkList.swift in Sources */,
