@@ -12,6 +12,7 @@ struct Login: View {
 
     @State private var isUsernameValid: Bool = true
     @State private var isPasswordValid: Bool = true
+    @State private var isInvalidCredentials: Bool = false
 
     var body: some View {
         GeometryReader { geometry in
@@ -19,6 +20,11 @@ struct Login: View {
             let height = geometry.size.height
 
             VStack {
+                Image("palliateIcon") // Add the image asset here
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: width * 0.5, height: height * 0.2) // Adjust the size as needed
+
                 Text("Login")
                     .fontDesign(.rounded)
                     .font(.system(size: width * 0.08, weight: .bold))
@@ -93,18 +99,21 @@ struct Login: View {
                 )
 
                 Button(action: {
-                    // Perform validation checks
                     isUsernameValid = !pv.username.isEmpty
                     isPasswordValid = !pv.password.isEmpty
 
-                    // Check if all validation checks passed
                     if isUsernameValid && isPasswordValid {
-                        // All entries are valid, proceed with login
-                        model.myUser?.username = pv.username
-                        model.myUser?.password = pv.password
-                        model.save()
+                        model.load()
+                        let savedUsername = model.myUser?.username ?? ""
+                        let savedPassword = model.myUser?.password ?? ""
 
-                        isLoggedIn = true
+                        if savedUsername == pv.username && savedPassword == pv.password {
+                            isLoggedIn = true
+                        } else {
+                            isInvalidCredentials = true
+                        }
+                    } else {
+                        isInvalidCredentials = true
                     }
                 }) {
                     Text("Sign In")
@@ -117,6 +126,13 @@ struct Login: View {
                         .cornerRadius(10)
                 }
                 .padding(.top, height * 0.04)
+
+                if isInvalidCredentials {
+                    Text("Invalid username or password")
+                        .fontDesign(.rounded)
+                        .foregroundColor(.red)
+                        .padding(.top, height * 0.02)
+                }
 
                 Spacer()
                 Button(action: {
@@ -131,7 +147,7 @@ struct Login: View {
                 .buttonStyle(PlainButtonStyle())
                 .padding(.horizontal, width * 0.1)
                 .sheet(isPresented: $isRegister) {
-                     Register()
+                    Register()
                 }
             }
             .fullScreenCover(isPresented: $isLoggedIn) {
@@ -150,5 +166,3 @@ struct Login: View {
         }
     }
 }
-
-// Rest of the code remains the same
