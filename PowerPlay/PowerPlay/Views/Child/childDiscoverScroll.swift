@@ -17,10 +17,8 @@ struct childDiscoverScroll: View {
             TabView(selection: $selectedTab){
                 childDiscoverActive().tag(0)
                 childDiscoverUnactive().tag(1)
-                
             }
             .background(selectedTab == 0 ? Color("lightBlue") : Color("lightGray"))
-            //.background(Color("lightBlue"))
             .tabViewStyle(PageTabViewStyle())
         }
         

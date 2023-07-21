@@ -21,7 +21,8 @@ struct childDiscoverActive: View {
                     .padding()
                     .padding()
                 Spacer()
-                childStartLesson(progress: 0.333333, background: "darkBlue", text: "aliceBlue", progressDone: "lightningYellow", shadow: "dropShadowBlue")
+                childStartLesson(progress: 0.333333, background: "darkBlue", text: "aliceBlue", progressDone: "lightningYellow", shadow: "dropShadowBlue", nextPage: childLesson(image: "sparkyWithClouds", chapter: "The Power of Electricity", lesson: "Lesson 1: What is it about?", header: ["hello", "this", "is", "a", "test"], content: ["hello", "this", "is", "a", "test"], frameSize: [375,375,375,375,375]))
+                
                 Spacer()
               
             }

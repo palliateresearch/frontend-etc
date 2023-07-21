@@ -14,9 +14,8 @@ struct childStartLesson: View {
     @State var text: String?
     @State var progressDone: String?
     @State var shadow: String?
-    
-    
-    
+    @State var nextPage: childLesson?
+  
     var body: some View {
         ZStack (alignment: .leading){
             ZStack (alignment: .topLeading) {
@@ -68,6 +67,10 @@ struct childStartLesson: View {
                     Button(action: {
                         
                     }, label: {
+                        
+                    })
+                    
+                    NavigationLink(destination: nextPage, label: {
                         ZStack{
                             RoundedRectangle(cornerRadius: 7)
                                 .padding()
