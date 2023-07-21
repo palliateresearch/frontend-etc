@@ -23,7 +23,7 @@ struct childContentView: View {
                     }
                     .tag(0)
                 
-                Achievements()
+                childAchievements()
                     .tabItem {
                         Label("Achievements", systemImage: "trophy")
                     }

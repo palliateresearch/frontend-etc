@@ -15,22 +15,20 @@ struct childSettings: View {
         NavigationStack{
             ScrollView{
                 VStack{
-                    Text("Settings")
-                        .fontDesign(.rounded)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.largeTitle)
-                        .bold()
-                        .padding()
-                    Spacer()
-                    Spacer()
-                    Spacer()
+                    childCustomNavBar(navTitle: "Settings", color: "darkBlue")
+                    VStack{
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                    }
                     VStack{
                         Image("Sparky")
                             .scaleEffect(0.1)
                             .frame(width: 200, height: 125)
                             .aspectRatio(contentMode: .fit)
-//                        Text("Palliate")
-                        Text("\(userData.firstName) \(userData.lastName)")
+                        Text("Palliate")
+//                        Text("\(userData.firstName) \(userData.lastName)")
                             .fontDesign(.rounded)
                             .foregroundColor(Color("darkBlue"))
                             .frame(maxWidth: .infinity, alignment: .center)
@@ -85,7 +83,7 @@ struct childSettings: View {
                             .padding()
                             .foregroundColor(Color.black)
                     }
-                }
+                }.padding()
                 VStack{
                     Spacer()
                     Spacer()
@@ -116,14 +114,11 @@ struct childSettings: View {
                         
                     }
                     .padding([.bottom], 70)
-                }
+                }.padding()
             }
             .fullScreenCover(isPresented: $isLogout) {
                 StartView()
-            }.padding()
-                .background(LinearGradient(
-                    colors: [Color.white, Color("lightBlue")],
-                    startPoint: .top, endPoint: .bottom))
+            }.background(Color("lightBlue"))
         }
     }
 }

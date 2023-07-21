@@ -185,9 +185,7 @@
 				49C2EFD02A69D69100814F4F /* childHomePark.swift */,
 				49C2EFD42A69F69000814F4F /* childAchievements.swift */,
 				9BD9A6902A6750BE0053E482 /* childSettings.swift */,
-<<<<<<< HEAD
 				49C2EFD22A69E5C900814F4F /* childStartView.swift */,
-=======
 				C905D64C2A698D67009BF5DB /* childContentView.swift */,
 				C905D64A2A698C0E009BF5DB /* childDiscoverActive.swift */,
 				C905D6522A69B285009BF5DB /* childStartLesson.swift */,
@@ -197,7 +195,6 @@
 				C905D65A2A6A34F8009BF5DB /* childEndingLessonMaterial.swift */,
 				C905D6542A69EB5F009BF5DB /* childDiscoverUnactive.swift */,
 				C905D64E2A69922D009BF5DB /* childCustomNavBar.swift */,
->>>>>>> DiscoverPageFlow
 			);
 			path = Child;
 			sourceTree = "<group>";
