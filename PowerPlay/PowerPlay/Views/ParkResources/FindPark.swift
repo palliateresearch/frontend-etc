@@ -79,3 +79,14 @@ struct FindPark: View {
         }
     }
 }
+struct FindPark_Previews: PreviewProvider {
+    static var previews: some View {
+        let pv = PV() // Create a mock instance of PV
+
+        return FindPark()
+            .environmentObject(pv) // Inject the mock instance as an environment object
+    }
+}
+
+
+
