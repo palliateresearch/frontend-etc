@@ -1,8 +1,10 @@
 import SwiftUI
+import ConfettiSwiftUI
 
 struct test: View {
     @State private var firstName: String = ""
     @State private var lastName: String = "" // Add a state variable for lastName
+    @State private var counter = 0
     var model = TestModel()
 
     var body: some View {
@@ -17,6 +19,7 @@ struct test: View {
 
             HStack {
                 Button("Save") {
+                    counter+=1
                     model.myUser?.firstName = firstName
                     model.myUser?.lastName = lastName // Save lastName to the Core Data model
                     model.save()
@@ -26,6 +29,7 @@ struct test: View {
                     print("Model Last \(model.myUser?.lastName)")
                 }
                 .foregroundColor(.red)
+                .confettiCannon(counter: $counter)
 
             }
             
