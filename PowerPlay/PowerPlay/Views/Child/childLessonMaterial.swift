@@ -115,7 +115,7 @@ struct childLessonMaterial: View {
                                 .frame(maxWidth: .infinity, alignment: .top)
                             })
                         } else if (currentIndex == (header!.count-1)) {
-                            NavigationLink(destination:{ Achievements()
+                            NavigationLink(destination:{ childCongrats()
                                     .navigationBarBackButtonHidden()
                                 
                             }, label: {
