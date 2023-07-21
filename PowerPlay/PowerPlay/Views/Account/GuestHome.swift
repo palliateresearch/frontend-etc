@@ -1,5 +1,5 @@
 //
-//  Home.swift
+//  GuestHome.swift
 //  PowerPlay
 //
 //  Created by Nishka Sharma on 7/12/23.
@@ -9,12 +9,11 @@ import SwiftUI
 import Charts
 
 struct GuestHome: View {
-    @ObservedObject var userData = UserViewData()
+    var model = TestModel()
     
     @State var progress: CGFloat = 0.75
     @State var toStart = false
-    //@State
-    
+
     var body: some View {
         NavigationStack{
             ScrollView{
@@ -27,8 +26,7 @@ struct GuestHome: View {
                         .padding(.vertical)
                     Button(action: {
                         toStart = true
-                    }
-                    , label: {
+                    }) {
                         HStack{
                             Text("Guest").foregroundColor(Color.white)
                                 .fontDesign(.rounded)
@@ -37,10 +35,9 @@ struct GuestHome: View {
                                 .padding()
                                 .foregroundColor(Color("lightningYellow"))
                         }
-                        
-                    })
+                    }
                 }
-                Text("\(userData.park)- January")
+                Text("\(model.myUser?.park ?? "") - January") // Using model to access park
                     .fontDesign(.rounded)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.title3)
@@ -221,14 +218,17 @@ struct GuestHome: View {
                     }
                 }.scrollIndicators(.visible)
             }
-            .foregroundColor(Color.white)
-            .background(Color("darkModeBackground"))
-            .scrollIndicators(.hidden)
-            
-        }.padding()
-            .background(Color("darkModeBackground"))
+        }
+        .foregroundColor(Color.white)
+        .background(Color("darkModeBackground"))
+        .scrollIndicators(.hidden)
+        .padding()
+        .background(Color("darkModeBackground"))
         .fullScreenCover(isPresented: $toStart) {
             StartView()
+        }
+        .onAppear {
+            model.load() // Loading data from the model
         }
     }
 }
@@ -239,5 +239,3 @@ struct GuestHome_Previews: PreviewProvider {
         GuestHome().environment(\.colorScheme, .dark)
     }
 }
-
-

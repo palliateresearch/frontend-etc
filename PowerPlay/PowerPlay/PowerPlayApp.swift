@@ -6,14 +6,15 @@
 //
 
 import SwiftUI
+import ConfettiSwiftUI
 
 @main
 struct PowerPlayApp: App {
-    @ObservedObject var userData = UserViewData()
-    @State var park = ""
+    @StateObject private var pv = PV()
     var body: some Scene {
         WindowGroup {
-            childContentView()
+            StartView()
+                .environmentObject(pv)
         }
     }
 }

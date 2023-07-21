@@ -1,13 +1,19 @@
 import SwiftUI
+import CoreData
+import Charts
+
 
 struct EnterChildren: View {
-    @ObservedObject var userData: UserViewData
-    @State private var isPark = false
+    @EnvironmentObject private var pv: PV
+    var model = TestModel()
+
+    @State private var isSubmit = false
 
     var body: some View {
         GeometryReader { geometry in
             let width = geometry.size.width
             let height = geometry.size.height
+
             VStack(spacing: 0) {
                 Text("Add Children")
                     .font(.title)
@@ -19,7 +25,7 @@ struct EnterChildren: View {
                 HStack {
                     Spacer()
                     Button(action: {
-                        userData.children.append("")
+                        pv.childrenNames.append("")
                     }) {
                         Image(systemName: "plus.circle")
                             .font(.system(size: 24))
@@ -31,37 +37,40 @@ struct EnterChildren: View {
                 }
 
                 ScrollView {
-                   VStack(spacing: 0) { // Wrap the VStack with a divider
-                       ForEach(userData.children.indices, id: \.self) { index in
-                           ChildView(removeAction: {
-                               userData.children.remove(at: index)
-                           }, child: Binding(
-                               get: {
-                                   userData.children.indices.contains(index) ? userData.children[index] : ""
-                               },
-                               set: {
-                                   if userData.children.indices.contains(index) {
-                                       userData.children[index] = $0
-                                   } else {
-                                       userData.children.append($0)
-                                   }
-                               }
-                           ))
-                           .padding(.top, geometry.size.height * 0.05)
+                    VStack(spacing: 0) {
+                        ForEach(pv.childrenNames.indices, id: \.self) { index in
+                            ChildView(removeAction: {
+                                pv.childrenNames.remove(at: index)
+                            }, child: Binding(
+                                get: {
+                                    pv.childrenNames.indices.contains(index) ? pv.childrenNames[index] : ""
+                                },
+                                set: {
+                                    if pv.childrenNames.indices.contains(index) {
+                                        pv.childrenNames[index] = $0
+                                    } else {
+                                        pv.childrenNames.append($0)
+                                    }
+                                }
+                            ))
+                            .padding(.top, geometry.size.height * 0.05)
 
-                           if index != userData.children.count - 1 { // Add divider unless it's the last child
-                               Divider()
-                                   .background(Color.gray)
-                                   .padding(.horizontal, geometry.size.width * 0.05)
-                                   .padding(.top, height * 0.075)
-                           }
-                       }
-                   }
-                   .frame(maxWidth: .infinity)
+                            if index != pv.childrenNames.count - 1 {
+                                Divider()
+                                    .background(Color.gray)
+                                    .padding(.horizontal, geometry.size.width * 0.05)
+                                    .padding(.top, height * 0.075)
+                            }
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
                 }
 
                 Button(action: {
-                    isPark = true
+                    isSubmit = true
+                    // Save children to CoreData when submitted
+                    registerChildren()
+                    model.save()
                 }) {
                     Text("Submit")
                         .font(.system(size: width * 0.06, weight: .bold))
@@ -74,12 +83,33 @@ struct EnterChildren: View {
                 .padding(.top, height * 0.04)
             }
             .preferredColorScheme(.dark)
+            .fullScreenCover(isPresented: $isSubmit) {
+                if let user = model.myUser, !(user.park?.isEmpty ?? true) {
+                    ContentView()
+                } else {
+                    FindPark()
+                }
+            }
+            .onAppear {
+                model.load()
+
+                DispatchQueue.main.async {
+                    pv.childrenNames = model.myChildren.map { $0.childName ?? "" }
+                }
+            }
         }
-        .fullScreenCover(isPresented: $isPark) {
-            FindPark(userData: userData)
+    }
+
+    // Function to register children to CoreData
+    private func registerChildren() {
+        for childName in pv.childrenNames {
+            let child = model.createChild()
+            child.childName = childName
         }
     }
 }
+
+
 
 struct ChildView: View {
     var removeAction: () -> Void
@@ -93,7 +123,6 @@ struct ChildView: View {
 
             HStack {
                 ZStack {
-                   
                     TextField("Child Username", text: self.$child)
                         .padding(.horizontal, width * 0.05)
                 }
@@ -115,8 +144,9 @@ struct ChildView: View {
     }
 }
 
+
 struct EnterChildren_Previews: PreviewProvider {
     static var previews: some View {
-        EnterChildren(userData: UserViewData()).environment(\.colorScheme, .dark)
+        EnterChildren().environment(\.colorScheme, .dark)
     }
 }

@@ -10,6 +10,7 @@ struct StartView: View {
     @State private var guestViewActive = false
     
     @ObservedObject var userData = UserViewData()
+    var model = TestModel()
 
 
     
@@ -159,7 +160,7 @@ struct StartView: View {
                 Register()
         }
         .fullScreenCover(isPresented: $guestViewActive) {
-                FindPark(userData: userData)
+                FindPark()
         }
             
     }
