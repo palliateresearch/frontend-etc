@@ -22,7 +22,7 @@ class UserViewData: ObservableObject {
 
     func loadData(){
         
-        guard let url = URL(string: "http://172.16.91.144:5000/get") else {return}
+        guard let url = URL(string: "http://172.20.10.7:5000/get") else {return}
         
         URLSession.shared.dataTask(with: url) { (data, res, err) in
             do{

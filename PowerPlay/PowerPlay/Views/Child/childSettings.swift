@@ -15,88 +15,110 @@ struct childSettings: View {
         NavigationStack{
             ScrollView{
                 VStack{
-                    Text("Settings")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.largeTitle)
-                        .bold()
-                        .padding(.vertical)
-                    Spacer()
-                    Spacer()
-                    Spacer()
+                    childCustomNavBar(navTitle: "Settings", color: "darkBlue")
                     VStack{
-                        Image("personfillyellow")
-                            .aspectRatio(contentMode: .fill)
-                            .scaleEffect(1)
-                            .foregroundColor(Color("lightningYellow"))
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                    }
+                    VStack{
+                        Image("Sparky")
+                            .scaleEffect(0.1)
+                            .frame(width: 200, height: 125)
+                            .aspectRatio(contentMode: .fit)
+//                        Text("Palliate")
                         Text("\(userData.firstName) \(userData.lastName)")
+                            .fontDesign(.rounded)
+                            .foregroundColor(Color("darkBlue"))
                             .frame(maxWidth: .infinity, alignment: .center)
-                            .font(.title2)
-                            .bold()
+                            .font(.system(size:30))
+                            .fontWeight(.heavy)
                             .padding()
                     }
                 }
-                        HStack{
-                            Text("Account Type")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .font(.title3)
-                                .foregroundColor(Color("lightningYellow"))
-                                .padding()
-                            Text(userData.isParent ? "Parent" : "Child")
-                                .frame(maxWidth: .infinity, alignment: .trailing)
-                                .font(.title3)
-                                .padding()
-                        }
-                        HStack{
-                            Text("Username")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .font(.title3)
-                                .foregroundColor(Color("lightningYellow"))
-                                .padding()
-                            Text(userData.username)
-                                .frame(maxWidth: .infinity, alignment: .trailing)
-                                .font(.title3)
-                                .padding()
-                        }
-                        HStack{
-                            Text("Park")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .font(.title3)
-                                .foregroundColor(Color("lightningYellow"))
-                                .padding()
-                            Text(userData.park)
-                                .frame(maxWidth: .infinity, alignment: .trailing)
-                                .font(.title3)
-                                .padding()
-                        }
-                        HStack{
-                            Text("Children")
-                                .frame(maxWidth: .infinity, alignment: .topLeading)
-                                .font(.title3)
-                                .foregroundColor(Color("lightningYellow"))
-                                .padding()
-                            let children = userData.children
-                            Text(children.dropLast().joined(separator: ", "))
-                                .frame(maxWidth: .infinity, alignment: .trailing)
-                                .font(.title3)
-                                .padding()
-                                }
-
+                VStack{
+                    HStack{
+                        Text("Account Type")
+                            .fontDesign(.rounded)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.title2)
+                            .foregroundColor(Color("darkBlue"))
+                            .padding()
+                            .bold()
+                        Text(userData.isParent ? "Parent" : "Child")
+                            .fontDesign(.rounded)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .font(.title2)
+                            .padding()
+                            .foregroundColor(Color.black)
+                    }
+                    HStack{
+                        Text("Username")
+                            .fontDesign(.rounded)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.title2)
+                            .foregroundColor(Color("darkBlue"))
+                            .bold()
+                            .padding()
+                        Text(userData.username)
+                            .fontDesign(.rounded)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .font(.title2)
+                            .padding()
+                            .foregroundColor(Color.black)
+                    }
+                    HStack{
+                        Text("Park")
+                            .fontDesign(.rounded)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.title2)
+                            .foregroundColor(Color("darkBlue"))
+                            .padding()
+                            .bold()
+                        Text(userData.park)
+                            .fontDesign(.rounded)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .font(.title2)
+                            .padding()
+                            .foregroundColor(Color.black)
+                    }
+                }.padding()
+                VStack{
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
                 }
-                Spacer()
-                Spacer()
-               
                 Button {
                     isLogout = true
                 } label: {
-                    Text("Logout")
-                        .frame(maxWidth: .infinity)
-                }
-                
-                .buttonStyle(.borderedProminent)
-                .tint(.red)
-        }.padding().preferredColorScheme(.dark)
-        .fullScreenCover(isPresented: $isLogout) {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 7)
+                            .padding()
+                            .frame(minHeight: 80)
+                            .foregroundColor(Color("dropShadowLogoutRed"))
+                        RoundedRectangle(cornerRadius: 7)
+                            .padding()
+                            .padding([.bottom],6)
+                            .frame(minHeight: 90)
+                            .foregroundColor(Color("logoutRed"))
+                            .overlay{
+                                Text("LOG OUT")
+                                    .foregroundColor(Color.white)
+                                    .fontWeight(.heavy)
+                                    .fontDesign(.rounded)
+                                    .font(.title2)
+                            }
+                        
+                    }
+                    .padding([.bottom], 70)
+                }.padding()
+            }
+            .fullScreenCover(isPresented: $isLogout) {
                 StartView()
+            }.background(Color("lightBlue"))
         }
     }
 }
@@ -104,6 +126,6 @@ struct childSettings: View {
 
 struct childSettings_Previews: PreviewProvider {
     static var previews: some View {
-        Settings()
+        childSettings()
     }
 }
