@@ -10,7 +10,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             TabView {
-                Home() // Pass the park binding to the Home view
+                Home(userData: userData) // Pass the park binding to the Home view
                     .tabItem {
                         Label("Home", systemImage: "house")
                     }

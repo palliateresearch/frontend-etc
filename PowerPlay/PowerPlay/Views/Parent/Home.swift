@@ -10,6 +10,7 @@ import Charts
 
 struct Home: View {
     var model = TestModel()
+    @ObservedObject var userData: UserViewData
     
     @State var progress: CGFloat = 0.75
     @State var isSettings = false
