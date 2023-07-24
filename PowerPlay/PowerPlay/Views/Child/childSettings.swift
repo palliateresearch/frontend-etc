@@ -82,14 +82,16 @@ struct childSettings: View {
                             .foregroundColor(Color("darkBlue"))
                             .padding()
                             .bold()
-                        if let parkName = model.myUser?.parks?[0] {
-                            Text(parkName)
+                        if let parks = model.myUser?.parks {
+                            let parkNames = parks.joined(separator: ", ")
+                            Text(parkNames)
                                 .fontDesign(.rounded)
                                 .frame(maxWidth: .infinity, alignment: .trailing)
                                 .font(.title2)
                                 .padding()
                                 .foregroundColor(Color.black)
                         }
+
                     }
                 }.padding()
                 VStack{

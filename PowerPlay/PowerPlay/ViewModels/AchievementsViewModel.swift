@@ -15,11 +15,11 @@ class AchievementsData: ObservableObject {
     private var totalEnergy = 0
     var model = TestModel()
 
-        
-    func setBadges(badge: String){
-        model.getPark(parkName: "")?.badges!.insert(badge)
-        model.save()
-    }
+//
+//    func setBadges(badge: String){
+//        model.getPark(parkName: "")?.badges!.insert(badge)
+//        model.save()
+//    }
     
     func setDaysFullGoalAchieved() -> [Int] {
         daysFullGoalAchieved = [1, 2, 9, 10, 13]

@@ -128,4 +128,12 @@ class TestModel {
        }
     }
     
+    func printEntities() {
+        print (myUser?.firstName)
+        print (myUser?.lastName)
+        print (myUser?.username)
+        print (myUser?.password)
+        print (myUser?.isParent)
+    }
+    
 }

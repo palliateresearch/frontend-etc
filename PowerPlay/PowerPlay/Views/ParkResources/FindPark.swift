@@ -32,8 +32,14 @@ struct FindPark: View {
                                         } else {
                                             showHome = true
                                         }
-                                        model.myUser?.parks?[0] = name
+                                        
+                                        print(String(name))
+                                       
+                                        print("Hello World \n\n")
+                                        model.myUser?.parks?.append(String(name))
                                         model.save()
+                                        print (model.myUser?.parks)
+                                        print(model.myUser?.isParent)
                                     }) {
                                         Text(name)
                                             .font(.system(size: width * 0.05, weight: .bold))
@@ -66,7 +72,7 @@ struct FindPark: View {
 
                 .fullScreenCover(isPresented: $showHome) {
                    
-                    if((model.myUser?.isParent) != nil){
+                    if((model.myUser?.isParent) != false){
                         ContentView()
                     } else {
                         childContentView()

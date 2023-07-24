@@ -195,6 +195,7 @@ struct childRegister: View {
                         model.myUser?.username = pv.username
                         model.myUser?.password = pv.password
                         model.myUser?.isParent = pv.isParent // Save isParent value
+                        model.myUser?.parks = ["Park A", "Park B"]
                         model.save()
                         
                         // Perform the appropriate action based on the isParent flag
@@ -238,8 +239,8 @@ struct childRegister: View {
             .fullScreenCover(isPresented: $isLoggedIn) {
                 if pv.isParent {
                     EnterChildren()
-                } else if let user = model.myUser, !(user.parks?[0].isEmpty ?? true) {
-                    childContentView()
+//                } else if let user = model.myUser, !(user.parks?[0].isEmpty ?? true) {
+//                    childContentView()
                 } else {
                     FindPark()
                 }
