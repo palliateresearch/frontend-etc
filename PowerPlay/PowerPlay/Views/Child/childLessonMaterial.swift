@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import AVFoundation
+let synthesizer = AVSpeechSynthesizer()
 
 struct childLessonMaterial: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var showNewPage = false
+    @ObservedObject var userData = UserViewData()
     
     @State var chapter: String?
     @State var lesson: String?
@@ -92,6 +95,14 @@ struct childLessonMaterial: View {
                         if (currentIndex != (header!.count-1)){
                             Button(action: {
                                 currentIndex = (currentIndex + 1)
+                                
+                                
+                                let utterance = AVSpeechUtterance(string: content![currentIndex])
+                                utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+                                utterance.rate = 0.5
+                                
+                                
+                                synthesizer.speak(utterance)
                             }, label: {
                                 ZStack{
                                     RoundedRectangle(cornerRadius: 7)

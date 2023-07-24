@@ -19,6 +19,7 @@ class UserViewData: ObservableObject {
     @Published var badgesComplete: Set<String> = ["badgeStreak1", "badgeStreak2", "badgeStreak3", "badgeWh1", "badgeWh2", "badgeWh3", "badge100Elec", "badge100Ener", "badge100Green"]
     @Published var badgesIncomplete: Set<String> = []
     @Published var jsonData = ArduinoData()
+    @Published var isToggleOn: Bool = false
 
     func loadData(){
         

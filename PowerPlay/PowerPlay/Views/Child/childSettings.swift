@@ -11,6 +11,8 @@ struct childSettings: View {
     @EnvironmentObject private var pv: PV
     var model = TestModel()
     @State var isLogout = false
+    @ObservedObject var userData = UserViewData()
+    @State var toggle = false
     
     var body: some View {
         NavigationStack{
@@ -28,7 +30,6 @@ struct childSettings: View {
                             .scaleEffect(0.1)
                             .frame(width: 200, height: 125)
                             .aspectRatio(contentMode: .fit)
-//                        Text("Palliate")
                         if let firstName = model.myUser?.firstName {
                             if let lastName = model.myUser?.lastName {
                             Text("\(firstName) \(lastName)")
@@ -91,6 +92,14 @@ struct childSettings: View {
                                 .foregroundColor(Color.black)
                         }
                     }
+                    Toggle("Toggle", isOn: $toggle)
+                        .fontDesign(.rounded)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.title2)
+                        .foregroundColor(Color("darkBlue"))
+                        .toggleStyle(SwitchToggleStyle(tint: Color("lightningYellow")))
+                        .padding()
+                        .bold()
                 }.padding()
                 VStack{
                     Spacer()
