@@ -287,6 +287,9 @@ struct childHomePark: View{
                 }
                 //end of VStack/ZStack
             }
+        }.onAppear{
+            userData.loadData()
+            
         }
     }
 }
