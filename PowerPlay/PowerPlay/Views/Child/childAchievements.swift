@@ -71,7 +71,6 @@ struct childAchievements: View {
                             .padding()
                         LazyVGrid(columns: adaptiveColumns, spacing: 30){
                             ForEach(model.myPark?.badges?.sorted() ?? ["badgeStreak2"], id: \.self){image in
-                                
                                 ZStack {
                                     Image(image)
                                         .scaleEffect(0.065)
@@ -92,15 +91,15 @@ struct childAchievements: View {
                 }.background(Color("lightBlue"))
             }
             .onAppear{
-                model.load()
+            
                 userData.loadData()
                 if (userData.jsonData.totalEnergy / 15) > 5 {
                     print ("\n\n\n\n\n\n")
-                    model.myPark?.
-                    model.save()
+                    model.myPark?.badges?.append("badgeStreak1")
                     print (model.myPark?.badges?.count)
-                    
+                    model.save()
                 }
+                model.load()
                
             }
         }

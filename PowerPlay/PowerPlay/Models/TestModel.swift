@@ -31,6 +31,14 @@ class TestModel {
                 fatalError("Failed to fetch or create user: \(error)")
             }
             
+            let parkFetch = NSFetchRequest<Park>(entityName: "Park")
+            do {
+                let results = try self.container.viewContext.fetch(parkFetch)
+                self.myPark = results.first ?? Park(context: self.container.viewContext)
+            } catch {
+                fatalError("Failed to fetch or create park: \(error)")
+            }
+            
             let childFetch = NSFetchRequest<Child>(entityName: "Child")
             do {
                 let results = try self.container.viewContext.fetch(childFetch)
@@ -72,12 +80,25 @@ class TestModel {
         } catch {
             fatalError("Failed to fetch children: \(error)")
         }
+        let parkFetch = NSFetchRequest<Park>(entityName: "Park")
+        do {
+            let results = try container.viewContext.fetch(parkFetch)
+            myPark = results.first
+            print (results.first)
+            print ("\n\n\n\n\n\n")
+        } catch {
+            fatalError("Failed to fetch park: \(error)")
+        }
     }
     
     func delete() {
         if let userToDelete = myUser {
             container.viewContext.delete(userToDelete)
             myUser = nil
+        }
+        if let parkToDelete = myPark {
+            container.viewContext.delete(parkToDelete)
+            myPark = nil
         }
         
         for childToDelete in myChildren {
@@ -96,10 +117,14 @@ class TestModel {
         let userFetchRequest: NSFetchRequest<NSFetchRequestResult> = User.fetchRequest()
         let deleteUserRequest = NSBatchDeleteRequest(fetchRequest: userFetchRequest)
         
+        let parkFetchRequest: NSFetchRequest<NSFetchRequestResult> = Park.fetchRequest()
+        let deleteParkRequest = NSBatchDeleteRequest(fetchRequest: parkFetchRequest)
+        
         do {
            
             try container.viewContext.execute(deleteChildRequest)
             try container.viewContext.execute(deleteUserRequest)
+            try container.viewContext.execute(deleteParkRequest)
         
             try container.viewContext.save()
         } catch {

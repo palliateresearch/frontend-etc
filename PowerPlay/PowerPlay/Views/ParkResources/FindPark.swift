@@ -66,7 +66,7 @@ struct FindPark: View {
 
                 .fullScreenCover(isPresented: $showHome) {
                    
-                    if((model.myUser?.isParent) != nil){
+                    if((model.myUser?.isParent) != false){
                         ContentView()
                     } else {
                         childContentView()

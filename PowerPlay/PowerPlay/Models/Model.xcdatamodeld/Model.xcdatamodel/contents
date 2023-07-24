@@ -4,7 +4,7 @@
         <attribute name="childName" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Park" representedClassName="Park" syncable="YES" codeGenerationType="class">
-        <attribute name="badges" optional="YES" attributeType="Transformable" customClassName="Set&lt;String&gt;"/>
+        <attribute name="badges" optional="YES" attributeType="Transformable" customClassName="[String]"/>
         <attribute name="completeGoal" optional="YES" attributeType="Transformable" customClassName="[Int]"/>
         <attribute name="parkName" optional="YES" attributeType="String"/>
         <attribute name="partialGoal" optional="YES" attributeType="Transformable" customClassName="[Int]"/>
