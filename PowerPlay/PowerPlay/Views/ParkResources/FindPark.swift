@@ -32,7 +32,7 @@ struct FindPark: View {
                                         } else {
                                             showHome = true
                                         }
-                                        model.myUser?.park = name
+                                        model.myUser?.parks?[0] = name
                                         model.save()
                                     }) {
                                         Text(name)

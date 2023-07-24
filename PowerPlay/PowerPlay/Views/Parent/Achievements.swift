@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Achievements: View {
+    var model = TestModel()
     
     private var adaptiveColumns = [GridItem(.adaptive(minimum: 100))]
     @State var selectedDate: Date = Date()
@@ -97,7 +98,7 @@ struct Achievements: View {
                             
 
                             LazyVGrid(columns: adaptiveColumns, spacing: 20){
-                                ForEach(AchievementsData().setBadges().sorted(), id: \.self){image in
+                                ForEach(model.getPark(parkName: "")?.badges?.sorted() ?? [""], id: \.self){image in
                                     ZStack {
                                         Image(image)
                                             .scaleEffect(0.065)

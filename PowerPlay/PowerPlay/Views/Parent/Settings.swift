@@ -66,7 +66,7 @@ struct Settings: View {
                             .font(.title3)
                             .foregroundColor(Color("lightningYellow"))
                             .padding()
-                        Text(model.myUser?.park ?? "")
+                        Text(model.myUser?.parks?[0] ?? "")
                             .fontDesign(.rounded)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                             .font(.title3)

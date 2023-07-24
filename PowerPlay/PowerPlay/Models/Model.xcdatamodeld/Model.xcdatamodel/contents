@@ -6,6 +6,7 @@
     <entity name="Park" representedClassName="Park" syncable="YES" codeGenerationType="class">
         <attribute name="badges" optional="YES" attributeType="Transformable" customClassName="Set&lt;String&gt;"/>
         <attribute name="completeGoal" optional="YES" attributeType="Transformable" customClassName="[Int]"/>
+        <attribute name="leaderNum" optional="YES" attributeType="String"/>
         <attribute name="parkName" optional="YES" attributeType="String"/>
         <attribute name="partialGoal" optional="YES" attributeType="Transformable" customClassName="[Int]"/>
         <attribute name="wattHrsPerDay" optional="YES" attributeType="Transformable" customClassName="[Float]"/>

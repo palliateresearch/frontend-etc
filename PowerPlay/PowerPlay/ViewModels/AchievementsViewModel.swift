@@ -17,7 +17,7 @@ class AchievementsData: ObservableObject {
 
         
     func setBadges(badge: String){
-        model.myPark?.badges!.insert(badge)
+        model.getPark(parkName: "")?.badges!.insert(badge)
         model.save()
     }
     
@@ -77,8 +77,6 @@ class AchievementsData: ObservableObject {
 
             // Schedule the function to run after the calculated seconds
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(secondsUntil1159PM)) {
-                if ()
-                print("It's 11:59 PM now!")
                 
                
             }

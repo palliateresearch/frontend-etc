@@ -12,17 +12,17 @@ struct childHomePark: View, Hashable{
     var totalWattHrs: String?
     var parkLeaderboard: String?
     var parkName: String?
-    var todayWattHrs: Int?
+    var todayWattHrs: Float?
     var mission1Completion: Int
     var mission2Completion: Int
     var mission3Completion: Int
     var mission4Completion: Int
     
     func getLightBulbHr() -> String{
-        return String((todayWattHrs ?? 0) / 15)
+        return String((todayWattHrs ?? Float(0.0)) / 15)
     }
     
-    init(userName: String? = nil, totalWattHrs: String? = nil, parkLeaderboard: String? = nil, parkName: String? = nil, todayWattHrs: Int? = nil, mission1Completion: Int = 0, mission2Completion: Int = 0, mission3Completion: Int = 0, mission4Completion: Int = 0) {
+    init(userName: String? = nil, totalWattHrs: String? = nil, parkLeaderboard: String? = nil, parkName: String? = nil, todayWattHrs: Float? = nil, mission1Completion: Int = 0, mission2Completion: Int = 0, mission3Completion: Int = 0, mission4Completion: Int = 0) {
         self.userName = userName
         self.totalWattHrs = totalWattHrs
         self.parkLeaderboard = parkLeaderboard

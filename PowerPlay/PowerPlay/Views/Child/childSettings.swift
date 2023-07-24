@@ -82,7 +82,7 @@ struct childSettings: View {
                             .foregroundColor(Color("darkBlue"))
                             .padding()
                             .bold()
-                        if let parkName = model.myUser?.park {
+                        if let parkName = model.myUser?.parks?[0] {
                             Text(parkName)
                                 .fontDesign(.rounded)
                                 .frame(maxWidth: .infinity, alignment: .trailing)

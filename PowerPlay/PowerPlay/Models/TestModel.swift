@@ -12,8 +12,8 @@ import SwiftUI
 class TestModel {
     
     var myUser: User?
-    var myChildren: [Child] = [] // Changed to an array to hold multiple Child objects
-    var myPark: Park?
+    var myChildren: [Child] = []
+    var myParkList: [Park] = []
     
     let container: NSPersistentContainer = NSPersistentContainer(name: "Model")
     
@@ -37,6 +37,14 @@ class TestModel {
                 self.myChildren = results
             } catch {
                 fatalError("Failed to fetch children: \(error)")
+            }
+            
+            let parkFetch = NSFetchRequest<Park>(entityName: "Park")
+            do {
+                let results = try self.container.viewContext.fetch(parkFetch)
+                self.myParkList = results
+            } catch {
+                fatalError("Failed to fetch park list: \(error)")
             }
         }
     }
@@ -106,6 +114,18 @@ class TestModel {
             
             print("Error deleting all entities data: \(error)")
         }
+    }
+    
+    func getPark(parkName: String) -> Park?{
+        let parkFetch = NSFetchRequest<Park>(entityName: "Park")
+        parkFetch.predicate = NSPredicate(format: "id == %@", parkName)
+       do {
+           let parks = try container.viewContext.fetch(parkFetch)
+           return parks.first
+       } catch {
+           print("Error fetching park: \(error)")
+           return nil
+       }
     }
     
 }
