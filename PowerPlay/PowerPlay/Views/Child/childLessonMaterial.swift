@@ -17,6 +17,9 @@ struct childLessonMaterial: View {
     @State var content: [String]?
     @State var frameSize: [CGFloat]?
     @State private var currentIndex = 0
+    @State var childModel = currentLesson()
+    @State var firstKeyWithFalseValue: String?
+    
     
     var body: some View {
         ZStack (alignment: .leading){
@@ -92,6 +95,7 @@ struct childLessonMaterial: View {
                         if (currentIndex != (header!.count-1)){
                             Button(action: {
                                 currentIndex = (currentIndex + 1)
+                                print(childModel.progressC1)
                             }, label: {
                                 ZStack{
                                     RoundedRectangle(cornerRadius: 7)
@@ -115,10 +119,11 @@ struct childLessonMaterial: View {
                                 .frame(maxWidth: .infinity, alignment: .top)
                             })
                         } else if (currentIndex == (header!.count-1)) {
-                            NavigationLink(destination:{ Achievements()
-                                    .navigationBarBackButtonHidden()
-                                
-                            }, label: {
+                                Button(action: {
+                                    findNextLesson()
+                                    presentationMode.wrappedValue.dismiss()
+                                    print(childModel.progressC1)
+                                }, label: {
                                 ZStack{
                                     RoundedRectangle(cornerRadius: 7)
                                         .padding()
@@ -136,20 +141,54 @@ struct childLessonMaterial: View {
                                                 .font(.title2)
                                                 .padding(.bottom, 7)
                                         }
-                                    
+
                                 }
                                 .frame(maxWidth: .infinity, alignment: .top)
+                              
                             })
                         }
                     }
                     
                 }
             }
-            
-            
-            
         }
         .padding([.horizontal], 25)
+    }
+    
+    func findNextLesson(){
+
+        firstKeyWithFalseValue = childModel.lessonStatus.first
+        print(firstKeyWithFalseValue!)
+        
+        if (firstKeyWithFalseValue == "C1L1"){
+            childModel.progressC1 = 0.33333333333
+        }
+        else if (firstKeyWithFalseValue == "C1L2"){
+            childModel.progressC1 = 0.66666666666
+        }
+        else if (firstKeyWithFalseValue == "C1L3"){
+            childModel.progressC1 = 1.0
+        }
+        else if (firstKeyWithFalseValue == "C2L1"){
+            childModel.progressC1 = 0.33333333333
+        }
+        else if (firstKeyWithFalseValue == "C2L2"){
+            childModel.progressC1 = 0.66666666666
+        }
+        else if (firstKeyWithFalseValue == "C2L3"){
+            childModel.progressC1 = 1.0
+        }
+        else if (firstKeyWithFalseValue == "C3L1"){
+            childModel.progressC1 = 0.33333333333
+        }
+        else if (firstKeyWithFalseValue == "C3L2"){
+            childModel.progressC1 = 0.66666666666
+        }
+        else if (firstKeyWithFalseValue == "C3L3"){
+            childModel.progressC1 = 1.0
+        }
+        
+        childModel.lessonStatus.removeFirst()
     }
     
     func prevText() {

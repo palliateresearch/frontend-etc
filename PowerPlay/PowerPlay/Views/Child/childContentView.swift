@@ -11,6 +11,7 @@ import SwiftUI
 struct childContentView: View {
     @ObservedObject var userData = UserViewData()
     @State private var tabColor: Color!
+    @State var childModel = currentLesson()
     
     @State private var park: String = ""
 

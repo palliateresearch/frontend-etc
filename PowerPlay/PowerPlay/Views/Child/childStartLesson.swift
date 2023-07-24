@@ -9,12 +9,13 @@ import SwiftUI
 
 struct childStartLesson: View {
     
-    @State var progress: CGFloat = 0.33333
+    @State var progress: CGFloat?
     @State var background: String?
     @State var text: String?
     @State var progressDone: String?
     @State var shadow: String?
     @State var nextPage: childLesson?
+    @State var childModel = currentLesson()
   
     var body: some View {
         ZStack (alignment: .leading){
@@ -52,7 +53,7 @@ struct childStartLesson: View {
                     .padding()
                     
                     HStack{
-                        LineProgress(progress: $progress, progressDone: progressDone!, shadow: shadow!)
+                        LineProgress(progress: progress!, progressDone: progressDone!, shadow: shadow!)
                             .padding([.bottom])
                             .padding([.horizontal])
                             .frame(maxWidth: 300)
@@ -110,13 +111,13 @@ struct childStartLesson_Previews: PreviewProvider {
 }
 
 struct LineProgress: View {
-    @Binding var progress: CGFloat
+    @State var progress: CGFloat?
     
     @State var progressDone: String?
     @State var shadow: String?
     
     var currentPercentage: Int {
-        Int(progress*100)
+        Int(progress!*100)
     }
     
     var body: some View {
@@ -127,7 +128,7 @@ struct LineProgress: View {
                     .foregroundColor(Color(shadow!))
                 
                 Capsule()
-                    .frame(width: geometry.size.width * progress, height: 17)
+                    .frame(width: geometry.size.width * progress!, height: 17)
                     .foregroundColor(Color(progressDone!))
             }
             .frame(alignment: .center)
