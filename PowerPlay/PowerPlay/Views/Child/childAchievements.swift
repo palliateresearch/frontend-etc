@@ -70,7 +70,7 @@ struct childAchievements: View {
                             .fontDesign(.rounded)
                             .padding()
                         LazyVGrid(columns: adaptiveColumns, spacing: 30){
-                            ForEach( model.getPark(parkName: "")?.badges?.sorted() ?? [""], id: \.self){image in
+                            ForEach( model.getPark(parkName: "")?.badges ?? [""], id: \.self){image in
                                 ZStack {
                                     Image(image)
                                         .scaleEffect(0.065)

@@ -295,9 +295,10 @@ struct childHomePark: View{
                 //end of VStack/ZStack
             }
         } .onAppear(perform: {
-            if (userData.jsonData.totalEnergy / 15 > 5) {
-                model.myParkList.badges?.append("badgeStreak1")
+            /*if (userData.jsonData.totalEnergy / 15 > 5) {
+                model.myParkList[0].badges?.append("badgeStreak1")
             }
+             */
             model.load()
             userData.loadData()
         })

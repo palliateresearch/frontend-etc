@@ -98,7 +98,7 @@ struct Achievements: View {
                             
 
                             LazyVGrid(columns: adaptiveColumns, spacing: 20){
-                                ForEach(model.getPark(parkName: "")?.badges?.sorted() ?? [""], id: \.self){image in
+                                ForEach(model.getPark(parkName: "")?.badges ?? [""], id: \.self){image in
                                     ZStack {
                                         Image(image)
                                             .scaleEffect(0.065)
