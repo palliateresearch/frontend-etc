@@ -7,32 +7,30 @@
 
 import SwiftUI
 
-struct childHomePark: View, Hashable{
-    var userName: String?
-    var totalWattHrs: String?
+struct childHomePark: View{
+    @ObservedObject var userData: UserViewData
+    
+    var model = TestModel()
+    
+  
     var parkLeaderboard: String?
-    var parkName: String?
-    var todayWattHrs: Int?
-    var mission1Completion: Int
-    var mission2Completion: Int
-    var mission3Completion: Int
-    var mission4Completion: Int
+    var mission1Completion: Int?
+    var mission2Completion: Int?
+    var mission3Completion: Int?
+    var mission4Completion: Int?
     
-    func getLightBulbHr() -> String{
-        return String((todayWattHrs ?? 0) / 15)
-    }
+//    func getLightBulbHr() -> String{
+//        return String((todayWattHrs ?? 0) / 15)
+//    }
     
-    init(userName: String? = nil, totalWattHrs: String? = nil, parkLeaderboard: String? = nil, parkName: String? = nil, todayWattHrs: Int? = nil, mission1Completion: Int = 0, mission2Completion: Int = 0, mission3Completion: Int = 0, mission4Completion: Int = 0) {
-        self.userName = userName
-        self.totalWattHrs = totalWattHrs
-        self.parkLeaderboard = parkLeaderboard
-        self.parkName = parkName
-        self.todayWattHrs = todayWattHrs
-        self.mission1Completion = mission1Completion
-        self.mission2Completion = mission2Completion
-        self.mission3Completion = mission3Completion
-        self.mission4Completion = mission4Completion
-    }
+//    init( parkLeaderboard: String? = nil, mission1Completion: Int = 0, mission2Completion: Int = 0, mission3Completion: Int = 0, mission4Completion: Int = 0) {
+//
+//        self.parkLeaderboard = parkLeaderboard
+//        self.mission1Completion = mission1Completion
+//        self.mission2Completion = mission2Completion
+//        self.mission3Completion = mission3Completion
+//        self.mission4Completion = mission4Completion
+//    }
     
     var body: some View {
         NavigationStack{
@@ -48,7 +46,7 @@ struct childHomePark: View, Hashable{
                         }
                         
                         HStack{
-                            Text(userName ?? "helhello")
+                            Text(model.myUser?.firstName ?? "helhello")
                                 .minimumScaleFactor(0.03)
                                 .fontWeight(.heavy)
                                 .lineLimit(1)
@@ -59,7 +57,7 @@ struct childHomePark: View, Hashable{
                                 .font(.system(size:35))
                                 .fontDesign(.rounded)
                             VStack{
-                                Text(totalWattHrs ?? "485")
+                                Text(String(userData.jsonData.totalEnergy / 15) ?? "485")
                                     .font(.system(size:35))
                                     .bold()
                                     .fontDesign(.rounded)
@@ -126,7 +124,7 @@ struct childHomePark: View, Hashable{
                                         .lineLimit(1)
                                         .font(.system(size: 25))
                                         .fontDesign(.rounded)
-                                    Text(parkName ?? "Apple Park")
+                                    Text(model.myUser?.parks?[2] ?? "Apple Park")
                                         .minimumScaleFactor(0.03)
                                         .fontWeight(.heavy)
                                         .foregroundColor(Color.white)
@@ -153,7 +151,7 @@ struct childHomePark: View, Hashable{
                                             .scaleEffect(2.5)
                                             .aspectRatio(contentMode: .fit)
                                             .padding(.top, 20)
-                                        Text(getLightBulbHr() + " hours")
+                                        Text(String(userData.jsonData.totalEnergy / 15) + " hours")
                                             .foregroundColor(Color("lightningYellow"))
                                             .font(.system(size: 24))
                                             .fontWeight(.heavy)
@@ -295,6 +293,6 @@ struct childHomePark: View, Hashable{
 
 struct childHomePark_Previews: PreviewProvider {
     static var previews: some View {
-        childHomePark()
+        childHomePark(userData: UserViewData())
     }
 }

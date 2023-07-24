@@ -77,7 +77,7 @@ class AchievementsData: ObservableObject {
 
             // Schedule the function to run after the calculated seconds
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(secondsUntil1159PM)) {
-                if ()
+                
                 print("It's 11:59 PM now!")
                 
                

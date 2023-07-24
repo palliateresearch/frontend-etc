@@ -231,8 +231,8 @@ struct Register: View {
             .fullScreenCover(isPresented: $isLoggedIn) {
                 if pv.isParent {
                     EnterChildren()
-                } else if let user = model.myUser, !(user.park?.isEmpty ?? true) {
-                    ContentView()
+//                } else if let user = model.myUser, !(user.parks[0]?.isEmpty ?? true) {
+//                    ContentView()
                 } else {
                     FindPark()
                 }

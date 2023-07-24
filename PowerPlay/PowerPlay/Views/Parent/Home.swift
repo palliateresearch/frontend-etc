@@ -47,7 +47,7 @@ struct Home: View {
                         
                     })
                 }
-                if let parkName = model.myUser?.park {
+                if let parkName = model.myUser?.parks?[0] {
                     Text("\(parkName)'s Achievements - " + getMonth())
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.title3)

@@ -68,7 +68,7 @@ struct childAchievements: View {
                             .fontDesign(.rounded)
                             .padding()
                         LazyVGrid(columns: adaptiveColumns, spacing: 30){
-                            ForEach(AchievementsData().setBadges().sorted(), id: \.self){image in
+                            ForEach(AchievementsData().badgesComplete.sorted(), id: \.self){image in
                                 ZStack {
                                     Image(image)
                                         .scaleEffect(0.065)
