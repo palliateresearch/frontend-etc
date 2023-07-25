@@ -17,7 +17,7 @@ struct FindPark: View {
             GeometryReader { geo in
                 let width = geo.size.width
                 VStack {
-                    Text("Find Your Parks")
+                    Text("Find Your Park")
                         .font(.system(size: width * 0.09, weight: .bold))
                         .frame(width: width * 0.8)
                         .padding(.top, 50)
@@ -28,16 +28,8 @@ struct FindPark: View {
                         VStack {
                             List {
                                 ForEach(searchResults, id: \.self) { name in
-                                    if model.myParks.firstIndex(where: { $0.parkName == name }) == nil {
-                                        Button(action: {
-                                            let newPark = model.createPark()
-                                            newPark.parkName = String(name)
-                                            model.save()
-                                            
-                                          
-                                            let isSelected = selectedParks.contains(name)
+                                    Button(action: {
                                         
-
                                         print(String(name))
                                         print("Park name: \n\n\n\n\n\n")
                                         
@@ -52,10 +44,14 @@ struct FindPark: View {
                                             model.save()
                                             selectedParks.insert(name)
                                         }
-                                        .disabled(selectedParks.contains(name))
+                                    }) {
+                                        Text(name)
+                                            .font(.system(size: width * 0.05, weight: .bold))
+                                            .foregroundColor(selectedParks.contains(name) ? .green : .white)
+                                            .padding(.top, 25)
+                                            .padding(.bottom, 25)
                                     }
                                 }
-
                             }
                         }
                     }
