@@ -290,6 +290,7 @@
 				C905D6242A5F46F0009BF5DB /* Views */,
 				C9219DDA2A5CACC600A65277 /* Assets.xcassets */,
 				C9219DDC2A5CACC600A65277 /* Preview Content */,
+				9BD1575B2A70379D00E25AB7 /* monitorStreak.swift */,
 			);
 			path = PowerPlay;
 			sourceTree = "<group>";
@@ -494,6 +495,7 @@
 				49C2EFD52A69F69000814F4F /* childAchievements.swift in Sources */,
 				9BD1575E2A706B7500E25AB7 /* FindParkGuest.swift in Sources */,
 				C905D6282A5F4DAA009BF5DB /* Home.swift in Sources */,
+				9BD1575C2A70379D00E25AB7 /* monitorStreak.swift in Sources */,
 				9B6EC8DE2A69ADCA008146C9 /* test.swift in Sources */,
 				C905D6232A5F4613009BF5DB /* Achievements.swift in Sources */,
 				9B094E192A65DF12008C39B3 /* parkList.swift in Sources */,

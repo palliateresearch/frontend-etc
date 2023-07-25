@@ -144,6 +144,7 @@ struct childStartView: View {
         }
             
         .onAppear {
+            
             model.load()
         }
     }
