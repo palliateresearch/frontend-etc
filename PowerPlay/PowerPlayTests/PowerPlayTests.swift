@@ -42,10 +42,23 @@ final class PowerPlayTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
-    func testArduinoFetch() throws {
-//        fetchDataFromServer {_ in }
-//        XCTAssertFalse(true)
+    /*func testModel() {
+        let model = TestModel()
+        model.myUsers.last?.lastName = "Steve"
+        model.save()
+        model.myUsers.last = nil
+        model.load()
+        XCTAssertEqual(model.myUsers.last?.lastName, "Steve")
     }
+     */
+    /*func testChild() {
+        let model = TestModel()
+        model.myChild?.childName = "Evan"
+        model.save()
+        model.myChild = nil
+        model.load()
+        XCTAssertEqual(model.myChild?.childName, "Evan")
+    }
+     */
 
 }

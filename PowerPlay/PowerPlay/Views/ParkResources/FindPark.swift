@@ -1,16 +1,14 @@
 import SwiftUI
+import CoreData
 
 struct FindPark: View {
-    
-    @ObservedObject var userData = UserViewData()
+    var model = TestModel()
     var p = parkList()
-    
 
     @State private var searchText = ""
     @State private var showGuestHome = false
     @State private var showHome = false
-    @State private var park: String?
-    @State private var isSelected = false
+    @State private var selectedParks: Set<String> = []
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
@@ -30,17 +28,22 @@ struct FindPark: View {
                                 ForEach(searchResults, id: \.self) { name in
                                     Button(action: {
                                         
-                                        if (userData.firstName == "") { // if logged in
-                                            showGuestHome = true
-                                        } else {
-                                            showHome = true
-                                        }
-                                        userData.park = name
+                                        print(String(name))
+                                        print("Park name: \n\n\n\n\n\n")
+                                        let newPark = model.createPark()
+                                        newPark.parkName = String(name)
+                                        model.save()
                                         
+                                        // Toggle selection state for the park
+                                        if selectedParks.contains(name) {
+                                            selectedParks.remove(name)
+                                        } else {
+                                            selectedParks.insert(name)
+                                        }
                                     }) {
                                         Text(name)
                                             .font(.system(size: width * 0.05, weight: .bold))
-                                            .foregroundColor(.white)
+                                            .foregroundColor(selectedParks.contains(name) ? .green : .white)
                                             .padding(.top, 25)
                                             .padding(.bottom, 25)
                                     }
@@ -59,18 +62,40 @@ struct FindPark: View {
                             }
                         }
                     }
-
                     .searchable(text: $searchText)
                     .preferredColorScheme(.dark)
+                    
+                    // Submit Button
+                    Button("Submit", action: {
+                        model.save()
+                        if model.myUsers.last?.lastName == "" { // if not logged in
+                            showGuestHome = true
+                        } else {
+                            showHome = true
+                        }
+                    })
+                    .foregroundColor(Color("navyBlue"))
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 40)
+                    .background(Color("lightningYellow"))
+                    .cornerRadius(10)
+                    .padding(.top, 20)
                 }
                 .fullScreenCover(isPresented: $showGuestHome) {
-                    GuestHome(userData: userData)
+                    GuestHome()
                 }
 
                 .fullScreenCover(isPresented: $showHome) {
-                    ContentView(userData: userData)
+                    if (model.myUsers.last?.isParent) == true {
+                        ContentView()
+                    } else {
+                        childContentView()
+                    }
                 }
             }
+        }
+        .onAppear {
+            model.load()
         }
     }
 
@@ -83,5 +108,11 @@ struct FindPark: View {
     }
 }
 
+struct FindPark_Previews: PreviewProvider {
+    static var previews: some View {
+        let pv = PV() // Create a mock instance of PV
 
-
+        return FindPark()
+            .environmentObject(pv) // Inject the mock instance as an environment object
+    }
+}

@@ -10,7 +10,6 @@ struct userInfo: Identifiable {
 struct ArduinoData: Decodable {
     //let unix_timestamp: Int
     let totalEnergy: Float
-    //let unique_id: String
     
     init() {
         //self.unix_timestamp = 200

@@ -218,6 +218,7 @@ struct childLessonMaterial: View {
                                 }
                                 .frame(maxWidth: .infinity, alignment: .top)
                             })
+
                             if (currentIndex != (header![childModel.currentLessonCh2].count-1)){
                                 Button(action: {
                                     currentIndex = (currentIndex + 1)
@@ -298,6 +299,7 @@ struct childLessonMaterial: View {
                         HStack{
                             Button(action: {
                                 prevText()
+
                             }, label: {
                                 ZStack{
                                     RoundedRectangle(cornerRadius: 7)
