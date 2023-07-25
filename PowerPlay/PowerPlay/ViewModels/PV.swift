@@ -9,5 +9,8 @@ class PV: ObservableObject {
     @Published var password: String = ""
     @Published var isParent: Bool = false
     @Published var childrenNames: [String] = []
+    @Published var badgesComplete: Set<String> = []
+    
+    @Published var isLoggedOut: Bool = true
 }
 

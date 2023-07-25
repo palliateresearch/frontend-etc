@@ -84,7 +84,7 @@ struct EnterChildren: View {
             }
             .preferredColorScheme(.dark)
             .fullScreenCover(isPresented: $isSubmit) {
-                if let user = model.myUser, !(user.park?.isEmpty ?? true) {
+                if let user = model.myUsers.last, !(user.parks?[0].isEmpty ?? true) {
                     ContentView()
                 } else {
                     FindPark()
