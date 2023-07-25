@@ -106,8 +106,8 @@ struct childLogin: View {
 
                     if isUsernameValid && isPasswordValid {
                         model.load()
-                        let savedUsername = model.myUser?.username ?? ""
-                        let savedPassword = model.myUser?.password ?? ""
+                        let savedUsername = model.myUsers.last?.username ?? ""
+                        let savedPassword = model.myUsers.last?.password ?? ""
 
                         if savedUsername == pv.username && savedPassword == pv.password {
                             isLoggedIn = true
@@ -166,9 +166,10 @@ struct childLogin: View {
             .onAppear {
                 model.load()
 
+                
                 DispatchQueue.main.async {
-                    pv.username = model.myUser?.username ?? ""
-                    pv.password = model.myUser?.password ?? ""
+                    pv.username = model.myUsers.last?.username ?? ""
+                    pv.password = model.myUsers.last?.password ?? ""
                 }
             }
         }.background(Color("lightBlue"))

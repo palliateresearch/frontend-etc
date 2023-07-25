@@ -38,7 +38,7 @@ struct Home: View {
                     }
                     , label: {
                         HStack {
-                            Text(model.myUser?.firstName ?? "").fontDesign(.rounded)
+                            Text(model.myUsers.last?.lastName ?? "").fontDesign(.rounded)
                             Image(systemName: "person.crop.circle.fill")
                                 .scaleEffect(2.3)
                                 .padding()
@@ -47,7 +47,7 @@ struct Home: View {
                         
                     })
                 }
-                if let parkName = model.myUser?.parks?[0] {
+                if let parkName = model.myUsers.last?.parks?[0] {
                     Text("\(parkName)'s Achievements - " + getMonth())
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.title3)

@@ -4,17 +4,18 @@
         <attribute name="childName" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Park" representedClassName="Park" syncable="YES" codeGenerationType="class">
-        <attribute name="badges" optional="YES" attributeType="Transformable" customClassName="[String]"/>
-        <attribute name="completeGoal" optional="YES" attributeType="Transformable" customClassName="[Int]"/>
+        <attribute name="badges" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="completeGoal" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Int]"/>
         <attribute name="parkName" optional="YES" attributeType="String"/>
-        <attribute name="partialGoal" optional="YES" attributeType="Transformable" customClassName="[Int]"/>
-        <attribute name="wattHrsPerDay" optional="YES" attributeType="Transformable" customClassName="[Float]"/>
+        <attribute name="partialGoal" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Int]"/>
+        <attribute name="wattHrsPerDay" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Float]"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
         <attribute name="firstName" optional="YES" attributeType="String"/>
+        <attribute name="isLogout" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isParent" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String"/>
-        <attribute name="parks" optional="YES" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="parks" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="username" optional="YES" attributeType="String"/>
     </entity>

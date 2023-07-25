@@ -17,7 +17,7 @@ class AchievementsData: ObservableObject {
 
         
 //    func setBadges(badge: String){
-//        model.myPark?.badges!.insert(badge)
+//        model.myParks.last?.badges!.insert(badge)
 //        model.save()
 //    }
 //    
@@ -59,30 +59,30 @@ class AchievementsData: ObservableObject {
         }
     }
     
-    func runAt1159PM() {
-        // Get the current date and time
-        //userData.jsonData.totalEnergy
-        let currentDate = Date()
-
-        // Create a Calendar instance
-        let calendar = Calendar.current
-
-        // Extract components from the current date
-        let components = calendar.dateComponents([.hour, .minute], from: currentDate)
-
-        // Get the hour and minute components
-        if let hour = components.hour, let minute = components.minute {
-            // Calculate the seconds until 11:59 PM
-            let secondsUntil1159PM = (23 - hour) * 3600 + (59 - minute) * 60
-
-            // Schedule the function to run after the calculated seconds
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(secondsUntil1159PM)) {
-                
-                print("It's 11:59 PM now!")
-                
-               
-            }
-        }
-    }
+//    func runAt1159PM() {
+//        // Get the current date and time
+//        //userData.jsonData.totalEnergy
+//        let currentDate = Date()
+//
+//        // Create a Calendar instance
+//        let calendar = Calendar.current
+//
+//        // Extract components from the current date
+//        let components = calendar.dateComponents([.hour, .minute], from: currentDate)
+//
+//        // Get the hour and minute components
+//        if let hour = components.hour, let minute = components.minute {
+//            // Calculate the seconds until 11:59 PM
+//            let secondsUntil1159PM = (23 - hour) * 3600 + (59 - minute) * 60
+//
+//            // Schedule the function to run after the calculated seconds
+//            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(secondsUntil1159PM)) {
+//
+//                print("It's 11:59 PM now!")
+//
+//
+//            }
+//        }
+//    }
 
 }

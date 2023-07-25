@@ -29,6 +29,7 @@ struct childStartView: View {
                 Image("Sparky")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .frame(width: 250, height: 250)
                     .padding(.bottom, 10)
                 Text("PowerPlay")
                     .fontDesign(.rounded)
@@ -108,7 +109,7 @@ struct childStartView: View {
                     }).frame(maxHeight: 75)
                     Button(action: {
                         pv.isParent = true
-                        model.myUser?.isParent = pv.isParent
+                        model.myUsers.last?.isParent = pv.isParent
                         model.save()
                         
                     }) {
@@ -118,9 +119,9 @@ struct childStartView: View {
                             .foregroundColor(Color("darkBlue"))
                             .underline()
                     }
+                    .padding(.top, 20)
                     .padding(.horizontal)
                 }
-                Spacer()
                 Spacer()
             }.frame(maxHeight:.infinity).background(LinearGradient(
                 colors: [Color.white, Color("lightBlue")],
@@ -142,6 +143,9 @@ struct childStartView: View {
                 StartView()
         }
             
+        .onAppear {
+            model.load()
+        }
     }
 }
 

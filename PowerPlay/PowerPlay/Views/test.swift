@@ -10,10 +10,10 @@ struct test: View {
     var body: some View {
         VStack {
             HStack {
-                Button("Abdewoignf") {
+                Button("Test") {
                     // Assuming `model.myPark` is an optional property of some class or struct
-                    if let parkName = model.myPark?.parkName {
-                        model.myPark?.parkName = "lalala"
+                    if let parkName = model.myParks.last?.parkName {
+                        model.myParks.last?.parkName = "lalala"
                         model.save()
                         print(parkName) // This will print "lalala" if the value is present
                     }
@@ -24,7 +24,7 @@ struct test: View {
 
             }
             
-            if !(model.myUser?.firstName?.isEmpty ?? false) {
+            if !(model.myUsers.last?.lastName?.isEmpty ?? false) {
                 Text("yay")
                     .font(.headline)
                     .foregroundColor(.green)
@@ -37,8 +37,8 @@ struct test: View {
             model.load()
 
             DispatchQueue.main.async {
-                firstName = model.myUser?.firstName ?? ""
-                lastName = model.myUser?.lastName ?? "" // Load lastName from Core Data model
+                firstName = model.myUsers.last?.lastName ?? ""
+                lastName = model.myUsers.last?.lastName ?? "" // Load lastName from Core Data model
             }
         }
     }

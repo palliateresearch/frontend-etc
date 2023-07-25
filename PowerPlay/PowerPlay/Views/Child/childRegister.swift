@@ -2,7 +2,7 @@ import SwiftUI
 
 struct childRegister: View {
     @EnvironmentObject private var pv: PV
-    var model = TestModel()
+    var model = TestModel.shared
 
     @State private var userSelect: Bool = false
     @State private var passSelect: Bool = false
@@ -12,7 +12,6 @@ struct childRegister: View {
     @State private var isLoggedIn: Bool = false
     @State private var isParentLocal: Bool = false
     @State private var isLogin: Bool = false
-
     @State private var isFirstNameValid: Bool = true
     @State private var isLastNameValid: Bool = true
     @State private var isUsernameValid: Bool = true
@@ -22,14 +21,13 @@ struct childRegister: View {
         GeometryReader { geometry in
             let width = geometry.size.width
             let height = geometry.size.height
-
             VStack {
                 Text("Register")
                     .fontDesign(.rounded)
                     .font(.system(size: width * 0.08, weight: .bold))
                     .frame(width: width * 0.8)
                     .padding(.top, height * 0.03)
-                   .foregroundColor(Color("darkBlue"))
+                    .foregroundColor(Color("darkBlue"))
 
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
@@ -50,7 +48,7 @@ struct childRegister: View {
                         TextField("First Name", text: $pv.firstName)
                             .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
-                            .foregroundColor(Color("darkBlue"))
+                            .foregroundColor(Color.black)
                             .disabled(!firstSelect)
                             .opacity(firstSelect ? 1 : 0.4)
                             .padding(.leading, width * 0.15)
@@ -85,7 +83,7 @@ struct childRegister: View {
                         TextField("Last Name", text: $pv.lastName)
                             .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
-                            .foregroundColor(Color("darkBlue"))
+                            .foregroundColor(Color.black)
                             .disabled(!lastSelect)
                             .opacity(lastSelect ? 1 : 0.4)
                             .padding(.leading, width * 0.15)
@@ -120,7 +118,7 @@ struct childRegister: View {
                         TextField("Username", text: $pv.username)
                             .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
-                            .foregroundColor(Color("darkBlue"))
+                            .foregroundColor(Color.black)
                             .disabled(!userSelect)
                             .opacity(userSelect ? 1 : 0.4)
                             .padding(.leading, width * 0.15)
@@ -155,7 +153,7 @@ struct childRegister: View {
                         SecureField("Password", text: $pv.password)
                             .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
-                            .foregroundColor(Color("darkBlue"))
+                            .foregroundColor(Color.black)
                             .disabled(!passSelect)
                             .opacity(passSelect ? 1 : 0.4)
                             .padding(.leading, width * 0.15)
@@ -181,23 +179,23 @@ struct childRegister: View {
                 .foregroundColor(Color("darkBlue"))
                 .padding(.top, height * 0.03)
                 Button(action: {
-                    // Perform validation checks
-                    isFirstNameValid = !pv.firstName.isEmpty
+                    isFirstNameValid = !pv.lastName.isEmpty
                     isLastNameValid = !pv.lastName.isEmpty
                     isUsernameValid = pv.username.count >= 4
                     isPasswordValid = pv.password.count >= 4
-                    
-                    // Check if all validation checks passed
+
                     if isFirstNameValid && isLastNameValid && isUsernameValid && isPasswordValid {
-                        // All entries are valid, proceed with registration
-                        model.myUser?.firstName = pv.firstName
-                        model.myUser?.lastName = pv.lastName
-                        model.myUser?.username = pv.username
-                        model.myUser?.password = pv.password
-                        model.myUser?.isParent = pv.isParent // Save isParent value
+                        let newUser = model.createUser()
+
+                        newUser.firstName = pv.firstName
+                        newUser.lastName = pv.lastName
+                        newUser.username = pv.username
+                        newUser.password = pv.password
+                        newUser.isParent = pv.isParent
+                        newUser.isLogout = false
+
                         model.save()
-                        
-                        // Perform the appropriate action based on the isParent flag
+
                         isLoggedIn = true
                     }}, label:{
                     ZStack{
@@ -217,7 +215,6 @@ struct childRegister: View {
                                     .font(.title2)
                                     .fontDesign(.rounded)
                             }
-                        
                     }
                     }).frame(maxHeight: 75).padding()
 
@@ -238,7 +235,7 @@ struct childRegister: View {
             .fullScreenCover(isPresented: $isLoggedIn) {
                 if pv.isParent {
                     EnterChildren()
-                } else if let user = model.myUser, !(user.parks?[0].isEmpty ?? true) {
+                } else if let user = model.myUsers.last, !(user.parks?[0].isEmpty ?? true) {
                     childContentView()
                 } else {
                     FindPark()
@@ -249,14 +246,18 @@ struct childRegister: View {
             }
             .onAppear {
                 model.load()
-
-                DispatchQueue.main.async {
-                    pv.firstName = model.myUser?.firstName ?? ""
-                    pv.lastName = model.myUser?.lastName ?? ""
-                    pv.username = model.myUser?.username ?? ""
-                    pv.password = model.myUser?.password ?? ""
-                    pv.isParent = model.myUser?.isParent ?? false
+                print (model.myUsers.last?.isLogout)
+                print ("is model true?")
+                if (!(model.myUsers.last?.isLogout ?? true)) {
+                    DispatchQueue.main.async {
+                        pv.firstName = model.myUsers.last?.firstName ?? ""
+                        pv.lastName = model.myUsers.last?.lastName ?? ""
+                        pv.username = model.myUsers.last?.username ?? ""
+                        pv.password = model.myUsers.last?.password ?? ""
+                        pv.isParent = model.myUsers.last?.isParent ?? false
+                    }
                 }
+              
             }
         }
         .background(Color("lightBlue"))
@@ -266,10 +267,8 @@ struct childRegister: View {
 
 struct childRegister_Previews: PreviewProvider {
     static var previews: some View {
-        let pv = PV() // Create a mock instance of PV
-
+        let pv = PV()
         return childRegister()
-            .environmentObject(pv) // Inject the mock instance as an environment objec
+            .environmentObject(pv)
     }
 }
-

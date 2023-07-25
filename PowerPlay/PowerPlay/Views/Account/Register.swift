@@ -47,7 +47,7 @@ struct Register: View {
                             passSelect = false
                         }
                     VStack {
-                        TextField("First Name", text: $pv.firstName)
+                        TextField("First Name", text: $pv.lastName)
                             .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
                             .foregroundColor(firstSelect ? .white : .white)
@@ -183,7 +183,7 @@ struct Register: View {
 
                 Button(action: {
                     // Perform validation checks
-                    isFirstNameValid = !pv.firstName.isEmpty
+                    isFirstNameValid = !pv.lastName.isEmpty
                     isLastNameValid = !pv.lastName.isEmpty
                     isUsernameValid = pv.username.count >= 4
                     isPasswordValid = pv.password.count >= 4
@@ -191,11 +191,11 @@ struct Register: View {
                     // Check if all validation checks passed
                     if isFirstNameValid && isLastNameValid && isUsernameValid && isPasswordValid {
                         // All entries are valid, proceed with registration
-                        model.myUser?.firstName = pv.firstName
-                        model.myUser?.lastName = pv.lastName
-                        model.myUser?.username = pv.username
-                        model.myUser?.password = pv.password
-                        model.myUser?.isParent = pv.isParent // Save isParent value
+                        model.myUsers.last?.lastName = pv.lastName
+                        model.myUsers.last?.lastName = pv.lastName
+                        model.myUsers.last?.username = pv.username
+                        model.myUsers.last?.password = pv.password
+                        model.myUsers.last?.isParent = pv.isParent // Save isParent value
                         model.save()
 
                         // Perform the appropriate action based on the isParent flag
@@ -244,11 +244,11 @@ struct Register: View {
                 model.load()
 
                 DispatchQueue.main.async {
-                    pv.firstName = model.myUser?.firstName ?? ""
-                    pv.lastName = model.myUser?.lastName ?? ""
-                    pv.username = model.myUser?.username ?? ""
-                    pv.password = model.myUser?.password ?? ""
-                    pv.isParent = model.myUser?.isParent ?? false
+                    pv.lastName = model.myUsers.last?.lastName ?? ""
+                    pv.lastName = model.myUsers.last?.lastName ?? ""
+                    pv.username = model.myUsers.last?.username ?? ""
+                    pv.password = model.myUsers.last?.password ?? ""
+                    pv.isParent = model.myUsers.last?.isParent ?? false
                 }
             }
         }
