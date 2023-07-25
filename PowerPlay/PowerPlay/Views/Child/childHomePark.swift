@@ -100,202 +100,207 @@ struct childHomePark: View{
                         .background(LinearGradient(
                             colors: [Color("lightBlue"), Color.white],
                             startPoint: .top, endPoint: .bottom))
-                    VStack{
-                        VStack {
-                            
-                            ForEach(model.myParks) { park in
-                                ZStack {
-                                    ZStack (alignment: .topLeading) {
-                                        Rectangle()
-                                            .foregroundColor(Color("darkBlue"))
+                }
+                    ForEach (model.myParks) { park in
+                        VStack{
+                            VStack {
+                                    ZStack {
+                                        ZStack (alignment: .topLeading) {
+                                            Rectangle()
+                                                .foregroundColor(Color("darkBlue"))
+                                            
+                                            Rectangle()
+                                                .fill(Color("lightningYellow"))
+                                                .frame(minWidth: 0, maxWidth: 400, maxHeight: 50, alignment: .top)
+                                        }
+                                        .clipShape(RoundedRectangle(cornerRadius: 20)).frame(minWidth: 0, maxWidth: 400, maxHeight: .infinity, alignment: .top)
                                         
-                                        Rectangle()
-                                            .fill(Color("lightningYellow"))
-                                            .frame(minWidth: 0, maxWidth: 400, maxHeight: 50, alignment: .top)
-                                    }
-                                    .clipShape(RoundedRectangle(cornerRadius: 20)).frame(minWidth: 0, maxWidth: 400, maxHeight: .infinity, alignment: .top)
-                                    
-                                    VStack{
-                                        HStack{
-                                            Image(systemName: "medal.fill")
-                                                .foregroundColor(Color.white)
-                                                .scaleEffect(1.5)
-                                                .padding(EdgeInsets(top: 10, leading: 20, bottom: 7, trailing: 0))
-                                                .aspectRatio(contentMode: .fit)
-                                            Text("#" + (parkLeaderboard ?? "5"))
-                                                .bold()
-                                                .foregroundColor(Color.white)
-                                                .frame(maxWidth: 35, alignment: .leading)
-                                                .padding(EdgeInsets(top: 10, leading: 0, bottom: 7, trailing: 0))
-                                                .lineLimit(1)
-                                                .font(.system(size: 25))
-                                                .fontDesign(.rounded)
-                                            Text(park.parkName ?? "Apple Park")
-                                                .minimumScaleFactor(0.03)
-                                                .fontWeight(.heavy)
-                                                .foregroundColor(Color.white)
-                                                .frame(maxWidth: 7000, alignment: .center)
-                                                .padding(EdgeInsets(top: 10, leading: 0, bottom: 7, trailing: 30))
-                                                .lineLimit(1)
-                                                .font(.system(size: 25))
-                                                .fontDesign(.rounded)
-                                        }
-                                        HStack{
-                                            Text("You helped generate enough energy to power a lightbulb for")
-                                                .lineLimit(nil)
-                                                .fixedSize(horizontal: false, vertical: true)
-                                                .foregroundColor(Color.white)
-                                                .font(.system(size: 20))
-                                                .bold()
-                                                .fontDesign(.rounded)
-                                                .frame(maxWidth:200, maxHeight: .infinity,alignment:.topLeading)
-                                                .padding()
-                                            VStack{
-                                                Spacer()
-                                                Image(systemName: "lightbulb")
+                                        VStack{
+                                            HStack{
+                                                Image(systemName: "medal.fill")
                                                     .foregroundColor(Color.white)
-                                                    .scaleEffect(2.5)
+                                                    .scaleEffect(1.5)
+                                                    .padding(EdgeInsets(top: 10, leading: 20, bottom: 7, trailing: 0))
                                                     .aspectRatio(contentMode: .fit)
-                                                    .padding(.top, 20)
-                                                Text("\(roundedValue) hours")
-                                                    .foregroundColor(Color("lightningYellow"))
-                                                    .font(.system(size: 24))
-                                                    .fontWeight(.heavy)
+                                                Text("#" + (parkLeaderboard ?? "5"))
+                                                    .bold()
+                                                    .foregroundColor(Color.white)
+                                                    .frame(maxWidth: 35, alignment: .leading)
+                                                    .padding(EdgeInsets(top: 10, leading: 0, bottom: 7, trailing: 0))
+                                                    .lineLimit(1)
+                                                    .font(.system(size: 25))
                                                     .fontDesign(.rounded)
-                                                    .frame(maxHeight: .infinity,alignment:.center)
+                                                Text(park.parkName ?? "Apple Park")
+                                                    .minimumScaleFactor(0.03)
+                                                    .fontWeight(.heavy)
+                                                    .foregroundColor(Color.white)
+                                                    .frame(maxWidth: 7000, alignment: .center)
+                                                    .padding(EdgeInsets(top: 10, leading: 0, bottom: 7, trailing: 30))
+                                                    .lineLimit(1)
+                                                    .font(.system(size: 25))
+                                                    .fontDesign(.rounded)
+                                            }
+                                            HStack{
+                                                Text("You helped generate enough energy to power a lightbulb for")
+                                                    .lineLimit(nil)
+                                                    .fixedSize(horizontal: false, vertical: true)
+                                                    .foregroundColor(Color.white)
+                                                    .font(.system(size: 20))
+                                                    .bold()
+                                                    .fontDesign(.rounded)
+                                                    .frame(maxWidth:200, maxHeight: .infinity,alignment:.topLeading)
                                                     .padding()
+                                                VStack{
+                                                    Spacer()
+                                                    Image(systemName: "lightbulb")
+                                                        .foregroundColor(Color.white)
+                                                        .scaleEffect(2.5)
+                                                        .aspectRatio(contentMode: .fit)
+                                                        .padding(.top, 20)
+                                                    Text("\(roundedValue) hours")
+                                                        .foregroundColor(Color("lightningYellow"))
+                                                        .font(.system(size: 24))
+                                                        .fontWeight(.heavy)
+                                                        .fontDesign(.rounded)
+                                                        .frame(maxHeight: .infinity,alignment:.center)
+                                                        .padding()
+                                                }
                                             }
                                         }
-                                    }
-                                }.padding(.top, 30)
-                                    .padding(.horizontal)
-                                //end of Apple Park block
-                            }
-                        }
-                        
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 20)
-                                .foregroundColor(Color.white)
-                            VStack{
-                                Text("Missions")
-                                    .fontWeight(.heavy)
-                                    .cornerRadius(10)
-                                    .foregroundColor(Color("darkBlue"))
-                                    .fontDesign(.rounded)
-                                    .frame(maxWidth: .infinity, alignment: .center)
-                                    .padding([.vertical], 9)
-                                    .font(.system(size:24))
-                                
-                                HStack{
-                                    ZStack{
-                                        VStack{
-                                            ZStack{
-                                                CircleProgress(progress: CGFloat((mission1Completion ?? 0) / 10), colorFinish: Color("darkBlue"), colorUnfinished: Color("lightBlue"), lineWidth: 10)
-                                                    .frame(width: 70, height: 70, alignment: .leading)
-                                                Image(systemName:"lightbulb.fill")
-                                                    .scaleEffect(2)
-                                                    .aspectRatio(contentMode: .fit)
-                                                    .foregroundColor(Color("darkBlue"))
-                                            }
-                                            Text("Park Power")
-                                                .foregroundColor(Color.black)
-                                                .font(.system(size: 12))
-                                                .fontWeight(.heavy)
-                                                .fontDesign(.rounded)
-                                                .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
-                                            Text(String(mission1Completion ?? 0) + "/10 watts")
-                                                .foregroundColor(Color.black)
-                                                .font(.system(size: 10))
-                                                .bold()
-                                                .fontDesign(.rounded)
-                                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
-                                        }
-                                    }.padding(EdgeInsets(top: 7, leading:0, bottom: 20, trailing: 10))
-                                    ZStack{
-                                        VStack{
-                                            ZStack{
-                                                CircleProgress(progress: CGFloat((mission2Completion ?? 0) / 30), colorFinish: Color("darkBlue"), colorUnfinished: Color("lightBlue"), lineWidth: 10)
-                                                    .frame(width: 70, height: 70)
-                                                Image(systemName:"hourglass")
-                                                    .scaleEffect(2)
-                                                    .aspectRatio(contentMode: .fit)
-                                                    .foregroundColor(Color("darkBlue"))
-                                            }
-                                            Text("Park Time")
-                                                .foregroundColor(Color.black)
-                                                .font(.system(size: 12))
-                                                .fontWeight(.heavy)
-                                                .fontDesign(.rounded)
-                                                .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
-                                            Text(String(mission2Completion ?? 0) + "/30 minutes")
-                                                .foregroundColor(Color.black)
-                                                .font(.system(size: 10))
-                                                .bold()
-                                                .fontDesign(.rounded)
-                                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
-                                        }
-                                    }.padding(EdgeInsets(top: 7, leading: 0, bottom: 20, trailing: 10))
-                                    
-                                    ZStack{
-                                        VStack{
-                                            ZStack{
-                                                CircleProgress(progress: CGFloat((mission3Completion ?? 0) / 10), colorFinish: Color("darkBlue"), colorUnfinished: Color("lightBlue"), lineWidth: 10)
-                                                    .frame(width: 70, height: 70)
-                                                Image(systemName:"tent")
-                                                    .scaleEffect(1.75)
-                                                    .aspectRatio(contentMode: .fit)
-                                                    .foregroundColor(Color("darkBlue"))
-                                            }
-                                            Text("Park Visited")
-                                                .foregroundColor(Color.black)
-                                                .font(.system(size: 12))
-                                                .fontWeight(.heavy)
-                                                .fontDesign(.rounded)
-                                                .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
-                                            Text(String(mission3Completion ?? 0) + "/10 parks")
-                                                .foregroundColor(Color.black)
-                                                .font(.system(size: 10))
-                                                .bold()
-                                                .fontDesign(.rounded)
-                                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
-                                        }
-                                    }.padding(EdgeInsets(top: 7, leading: 0, bottom: 20, trailing: 10))
-                                    
-                                    ZStack{
-                                        VStack{
-                                            ZStack{
-                                                CircleProgress(progress: CGFloat((mission4Completion ?? 0) / 10), colorFinish: Color("darkBlue"), colorUnfinished: Color("lightBlue"), lineWidth: 10)
-                                                    .frame(width: 70, height: 70)
-                                                Image(systemName:"book.closed")
-                                                    .scaleEffect(2)
-                                                    .aspectRatio(contentMode: .fit)
-                                                    .foregroundColor(Color("darkBlue"))
-                                            }
-                                            Text("Discover")
-                                                .foregroundColor(Color.black)
-                                                .font(.system(size: 12))
-                                                .fontWeight(.heavy)
-                                                .fontDesign(.rounded)
-                                                .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
-                                            Text(String(mission4Completion ?? 0) + "/10 minutes")
-                                                .foregroundColor(Color.black)
-                                                .font(.system(size: 10))
-                                                .bold()
-                                                .fontDesign(.rounded)
-                                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
-                                        }
-                                    }.padding(EdgeInsets(top: 7, leading: 0, bottom: 20, trailing: 0))
-                                    
+                                    }.padding(.top, 30)
+                                        .padding(.horizontal)
+                                    //end of Apple Park block
                                 }
                             }
-                        }.padding()
-          
-                        Spacer()
-                        Spacer()
+                            
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 20)
+                                    .foregroundColor(Color("aliceBlue"))
+                                VStack{
+                                    Text("Missions")
+                                        .fontWeight(.heavy)
+                                        .cornerRadius(10)
+                                        .foregroundColor(Color("darkBlue"))
+                                        .fontDesign(.rounded)
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                        .padding([.vertical], 9)
+                                        .font(.system(size:24))
+                                    
+                                    HStack{
+                                        ZStack{
+                                            VStack{
+                                                ZStack{
+                                                    CircleProgress(progress: CGFloat((mission1Completion ?? 0) / 10), colorFinish: Color("darkBlue"), colorUnfinished: Color("lightBlue"), lineWidth: 10)
+                                                        .frame(width: 70, height: 70, alignment: .leading)
+                                                    Image(systemName:"lightbulb.fill")
+                                                        .scaleEffect(2)
+                                                        .aspectRatio(contentMode: .fit)
+                                                        .foregroundColor(Color("darkBlue"))
+                                                }
+                                                Text("Park Power")
+                                                    .foregroundColor(Color.black)
+                                                    .font(.system(size: 12))
+                                                    .fontWeight(.heavy)
+                                                    .fontDesign(.rounded)
+                                                    .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
+                                                Text(String(mission1Completion ?? 0) + "/10 watts")
+                                                    .foregroundColor(Color.black)
+                                                    .font(.system(size: 10))
+                                                    .bold()
+                                                    .fontDesign(.rounded)
+                                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+                                            }
+                                        }.padding(EdgeInsets(top: 7, leading:0, bottom: 20, trailing: 10))
+                                        ZStack{
+                                            VStack{
+                                                ZStack{
+                                                    CircleProgress(progress: CGFloat((mission2Completion ?? 0) / 30), colorFinish: Color("darkBlue"), colorUnfinished: Color("lightBlue"), lineWidth: 10)
+                                                        .frame(width: 70, height: 70)
+                                                    Image(systemName:"hourglass")
+                                                        .scaleEffect(2)
+                                                        .aspectRatio(contentMode: .fit)
+                                                        .foregroundColor(Color("darkBlue"))
+                                                }
+                                                Text("Park Time")
+                                                    .foregroundColor(Color.black)
+                                                    .font(.system(size: 12))
+                                                    .fontWeight(.heavy)
+                                                    .fontDesign(.rounded)
+                                                    .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
+                                                Text(String(mission2Completion ?? 0) + "/30 minutes")
+                                                    .foregroundColor(Color.black)
+                                                    .font(.system(size: 10))
+                                                    .bold()
+                                                    .fontDesign(.rounded)
+                                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+                                            }
+                                        }.padding(EdgeInsets(top: 7, leading: 0, bottom: 20, trailing: 10))
+                                        
+                                        ZStack{
+                                            VStack{
+                                                ZStack{
+                                                    CircleProgress(progress: CGFloat((mission3Completion ?? 0) / 10), colorFinish: Color("darkBlue"), colorUnfinished: Color("lightBlue"), lineWidth: 10)
+                                                        .frame(width: 70, height: 70)
+                                                    Image(systemName:"tent")
+                                                        .scaleEffect(1.75)
+                                                        .aspectRatio(contentMode: .fit)
+                                                        .foregroundColor(Color("darkBlue"))
+                                                }
+                                                Text("Park Visited")
+                                                    .foregroundColor(Color.black)
+                                                    .font(.system(size: 12))
+                                                    .fontWeight(.heavy)
+                                                    .fontDesign(.rounded)
+                                                    .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
+                                                Text(String(mission3Completion ?? 0) + "/10 parks")
+                                                    .foregroundColor(Color.black)
+                                                    .font(.system(size: 10))
+                                                    .bold()
+                                                    .fontDesign(.rounded)
+                                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+                                            }
+                                        }.padding(EdgeInsets(top: 7, leading: 0, bottom: 20, trailing: 10))
+                                        
+                                        ZStack{
+                                            VStack{
+                                                ZStack{
+                                                    CircleProgress(progress: CGFloat((mission4Completion ?? 0) / 10), colorFinish: Color("darkBlue"), colorUnfinished: Color("lightBlue"), lineWidth: 10)
+                                                        .frame(width: 70, height: 70)
+                                                    Image(systemName:"book.closed")
+                                                        .scaleEffect(2)
+                                                        .aspectRatio(contentMode: .fit)
+                                                        .foregroundColor(Color("darkBlue"))
+                                                }
+                                                Text("Discover")
+                                                    .foregroundColor(Color.black)
+                                                    .font(.system(size: 12))
+                                                    .fontWeight(.heavy)
+                                                    .fontDesign(.rounded)
+                                                    .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
+                                                Text(String(mission4Completion ?? 0) + "/10 minutes")
+                                                    .foregroundColor(Color.black)
+                                                    .font(.system(size: 10))
+                                                    .bold()
+                                                    .fontDesign(.rounded)
+                                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+                                            }
+                                        }.padding(EdgeInsets(top: 7, leading: 0, bottom: 20, trailing: 0))
+                                        
+                                    }
+                                }
+                            }.padding()
+              
+                            Spacer()
+                            Spacer()
                     }
+                        
+                    
+                        
+                    
+                    //end of VStack/ZStack
                 }
-                //end of VStack/ZStack
-            }
+        
+                    
         }.onAppear{
             model.load()
             print (model.myParks.last?.parkName)
@@ -311,3 +316,5 @@ struct childHomePark_Previews: PreviewProvider {
         childHomePark(userData: UserViewData())
     }
 }
+
+
