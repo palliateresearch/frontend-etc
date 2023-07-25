@@ -4,6 +4,7 @@ struct childSettings: View {
     @EnvironmentObject private var pv: PV
     var model = TestModel()
     @State var isLogout = false
+    @State private var isToggleOn = false
     
     var body: some View {
         NavigationStack {
@@ -44,13 +45,14 @@ struct childSettings: View {
                             .foregroundColor(Color("darkBlue"))
                             .padding()
                             .bold()
+                            .padding(.leading, 25)
                         Text("Child")
                             .fontDesign(.rounded)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                             .font(.title2)
                             .padding()
                             .foregroundColor(Color.black)
-                            .padding(.trailing, 50)
+                            .padding(.trailing, 25)
                     }
                     HStack {
                         Text("Username")
@@ -60,6 +62,7 @@ struct childSettings: View {
                             .foregroundColor(Color("darkBlue"))
                             .bold()
                             .padding()
+                            .padding(.leading, 25)
                         
                         if let userName = model.myUsers.last?.username {
                             Text(userName)
@@ -68,49 +71,46 @@ struct childSettings: View {
                                 .font(.title2)
                                 .padding()
                                 .foregroundColor(Color.black)
-                                .padding(.trailing, 50)
+                                .padding(.trailing, 25)
                         }
                     }
-                    HStack {
+                    HStack (alignment: .center){
                         Text("Parks")
                             .fontDesign(.rounded)
-                            .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.title2)
                             .foregroundColor(Color("darkBlue"))
                             .padding()
                             .bold()
+                            .padding(.leading, 25)
                         
                         Spacer()
                         
                         ScrollView(.vertical, showsIndicators: true) {
-                            VStack {
-                                VStack(alignment: .trailing, spacing: 5) {
+                                VStack( spacing: 5) {
                                     ForEach(model.myParks) { park in
                                         Text(park.parkName ?? "default park")
                                             .fontDesign(.rounded)
                                             .font(.title2)
-                                            .padding(.trailing)
                                             .foregroundColor(Color.black)
                                     }
                                 }
-                                
-                            }
                         }
-                        .frame(width: 200, height: 200)
                         .padding()
                     }
                     
-                  
+                    Toggle("Toggle", isOn: $isToggleOn)
+                        .fontDesign(.rounded)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.title2)
+                        .foregroundColor(Color("darkBlue"))
+                        .padding()
+                        .bold()
+                        .padding(.trailing, 25)
+                        .padding(.leading, 25)
 
                 }
                 
-                VStack {
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                }
+               
                 
                 Button {
                     model.deleteAllEntitiesData()
