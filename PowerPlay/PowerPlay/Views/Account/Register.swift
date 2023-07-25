@@ -17,6 +17,8 @@ struct Register: View {
     @State private var isLastNameValid: Bool = true
     @State private var isUsernameValid: Bool = true
     @State private var isPasswordValid: Bool = true
+    
+   
 
     var body: some View {
         GeometryReader { geometry in
@@ -47,7 +49,7 @@ struct Register: View {
                             passSelect = false
                         }
                     VStack {
-                        TextField("First Name", text: $pv.lastName)
+                        TextField("First Name", text: $pv.firstName)
                             .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
                             .foregroundColor(firstSelect ? .white : .white)
@@ -182,24 +184,25 @@ struct Register: View {
                 .padding(.top, height * 0.03)
 
                 Button(action: {
-                    // Perform validation checks
                     isFirstNameValid = !pv.lastName.isEmpty
                     isLastNameValid = !pv.lastName.isEmpty
                     isUsernameValid = pv.username.count >= 4
                     isPasswordValid = pv.password.count >= 4
 
-                    // Check if all validation checks passed
                     if isFirstNameValid && isLastNameValid && isUsernameValid && isPasswordValid {
-                        // All entries are valid, proceed with registration
-                        model.myUsers.last?.lastName = pv.lastName
-                        model.myUsers.last?.lastName = pv.lastName
-                        model.myUsers.last?.username = pv.username
-                        model.myUsers.last?.password = pv.password
-                        model.myUsers.last?.isParent = pv.isParent // Save isParent value
+                        let newUser = model.createUser()
+
+                        newUser.firstName = pv.firstName
+                        newUser.lastName = pv.lastName
+                        newUser.username = pv.username
+                        newUser.password = pv.password
+                        newUser.isParent = pv.isParent
+                
+
                         model.save()
 
-                        // Perform the appropriate action based on the isParent flag
                         isLoggedIn = true
+                        
                        
                     }
                 }) {
@@ -231,8 +234,6 @@ struct Register: View {
             .fullScreenCover(isPresented: $isLoggedIn) {
                 if pv.isParent {
                     EnterChildren()
-//                } else if let user = model.myUser, !(user.parks[0]?.isEmpty ?? true) {
-//                    ContentView()
                 } else {
                     FindPark()
                 }
@@ -241,15 +242,8 @@ struct Register: View {
                 Login()
             }
             .onAppear {
+                
                 model.load()
-
-                DispatchQueue.main.async {
-                    pv.lastName = model.myUsers.last?.lastName ?? ""
-                    pv.lastName = model.myUsers.last?.lastName ?? ""
-                    pv.username = model.myUsers.last?.username ?? ""
-                    pv.password = model.myUsers.last?.password ?? ""
-                    pv.isParent = model.myUsers.last?.isParent ?? false
-                }
             }
         }
         .background(Color("darkModeBackground"))

@@ -24,7 +24,7 @@ struct Settings: View {
                             .foregroundColor(Color("lightningYellow"))
                             .frame(width: 300, height: 150)
                             .aspectRatio(contentMode: .fit)
-                        Text("\(model.myUsers.last?.lastName ?? "") \(model.myUsers.last?.lastName ?? "")")
+                        Text("\(model.myUsers.last?.firstName ?? "") \(model.myUsers.last?.lastName ?? "")")
                             .fontDesign(.rounded)
                             .frame(maxWidth: .infinity, alignment: .center)
                             .font(.title2)
@@ -60,17 +60,19 @@ struct Settings: View {
                             .padding()
                     }
                     HStack {
-                        Text("Park")
+                        Text("Parks")
                             .fontDesign(.rounded)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.title3)
                             .foregroundColor(Color("lightningYellow"))
                             .padding()
-                        Text(model.myUsers.last?.parks?[0] ?? "")
-                            .fontDesign(.rounded)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                            .font(.title3)
-                            .padding()
+                        VStack(alignment: .trailing, spacing: 8) {
+                            ForEach(model.myParks) { park in
+                                Text(park.parkName ?? "")
+                                    .fontDesign(.rounded)
+                                    .font(.title3)
+                            }
+                        }
                     }
                     HStack {
                         Text("Children")

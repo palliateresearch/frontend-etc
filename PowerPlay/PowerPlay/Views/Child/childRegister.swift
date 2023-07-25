@@ -192,7 +192,7 @@ struct childRegister: View {
                         newUser.username = pv.username
                         newUser.password = pv.password
                         newUser.isParent = pv.isParent
-                        newUser.isLogout = false
+                      
 
                         model.save()
 
@@ -245,18 +245,16 @@ struct childRegister: View {
                 childLogin()
             }
             .onAppear {
-                model.load()
-                print (model.myUsers.last?.isLogout)
-                print ("is model true?")
-                if (!(model.myUsers.last?.isLogout ?? true)) {
-                    DispatchQueue.main.async {
-                        pv.firstName = model.myUsers.last?.firstName ?? ""
-                        pv.lastName = model.myUsers.last?.lastName ?? ""
-                        pv.username = model.myUsers.last?.username ?? ""
-                        pv.password = model.myUsers.last?.password ?? ""
-                        pv.isParent = model.myUsers.last?.isParent ?? false
-                    }
+                print ("llalalala")
+                if (model.myUsers.last?.firstName != nil) {
+                    print ("hello world")
+                    print (model.myUsers.last?.firstName)
+                    isLogin = true
+                } else {
+                    print ("hallo")
                 }
+                model.load()
+                print ("is model true?")
               
             }
         }

@@ -1,7 +1,7 @@
 import SwiftUI
 import CoreData
 
-struct FindPark: View {
+struct FindParkGuest: View {
     var model = TestModel()
     var p = parkList()
 
@@ -91,15 +91,14 @@ struct FindPark: View {
                 }
 
                 .fullScreenCover(isPresented: $showHome) {
-                    if (model.myUsers.last?.isParent) == true {
-                        ContentView()
-                    } else {
-                        childContentView()
-                    }
+                
+        
+                    childHomePark(userData: UserViewData())
                 }
             }
         }
         .onAppear {
+            
             model.load()
             model.deleteParkEntitiesData()
             model.save()
@@ -115,7 +114,7 @@ struct FindPark: View {
     }
 }
 
-struct FindPark_Previews: PreviewProvider {
+struct FindParkGuest_Previews: PreviewProvider {
     static var previews: some View {
         let pv = PV() // Create a mock instance of PV
 

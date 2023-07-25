@@ -137,7 +137,7 @@ struct childStartView: View {
                 childRegister()
         }
         .fullScreenCover(isPresented: $guestViewActive) {
-                FindPark()
+                FindParkGuest()
         }
         .fullScreenCover(isPresented: $pv.isParent) {
                 StartView()
