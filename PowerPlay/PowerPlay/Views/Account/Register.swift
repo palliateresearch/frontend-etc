@@ -242,7 +242,7 @@ struct Register: View {
                 Login()
             }
             .onAppear {
-                
+                pv.resetPV()
                 model.load()
             }
         }

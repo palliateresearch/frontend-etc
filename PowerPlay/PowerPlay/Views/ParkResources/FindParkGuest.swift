@@ -91,9 +91,9 @@ struct FindParkGuest: View {
                 }
 
                 .fullScreenCover(isPresented: $showHome) {
-                
-        
-                    childHomePark(userData: UserViewData())
+                    
+                    childHomeParkGuest(userData: UserViewData())
+                    
                 }
             }
         }

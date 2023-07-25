@@ -29,6 +29,7 @@
 		9BA5EA742A61B6AB00095099 /* FindPark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5EA732A61B6AB00095099 /* FindPark.swift */; };
 		9BA5EA762A61BD1800095099 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5EA752A61BD1800095099 /* Login.swift */; };
 		9BAAB0692A673578000BAF23 /* Learning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAB0682A673578000BAF23 /* Learning.swift */; };
+		9BBF53732A70777600C06D04 /* childHomeParkGuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBF53722A70777600C06D04 /* childHomeParkGuest.swift */; };
 		9BD1575E2A706B7500E25AB7 /* FindParkGuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD1575D2A706B7500E25AB7 /* FindParkGuest.swift */; };
 		9BD9A68F2A6750090053E482 /* childHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD9A68E2A6750090053E482 /* childHome.swift */; };
 		9BD9A6912A6750BE0053E482 /* childSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD9A6902A6750BE0053E482 /* childSettings.swift */; };
@@ -101,6 +102,7 @@
 		9BA5EA732A61B6AB00095099 /* FindPark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPark.swift; sourceTree = "<group>"; };
 		9BA5EA752A61BD1800095099 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		9BAAB0682A673578000BAF23 /* Learning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Learning.swift; sourceTree = "<group>"; };
+		9BBF53722A70777600C06D04 /* childHomeParkGuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childHomeParkGuest.swift; sourceTree = "<group>"; };
 		9BD1575D2A706B7500E25AB7 /* FindParkGuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindParkGuest.swift; sourceTree = "<group>"; };
 		9BD9A68E2A6750090053E482 /* childHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childHome.swift; sourceTree = "<group>"; };
 		9BD9A6902A6750BE0053E482 /* childSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childSettings.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				C905D6542A69EB5F009BF5DB /* childDiscoverUnactive.swift */,
 				C905D64E2A69922D009BF5DB /* childCustomNavBar.swift */,
 				9B6EC8E82A6AE60F008146C9 /* childLogin.swift */,
+				9BBF53722A70777600C06D04 /* childHomeParkGuest.swift */,
 			);
 			path = Child;
 			sourceTree = "<group>";
@@ -290,7 +293,6 @@
 				C905D6242A5F46F0009BF5DB /* Views */,
 				C9219DDA2A5CACC600A65277 /* Assets.xcassets */,
 				C9219DDC2A5CACC600A65277 /* Preview Content */,
-				9BD1575B2A70379D00E25AB7 /* monitorStreak.swift */,
 			);
 			path = PowerPlay;
 			sourceTree = "<group>";
@@ -489,13 +491,13 @@
 				9BD9A68F2A6750090053E482 /* childHome.swift in Sources */,
 				C905D6392A60EFAE009BF5DB /* CalendarView.swift in Sources */,
 				C905D64F2A69922D009BF5DB /* childCustomNavBar.swift in Sources */,
+				9BBF53732A70777600C06D04 /* childHomeParkGuest.swift in Sources */,
 				C905D64D2A698D67009BF5DB /* childContentView.swift in Sources */,
 				C905D6372A60E210009BF5DB /* AchievementsViewModel.swift in Sources */,
 				9BAAB0692A673578000BAF23 /* Learning.swift in Sources */,
 				49C2EFD52A69F69000814F4F /* childAchievements.swift in Sources */,
 				9BD1575E2A706B7500E25AB7 /* FindParkGuest.swift in Sources */,
 				C905D6282A5F4DAA009BF5DB /* Home.swift in Sources */,
-				9BD1575C2A70379D00E25AB7 /* monitorStreak.swift in Sources */,
 				9B6EC8DE2A69ADCA008146C9 /* test.swift in Sources */,
 				C905D6232A5F4613009BF5DB /* Achievements.swift in Sources */,
 				9B094E192A65DF12008C39B3 /* parkList.swift in Sources */,

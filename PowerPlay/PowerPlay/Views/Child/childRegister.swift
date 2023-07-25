@@ -4,6 +4,7 @@ struct childRegister: View {
     @EnvironmentObject private var pv: PV
     var model = TestModel.shared
 
+    
     @State private var userSelect: Bool = false
     @State private var passSelect: Bool = false
     @State private var firstSelect: Bool = false
@@ -245,14 +246,8 @@ struct childRegister: View {
                 childLogin()
             }
             .onAppear {
-                print ("llalalala")
-                if (model.myUsers.last?.firstName != nil) {
-                    print ("hello world")
-                    print (model.myUsers.last?.firstName)
-                    isLogin = true
-                } else {
-                    print ("hallo")
-                }
+            
+                pv.resetPV()
                 model.load()
                 print ("is model true?")
               

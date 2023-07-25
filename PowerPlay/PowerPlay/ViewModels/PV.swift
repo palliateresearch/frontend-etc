@@ -12,5 +12,13 @@ class PV: ObservableObject {
     @Published var badgesComplete: Set<String> = []
     
     @Published var isLoggedOut: Bool = true
+    
+    func resetPV() {
+        firstName = ""
+        lastName = ""
+        username = ""
+        password = ""
+        
+    }
 }
 
