@@ -29,7 +29,7 @@
 		9BA5EA742A61B6AB00095099 /* FindPark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5EA732A61B6AB00095099 /* FindPark.swift */; };
 		9BA5EA762A61BD1800095099 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5EA752A61BD1800095099 /* Login.swift */; };
 		9BAAB0692A673578000BAF23 /* Learning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAB0682A673578000BAF23 /* Learning.swift */; };
-		9BD1575C2A70379D00E25AB7 /* monitorStreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD1575B2A70379D00E25AB7 /* monitorStreak.swift */; };
+		9BD1575E2A706B7500E25AB7 /* FindParkGuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD1575D2A706B7500E25AB7 /* FindParkGuest.swift */; };
 		9BD9A68F2A6750090053E482 /* childHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD9A68E2A6750090053E482 /* childHome.swift */; };
 		9BD9A6912A6750BE0053E482 /* childSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD9A6902A6750BE0053E482 /* childSettings.swift */; };
 		C905D6232A5F4613009BF5DB /* Achievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6222A5F4613009BF5DB /* Achievements.swift */; };
@@ -101,7 +101,7 @@
 		9BA5EA732A61B6AB00095099 /* FindPark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPark.swift; sourceTree = "<group>"; };
 		9BA5EA752A61BD1800095099 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		9BAAB0682A673578000BAF23 /* Learning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Learning.swift; sourceTree = "<group>"; };
-		9BD1575B2A70379D00E25AB7 /* monitorStreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = monitorStreak.swift; sourceTree = "<group>"; };
+		9BD1575D2A706B7500E25AB7 /* FindParkGuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindParkGuest.swift; sourceTree = "<group>"; };
 		9BD9A68E2A6750090053E482 /* childHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childHome.swift; sourceTree = "<group>"; };
 		9BD9A6902A6750BE0053E482 /* childSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childSettings.swift; sourceTree = "<group>"; };
 		C905D6222A5F4613009BF5DB /* Achievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievements.swift; sourceTree = "<group>"; };
@@ -167,6 +167,7 @@
 			children = (
 				9B094E182A65DF12008C39B3 /* parkList.swift */,
 				9BA5EA732A61B6AB00095099 /* FindPark.swift */,
+				9BD1575D2A706B7500E25AB7 /* FindParkGuest.swift */,
 			);
 			path = ParkResources;
 			sourceTree = "<group>";
@@ -492,6 +493,7 @@
 				C905D6372A60E210009BF5DB /* AchievementsViewModel.swift in Sources */,
 				9BAAB0692A673578000BAF23 /* Learning.swift in Sources */,
 				49C2EFD52A69F69000814F4F /* childAchievements.swift in Sources */,
+				9BD1575E2A706B7500E25AB7 /* FindParkGuest.swift in Sources */,
 				C905D6282A5F4DAA009BF5DB /* Home.swift in Sources */,
 				9BD1575C2A70379D00E25AB7 /* monitorStreak.swift in Sources */,
 				9B6EC8DE2A69ADCA008146C9 /* test.swift in Sources */,

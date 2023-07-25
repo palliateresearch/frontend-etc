@@ -48,7 +48,7 @@ struct childHomePark: View{
                         }
                         
                         HStack{
-                            Text(model.myUsers.last?.firstName ?? "helhello")
+                            Text(model.myUsers.last?.firstName ?? "Guest")
                                 .minimumScaleFactor(0.03)
                                 .fontWeight(.heavy)
                                 .lineLimit(1)
@@ -316,5 +316,4 @@ struct childHomePark_Previews: PreviewProvider {
         childHomePark(userData: UserViewData())
     }
 }
-
 

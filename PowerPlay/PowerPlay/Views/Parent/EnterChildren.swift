@@ -57,7 +57,7 @@ struct EnterChildren: View {
 
                             if index != pv.childrenNames.count - 1 {
                                 Divider()
-                                    .background(Color.gray)
+                                    .background(Color.white)
                                     .padding(.horizontal, geometry.size.width * 0.05)
                                     .padding(.top, height * 0.075)
                             }
@@ -125,6 +125,12 @@ struct ChildView: View {
                 ZStack {
                     TextField("Child Username", text: self.$child)
                         .padding(.horizontal, width * 0.05)
+                       
+                        .font(.system(size: 20))
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(Color.white)
+
                 }
 
                 Spacer()

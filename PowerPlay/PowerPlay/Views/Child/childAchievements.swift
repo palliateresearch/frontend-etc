@@ -16,14 +16,12 @@ struct childAchievements: View {
         NavigationStack{
             VStack{
                 childCustomNavBar(navTitle: "Achievements", color: "darkBlue")
-                VStack{
-                    Spacer()
-                    Spacer()
-                }
+                    .background(Color("lightBlue"))
+                
                 ZStack{
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundColor(Color("darkBlue"))
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .frame(width: .infinity, height: 100)
                     HStack{
                         VStack{
                             Text("6 days")
@@ -40,7 +38,7 @@ struct childAchievements: View {
                         Image(systemName: "flame.circle.fill")
                             .scaleEffect(3.5)
                             .frame(width: 80, height: 100, alignment: .center)
-                            .aspectRatio(contentMode: .fit)
+                             .aspectRatio(contentMode: .fit)
                             .foregroundColor(Color("aliceBlue"))
                         VStack{
                             Text("10 days")
@@ -57,11 +55,13 @@ struct childAchievements: View {
                         
                     }
                 }.padding()
-                Spacer()
+                    .background(Color("lightBlue"))
+                
                 ZStack{
                     RoundedRectangle(cornerRadius: 20)
                         .fill(Color("aliceBlue"))
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                    
                     VStack{
                         Text("Badges Earned")
                             .foregroundColor(Color("darkBlue"))
@@ -69,8 +69,9 @@ struct childAchievements: View {
                             .fontWeight(.heavy)
                             .fontDesign(.rounded)
                             .padding()
+                        
                         LazyVGrid(columns: adaptiveColumns, spacing: 30){
-                            ForEach(model.myParks.last?.badges ?? ["badgeStreak2"], id: \.self){image in
+                            ForEach(model.myParks.last?.badges ?? ["badgeStreak1", "badgeStreak2", "badgeStreak3", "badgeWh3"], id: \.self){image in
                                 ZStack {
                                     Image(image)
                                         .scaleEffect(0.065)
@@ -78,18 +79,19 @@ struct childAchievements: View {
                                         .frame(width: 100, height: 100)
                                 }
                             }
-                        }.padding(.horizontal)
-                            .padding([.bottom], 20)
+                        }
+                        .padding(.horizontal)
+                        .padding([.bottom], 20)
                     }
-                }.padding()
-                VStack{
-                    Spacer()
-                    Spacer()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
-                }.background(Color("lightBlue"))
+                .padding()
+                .background(Color("lightBlue"))
+                
             }
+            .background(Color("lightBlue"))
             .onAppear{
-            
+                
                 userData.loadData()
                 
                 let factor: Float = 1.0
@@ -97,9 +99,10 @@ struct childAchievements: View {
                 calcBadgeWattHrs(wattHrs: userData.jsonData.totalEnergy)
                 calcBadgeStreaks(streak: 11)
                 model.load()
-               
+                
             }
         }
+    }
     func appendBadgeToLastPark(name: String)  {
       
         if let lastPark = model.myParks.last {

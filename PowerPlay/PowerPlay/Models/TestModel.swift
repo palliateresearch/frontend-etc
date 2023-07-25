@@ -85,6 +85,18 @@ class TestModel: ObservableObject {
             print("Error deleting all entities data: \(error)")
         }
     }
+    func deleteParkEntitiesData() {
+        let parkFetchRequest: NSFetchRequest<NSFetchRequestResult> = Park.fetchRequest()
+        let deleteParkRequest = NSBatchDeleteRequest(fetchRequest: parkFetchRequest)
+
+        do {
+            try container.viewContext.execute(deleteParkRequest)
+
+            try container.viewContext.save()
+        } catch {
+            print("Error deleting all entities data: \(error)")
+        }
+    }
 
     private func loadUsers() {
         let userFetch = NSFetchRequest<User>(entityName: "User")

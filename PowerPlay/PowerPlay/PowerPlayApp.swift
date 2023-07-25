@@ -6,12 +6,19 @@ struct PowerPlayApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject private var monitoringManager = monitorStreak()
     @StateObject private var pv = PV()
-
+    var model = TestModel()
     var body: some Scene {
         WindowGroup {
-            childStartView()
-                .environmentObject(monitoringManager)
-                .environmentObject(pv)
+            if let choose = model.myUsers.last?.isParent {
+                if (choose) {
+                    StartView().environmentObject(pv)
+                } else {
+                    childStartView().environmentObject(pv)
+                }
+              
+            } else {
+                childStartView().environmentObject(pv)
+            }
         }
     }
 }
