@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct childAchievements: View {
-    private var adaptiveColumns = [GridItem(.adaptive(minimum: 100))]
+    var adaptiveColumns = [GridItem(.adaptive(minimum: 100))]
+    @ObservedObject var userData: UserViewData
+    @StateObject var model = TestModel()
     
     var body: some View {
         NavigationStack{
@@ -68,7 +70,7 @@ struct childAchievements: View {
                             .fontDesign(.rounded)
                             .padding()
                         LazyVGrid(columns: adaptiveColumns, spacing: 30){
-                            ForEach(AchievementsData().setBadges().sorted(), id: \.self){image in
+                            ForEach(model.myParks.last?.badges ?? ["badgeStreak2"], id: \.self){image in
                                 ZStack {
                                     Image(image)
                                         .scaleEffect(0.065)
@@ -78,8 +80,6 @@ struct childAchievements: View {
                             }
                         }.padding(.horizontal)
                             .padding([.bottom], 20)
-                    }.onAppear{
-                        AchievementsData().updateBadges()
                     }
                 }.padding()
                 VStack{
@@ -88,11 +88,59 @@ struct childAchievements: View {
                 }
                 }.background(Color("lightBlue"))
             }
+            .onAppear{
+            
+                userData.loadData()
+                
+                let factor: Float = 1.0
+                let wattage = userData.jsonData.totalEnergy * factor
+                calcBadgeWattHrs(wattHrs: userData.jsonData.totalEnergy)
+                calcBadgeStreaks(streak: 11)
+                model.load()
+               
+            }
         }
+    func appendBadgeToLastPark(name: String)  {
+      
+        if let lastPark = model.myParks.last {
+            lastPark.badges = lastPark.badges ?? []
+            lastPark.badges?.append(name)
+            model.save()
+            print (model.myParks.last?.badges)
+            
+            
+        }
+      
+    }
+    func calcBadgeWattHrs(wattHrs: Float) {
+        if (wattHrs >= 500) {
+            appendBadgeToLastPark(name: "badgeWh3")
+        }
+        if (wattHrs >= 150) {
+            appendBadgeToLastPark(name: "badgeWh2")
+        }
+        if (wattHrs >= 50) {
+            appendBadgeToLastPark(name: "badgeWh1")
+        }
+    }
+    func calcBadgeStreaks(streak: Int) {
+        if (streak >= 15) {
+            appendBadgeToLastPark(name: "badgeStreak3")
+        }
+        if (streak >= 10) {
+            appendBadgeToLastPark(name: "badgeStreak2")
+        }
+        if (streak >= 5) {
+            appendBadgeToLastPark(name: "badgeStreak1")
+        }
+
+    }
+
+    
 }
 
 struct childAchievements_Previews: PreviewProvider {
     static var previews: some View {
-        childAchievements()
+        childAchievements(userData: UserViewData())
     }
 }

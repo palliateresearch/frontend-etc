@@ -9,31 +9,22 @@ struct test: View {
 
     var body: some View {
         VStack {
-            TextField("First Name", text: $firstName)
-                .padding()
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-
-            TextField("Last Name", text: $lastName) // Add TextField for lastName
-                .padding()
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-
             HStack {
-                Button("Save") {
-                    counter+=1
-                    model.myUser?.firstName = firstName
-                    model.myUser?.lastName = lastName // Save lastName to the Core Data model
-                    model.save()
-                    print("First \(firstName)")
-                    print("Last \(lastName)")
-                    print("Model First \(model.myUser?.firstName)")
-                    print("Model Last \(model.myUser?.lastName)")
+                Button("Test") {
+                    // Assuming `model.myPark` is an optional property of some class or struct
+                    if let parkName = model.myParks.last?.parkName {
+                        model.myParks.last?.parkName = "lalala"
+                        model.save()
+                        print(parkName) // This will print "lalala" if the value is present
+                    }
                 }
+
                 .foregroundColor(.red)
                 .confettiCannon(counter: $counter)
 
             }
             
-            if !(model.myUser?.firstName?.isEmpty ?? false) {
+            if !(model.myUsers.last?.lastName?.isEmpty ?? false) {
                 Text("yay")
                     .font(.headline)
                     .foregroundColor(.green)
@@ -46,8 +37,8 @@ struct test: View {
             model.load()
 
             DispatchQueue.main.async {
-                firstName = model.myUser?.firstName ?? ""
-                lastName = model.myUser?.lastName ?? "" // Load lastName from Core Data model
+                firstName = model.myUsers.last?.lastName ?? ""
+                lastName = model.myUsers.last?.lastName ?? "" // Load lastName from Core Data model
             }
         }
     }

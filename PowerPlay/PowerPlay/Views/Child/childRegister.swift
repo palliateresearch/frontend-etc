@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct Register: View {
+struct childRegister: View {
     @EnvironmentObject private var pv: PV
-    var model = TestModel()
+    var model = TestModel.shared
 
     @State private var userSelect: Bool = false
     @State private var passSelect: Bool = false
@@ -12,7 +12,6 @@ struct Register: View {
     @State private var isLoggedIn: Bool = false
     @State private var isParentLocal: Bool = false
     @State private var isLogin: Bool = false
-
     @State private var isFirstNameValid: Bool = true
     @State private var isLastNameValid: Bool = true
     @State private var isUsernameValid: Bool = true
@@ -22,23 +21,22 @@ struct Register: View {
         GeometryReader { geometry in
             let width = geometry.size.width
             let height = geometry.size.height
-
             VStack {
                 Text("Register")
                     .fontDesign(.rounded)
                     .font(.system(size: width * 0.08, weight: .bold))
                     .frame(width: width * 0.8)
                     .padding(.top, height * 0.03)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color("darkBlue"))
 
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(Color("navyBlue"))
+                        .fill(Color("aliceBlue"))
                         .frame(width: width * 0.8, height: height * 0.1)
                         .opacity(firstSelect ? 1 : 0.4)
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color("lightningYellow"), lineWidth: firstSelect ? 2 : 0)
+                                .stroke(Color("darkBlue"), lineWidth: firstSelect ? 2 : 0)
                         )
                         .onTapGesture {
                             firstSelect = true
@@ -47,10 +45,10 @@ struct Register: View {
                             passSelect = false
                         }
                     VStack {
-                        TextField("First Name", text: $pv.lastName)
+                        TextField("First Name", text: $pv.firstName)
                             .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
-                            .foregroundColor(firstSelect ? .white : .white)
+                            .foregroundColor(Color.black)
                             .disabled(!firstSelect)
                             .opacity(firstSelect ? 1 : 0.4)
                             .padding(.leading, width * 0.15)
@@ -68,12 +66,12 @@ struct Register: View {
 
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(Color("navyBlue"))
+                        .fill(Color("aliceBlue"))
                         .frame(width: width * 0.8, height: height * 0.1)
                         .opacity(lastSelect ? 1 : 0.4)
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color("lightningYellow"), lineWidth: lastSelect ? 2 : 0)
+                                .stroke(Color("darkBlue"), lineWidth: lastSelect ? 2 : 0)
                         )
                         .onTapGesture {
                             firstSelect = false
@@ -85,7 +83,7 @@ struct Register: View {
                         TextField("Last Name", text: $pv.lastName)
                             .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
-                            .foregroundColor(lastSelect ? .white : .white)
+                            .foregroundColor(Color.black)
                             .disabled(!lastSelect)
                             .opacity(lastSelect ? 1 : 0.4)
                             .padding(.leading, width * 0.15)
@@ -103,12 +101,12 @@ struct Register: View {
 
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(Color("navyBlue"))
+                        .fill(Color("aliceBlue"))
                         .frame(width: width * 0.8, height: height * 0.1)
                         .opacity(userSelect ? 1 : 0.4)
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color("lightningYellow"), lineWidth: userSelect ? 2 : 0)
+                                .stroke(Color("darkBlue"), lineWidth: userSelect ? 2 : 0)
                         )
                         .onTapGesture {
                             firstSelect = false
@@ -120,7 +118,7 @@ struct Register: View {
                         TextField("Username", text: $pv.username)
                             .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
-                            .foregroundColor(userSelect ? .white : .white)
+                            .foregroundColor(Color.black)
                             .disabled(!userSelect)
                             .opacity(userSelect ? 1 : 0.4)
                             .padding(.leading, width * 0.15)
@@ -138,12 +136,12 @@ struct Register: View {
 
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(Color("navyBlue"))
+                        .fill(Color("aliceBlue"))
                         .frame(width: width * 0.8, height: height * 0.1)
                         .opacity(passSelect ? 1 : 0.4)
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color("lightningYellow"), lineWidth: passSelect ? 2 : 0)
+                                .stroke(Color("darkBlue"), lineWidth: passSelect ? 2 : 0)
                         )
                         .onTapGesture {
                             firstSelect = false
@@ -155,7 +153,7 @@ struct Register: View {
                         SecureField("Password", text: $pv.password)
                             .fontDesign(.rounded)
                             .font(.system(size: width * 0.06, weight: .bold))
-                            .foregroundColor(passSelect ? .white : .white)
+                            .foregroundColor(Color.black)
                             .disabled(!passSelect)
                             .opacity(passSelect ? 1 : 0.4)
                             .padding(.leading, width * 0.15)
@@ -178,41 +176,47 @@ struct Register: View {
                 }
                 .toggleStyle(iOSCheckboxToggleStyle())
                 .font(.system(size: width * 0.06, weight: .bold))
-                .foregroundColor(Color("lightningYellow"))
+                .foregroundColor(Color("darkBlue"))
                 .padding(.top, height * 0.03)
-
                 Button(action: {
-                    // Perform validation checks
                     isFirstNameValid = !pv.lastName.isEmpty
                     isLastNameValid = !pv.lastName.isEmpty
                     isUsernameValid = pv.username.count >= 4
                     isPasswordValid = pv.password.count >= 4
 
-                    // Check if all validation checks passed
                     if isFirstNameValid && isLastNameValid && isUsernameValid && isPasswordValid {
-                        // All entries are valid, proceed with registration
-                        model.myUsers.last?.lastName = pv.lastName
-                        model.myUsers.last?.lastName = pv.lastName
-                        model.myUsers.last?.username = pv.username
-                        model.myUsers.last?.password = pv.password
-                        model.myUsers.last?.isParent = pv.isParent // Save isParent value
+                        let newUser = model.createUser()
+
+                        newUser.firstName = pv.firstName
+                        newUser.lastName = pv.lastName
+                        newUser.username = pv.username
+                        newUser.password = pv.password
+                        newUser.isParent = pv.isParent
+                        newUser.isLogout = false
+
                         model.save()
 
-                        // Perform the appropriate action based on the isParent flag
                         isLoggedIn = true
-                       
+                    }}, label:{
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 7)
+                            .padding()
+                            .frame(minHeight: 80)
+                            .foregroundColor(Color("dropShadowBlue"))
+                        RoundedRectangle(cornerRadius: 7)
+                            .padding()
+                            .padding([.bottom],6)
+                            .frame(minHeight: 90)
+                            .foregroundColor(Color("darkBlue"))
+                            .overlay{
+                                Text("Register")
+                                    .foregroundColor(Color.white)
+                                    .fontWeight(.heavy)
+                                    .font(.title2)
+                                    .fontDesign(.rounded)
+                            }
                     }
-                }) {
-                    Text("Register")
-                        .fontDesign(.rounded)
-                        .font(.system(size: width * 0.06, weight: .bold))
-                        .frame(width: width * 0.5, height: height * 0.075)
-                        .background(Color.white)
-                        .foregroundColor(Color.black)
-                        .opacity(0.8)
-                        .cornerRadius(10)
-                }
-                .padding(.top, height * 0.03)
+                    }).frame(maxHeight: 75).padding()
 
                 Spacer()
 
@@ -223,7 +227,7 @@ struct Register: View {
                         .fontDesign(.rounded)
                         .font(.system(size: width * 0.05, weight: .bold))
                         .frame(width: width * 0.8, height: height * 0.1)
-                        .foregroundColor(Color("lightningYellow"))
+                        .foregroundColor(Color("darkBlue"))
                 }
                 .buttonStyle(PlainButtonStyle())
                 .padding(.horizontal, width * 0.1)
@@ -231,47 +235,40 @@ struct Register: View {
             .fullScreenCover(isPresented: $isLoggedIn) {
                 if pv.isParent {
                     EnterChildren()
-//                } else if let user = model.myUser, !(user.parks[0]?.isEmpty ?? true) {
-//                    ContentView()
+                } else if let user = model.myUsers.last, !(user.parks?[0].isEmpty ?? true) {
+                    childContentView()
                 } else {
                     FindPark()
                 }
             }
             .fullScreenCover(isPresented: $isLogin) {
-                Login()
+                childLogin()
             }
             .onAppear {
                 model.load()
-
-                DispatchQueue.main.async {
-                    pv.lastName = model.myUsers.last?.lastName ?? ""
-                    pv.lastName = model.myUsers.last?.lastName ?? ""
-                    pv.username = model.myUsers.last?.username ?? ""
-                    pv.password = model.myUsers.last?.password ?? ""
-                    pv.isParent = model.myUsers.last?.isParent ?? false
+                print (model.myUsers.last?.isLogout)
+                print ("is model true?")
+                if (!(model.myUsers.last?.isLogout ?? true)) {
+                    DispatchQueue.main.async {
+                        pv.firstName = model.myUsers.last?.firstName ?? ""
+                        pv.lastName = model.myUsers.last?.lastName ?? ""
+                        pv.username = model.myUsers.last?.username ?? ""
+                        pv.password = model.myUsers.last?.password ?? ""
+                        pv.isParent = model.myUsers.last?.isParent ?? false
+                    }
                 }
+              
             }
         }
-        .background(Color("darkModeBackground"))
-        .preferredColorScheme(.dark)
+        .background(Color("lightBlue"))
+        .preferredColorScheme(.light)
     }
 }
 
-struct Register_Previews: PreviewProvider {
+struct childRegister_Previews: PreviewProvider {
     static var previews: some View {
-        Register()
-    }
-}
-
-struct iOSCheckboxToggleStyle: ToggleStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        Button(action: {
-            configuration.isOn.toggle()
-        }, label: {
-            HStack {
-                Image(systemName: configuration.isOn ? "checkmark.square" : "square")
-                configuration.label
-            }
-        })
+        let pv = PV()
+        return childRegister()
+            .environmentObject(pv)
     }
 }

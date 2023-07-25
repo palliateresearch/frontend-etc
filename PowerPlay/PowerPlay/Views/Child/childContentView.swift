@@ -11,19 +11,20 @@ import SwiftUI
 struct childContentView: View {
     @ObservedObject var userData = UserViewData()
     @State private var tabColor: Color!
+    @State var childModel = CurrentLesson()
     
     @State private var park: String = ""
 
     var body: some View {
         VStack {
             TabView {
-                childHome(userData: userData) // Pass the park binding to the Home view
+                childHomePark(userData: UserViewData()) // Pass the park binding to the Home view
                     .tabItem {
                         Label("Home", systemImage: "house")
                     }
                     .tag(0)
                 
-                childAchievements()
+                childAchievements(userData: UserViewData())
                     .tabItem {
                         Label("Achievements", systemImage: "trophy")
                     }
@@ -33,7 +34,7 @@ struct childContentView: View {
                         Label("Discover", systemImage: "books.vertical")
                     }
                 
-                childSettings(userData: userData)
+                childSettings()
                     .tabItem {
                         Label("Settings", systemImage: "gear")
                     }

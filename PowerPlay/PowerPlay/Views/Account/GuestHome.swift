@@ -37,7 +37,7 @@ struct GuestHome: View {
                         }
                     }
                 }
-                Text("\(model.myUser?.park ?? "") - January") // Using model to access park
+                Text("\(model.myUsers.last?.parks?[0] ?? "") - January") // Using model to access park
                     .fontDesign(.rounded)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.title3)
@@ -217,7 +217,7 @@ struct GuestHome: View {
                         
                     }
                 }.scrollIndicators(.visible)
-            }
+            }.background(Color("darkModeBackground"))
         }
         .foregroundColor(Color.white)
         .background(Color("darkModeBackground"))

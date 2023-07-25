@@ -1,26 +1,29 @@
+////
+////  Home.swift
+////  PowerPlay
+////
+////  Created by Nishka Sharma on 7/12/23.
+////
 //
-//  Home.swift
-//  PowerPlay
+//import SwiftUI
 //
-//  Created by Nishka Sharma on 7/12/23.
+//struct childHome: View {
+//    @EnvironmentObject private var pv: PV
+//    var model = TestModel()
+//    @State var isSettings = false
 //
-
-import SwiftUI
-
-struct childHome: View {
-    @ObservedObject var userData = UserViewData()
-    @State var isSettings = false
-    
-    var body: some View {
-        NavigationStack{
-            childHomePark(userName: "\(userData.firstName)", totalWattHrs: "295", parkLeaderboard: "4", parkName: "\(userData.park)", todayWattHrs: 4, mission1Completion: 1, mission2Completion: 2, mission3Completion: 3, mission4Completion: 4)
-        }
-    }
-}
-
-struct childHome_Previews: PreviewProvider {
-    static var previews: some View {
-        childHome(userData: UserViewData()).environment(\.colorScheme, .light)
-        childHome(userData: UserViewData()).environment(\.colorScheme, .dark)
-    }
-}
+//    var body: some View {
+//        NavigationStack{
+//            childHomePark(userName: "\(model.myUsers.last?.lastName ?? "hello")", totalWattHrs: "295", parkLeaderboard: "4", parkName: "\(model.myUsers.last?.park ?? "Apple")", todayWattHrs: 4, mission1Completion: 1, mission2Completion: 2, mission3Completion: 3, mission4Completion: 4)
+//        }
+//    }
+//}
+//a
+//struct childHome_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let pv = PV() // Create a mock instance of PV
+//
+//        return childHome()
+//            .environmentObject(pv) // Inject the mock instance as an environment object
+//    }
+//}

@@ -20,6 +20,7 @@ struct childLogin: View {
             let height = geometry.size.height
 
             VStack {
+                Spacer()
                 Image("palliateIcon") // Add the image asset here
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -27,19 +28,20 @@ struct childLogin: View {
 
                 Text("Login")
                     .fontDesign(.rounded)
-                    .font(.system(size: width * 0.08, weight: .bold))
+                    .font(.system(size: 40, weight: .bold))
                     .frame(width: width * 0.8)
                     .padding(.top, height * 0.03)
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color("darkBlue"))
+                    .fontWeight(.heavy)
 
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(Color("childLightBlue"))
+                        .fill(Color("aliceBlue"))
                         .frame(width: width * 0.8, height: height * 0.1)
                         .opacity(userSelect ? 1 : 0.4)
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color("childBlue"), lineWidth: userSelect ? 2 : 0)
+                                .stroke(Color("darkBlue"), lineWidth: userSelect ? 2 : 0)
                         )
                         .onTapGesture {
                             userSelect = true
@@ -67,12 +69,12 @@ struct childLogin: View {
 
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(Color("childLightBlue"))
+                        .fill(Color("aliceBlue"))
                         .frame(width: width * 0.8, height: height * 0.1)
                         .opacity(passSelect ? 1 : 0.4)
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color("lightningYellow"), lineWidth: passSelect ? 2 : 0)
+                                .stroke(Color("darkBlue"), lineWidth: passSelect ? 2 : 0)
                         )
                         .onTapGesture {
                             userSelect = false
@@ -97,15 +99,15 @@ struct childLogin: View {
                         .padding(.leading, width * 0.1),
                     alignment: .topLeading
                 )
-
+                Spacer()
                 Button(action: {
                     isUsernameValid = !pv.username.isEmpty
                     isPasswordValid = !pv.password.isEmpty
 
                     if isUsernameValid && isPasswordValid {
                         model.load()
-                        let savedUsername = model.myUser?.username ?? ""
-                        let savedPassword = model.myUser?.password ?? ""
+                        let savedUsername = model.myUsers.last?.username ?? ""
+                        let savedPassword = model.myUsers.last?.password ?? ""
 
                         if savedUsername == pv.username && savedPassword == pv.password {
                             isLoggedIn = true
@@ -115,25 +117,33 @@ struct childLogin: View {
                     } else {
                         isInvalidCredentials = true
                     }
-                }) {
-                    Text("Sign In")
-                        .fontDesign(.rounded)
-                        .font(.system(size: width * 0.06, weight: .bold))
-                        .frame(width: width * 0.5, height: height * 0.075)
-                        .background(Color("childBlue"))
-                        .foregroundColor(Color.white)
-                        .cornerRadius(10)
-                }
-                .padding(.top, height * 0.04)
-
+                }, label: {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 7)
+                            .padding()
+                            .frame(minHeight: 80)
+                            .foregroundColor(Color("dropShadowBlue"))
+                        RoundedRectangle(cornerRadius: 7)
+                            .padding()
+                            .padding([.bottom],6)
+                            .frame(minHeight: 90)
+                            .foregroundColor(Color("darkBlue"))
+                            .overlay{
+                                Text("SIGN IN")
+                                    .foregroundColor(Color.white)
+                                    .fontWeight(.heavy)
+                                    .font(.title2)
+                                    .fontDesign(.rounded)
+                            }
+                        
+                    }
+                }).frame(maxHeight: 75).padding().padding()
                 if isInvalidCredentials {
                     Text("Invalid username or password")
                         .fontDesign(.rounded)
                         .foregroundColor(.red)
                         .padding(.top, height * 0.02)
                 }
-
-                Spacer()
                 Button(action: {
                     isRegister = true
                 }) {
@@ -141,27 +151,28 @@ struct childLogin: View {
                         .fontDesign(.rounded)
                         .font(.system(size: width * 0.05, weight: .bold))
                         .frame(width: width * 0.8, height: height * 0.1)
-                        .foregroundColor(Color("childBlue"))
+                        .foregroundColor(Color("darkBlue"))
                 }
                 .buttonStyle(PlainButtonStyle())
                 .padding(.horizontal, width * 0.1)
                 .sheet(isPresented: $isRegister) {
-                    Register()
+                    childRegister()
                 }
             }
             .fullScreenCover(isPresented: $isLoggedIn) {
-                ContentView()
+                childContentView()
             }
             .preferredColorScheme(.light)
             .onAppear {
                 model.load()
 
+                
                 DispatchQueue.main.async {
-                    pv.username = model.myUser?.username ?? ""
-                    pv.password = model.myUser?.password ?? ""
+                    pv.username = model.myUsers.last?.username ?? ""
+                    pv.password = model.myUsers.last?.password ?? ""
                 }
             }
-        }
+        }.background(Color("lightBlue"))
     }
 }
 

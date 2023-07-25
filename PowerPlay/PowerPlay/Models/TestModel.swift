@@ -1,53 +1,53 @@
-//
-//  TestModel.swift
-//  PowerPlay
-//
-//  Created by Aadit Noronha on 7/20/23.
-//
-
 import Foundation
 import CoreData
 import SwiftUI
 
-class TestModel {
-    
-    var myUser: User?
-    var myChildren: [Child] = [] // Changed to an array to hold multiple Child objects
-    
+class TestModel: ObservableObject {
+    static let shared = TestModel()
+    var myUsers: [User] = []
+    var myChildren: [Child] = []
+    @Published var myParks: [Park] = []
+
     let container: NSPersistentContainer = NSPersistentContainer(name: "Model")
-    
+
     init() {
         container.loadPersistentStores { _, error in
             if let error = error {
                 fatalError("Failed to load store: \(error)")
             }
-            
-            // Load or create the user object
-            let userFetch = NSFetchRequest<User>(entityName: "User")
-            do {
-                let results = try self.container.viewContext.fetch(userFetch)
-                self.myUser = results.first ?? User(context: self.container.viewContext)
-            } catch {
-                fatalError("Failed to fetch or create user: \(error)")
-            }
-            
-            // Load existing children
-            let childFetch = NSFetchRequest<Child>(entityName: "Child")
-            do {
-                let results = try self.container.viewContext.fetch(childFetch)
-                self.myChildren = results
-            } catch {
-                fatalError("Failed to fetch children: \(error)")
-            }
+
+            self.loadUsers()
+            self.loadChildren()
+            self.loadParks()
         }
     }
-    
+
+    func createUser() -> User {
+        let newUser = User(context: container.viewContext)
+        myUsers.append(newUser)
+        return newUser
+    }
+
+    func getUsers() -> [User] {
+        return myUsers
+    }
+
+    func createPark() -> Park {
+        let newPark = Park(context: container.viewContext)
+        myParks.append(newPark)
+        return newPark
+    }
+
+    func getParks() -> [Park] {
+        return myParks
+    }
+
     func createChild() -> Child {
         let newChild = Child(context: container.viewContext)
         myChildren.append(newChild)
         return newChild
     }
-    
+
     func save() {
         do {
             try container.viewContext.save()
@@ -55,70 +55,64 @@ class TestModel {
             fatalError("Failed to save context: \(error)")
         }
     }
-    
+
     func load() {
-        let userFetch = NSFetchRequest<User>(entityName: "User")
-        
+        loadUsers()
+        loadChildren()
+        loadParks()
+    }
+    func addToBadges(name: String) {
+        myParks.last?.badges?.append(name)
+    }
+
+    func deleteAllEntitiesData() {
+        let childFetchRequest: NSFetchRequest<NSFetchRequestResult> = Child.fetchRequest()
+        let deleteChildRequest = NSBatchDeleteRequest(fetchRequest: childFetchRequest)
+
+        let userFetchRequest: NSFetchRequest<NSFetchRequestResult> = User.fetchRequest()
+        let deleteUserRequest = NSBatchDeleteRequest(fetchRequest: userFetchRequest)
+
+        let parkFetchRequest: NSFetchRequest<NSFetchRequestResult> = Park.fetchRequest()
+        let deleteParkRequest = NSBatchDeleteRequest(fetchRequest: parkFetchRequest)
+
         do {
-            let userResults = try container.viewContext.fetch(userFetch)
-            myUser = userResults.first
+            try container.viewContext.execute(deleteChildRequest)
+            try container.viewContext.execute(deleteUserRequest)
+            try container.viewContext.execute(deleteParkRequest)
+
+            try container.viewContext.save()
         } catch {
-            fatalError("Failed to fetch user: \(error)")
+            print("Error deleting all entities data: \(error)")
         }
-        
+    }
+
+    private func loadUsers() {
+        let userFetch = NSFetchRequest<User>(entityName: "User")
+        do {
+            let results = try self.container.viewContext.fetch(userFetch)
+            myUsers = results
+        } catch {
+            fatalError("Failed to fetch or create user: \(error)")
+        }
+    }
+
+    private func loadParks() {
+        let parkFetch = NSFetchRequest<Park>(entityName: "Park")
+        do {
+            let results = try self.container.viewContext.fetch(parkFetch)
+            myParks = results
+        } catch {
+            fatalError("Failed to fetch or create parks: \(error)")
+        }
+    }
+
+    private func loadChildren() {
         let childFetch = NSFetchRequest<Child>(entityName: "Child")
         do {
-            let results = try container.viewContext.fetch(childFetch)
+            let results = try self.container.viewContext.fetch(childFetch)
             myChildren = results
         } catch {
             fatalError("Failed to fetch children: \(error)")
         }
     }
-    
-    func delete() {
-        if let userToDelete = myUser {
-            container.viewContext.delete(userToDelete)
-            myUser = nil
-        }
-        
-        for childToDelete in myChildren {
-            container.viewContext.delete(childToDelete)
-        }
-        myChildren.removeAll()
-        
-        save()
-    }
-    
-    func deleteAllEntitiesData() {
-        // Delete data from the "Child" entity
-        let childFetchRequest: NSFetchRequest<NSFetchRequestResult> = Child.fetchRequest()
-        let deleteChildRequest = NSBatchDeleteRequest(fetchRequest: childFetchRequest)
-        
-        // Delete data from the "User" entity
-        let userFetchRequest: NSFetchRequest<NSFetchRequestResult> = User.fetchRequest()
-        let deleteUserRequest = NSBatchDeleteRequest(fetchRequest: userFetchRequest)
-        
-        do {
-            // Use the TestModel's container's viewContext to execute the delete requests
-            try container.viewContext.execute(deleteChildRequest)
-            try container.viewContext.execute(deleteUserRequest)
-            
-            // Save the changes to the context
-            try container.viewContext.save()
-        } catch {
-            // Handle the error here
-            print("Error deleting all entities data: \(error)")
-        }
-    }
-    
 }
-
-class PV: ObservableObject {
-    @Published var firstName: String = ""
-    @Published var lastName: String = ""
-    @Published var username: String = ""
-    @Published var password: String = ""
-    @Published var isParent: Bool = false
-    @Published var childrenNames: [String] = [] // Separate array to hold child names
-}
-
