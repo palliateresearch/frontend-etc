@@ -9,6 +9,7 @@ import SwiftUI
 
 struct childHomePark: View{
     @ObservedObject var userData: UserViewData
+    @State var selectedTab: Int = 0
     
     var model = TestModel()
     
@@ -37,6 +38,7 @@ struct childHomePark: View{
         let roundedValue = String(format: "%.2f", userData.jsonData.totalEnergy / 15)
         NavigationStack{
             ScrollView{
+                
                 VStack{
                     ZStack(alignment: .leading){
                         ZStack(alignment: .topLeading){
@@ -101,77 +103,77 @@ struct childHomePark: View{
                             colors: [Color("lightBlue"), Color.white],
                             startPoint: .top, endPoint: .bottom))
                 }
+                TabView{
                     ForEach (model.myParks) { park in
-                        VStack{
-                            VStack {
-                                    ZStack {
-                                        ZStack (alignment: .topLeading) {
-                                            Rectangle()
-                                                .foregroundColor(Color("darkBlue"))
-                                            
-                                            Rectangle()
-                                                .fill(Color("lightningYellow"))
-                                                .frame(minWidth: 0, maxWidth: 400, maxHeight: 50, alignment: .top)
-                                        }
-                                        .clipShape(RoundedRectangle(cornerRadius: 20)).frame(minWidth: 0, maxWidth: 400, maxHeight: .infinity, alignment: .top)
-                                        
-                                        VStack{
-                                            HStack{
-                                                Image(systemName: "medal.fill")
-                                                    .foregroundColor(Color.white)
-                                                    .scaleEffect(1.5)
-                                                    .padding(EdgeInsets(top: 10, leading: 20, bottom: 7, trailing: 0))
-                                                    .aspectRatio(contentMode: .fit)
-                                                Text("#" + (parkLeaderboard ?? "5"))
-                                                    .bold()
-                                                    .foregroundColor(Color.white)
-                                                    .frame(maxWidth: 35, alignment: .leading)
-                                                    .padding(EdgeInsets(top: 10, leading: 0, bottom: 7, trailing: 0))
-                                                    .lineLimit(1)
-                                                    .font(.system(size: 25))
-                                                    .fontDesign(.rounded)
-                                                Text(park.parkName ?? "Apple Park")
-                                                    .minimumScaleFactor(0.03)
-                                                    .fontWeight(.heavy)
-                                                    .foregroundColor(Color.white)
-                                                    .frame(maxWidth: 7000, alignment: .center)
-                                                    .padding(EdgeInsets(top: 10, leading: 0, bottom: 7, trailing: 30))
-                                                    .lineLimit(1)
-                                                    .font(.system(size: 25))
-                                                    .fontDesign(.rounded)
-                                            }
-                                            HStack{
-                                                Text("You helped generate enough energy to power a lightbulb for")
-                                                    .lineLimit(nil)
-                                                    .fixedSize(horizontal: false, vertical: true)
-                                                    .foregroundColor(Color.white)
-                                                    .font(.system(size: 20))
-                                                    .bold()
-                                                    .fontDesign(.rounded)
-                                                    .frame(maxWidth:200, maxHeight: .infinity,alignment:.topLeading)
-                                                    .padding()
-                                                VStack{
-                                                    Spacer()
-                                                    Image(systemName: "lightbulb")
-                                                        .foregroundColor(Color.white)
-                                                        .scaleEffect(2.5)
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .padding(.top, 20)
-                                                    Text("\(roundedValue) hours")
-                                                        .foregroundColor(Color("lightningYellow"))
-                                                        .font(.system(size: 24))
-                                                        .fontWeight(.heavy)
-                                                        .fontDesign(.rounded)
-                                                        .frame(maxHeight: .infinity,alignment:.center)
-                                                        .padding()
-                                                }
-                                            }
-                                        }
-                                    }.padding(.top, 30)
-                                        .padding(.horizontal)
-                                    //end of Apple Park block
+                        //HStack{
+                        VStack {
+                            ZStack {
+                                ZStack (alignment: .topLeading) {
+                                    Rectangle()
+                                        .foregroundColor(Color("darkBlue"))
+                                    
+                                    Rectangle()
+                                        .fill(Color("lightningYellow"))
+                                        .frame(minWidth: 0, maxWidth: 400, maxHeight: 50, alignment: .top)
                                 }
-                            }
+                                .clipShape(RoundedRectangle(cornerRadius: 20)).frame(minWidth: 0, maxWidth: 400, maxHeight: .infinity, alignment: .top)
+                                
+                                VStack{
+                                    HStack{
+                                        Image(systemName: "medal.fill")
+                                            .foregroundColor(Color.white)
+                                            .scaleEffect(1.5)
+                                            .padding(EdgeInsets(top: 10, leading: 20, bottom: 7, trailing: 0))
+                                            .aspectRatio(contentMode: .fit)
+                                        Text("#" + (parkLeaderboard ?? "5"))
+                                            .bold()
+                                            .foregroundColor(Color.white)
+                                            .frame(maxWidth: 35, alignment: .leading)
+                                            .padding(EdgeInsets(top: 10, leading: 0, bottom: 7, trailing: 0))
+                                            .lineLimit(1)
+                                            .font(.system(size: 25))
+                                            .fontDesign(.rounded)
+                                        Text(park.parkName ?? "Apple Park")
+                                            .minimumScaleFactor(0.03)
+                                            .fontWeight(.heavy)
+                                            .foregroundColor(Color.white)
+                                            .frame(maxWidth: 7000, alignment: .center)
+                                            .padding(EdgeInsets(top: 10, leading: 0, bottom: 7, trailing: 30))
+                                            .lineLimit(1)
+                                            .font(.system(size: 25))
+                                            .fontDesign(.rounded)
+                                    }
+                                    HStack{
+                                        Text("You helped generate enough energy to power a lightbulb for")
+                                            .lineLimit(nil)
+                                            .fixedSize(horizontal: false, vertical: true)
+                                            .foregroundColor(Color.white)
+                                            .font(.system(size: 20))
+                                            .bold()
+                                            .fontDesign(.rounded)
+                                            .frame(maxWidth:200, maxHeight: .infinity,alignment:.topLeading)
+                                            .padding()
+                                        VStack{
+                                            Spacer()
+                                            Image(systemName: "lightbulb")
+                                                .foregroundColor(Color.white)
+                                                .scaleEffect(2.5)
+                                                .aspectRatio(contentMode: .fit)
+                                                .padding(.top, 20)
+                                            Text("\(roundedValue) hours")
+                                                .foregroundColor(Color("lightningYellow"))
+                                                .font(.system(size: 24))
+                                                .fontWeight(.heavy)
+                                                .fontDesign(.rounded)
+                                                .frame(maxHeight: .infinity,alignment:.center)
+                                                .padding()
+                                        }
+                                    }
+                                }
+                            }.padding(.top, 30)
+                                .padding(.horizontal)
+                            //end of Apple Park block
+                            //}
                             
                             ZStack{
                                 RoundedRectangle(cornerRadius: 20)
@@ -289,11 +291,13 @@ struct childHomePark: View{
                                     }
                                 }
                             }.padding()
-              
-                            Spacer()
-                            Spacer()
+                        }
                     }
-                        
+                }
+                .tabViewStyle(PageTabViewStyle())
+                .frame(width: 400, height: 450)
+
+                
                     
                         
                     

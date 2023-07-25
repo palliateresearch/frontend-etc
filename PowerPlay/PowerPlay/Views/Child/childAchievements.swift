@@ -14,6 +14,7 @@ struct childAchievements: View {
     
     var body: some View {
         NavigationStack{
+
             VStack{
                 childCustomNavBar(navTitle: "Achievements", color: "darkBlue")
                     .background(Color("lightBlue"))
@@ -69,19 +70,18 @@ struct childAchievements: View {
                             .fontWeight(.heavy)
                             .fontDesign(.rounded)
                             .padding()
-                        
-                        LazyVGrid(columns: adaptiveColumns, spacing: 30){
-                            ForEach(model.myParks.last?.badges ?? ["badgeStreak1", "badgeStreak2", "badgeStreak3", "badgeWh3"], id: \.self){image in
-                                ZStack {
-                                    Image(image)
-                                        .scaleEffect(0.065)
-                                        .foregroundColor(Color.white)
-                                        .frame(width: 100, height: 100)
+                        ScrollView {
+                            LazyVGrid(columns: adaptiveColumns, spacing: 30) {
+                                ForEach(model.myParks.last?.badges ?? ["badgeStreak1"], id: \.self) { image in
+                                    ZStack {
+                                        Image(image)
+                                            .scaleEffect(0.065)
+                                            .foregroundColor(Color.white)
+                                            .frame(width: 100, height: 100)
+                                    }
                                 }
                             }
-                        }
-                        .padding(.horizontal)
-                        .padding([.bottom], 20)
+                        }.padding(.top, 25)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
@@ -94,10 +94,10 @@ struct childAchievements: View {
                 
                 userData.loadData()
                 
-                let factor: Float = 1.0
-                let wattage = userData.jsonData.totalEnergy * factor
+                let wattage = userData.jsonData.totalEnergy
+            
                 calcBadgeWattHrs(wattHrs: userData.jsonData.totalEnergy)
-                calcBadgeStreaks(streak: 11)
+                calcBadgeStreaks()
                 model.load()
                 
             }
@@ -109,11 +109,17 @@ struct childAchievements: View {
             lastPark.badges = lastPark.badges ?? []
             lastPark.badges?.append(name)
             model.save()
-            print (model.myParks.last?.badges)
-            
-            
+          
+
         }
       
+    }
+    func dayOfMonth() -> Int {
+        let date = Date()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.day], from: date)
+        let dayOfMonth = components.day ?? 1
+        return dayOfMonth
     }
     func calcBadgeWattHrs(wattHrs: Float) {
         if (wattHrs >= 500) {
@@ -126,7 +132,26 @@ struct childAchievements: View {
             appendBadgeToLastPark(name: "badgeWh1")
         }
     }
-    func calcBadgeStreaks(streak: Int) {
+    func calcBadgeStreaks() {
+        autoPopulateCalendar()
+        var streak = 0
+        
+        let day = dayOfMonth()
+        for dayIndex in stride(from: day, through: 1, by: -1) {
+            if let lastPark = model.myParks.last,
+               dayIndex <= lastPark.wattHrsPerDay?.count ?? 1 {
+                let wattHrsForDay = lastPark.wattHrsPerDay?[dayIndex]
+                print ("\n\n\n\n\(wattHrsForDay)")
+                if (wattHrsForDay ?? 50 > 50) {
+                    streak += 1
+                } else {
+                    print ("It broke")
+                    break
+                }
+            }
+        }
+        print (streak)
+        print (model.myParks.last?.wattHrsPerDay)
         if (streak >= 15) {
             appendBadgeToLastPark(name: "badgeStreak3")
         }
@@ -138,6 +163,22 @@ struct childAchievements: View {
         }
 
     }
+    
+    func autoPopulateCalendar() {
+        let range = 1..<31
+
+        if model.myParks.last?.wattHrsPerDay == nil {
+            model.myParks.last?.wattHrsPerDay = [Float]()
+        }
+
+        for _ in range {
+            model.myParks.last?.wattHrsPerDay?.append(Float.random(in: 1.0..<750.0))
+        }
+        //print(model.myParks.last?.wattHrsPerDay)
+    }
+
+
+
 
     
 }
