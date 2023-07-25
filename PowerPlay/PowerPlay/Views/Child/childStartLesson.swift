@@ -9,59 +9,188 @@ import SwiftUI
 
 struct childStartLesson: View {
     
-    @State var progress: CGFloat?
-    @State var background: String?
-    @State var text: String?
-    @State var progressDone: String?
-    @State var shadow: String?
+    @Binding var progress: CGFloat
+    @Binding var childModel: CurrentLesson
+    @Binding var chapterLabel: String?
+    @State var background: String = "aliceBlue"
+    @State var text: String = "black"
+    @State var progressDone: String = "lightningYellow"
+    @State var shadow: String = "dropShadowBlue"
     @State var nextPage: childLesson?
-    @State var childModel = currentLesson()
+    @State var chapter: String?
+    @Binding var lesson: [String]?
+    @Binding var lessonNumber: [String]?
+    @Binding var lessonName: [String]?
   
     var body: some View {
         ZStack (alignment: .leading){
             ZStack (alignment: .topLeading) {
                 Rectangle()
-                    .foregroundColor(Color(background!))
+                    .foregroundColor(Color(background))
             }
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .frame(maxHeight: 250)
             .overlay{
                 VStack{
-                    Text("The Power of Electricity")
+                    Text(chapter!)
                         .bold()
-                        .foregroundColor(Color(text!))
+                        .foregroundColor(Color(text))
                         .fontDesign(.rounded)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top,80)
                         .padding(.bottom,-10)
                         .font(.title2)
-                    HStack(spacing: 0){
-                        Text("Lesson 1")
-                            .bold()
-                            .foregroundColor(Color(text!))
-                            .fontDesign(.rounded)
-                            .font(.title3)
-                        Circle()
-                            .scaleEffect(0.4)
-                            .foregroundColor(Color(text!))
-                        Text("What is it about?")
-                            .bold()
-                            .foregroundColor(Color(text!))
-                            .fontDesign(.rounded)
-                            .font(.title3)
+                    if (chapterLabel == "C1"){
+                        HStack(spacing: 0){
+                            Text(lessonNumber![childModel.currentLessonCh1])
+                                .bold()
+                                .foregroundColor(Color(text))
+                                .fontDesign(.rounded)
+                                .font(.title3)
+                            Circle()
+                                .scaleEffect(0.4)
+                                .foregroundColor(Color(text))
+                            Text(lessonName![childModel.currentLessonCh1])
+                                .bold()
+                                .foregroundColor(Color(text))
+                                .fontDesign(.rounded)
+                                .font(.title3)
+                        }
+                        .padding()
+                    
                     }
-                    .padding()
+                    if (chapterLabel == "C2"){
+                        HStack(spacing: 0){
+                            Text(lessonNumber![childModel.currentLessonCh2])
+                                .bold()
+                                .foregroundColor(Color(text))
+                                .fontDesign(.rounded)
+                                .font(.title3)
+                            Circle()
+                                .scaleEffect(0.4)
+                                .foregroundColor(Color(text))
+                            Text(lessonName![childModel.currentLessonCh2])
+                                .bold()
+                                .foregroundColor(Color(text))
+                                .fontDesign(.rounded)
+                                .font(.title3)
+                        }
+                        .padding()
+                    }
+                    if (chapterLabel == "C3"){
+                        HStack(spacing: 0){
+                            Text(lessonNumber![childModel.currentLessonCh3])
+                                .bold()
+                                .foregroundColor(Color(text))
+                                .fontDesign(.rounded)
+                                .font(.title3)
+                            Circle()
+                                .scaleEffect(0.4)
+                                .foregroundColor(Color(text))
+                            Text(lessonName![childModel.currentLessonCh3])
+                                .bold()
+                                .foregroundColor(Color(text))
+                                .fontDesign(.rounded)
+                                .font(.title3)
+                        }
+                        .padding()
+                    }
                     
                     HStack{
-                        LineProgress(progress: progress!, progressDone: progressDone!, shadow: shadow!)
+                        LineProgress(progress: $progress, progressDone: progressDone, shadow: shadow)
                             .padding([.bottom])
                             .padding([.horizontal])
                             .frame(maxWidth: 300)
-                        Text("1 / 3")
-                            .padding([.vertical])
-                            .padding([.trailing])
-                            .foregroundColor(Color(text!))
-                            .bold()
+                        if (chapterLabel == "C1"){
+                            if (childModel.progressC1 == 0.33333333333){
+                                Text("1 / 3")
+                                    .padding([.vertical])
+                                    .padding([.trailing])
+                                    .foregroundColor(Color(text))
+                                .bold()
+                            }
+                            else if (childModel.progressC1 == 0.66666666666){
+                                Text("2 / 3")
+                                    .padding([.vertical])
+                                    .padding([.trailing])
+                                    .foregroundColor(Color(text))
+                                .bold()
+                            }
+                            else if (childModel.progressC1 == 1.0){
+                                Text("3 / 3")
+                                    .padding([.vertical])
+                                    .padding([.trailing])
+                                    .foregroundColor(Color(text))
+                                .bold()
+                            }
+                            else {
+                                Text("0 / 3")
+                                    .padding([.vertical])
+                                    .padding([.trailing])
+                                    .foregroundColor(Color(text))
+                                .bold()
+                            }
+                        }
+                        if (chapterLabel == "C2"){
+                            if (childModel.progressC2 == 0.33333333333){
+                                Text("1 / 3")
+                                    .padding([.vertical])
+                                    .padding([.trailing])
+                                    .foregroundColor(Color(text))
+                                .bold()
+                            }
+                            else if (childModel.progressC2 == 0.66666666666){
+                                Text("2 / 3")
+                                    .padding([.vertical])
+                                    .padding([.trailing])
+                                    .foregroundColor(Color(text))
+                                .bold()
+                            }
+                            else if (childModel.progressC2 == 1.0){
+                                Text("3 / 3")
+                                    .padding([.vertical])
+                                    .padding([.trailing])
+                                    .foregroundColor(Color(text))
+                                .bold()
+                            }
+                            else {
+                                Text("0 / 3")
+                                    .padding([.vertical])
+                                    .padding([.trailing])
+                                    .foregroundColor(Color(text))
+                                .bold()
+                            }
+                        }
+                        if (chapterLabel == "C3"){
+                            if (childModel.progressC3 == 0.33333333333){
+                                Text("1 / 3")
+                                    .padding([.vertical])
+                                    .padding([.trailing])
+                                    .foregroundColor(Color(text))
+                                .bold()
+                            }
+                            else if (childModel.progressC3 == 0.66666666666){
+                                Text("2 / 3")
+                                    .padding([.vertical])
+                                    .padding([.trailing])
+                                    .foregroundColor(Color(text))
+                                .bold()
+                            }
+                            else if (childModel.progressC3 == 1.0){
+                                Text("3 / 3")
+                                    .padding([.vertical])
+                                    .padding([.trailing])
+                                    .foregroundColor(Color(text))
+                                .bold()
+                            }
+                            else {
+                                Text("0 / 3")
+                                    .padding([.vertical])
+                                    .padding([.trailing])
+                                    .foregroundColor(Color(text))
+                                .bold()
+                            }
+                        }
                     }
                     .padding([.top], -5)
                     
@@ -76,15 +205,15 @@ struct childStartLesson: View {
                             RoundedRectangle(cornerRadius: 7)
                                 .padding()
                                 .frame(minHeight: 80)
-                                .foregroundColor(Color(shadow!))
+                                .foregroundColor(Color(shadow))
                             RoundedRectangle(cornerRadius: 7)
                                 .padding()
                                 .padding([.bottom],6)
                                 .frame(minHeight: 90)
-                                .foregroundColor(Color(text!))
+                                .foregroundColor(Color(text))
                                 .overlay{
                                     Text("START")
-                                        .foregroundColor(Color(background!))
+                                        .foregroundColor(Color(background))
                                         .fontWeight(.heavy)
                                         .font(.title2)
                                 }
@@ -105,19 +234,25 @@ struct childStartLesson: View {
 }
 
 struct childStartLesson_Previews: PreviewProvider {
+    @State static var progress: CGFloat = 0.5
+    @State static var childModel = CurrentLesson()
+    @State static var chapterLabel: String? = "C1"
+    @State static var lesson: [String]? = ["a", "b", "c"]
+    @State static var lessonNumber: [String]? = ["a", "b", "c"]
+    @State static var lessonName: [String]? = ["a", "b", "c"]
     static var previews: some View {
-        childStartLesson()
+        childStartLesson(progress: $progress, childModel: $childModel, chapterLabel: $chapterLabel, lesson: $lesson, lessonNumber: $lessonNumber, lessonName: $lessonName)
     }
 }
 
 struct LineProgress: View {
-    @State var progress: CGFloat?
+    @Binding var progress: CGFloat
     
     @State var progressDone: String?
     @State var shadow: String?
     
     var currentPercentage: Int {
-        Int(progress!*100)
+        Int(progress * 100)
     }
     
     var body: some View {
@@ -128,7 +263,7 @@ struct LineProgress: View {
                     .foregroundColor(Color(shadow!))
                 
                 Capsule()
-                    .frame(width: geometry.size.width * progress!, height: 17)
+                    .frame(width: geometry.size.width * progress, height: 17)
                     .foregroundColor(Color(progressDone!))
             }
             .frame(alignment: .center)

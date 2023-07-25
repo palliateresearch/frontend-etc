@@ -12,13 +12,13 @@ struct childLessonMaterial: View {
     @State private var showNewPage = false
     
     @State var chapter: String?
-    @State var lesson: String?
-    @State var header: [String]?
-    @State var content: [String]?
+    @State var lesson: [String]?
+    @State var header: [[String]]?
+    @State var content: [[String]]?
     @State var frameSize: [CGFloat]?
     @State private var currentIndex = 0
-    @State var childModel = currentLesson()
-    @State var firstKeyWithFalseValue: String?
+    @Binding var childModel: CurrentLesson
+    @Binding var chapterLabel: String?
     
     
     var body: some View {
@@ -39,77 +39,74 @@ struct childLessonMaterial: View {
                             .frame(maxWidth: .infinity, alignment: .center)
                             .padding()
                             .font(.title2)
+                        if (chapterLabel == "C1"){
+                            Text(lesson![childModel.currentLessonCh1])
+                                .bold()
+                                .foregroundColor(Color("aliceBlue"))
+                                .fontDesign(.rounded)
+                                .font(.title3)
+                                .padding()
+                                .padding(.top, -30)
+                        }
                         
-                        Text(lesson!)
-                            .bold()
-                            .foregroundColor(Color("aliceBlue"))
-                            .fontDesign(.rounded)
-                            .font(.title3)
-                            .padding()
-                            .padding(.top, -30)
+                        if (chapterLabel == "C2"){
+                            Text(lesson![childModel.currentLessonCh2])
+                                .bold()
+                                .foregroundColor(Color("aliceBlue"))
+                                .fontDesign(.rounded)
+                                .font(.title3)
+                                .padding()
+                                .padding(.top, -30)
+                        }
+                        
+                        if (chapterLabel == "C3"){
+                            Text(lesson![childModel.currentLessonCh3])
+                                .bold()
+                                .foregroundColor(Color("aliceBlue"))
+                                .fontDesign(.rounded)
+                                .font(.title3)
+                                .padding()
+                                .padding(.top, -30)
+                        }
                     }
                     .frame(maxWidth: .infinity, alignment: .top)
                     
-                    Text(header![currentIndex])
-                        .padding()
-                        .padding(.horizontal)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .bold()
-                        .foregroundColor(Color("lightningYellow"))
-                        .font(.title3)
+                    if (chapterLabel == "C1"){
+                        
+                        Text(header![childModel.currentLessonCh1][currentIndex])
+                            .padding()
+                            .padding(.horizontal)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .bold()
+                            .foregroundColor(Color("lightningYellow"))
+                            .font(.title3)
                         //.opacity(currentIndex == 0 ? 1 : 0)
                         
-                    
-                    Text(content![currentIndex])
-                        .padding(.horizontal,33)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundColor(Color("aliceBlue"))
+                        
+                        Text(content![childModel.currentLessonCh1][currentIndex])
+                            .padding(.horizontal,33)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundColor(Color("aliceBlue"))
                         //.opacity(currentIndex == 0 ? 1 : 0)
-                  
-                    
-                    HStack{
-                        Button(action: {
-                            prevText()
-                        }, label: {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 7)
-                                    .padding()
-                                    .frame(maxHeight: 80)
-                                    .foregroundColor(Color("aliceBlue"))
-                                RoundedRectangle(cornerRadius: 7)
-                                    .padding()
-                                    .padding([.bottom],10)
-                                    .frame(maxHeight: 90)
-                                    .foregroundColor(Color("dropShadowBlue"))
-                                    .overlay{
-                                        Text("BACK")
-                                            .foregroundColor(Color("aliceBlue"))
-                                            .fontWeight(.heavy)
-                                            .font(.title2)
-                                            .padding(.bottom, 7)
-                                    }
-                                
-                            }
-                            .frame(maxWidth: .infinity, alignment: .top)
-                        })
-                        if (currentIndex != (header!.count-1)){
+                        
+                        
+                        HStack{
                             Button(action: {
-                                currentIndex = (currentIndex + 1)
-                                print(childModel.progressC1)
+                                prevText()
                             }, label: {
                                 ZStack{
                                     RoundedRectangle(cornerRadius: 7)
                                         .padding()
                                         .frame(maxHeight: 80)
-                                        .foregroundColor(Color("dropShadowBlue"))
+                                        .foregroundColor(Color("aliceBlue"))
                                     RoundedRectangle(cornerRadius: 7)
                                         .padding()
                                         .padding([.bottom],10)
                                         .frame(maxHeight: 90)
-                                        .foregroundColor(Color("aliceBlue"))
+                                        .foregroundColor(Color("dropShadowBlue"))
                                         .overlay{
-                                            Text("NEXT")
-                                                .foregroundColor(Color("darkBlue"))
+                                            Text("BACK")
+                                                .foregroundColor(Color("aliceBlue"))
                                                 .fontWeight(.heavy)
                                                 .font(.title2)
                                                 .padding(.bottom, 7)
@@ -118,34 +115,267 @@ struct childLessonMaterial: View {
                                 }
                                 .frame(maxWidth: .infinity, alignment: .top)
                             })
-                        } else if (currentIndex == (header!.count-1)) {
+                            if (currentIndex != (header![childModel.currentLessonCh1].count-1)){
+                                Button(action: {
+                                    currentIndex = (currentIndex + 1)
+                                    print(childModel.progressC1)
+                                }, label: {
+                                    ZStack{
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .padding()
+                                            .frame(maxHeight: 80)
+                                            .foregroundColor(Color("dropShadowBlue"))
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .padding()
+                                            .padding([.bottom],10)
+                                            .frame(maxHeight: 90)
+                                            .foregroundColor(Color("aliceBlue"))
+                                            .overlay{
+                                                Text("NEXT")
+                                                    .foregroundColor(Color("darkBlue"))
+                                                    .fontWeight(.heavy)
+                                                    .font(.title2)
+                                                    .padding(.bottom, 7)
+                                            }
+                                        
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .top)
+                                })
+                            } else if (currentIndex == (header![childModel.currentLessonCh1].count-1)) {
                                 Button(action: {
                                     findNextLesson()
                                     presentationMode.wrappedValue.dismiss()
+                                    
                                     print(childModel.progressC1)
                                 }, label: {
+                                    ZStack{
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .padding()
+                                            .frame(maxHeight: 80)
+                                            .foregroundColor(Color("dropShadowBlue"))
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .padding()
+                                            .padding([.bottom],10)
+                                            .frame(maxHeight: 90)
+                                            .foregroundColor(Color("aliceBlue"))
+                                            .overlay{
+                                                Text("DONE")
+                                                    .foregroundColor(Color("darkBlue"))
+                                                    .fontWeight(.heavy)
+                                                    .font(.title2)
+                                                    .padding(.bottom, 7)
+                                            }
+                                        
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .top)
+                                    
+                                })
+                            }
+                        }
+                    }
+                    //here
+                    if (chapterLabel == "C2"){
+                        
+                        Text(header![childModel.currentLessonCh2][currentIndex])
+                            .padding()
+                            .padding(.horizontal)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .bold()
+                            .foregroundColor(Color("lightningYellow"))
+                            .font(.title3)
+                        //.opacity(currentIndex == 0 ? 1 : 0)
+                        
+                        
+                        Text(content![childModel.currentLessonCh2][currentIndex])
+                            .padding(.horizontal,33)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundColor(Color("aliceBlue"))
+                        //.opacity(currentIndex == 0 ? 1 : 0)
+                        
+                        
+                        HStack{
+                            Button(action: {
+                                prevText()
+                            }, label: {
                                 ZStack{
                                     RoundedRectangle(cornerRadius: 7)
                                         .padding()
                                         .frame(maxHeight: 80)
-                                        .foregroundColor(Color("dropShadowBlue"))
+                                        .foregroundColor(Color("aliceBlue"))
                                     RoundedRectangle(cornerRadius: 7)
                                         .padding()
                                         .padding([.bottom],10)
                                         .frame(maxHeight: 90)
-                                        .foregroundColor(Color("aliceBlue"))
+                                        .foregroundColor(Color("dropShadowBlue"))
                                         .overlay{
-                                            Text("DONE")
-                                                .foregroundColor(Color("darkBlue"))
+                                            Text("BACK")
+                                                .foregroundColor(Color("aliceBlue"))
                                                 .fontWeight(.heavy)
                                                 .font(.title2)
                                                 .padding(.bottom, 7)
                                         }
-
+                                    
                                 }
                                 .frame(maxWidth: .infinity, alignment: .top)
-                              
                             })
+                            if (currentIndex != (header![childModel.currentLessonCh2].count-1)){
+                                Button(action: {
+                                    currentIndex = (currentIndex + 1)
+                                    print(childModel.progressC2)
+                                }, label: {
+                                    ZStack{
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .padding()
+                                            .frame(maxHeight: 80)
+                                            .foregroundColor(Color("dropShadowBlue"))
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .padding()
+                                            .padding([.bottom],10)
+                                            .frame(maxHeight: 90)
+                                            .foregroundColor(Color("aliceBlue"))
+                                            .overlay{
+                                                Text("NEXT")
+                                                    .foregroundColor(Color("darkBlue"))
+                                                    .fontWeight(.heavy)
+                                                    .font(.title2)
+                                                    .padding(.bottom, 7)
+                                            }
+                                        
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .top)
+                                })
+                            } else if (currentIndex == (header![childModel.currentLessonCh2].count-1)) {
+                                Button(action: {
+                                    findNextLesson()
+                                    presentationMode.wrappedValue.dismiss()
+                                    
+                                    print(childModel.progressC2)
+                                }, label: {
+                                    ZStack{
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .padding()
+                                            .frame(maxHeight: 80)
+                                            .foregroundColor(Color("dropShadowBlue"))
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .padding()
+                                            .padding([.bottom],10)
+                                            .frame(maxHeight: 90)
+                                            .foregroundColor(Color("aliceBlue"))
+                                            .overlay{
+                                                Text("DONE")
+                                                    .foregroundColor(Color("darkBlue"))
+                                                    .fontWeight(.heavy)
+                                                    .font(.title2)
+                                                    .padding(.bottom, 7)
+                                            }
+                                        
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .top)
+                                    
+                                })
+                            }
+                        }
+                    }
+                    if (chapterLabel == "C3"){
+                        
+                        Text(header![childModel.currentLessonCh3][currentIndex])
+                            .padding()
+                            .padding(.horizontal)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .bold()
+                            .foregroundColor(Color("lightningYellow"))
+                            .font(.title3)
+                        //.opacity(currentIndex == 0 ? 1 : 0)
+                        
+                        
+                        Text(content![childModel.currentLessonCh3][currentIndex])
+                            .padding(.horizontal,33)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundColor(Color("aliceBlue"))
+                        //.opacity(currentIndex == 0 ? 1 : 0)
+                        
+                        
+                        HStack{
+                            Button(action: {
+                                prevText()
+                            }, label: {
+                                ZStack{
+                                    RoundedRectangle(cornerRadius: 7)
+                                        .padding()
+                                        .frame(maxHeight: 80)
+                                        .foregroundColor(Color("aliceBlue"))
+                                    RoundedRectangle(cornerRadius: 7)
+                                        .padding()
+                                        .padding([.bottom],10)
+                                        .frame(maxHeight: 90)
+                                        .foregroundColor(Color("dropShadowBlue"))
+                                        .overlay{
+                                            Text("BACK")
+                                                .foregroundColor(Color("aliceBlue"))
+                                                .fontWeight(.heavy)
+                                                .font(.title2)
+                                                .padding(.bottom, 7)
+                                        }
+                                    
+                                }
+                                .frame(maxWidth: .infinity, alignment: .top)
+                            })
+                            if (currentIndex != (header![childModel.currentLessonCh3].count-1)){
+                                Button(action: {
+                                    currentIndex = (currentIndex + 1)
+                                    print(childModel.progressC3)
+                                }, label: {
+                                    ZStack{
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .padding()
+                                            .frame(maxHeight: 80)
+                                            .foregroundColor(Color("dropShadowBlue"))
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .padding()
+                                            .padding([.bottom],10)
+                                            .frame(maxHeight: 90)
+                                            .foregroundColor(Color("aliceBlue"))
+                                            .overlay{
+                                                Text("NEXT")
+                                                    .foregroundColor(Color("darkBlue"))
+                                                    .fontWeight(.heavy)
+                                                    .font(.title2)
+                                                    .padding(.bottom, 7)
+                                            }
+                                        
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .top)
+                                })
+                            } else if (currentIndex == (header![childModel.currentLessonCh3].count-1)) {
+                                Button(action: {
+                                    findNextLesson()
+                                    presentationMode.wrappedValue.dismiss()
+                                    
+                                    print(childModel.progressC3)
+                                }, label: {
+                                    ZStack{
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .padding()
+                                            .frame(maxHeight: 80)
+                                            .foregroundColor(Color("dropShadowBlue"))
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .padding()
+                                            .padding([.bottom],10)
+                                            .frame(maxHeight: 90)
+                                            .foregroundColor(Color("aliceBlue"))
+                                            .overlay{
+                                                Text("DONE")
+                                                    .foregroundColor(Color("darkBlue"))
+                                                    .fontWeight(.heavy)
+                                                    .font(.title2)
+                                                    .padding(.bottom, 7)
+                                            }
+                                        
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .top)
+                                    
+                                })
+                            }
                         }
                     }
                     
@@ -156,39 +386,58 @@ struct childLessonMaterial: View {
     }
     
     func findNextLesson(){
-
-        firstKeyWithFalseValue = childModel.lessonStatus.first
-        print(firstKeyWithFalseValue!)
         
-        if (firstKeyWithFalseValue == "C1L1"){
-            childModel.progressC1 = 0.33333333333
+        if (chapterLabel == "C1"){
+            
+            if (childModel.currentLessonCh1 == 2){
+                childModel.Ch1Done = true
+                childModel.currentLessonCh1 = 0
+            } else {
+                childModel.currentLessonCh1 = childModel.currentLessonCh1 + 1
+            }
+            
+            if (childModel.currentLessonCh1 == 1){
+                childModel.progressC1 = 0.33333333333
+            } else if (childModel.currentLessonCh1 == 2) {
+                childModel.progressC1 = 0.66666666666
+            } else {
+                childModel.progressC1 = 1.0
+            }
         }
-        else if (firstKeyWithFalseValue == "C1L2"){
-            childModel.progressC1 = 0.66666666666
+        if (chapterLabel == "C2"){
+            
+            if (childModel.currentLessonCh2 == 2){
+                childModel.Ch2Done = true
+                childModel.currentLessonCh2 = 0
+            } else {
+                childModel.currentLessonCh2 = childModel.currentLessonCh2 + 1
+            }
+            
+            if (childModel.currentLessonCh2 == 1){
+                childModel.progressC2 = 0.33333333333
+            } else if (childModel.currentLessonCh2 == 2) {
+                childModel.progressC2 = 0.66666666666
+            } else {
+                childModel.progressC2 = 1.0
+            }
         }
-        else if (firstKeyWithFalseValue == "C1L3"){
-            childModel.progressC1 = 1.0
+        if (chapterLabel == "C3"){
+            
+            if (childModel.currentLessonCh3 == 2){
+                childModel.Ch3Done = true
+                childModel.currentLessonCh3 = 0
+            } else {
+                childModel.currentLessonCh3 = childModel.currentLessonCh3 + 1
+            }
+            
+            if (childModel.currentLessonCh3 == 1){
+                childModel.progressC3 = 0.33333333333
+            } else if (childModel.currentLessonCh3 == 2) {
+                childModel.progressC3 = 0.66666666666
+            } else {
+                childModel.progressC3 = 1.0
+            }
         }
-        else if (firstKeyWithFalseValue == "C2L1"){
-            childModel.progressC1 = 0.33333333333
-        }
-        else if (firstKeyWithFalseValue == "C2L2"){
-            childModel.progressC1 = 0.66666666666
-        }
-        else if (firstKeyWithFalseValue == "C2L3"){
-            childModel.progressC1 = 1.0
-        }
-        else if (firstKeyWithFalseValue == "C3L1"){
-            childModel.progressC1 = 0.33333333333
-        }
-        else if (firstKeyWithFalseValue == "C3L2"){
-            childModel.progressC1 = 0.66666666666
-        }
-        else if (firstKeyWithFalseValue == "C3L3"){
-            childModel.progressC1 = 1.0
-        }
-        
-        childModel.lessonStatus.removeFirst()
     }
     
     func prevText() {
@@ -201,7 +450,9 @@ struct childLessonMaterial: View {
 }
 
 struct childLessonMaterial_Previews: PreviewProvider {
+    @State static var childModel = CurrentLesson()
+    @State static var chapterLabel: String? = "C1"
     static var previews: some View {
-        childLessonMaterial()
+        childLessonMaterial(childModel: $childModel, chapterLabel: $chapterLabel)
     }
 }
