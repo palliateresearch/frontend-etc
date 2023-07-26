@@ -142,11 +142,6 @@ struct childStartView: View {
         .fullScreenCover(isPresented: $pv.isParent) {
                 StartView()
         }
-            
-        .onAppear {
-            
-            model.load()
-        }
     }
 }
 
