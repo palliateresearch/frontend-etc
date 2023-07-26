@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct childCongrats: View {
-    @State private var achievementsViewActive = false
     @State private var finished = false
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationStack{
@@ -45,7 +45,7 @@ struct childCongrats: View {
                         .multilineTextAlignment(.center)
                     Spacer()
                     Button(action: {
-                        achievementsViewActive = true
+                        dismiss()
                     }, label: {
                         ZStack{
                             RoundedRectangle(cornerRadius: 7)
@@ -75,10 +75,6 @@ struct childCongrats: View {
                 .opacity(finished ? 0 : 1)
             }.background(Color("lightBlue"))
         }
-        .navigationViewStyle(StackNavigationViewStyle())
-            .fullScreenCover(isPresented: $achievementsViewActive) {
-                    childContentView()
-            }
         .onAppear(perform:doAnimation)
     }
     

@@ -101,7 +101,7 @@ struct childSettings: View {
                         .padding()
                     }
                     
-                    Toggle("Toggle Example", isOn: $childData.isToggleOn)
+                    Toggle("Lesson Dictation", isOn: $childData.isToggleOn)
                         .fontDesign(.rounded)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.title2)
