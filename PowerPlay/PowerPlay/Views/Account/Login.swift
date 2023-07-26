@@ -153,6 +153,7 @@ struct Login: View {
             .fullScreenCover(isPresented: $isLoggedIn) {
                 ContentView()
             }
+            
             .background(Color("darkModeBackground"))
             .preferredColorScheme(.dark)
             .onAppear {

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CalendarView: View {
     private let calendar = Calendar.current
+    var x = AchievementsData()
+    let c = calculateAchievements()
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "d"
@@ -72,13 +74,19 @@ struct CalendarView: View {
                 ForEach(0..<startColumnIndex!, id: \.self) { _ in
                     Color.clear
                 }
+             
+        
                 
                 ForEach(1...numberOfDaysInMonth, id: \.self) { day in
-                    let isFullDaySelected = AchievementsData().setDaysFullGoalAchieved().contains(day)
-                    let isPartialDaySelected = AchievementsData().setDaysPartialGoalAchieved().contains(day)
+                    
+                    let isFullDaySelected = x.setDaysFullGoalAchieved().contains(day)
+                       
+                    let isPartialDaySelected = x.setDaysPartialGoalAchieved().contains(day)
+                       
                     
                     
                     if (isFullDaySelected){
+                        
                         Text("\(day)")
                             .fontDesign(.rounded)
                             .font(.headline)
@@ -152,6 +160,7 @@ struct CalendarView: View {
         }
         .padding()
     }
+
 }
 
 struct CalendarView_Previews: PreviewProvider {
