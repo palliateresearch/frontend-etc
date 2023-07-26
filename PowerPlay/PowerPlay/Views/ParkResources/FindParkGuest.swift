@@ -72,11 +72,7 @@ struct FindParkGuest: View {
                     // Submit Button
                     Button("Submit", action: {
                         model.save()
-                        if model.myUsers.last?.lastName == "" || model.myUsers.last?.lastName == nil { // if not logged in
-                            showGuestHome = true
-                        } else {
-                            showHome = true
-                        }
+                        showHome = true
                     })
                     .font(.system(size: width * 0.06, weight: .bold))
                     .foregroundColor(Color.black)
