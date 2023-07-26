@@ -16,7 +16,7 @@ struct ContentView: View {
                     }
                     .tag(0)
                 
-                Achievements()
+                Achievements(userData: userData)
                     .tabItem {
                         Label("Achievements", systemImage: "trophy")
                     }

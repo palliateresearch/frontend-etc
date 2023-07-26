@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class AchievementsData: ObservableObject {
     @Published var badgesComplete: Set<String> = []
@@ -22,14 +23,99 @@ class AchievementsData: ObservableObject {
 //    }
 //    
     func setDaysFullGoalAchieved() -> [Int] {
-        daysFullGoalAchieved = [1, 2, 9, 10, 13]
-        return daysFullGoalAchieved
+        let c = calculateAchievements()
+        var res: [Int] = []
+        model.save()
+        let day = c.dayOfMonth()
+        for dayIndex in stride(from: day, through: 1, by: -1) {
+            if let lastPark = model.myParks.last {
+                if (lastPark.wattHrsPerDay?[dayIndex] ?? 49 >= 50) {
+                    res.append(dayIndex)
+                
+                }
+                
+            }
+        }
+
+        
+        return res
     }
     
     func setDaysPartialGoalAchieved() -> [Int] {
-        daysPartialGoalAchieved = [3, 6, 7, 11]
-        return daysPartialGoalAchieved
+        let c = calculateAchievements()
+        var res: [Int] = []
+        let day = c.dayOfMonth()
+        for dayIndex in stride(from: day, through: 1, by: -1) {
+            if let lastPark = model.myParks.last {
+                if (lastPark.wattHrsPerDay?[dayIndex] ?? 50 >= 0) {
+                    if (lastPark.wattHrsPerDay?[dayIndex] ?? 50 < 50) {
+                        res.append(dayIndex)
+                    
+                    }
+                   
+                }
+                
+            }
+        }
+        
+        
+        return res
     }
+    func getFirstStreak() -> Int {
+        let res = setDaysFullGoalAchieved()
+        
+        if res.isEmpty {
+            return 0
+        }
+        
+        var streak = 1
+
+        for i in 1..<res.count {
+            if res[i] == res[i - 1] + 1 {
+                streak += 1
+            } else {
+                break
+            }
+        }
+
+        return streak
+    }
+
+    func getLongestStreak() -> Int {
+        let res = setDaysFullGoalAchieved()
+        
+        if res.isEmpty {
+            return 0
+        }
+        
+        var streak = 1
+        var longestStreak = 1
+
+        for i in 1..<res.count {
+            if res[i] == res[i - 1] + 1 {
+                streak += 1
+                if streak > longestStreak {
+                    longestStreak = streak
+                }
+            } else {
+                streak = 1
+            }
+        }
+
+        return longestStreak
+    }
+
+    func printAllWattHrs() {
+        if let lastPark = model.myParks.last,
+           let wattHrsPerDay = lastPark.wattHrsPerDay {
+            for watts in wattHrsPerDay {
+                print(watts)
+            }
+        }
+    }
+
+
+    
     
     func getStartDayOfWeek() -> Int {
         let calendar = Calendar.current

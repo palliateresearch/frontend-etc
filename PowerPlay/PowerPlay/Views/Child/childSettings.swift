@@ -126,6 +126,31 @@ struct childSettings: View {
                 }
                 
                 Button {
+                    isLogout = true
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 7)
+                            .padding()
+                            .frame(minHeight: 80)
+                            .foregroundColor(Color("dropShadowLogoutRed"))
+                        RoundedRectangle(cornerRadius: 7)
+                            .padding()
+                            .padding([.bottom], 6)
+                            .frame(minHeight: 90)
+                            .foregroundColor(Color("logoutRed"))
+                            .overlay{
+                                Text("LOGOUT")
+                                    .foregroundColor(Color.white)
+                                    .fontWeight(.heavy)
+                                    .fontDesign(.rounded)
+                                    .font(.title2)
+                            }
+                    }
+                }
+                .padding([.bottom], 70)
+                .padding()
+                
+                Button {
                     model.deleteAllEntitiesData()
                     isLogout = true
                 } label: {

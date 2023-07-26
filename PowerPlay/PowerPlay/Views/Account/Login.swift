@@ -153,15 +153,12 @@ struct Login: View {
             .fullScreenCover(isPresented: $isLoggedIn) {
                 ContentView()
             }
+            
             .background(Color("darkModeBackground"))
             .preferredColorScheme(.dark)
             .onAppear {
                 model.load()
 
-                DispatchQueue.main.async {
-                    pv.username = model.myUsers.last?.username ?? ""
-                    pv.password = model.myUsers.last?.password ?? ""
-                }
             }
         }
     }

@@ -8,6 +8,8 @@ struct Register: View {
     @State private var passSelect: Bool = false
     @State private var firstSelect: Bool = false
     @State private var lastSelect: Bool = false
+    
+    @State private var isChildActive: Bool = false
 
     @State private var isLoggedIn: Bool = false
     @State private var isParentLocal: Bool = false
@@ -230,6 +232,8 @@ struct Register: View {
                 }
                 .buttonStyle(PlainButtonStyle())
                 .padding(.horizontal, width * 0.1)
+                
+              
             }
             .fullScreenCover(isPresented: $isLoggedIn) {
                 if pv.isParent {
@@ -238,6 +242,7 @@ struct Register: View {
                     FindPark()
                 }
             }
+            
             .fullScreenCover(isPresented: $isLogin) {
                 Login()
             }
