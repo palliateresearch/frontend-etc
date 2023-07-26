@@ -246,7 +246,6 @@ struct childRegister: View {
                 childLogin()
             }
             .onAppear {
-            
                 pv.resetPV()
                 model.load()
                 print ("is model true?")

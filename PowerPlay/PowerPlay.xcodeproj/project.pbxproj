@@ -61,6 +61,9 @@
 		C9219DF42A5CACC600A65277 /* PowerPlayUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9219DF32A5CACC600A65277 /* PowerPlayUITestsLaunchTests.swift */; };
 		C9E6E1CB2A6ADC1F00D4FFA8 /* childModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E6E1CA2A6ADC1F00D4FFA8 /* childModel.swift */; };
 		C9E6E1CD2A6ADE1E00D4FFA8 /* childViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E6E1CC2A6ADE1E00D4FFA8 /* childViewModel.swift */; };
+		C9E6E1CF2A70D68F00D4FFA8 /* PowerPlay Badges 3.imported.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C9E6E1CE2A70D68F00D4FFA8 /* PowerPlay Badges 3.imported.usdz */; };
+		C9E6E1D12A70DD9100D4FFA8 /* PowerPlay Badges.exported.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C9E6E1D02A70DD9100D4FFA8 /* PowerPlay Badges.exported.usdz */; };
+		C9E6E1D32A70DDA000D4FFA8 /* PowerPlay Badges 2.imported.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C9E6E1D22A70DD9F00D4FFA8 /* PowerPlay Badges 2.imported.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +141,9 @@
 		C9219DF32A5CACC600A65277 /* PowerPlayUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerPlayUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C9E6E1CA2A6ADC1F00D4FFA8 /* childModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childModel.swift; sourceTree = "<group>"; };
 		C9E6E1CC2A6ADE1E00D4FFA8 /* childViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childViewModel.swift; sourceTree = "<group>"; };
+		C9E6E1CE2A70D68F00D4FFA8 /* PowerPlay Badges 3.imported.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "PowerPlay Badges 3.imported.usdz"; sourceTree = "<group>"; };
+		C9E6E1D02A70DD9100D4FFA8 /* PowerPlay Badges.exported.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "PowerPlay Badges.exported.usdz"; sourceTree = "<group>"; };
+		C9E6E1D22A70DD9F00D4FFA8 /* PowerPlay Badges 2.imported.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "PowerPlay Badges 2.imported.usdz"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +274,9 @@
 		C9219DCA2A5CACC400A65277 = {
 			isa = PBXGroup;
 			children = (
+				C9E6E1D22A70DD9F00D4FFA8 /* PowerPlay Badges 2.imported.usdz */,
+				C9E6E1D02A70DD9100D4FFA8 /* PowerPlay Badges.exported.usdz */,
+				C9E6E1CE2A70D68F00D4FFA8 /* PowerPlay Badges 3.imported.usdz */,
 				C905D6382A60EFAE009BF5DB /* CalendarView.swift */,
 				C9219DD52A5CACC400A65277 /* PowerPlay */,
 				C9219DE62A5CACC600A65277 /* PowerPlayTests */,
@@ -435,6 +444,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9E6E1D32A70DDA000D4FFA8 /* PowerPlay Badges 2.imported.usdz in Resources */,
+				C9E6E1D12A70DD9100D4FFA8 /* PowerPlay Badges.exported.usdz in Resources */,
+				C9E6E1CF2A70D68F00D4FFA8 /* PowerPlay Badges 3.imported.usdz in Resources */,
 				C9219DDE2A5CACC600A65277 /* Preview Assets.xcassets in Resources */,
 				C9219DDB2A5CACC600A65277 /* Assets.xcassets in Resources */,
 			);

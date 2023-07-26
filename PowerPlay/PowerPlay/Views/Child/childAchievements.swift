@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SceneKit
 
 struct childAchievements: View {
     var adaptiveColumns = [GridItem(.adaptive(minimum: 100))]
@@ -88,6 +89,20 @@ struct childAchievements: View {
                 .padding()
                 .background(Color("lightBlue"))
                 
+//                SceneView(
+//                    scene: {
+//                        let scene = SCNScene(named: "PowerPlay Badges 3.imported.usdz")
+//                        
+//                        if let scene = scene {
+//                            scene.background.contents = UIColor.gray
+//                        }
+//                                
+//                        return scene
+//                    }() ,options: [.autoenablesDefaultLighting, .allowsCameraControl]
+//                )
+//                .frame(width: 200, height:  200)
+//                .scaleEffect(0.65)
+                
             }
             .background(Color("lightBlue"))
             .onAppear{
@@ -123,13 +138,13 @@ struct childAchievements: View {
     }
     func calcBadgeWattHrs(wattHrs: Float) {
         if (wattHrs >= 500) {
-            appendBadgeToLastPark(name: "badgeWh3")
+            appendBadgeToLastPark(name: "PowerPlay Badges 3.imported.usdz")
         }
         if (wattHrs >= 150) {
-            appendBadgeToLastPark(name: "badgeWh2")
+            appendBadgeToLastPark(name: "PowerPlay Badges 2.imported.usdz")
         }
         if (wattHrs >= 50) {
-            appendBadgeToLastPark(name: "badgeWh1")
+            appendBadgeToLastPark(name: "PowerPlay Badges.exported.usdz")
         }
     }
     func calcBadgeStreaks() {
@@ -174,14 +189,11 @@ struct childAchievements: View {
         for _ in range {
             model.myParks.last?.wattHrsPerDay?.append(Float.random(in: 1.0..<750.0))
         }
-        //print(model.myParks.last?.wattHrsPerDay)
     }
 
-
-
-
-    
 }
+
+
 
 struct childAchievements_Previews: PreviewProvider {
     static var previews: some View {

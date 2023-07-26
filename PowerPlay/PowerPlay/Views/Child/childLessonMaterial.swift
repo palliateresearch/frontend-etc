@@ -16,7 +16,7 @@ struct ChildLessonMaterial: View {
     let currentLessonChapterSectionIdx: Int // currentIndex
     let backCallback:()->()
     let nextCallback:()->()
-    let doneCallback:()->()
+    let doneCallback:()->Bool
     let isDone:Bool
     
     var body: some View {
@@ -38,7 +38,7 @@ struct ChildLessonMaterial: View {
         
         
         HStack{
-            ChildLessonBackNextDoneButton(
+            ChildLessonBackNextButton(
                 title: "BACK",
                 titleColor: Color("aliceBlue"),
                 foregroundColor: Color("aliceBlue"),
@@ -46,7 +46,7 @@ struct ChildLessonMaterial: View {
                 action: backCallback
             )
             if isDone {
-                ChildLessonBackNextDoneButton(
+                ChildLessonDoneButton(
                     title: "DONE",
                     titleColor: Color("darkBlue"),
                     foregroundColor: Color("dropShadowBlue"),
@@ -54,7 +54,7 @@ struct ChildLessonMaterial: View {
                     action: doneCallback
                 )
             } else {
-                ChildLessonBackNextDoneButton(
+                ChildLessonBackNextButton(
                     title: "NEXT",
                     titleColor: Color("darkBlue"),
                     foregroundColor: Color("dropShadowBlue"),
@@ -84,11 +84,11 @@ struct childLessonMaterial: View {
     @Binding var chapterLabel: String?
     @State var isLoading: Bool = false
     
-    func doneButtonCallback() {
+    func doneButtonCallback() -> Bool{
         findNextLesson()
         presentationMode.wrappedValue.dismiss()
-
         print(childModel.progressC1)
+        return true
     }
     
     func nextButtonCallback() {
@@ -259,33 +259,37 @@ struct childLessonMaterial: View {
                                     .frame(maxWidth: .infinity, alignment: .top)
                                 })
                             } else if (currentIndex == (header![childModel.currentLessonCh2].count-1)) {
-                                Button(action: {
-                                    findNextLesson()
-                                    presentationMode.wrappedValue.dismiss()
-                                    
-                                    print(childModel.progressC2)
-                                }, label: {
-                                    ZStack{
-                                        RoundedRectangle(cornerRadius: 7)
-                                            .padding()
-                                            .frame(maxHeight: 80)
-                                            .foregroundColor(Color("dropShadowBlue"))
-                                        RoundedRectangle(cornerRadius: 7)
-                                            .padding()
-                                            .padding([.bottom],10)
-                                            .frame(maxHeight: 90)
-                                            .foregroundColor(Color("aliceBlue"))
-                                            .overlay{
-                                                Text("DONE")
-                                                    .foregroundColor(Color("darkBlue"))
-                                                    .fontWeight(.heavy)
-                                                    .font(.title2)
-                                                    .padding(.bottom, 7)
+                           
+                                    NavigationLink(destination: childCongrats(), label: {
+                                   
+                                        Button(action: {
+                                            findNextLesson()
+                                            //presentationMode.wrappedValue.dismiss()
+                                            
+                                            print(childModel.progressC2)
+                                        }, label: {
+                                            ZStack{
+                                                RoundedRectangle(cornerRadius: 7)
+                                                    .padding()
+                                                    .frame(maxHeight: 80)
+                                                    .foregroundColor(Color("dropShadowBlue"))
+                                                RoundedRectangle(cornerRadius: 7)
+                                                    .padding()
+                                                    .padding([.bottom],10)
+                                                    .frame(maxHeight: 90)
+                                                    .foregroundColor(Color("aliceBlue"))
+                                                    .overlay{
+                                                        Text("DONE")
+                                                            .foregroundColor(Color("darkBlue"))
+                                                            .fontWeight(.heavy)
+                                                            .font(.title2)
+                                                            .padding(.bottom, 7)
+                                                    }
+                                                
                                             }
-                                        
-                                    }
-                                    .frame(maxWidth: .infinity, alignment: .top)
-                                    
+                                            .frame(maxWidth: .infinity, alignment: .top)
+                                            
+                                        })
                                 })
                             }
                         }

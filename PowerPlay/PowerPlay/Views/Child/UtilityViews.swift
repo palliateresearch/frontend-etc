@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ChildLessonBackNextDoneButton: View {
+struct ChildLessonBackNextButton: View {
     let title:String
     let titleColor:Color
     let foregroundColor:Color
@@ -40,6 +40,51 @@ struct ChildLessonBackNextDoneButton: View {
             .frame(maxWidth: .infinity, alignment: .top)
             
         })
+    }
+}
+
+struct ChildLessonDoneButton: View {
+    let title:String
+    let titleColor:Color
+    let foregroundColor:Color
+    let shadowColor:Color
+    let action:()->Bool
+    @State var isCongrats: Bool = false
+
+    var body: some View {
+        
+       
+            Button(action: {
+                isCongrats = action()
+                //presentationMode.wrappedValue.dismiss()
+            }, label: {
+                ZStack{
+                    RoundedRectangle(cornerRadius: 7)
+                        .padding()
+                        .frame(maxHeight: 80)
+                        .foregroundColor(foregroundColor)
+                    RoundedRectangle(cornerRadius: 7)
+                        .padding()
+                        .padding([.bottom],10)
+                        .frame(maxHeight: 90)
+                        .foregroundColor(shadowColor)
+                        .overlay{
+                            Text(title)
+                                .foregroundColor(foregroundColor)
+                                .fontWeight(.heavy)
+                                .font(.title2)
+                                .padding(.bottom, 7)
+                        }
+                    
+                }
+                .frame(maxWidth: .infinity, alignment: .top)
+                
+            })
+            .sheet(isPresented: $isCongrats) {
+                childCongrats()
+            }
+
+
     }
 }
 

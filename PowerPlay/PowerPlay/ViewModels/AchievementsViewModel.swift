@@ -49,13 +49,13 @@ class AchievementsData: ObservableObject {
     func updateBadges(){
         //all existing badges: "badgeStreak1", "badgeStreak2", "badgeStreak3", "badgeWh1", "badgeWh2", "badgeWh3", "badge100Elec", "badge100Ener", "badge100Green"
         if(totalEnergy >= 50){
-                badgesComplete.insert("badgeWh1")
+                badgesComplete.insert("PowerPlay Badges.exported.usdz")
         }
         else if(totalEnergy >= 150){
-                badgesComplete.insert("badgeWh2")
+                badgesComplete.insert("PowerPlay Badges 2.imported.usdz")
         }
         else if(totalEnergy >= 500){
-                badgesComplete.insert("badgeWh3")
+                badgesComplete.insert("PowerPlay Badges 3.imported.usdz")
         }
     }
     
