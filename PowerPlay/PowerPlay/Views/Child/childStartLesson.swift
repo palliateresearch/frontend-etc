@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct childStartLesson: View {
     
@@ -21,6 +22,8 @@ struct childStartLesson: View {
     @Binding var lesson: [String]?
     @Binding var lessonNumber: [String]?
     @Binding var lessonName: [String]?
+    @Binding var content: [[String]]?
+    @State var audioPlayer: AVAudioPlayer?
   
     var body: some View {
         ZStack (alignment: .leading){
@@ -194,35 +197,48 @@ struct childStartLesson: View {
                     }
                     .padding([.top], -5)
                     
-                    Button(action: {
-                        
-                    }, label: {
-                        
+//                    Button(action: {
+//                        let apiKey = "56140ffb2cece3bdbe401f4ac3b2214c"
+//
+//                        let data = convertTextToSpeechStream(text: content![childModel.currentLessonCh1][0], apiKey: apiKey)
+//
+//                        do {
+//                            if (data != nil){
+//                                audioPlayer = try AVAudioPlayer(data: data!, fileTypeHint: "mp3")
+//                                audioPlayer?.prepareToPlay()
+//                                audioPlayer?.play()
+//                            }
+//                        } catch {
+//                            print("Error playing audio: \(error.localizedDescription)")
+//                        }
+//                    }, label: {
+                        NavigationLink(destination: nextPage, label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 7)
+                                    .padding()
+                                    .frame(minHeight: 80)
+                                    .foregroundColor(Color(shadow))
+                                RoundedRectangle(cornerRadius: 7)
+                                    .padding()
+                                    .padding([.bottom],6)
+                                    .frame(minHeight: 90)
+                                    .foregroundColor(Color(text))
+                                    .overlay{
+                                        Text("START")
+                                            .foregroundColor(Color(background))
+                                            .fontWeight(.heavy)
+                                            .font(.title2)
+                                    }
+                            }
+                            .padding([.bottom], 70)
+//                    })
+                    
+                    
+//                        .onTapGesture{
+//                            let apiKey = "56140ffb2cece3bdbe401f4ac3b2214c"
+//                            convertTextToSpeechStream(text: content![childModel.currentLessonCh1][0], apiKey: apiKey)
+//                        }
                     })
-                    
-                    NavigationLink(destination: nextPage, label: {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 7)
-                                .padding()
-                                .frame(minHeight: 80)
-                                .foregroundColor(Color(shadow))
-                            RoundedRectangle(cornerRadius: 7)
-                                .padding()
-                                .padding([.bottom],6)
-                                .frame(minHeight: 90)
-                                .foregroundColor(Color(text))
-                                .overlay{
-                                    Text("START")
-                                        .foregroundColor(Color(background))
-                                        .fontWeight(.heavy)
-                                        .font(.title2)
-                                }
-                                
-                        }
-                        .padding([.bottom], 70)
-                    })
-                    
-                    
                 }
             }
             
@@ -240,8 +256,9 @@ struct childStartLesson_Previews: PreviewProvider {
     @State static var lesson: [String]? = ["a", "b", "c"]
     @State static var lessonNumber: [String]? = ["a", "b", "c"]
     @State static var lessonName: [String]? = ["a", "b", "c"]
+    @State static var content: [[String]]? = [["a", "b", "c"],["a", "b", "c"],["a", "b", "c"]]
     static var previews: some View {
-        childStartLesson(progress: $progress, childModel: $childModel, chapterLabel: $chapterLabel, lesson: $lesson, lessonNumber: $lessonNumber, lessonName: $lessonName)
+        childStartLesson(progress: $progress, childModel: $childModel, chapterLabel: $chapterLabel, lesson: $lesson, lessonNumber: $lessonNumber, lessonName: $lessonName, content: $content)
     }
 }
 

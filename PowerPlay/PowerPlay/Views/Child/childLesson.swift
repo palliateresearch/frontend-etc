@@ -18,6 +18,7 @@ struct childLesson: View {
     @State var frameSize: [CGFloat]?
     @Binding var childModel: CurrentLesson
     @Binding var chapterLabel: String?
+    @ObservedObject var childData: ChildViewData
     
     var body: some View {
         NavigationStack{
@@ -27,7 +28,7 @@ struct childLesson: View {
                 Image(image!)
                     .scaleEffect(1.5)
                 Spacer()
-                childLessonMaterial(chapter: chapter!, lesson: lesson!, header: header!, content: content!, frameSize: frameSize!, childModel:$childModel, chapterLabel: $chapterLabel)
+                childLessonMaterial( childData: childData, chapter: chapter!, lesson: lesson!, header: header!, content: content!, frameSize: frameSize!, childModel:$childModel, chapterLabel: $chapterLabel)
                 Spacer()
                 
             }
@@ -38,10 +39,10 @@ struct childLesson: View {
     }
 }
 
-struct childLesson_Previews: PreviewProvider {
-    @State static var childModel = CurrentLesson()
-    @State static var chapterLabel: String? = "C1"
-    static var previews: some View {
-        childLesson(childModel: $childModel, chapterLabel: $chapterLabel)
-    }
-}
+//struct childLesson_Previews: PreviewProvider {
+//    @State static var childModel = CurrentLesson()
+//    @State static var chapterLabel: String? = "C1"
+//    static var previews: some View {
+//        childLesson(childModel: $childModel, chapterLabel: $chapterLabel)
+//    }
+//}

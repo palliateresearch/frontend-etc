@@ -12,6 +12,7 @@ struct childContentView: View {
     @ObservedObject var userData = UserViewData()
     @State private var tabColor: Color!
     @State var childModel = CurrentLesson()
+    @StateObject var childData = ChildViewData()
     
     @State private var park: String = ""
 
@@ -29,12 +30,12 @@ struct childContentView: View {
                         Label("Achievements", systemImage: "trophy")
                     }
                 
-                childDiscoverScroll()
+                childDiscoverScroll(childData: childData)
                     .tabItem {
                         Label("Discover", systemImage: "books.vertical")
                     }
                 
-                childSettings()
+                childSettings(childData: childData)
                     .tabItem {
                         Label("Settings", systemImage: "gear")
                     }

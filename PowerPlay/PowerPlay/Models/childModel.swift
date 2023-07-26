@@ -18,6 +18,7 @@ struct CurrentLesson {
     var Ch1Done: Bool = false
     var Ch2Done: Bool = false
     var Ch3Done: Bool = false
+    var isToggleOn: Bool = false
 }
 
 struct LessonQuestion {

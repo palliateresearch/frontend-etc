@@ -19,6 +19,9 @@ final class PowerPlayTests: XCTestCase {
     }
 
     func testExample() throws {
+        convertTextToSpeechStream(text: "text", apiKey: "key")
+        
+        XCTAssert(false)
 
 //        let testData = ArduinoData(unix_timestamp: 123456789, totalEnergy: 1234)
 //
