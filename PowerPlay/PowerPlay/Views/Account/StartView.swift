@@ -8,6 +8,9 @@ struct StartView: View {
     @State private var loginViewActive = false
     @State private var registerViewAction = false
     @State private var guestViewActive = false
+    @State private var isChildActive = false
+    
+    @EnvironmentObject var pv: PV
     
     @ObservedObject var userData = UserViewData()
     var model = TestModel()
@@ -19,7 +22,7 @@ struct StartView: View {
         
         NavigationView {
             GeometryReader { geometry in
-                let height = geometry.size.height * 0.09
+                let height = geometry.size.height * 0.07
                 let width = geometry.size.height * 0.5 // not rly width just a random var
                 let x = geometry.size.width * 0.85
                 VStack(spacing: 0) {
@@ -139,6 +142,21 @@ struct StartView: View {
                         Spacer()
                     }
                     
+                    Button(action: {
+                        pv.isParent = false
+                        model.myUsers.last?.isParent = pv.isParent
+                        model.save()
+                        isChildActive = true
+                        
+                    }) {
+                        Text("Are you a child?")
+                            .fontDesign(.rounded)
+                            .font(.system(size: 22, weight: .bold))
+                            .foregroundColor(Color("lightningYellow"))
+                            .underline()
+                            .padding(.bottom, 30)
+                    }
+                    .padding(.horizontal)
                     
                     
                 }
@@ -161,6 +179,9 @@ struct StartView: View {
         }
         .fullScreenCover(isPresented: $guestViewActive) {
                 FindPark()
+        }
+        .fullScreenCover(isPresented: $isChildActive) {
+                childStartView()
         }
             
     }

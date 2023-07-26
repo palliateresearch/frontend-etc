@@ -8,6 +8,8 @@ struct Register: View {
     @State private var passSelect: Bool = false
     @State private var firstSelect: Bool = false
     @State private var lastSelect: Bool = false
+    
+    @State private var isChildActive: Bool = false
 
     @State private var isLoggedIn: Bool = false
     @State private var isParentLocal: Bool = false
@@ -230,6 +232,22 @@ struct Register: View {
                 }
                 .buttonStyle(PlainButtonStyle())
                 .padding(.horizontal, width * 0.1)
+                
+                Button(action: {
+                    pv.isParent = false
+                    model.myUsers.last?.isParent = pv.isParent
+                    model.save()
+                    isChildActive = true
+                    
+                }) {
+                    Text("Are you a child?")
+                        .fontDesign(.rounded)
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundColor(Color("lightningYellow"))
+                        .underline()
+                }
+                .padding(.top, 20)
+                .padding(.horizontal)
             }
             .fullScreenCover(isPresented: $isLoggedIn) {
                 if pv.isParent {
@@ -237,6 +255,9 @@ struct Register: View {
                 } else {
                     FindPark()
                 }
+            }
+            .fullScreenCover(isPresented: $isChildActive) {
+                    childStartView()
             }
             .fullScreenCover(isPresented: $isLogin) {
                 Login()

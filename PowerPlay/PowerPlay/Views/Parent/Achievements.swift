@@ -9,11 +9,24 @@ import SwiftUI
 
 struct Achievements: View {
     
+    @ObservedObject var userData: UserViewData
     var model = TestModel()
     
-    private var adaptiveColumns = [GridItem(.adaptive(minimum: 100))]
+    let c: calculateAchievements
+    @State var x: Int = 0
+    @State var y: Int = 0
+    @State var tempWattHrs: [String] = []
+    
+    var adaptiveColumns = [GridItem(.adaptive(minimum: 100))]
     @State var selectedDate: Date = Date()
     @ObservedObject var achievementsData = AchievementsData()
+    
+    init(userData: UserViewData) {
+        self.userData = userData
+        self.c = calculateAchievements()
+        self.x = c.calcBadgeStreaks()
+        self.y = c.calcBadgeVisits()
+    }
     
     func getCurrentMonthAndYear() -> String {
         let currentDate = Date()
@@ -36,11 +49,11 @@ struct Achievements: View {
                     HStack{
                         Spacer()
                         VStack{
-                            Text("6 days")
+                            Text("\(y) days")
                                 .font(.title2)
                                 .bold()
                                 .fontDesign(.rounded)
-                            Text("current streak")
+                            Text("visit streak")
                                 .bold()
                                 .font(.subheadline)
                                 .fontDesign(.rounded)
@@ -54,11 +67,11 @@ struct Achievements: View {
                             .foregroundColor(Color("lightningYellow"))
                         
                         VStack{
-                            Text("10 days")
+                            Text("\(x) days")
                                 .font(.title2)
                                 .bold()
                                 .fontDesign(.rounded)
-                            Text("longest streak")
+                            Text("current streak")
                                 .bold()
                                 .font(.subheadline)
                                 .fontDesign(.rounded)
@@ -79,14 +92,7 @@ struct Achievements: View {
                                 .font(.title2)
                                 .bold()
                                 .padding([.horizontal, .top])
-                            
-//                            VStack() {
-//                                DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
-//                                    .padding(.horizontal)
-//                                    .datePickerStyle(.graphical)
-//
-//                            }
-//                            .padding()
+                    
                             CalendarView()
 
                             
@@ -98,18 +104,20 @@ struct Achievements: View {
                                 .fontDesign(.rounded)
                             
 
-                            LazyVGrid(columns: adaptiveColumns, spacing: 20){
-                                ForEach(model.myParks.last?.badges?.sorted() ?? [""], id: \.self){image in
+
+                            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100), spacing: 30)], spacing: 50) {
+                                ForEach(model.myParks.last?.badges ?? tempWattHrs, id: \.self) { image in
                                     ZStack {
                                         Image(image)
-                                            .scaleEffect(0.065)
+                                            .resizable()
+                                            .scaledToFill()
                                             .foregroundColor(Color.white)
-                                            .frame(width: 300, height: 100)
+                                            .frame(width: 100, height: 100)
                                     }
+                                    .frame(maxWidth: .infinity) // To make each cell occupy the same width and force 3 columns.
                                 }
-                            }.onAppear{
-                                achievementsData.updateBadges()
                             }
+
                             VStack{
                                 Spacer()
                                 Spacer()
@@ -122,6 +130,34 @@ struct Achievements: View {
                 }
                 .background(Color("navyBlue"))
         }.foregroundColor(Color.white)
+        .onAppear {
+            // This block will be triggered when userData.jsonData is updated
+            c.autoPopulateCalendar()
+            var wattHrs: Float = userData.jsonData.totalEnergy
+            c.calcBadgeWattHrs(wattHrs: wattHrs)
+            if (wattHrs >= 500) {
+                tempWattHrs.append("badgeWh3")
+            }
+            if (wattHrs >= 150) {
+                tempWattHrs.append("badgeWh2")
+            }
+            if (wattHrs >= 50) {
+                tempWattHrs.append("badgeWh1")
+            }
+
+            x = c.calcBadgeStreaks()
+            y = c.calcBadgeVisits()
+            
+            if (x >= 15) {
+                tempWattHrs.append("badgeStreak3")
+            }
+            if (x >= 10) {
+                tempWattHrs.append("badgeStreak2")
+            }
+            if (x >= 5) {
+                tempWattHrs.append("badgeStreak1")
+            }
+        }
             
         
     }
@@ -130,6 +166,6 @@ struct Achievements: View {
 
 struct Achievements_Previews: PreviewProvider {
     static var previews: some View {
-        Achievements()
+        Achievements(userData: UserViewData())
     }
 }
