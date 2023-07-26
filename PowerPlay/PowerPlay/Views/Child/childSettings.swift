@@ -4,6 +4,7 @@ struct childSettings: View {
     @EnvironmentObject private var pv: PV
     var model = TestModel()
     @State var isLogout = false
+    @ObservedObject var childData: ChildViewData
     
     var body: some View {
         NavigationStack {
@@ -100,9 +101,21 @@ struct childSettings: View {
                         .padding()
                     }
                     
-                  
+                    Toggle("Toggle Example", isOn: $childData.isToggleOn)
+                        .fontDesign(.rounded)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.title2)
+                        .foregroundColor(Color("darkBlue"))
+                        .padding()
+                        .bold()
+                        .onTapGesture {
+                            print(childData.isToggleOn)
+                        }
+                    
 
                 }
+                
+                
                 
                 VStack {
                     Spacer()
@@ -146,11 +159,11 @@ struct childSettings: View {
     }
 }
 
-struct childSettings_Previews: PreviewProvider {
-    static var previews: some View {
-        let pv = PV() // Create a mock instance of PV
-
-        return childSettings()
-            .environmentObject(pv) // Inject the mock instance as an environment object
-    }
-}
+//struct childSettings_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let pv = PV() // Create a mock instance of PV
+//
+//        return childSettings()
+//            .environmentObject(pv) // Inject the mock instance as an environment object
+//    }
+//}

@@ -6,10 +6,73 @@
 //
 
 import SwiftUI
+import AVFoundation
+
+
+struct ChildLessonMaterial: View {
+    let currentLessonHeader: String         // header![childModel.currentLessonCh1][currentIndex]
+    let currentLessonContent: String        // content![childModel.currentLessonCh1][currentIndex]
+    let currentLessonChapterIdx: Int        // childModel.currentLessonCh1
+    let currentLessonChapterSectionIdx: Int // currentIndex
+    let backCallback:()->()
+    let nextCallback:()->()
+    let doneCallback:()->()
+    let isDone:Bool
+    
+    var body: some View {
+        Text(currentLessonHeader)
+            .padding()
+            .padding(.horizontal)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .bold()
+            .foregroundColor(Color("lightningYellow"))
+            .font(.title3)
+        //.opacity(currentIndex == 0 ? 1 : 0)
+        
+        
+        Text(currentLessonContent)
+            .padding(.horizontal,33)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .foregroundColor(Color("aliceBlue"))
+        //.opacity(currentIndex == 0 ? 1 : 0)
+        
+        
+        HStack{
+            ChildLessonBackNextDoneButton(
+                title: "BACK",
+                titleColor: Color("aliceBlue"),
+                foregroundColor: Color("aliceBlue"),
+                shadowColor: Color("dropShadowBlue"),
+                action: backCallback
+            )
+            if isDone {
+                ChildLessonBackNextDoneButton(
+                    title: "DONE",
+                    titleColor: Color("darkBlue"),
+                    foregroundColor: Color("dropShadowBlue"),
+                    shadowColor: Color("aliceBlue"),
+                    action: doneCallback
+                )
+            } else {
+                ChildLessonBackNextDoneButton(
+                    title: "NEXT",
+                    titleColor: Color("darkBlue"),
+                    foregroundColor: Color("dropShadowBlue"),
+                    shadowColor: Color("aliceBlue"),
+                    action: nextCallback
+                )
+            }
+        }
+    }
+}
+
 
 struct childLessonMaterial: View {
+    @ObservedObject var childData: ChildViewData
     @Environment(\.presentationMode) var presentationMode
     @State private var showNewPage = false
+    
+    @State var audioPlayer: AVAudioPlayer?
     
     @State var chapter: String?
     @State var lesson: [String]?
@@ -19,7 +82,44 @@ struct childLessonMaterial: View {
     @State private var currentIndex = 0
     @Binding var childModel: CurrentLesson
     @Binding var chapterLabel: String?
+    @State var isLoading: Bool = false
     
+    func doneButtonCallback() {
+        findNextLesson()
+        presentationMode.wrappedValue.dismiss()
+
+        print(childModel.progressC1)
+    }
+    
+    func nextButtonCallback() {
+        audioPlayer?.pause()
+        currentIndex = (currentIndex + 1)
+        print(childModel.progressC1)
+        
+        if childData.isToggleOn == false {
+            return
+        }
+
+        isLoading = true
+        let queue = DispatchQueue.global(qos: .userInitiated)
+
+        let apiKey = "c2334380190db577a4edc94196080bf5"
+
+        queue.async {
+            let data = convertTextToSpeechStream(text: content![childModel.currentLessonCh1][currentIndex], apiKey: apiKey)
+            do {
+                if (data != nil){
+                    audioPlayer = try AVAudioPlayer(data: data!, fileTypeHint: "mp3")
+                    audioPlayer?.prepareToPlay()
+                    isLoading = false
+                    audioPlayer?.play()
+                }
+            } catch {
+                print("Error playing audio: \(error.localizedDescription)")
+                isLoading = false
+            }
+        }
+    }
     
     var body: some View {
         ZStack (alignment: .leading){
@@ -28,7 +128,7 @@ struct childLessonMaterial: View {
                     .foregroundColor(Color("darkBlue"))
             }
             .clipShape(RoundedRectangle(cornerRadius: 20))
-            .frame(maxHeight: frameSize![currentIndex])
+            .frame(maxHeight: 425)
             .overlay{
                 VStack{
                     VStack{
@@ -70,109 +170,22 @@ struct childLessonMaterial: View {
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .top)
-                    
-                    if (chapterLabel == "C1"){
+                    switch chapterLabel{
+                    case "C1":
+                        ChildLessonMaterial(
+                            currentLessonHeader: header![childModel.currentLessonCh1][currentIndex],
+                            currentLessonContent: content![childModel.currentLessonCh1][currentIndex],
+                            currentLessonChapterIdx: childModel.currentLessonCh1,
+                            currentLessonChapterSectionIdx: currentIndex,
+                            backCallback: prevText,
+                            nextCallback: nextButtonCallback,
+                            doneCallback: doneButtonCallback,
+                            isDone: currentIndex == (header![childModel.currentLessonCh1].count-1))
                         
-                        Text(header![childModel.currentLessonCh1][currentIndex])
-                            .padding()
-                            .padding(.horizontal)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .bold()
-                            .foregroundColor(Color("lightningYellow"))
-                            .font(.title3)
-                        //.opacity(currentIndex == 0 ? 1 : 0)
-                        
-                        
-                        Text(content![childModel.currentLessonCh1][currentIndex])
-                            .padding(.horizontal,33)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .foregroundColor(Color("aliceBlue"))
-                        //.opacity(currentIndex == 0 ? 1 : 0)
-                        
-                        
-                        HStack{
-                            Button(action: {
-                                prevText()
-                            }, label: {
-                                ZStack{
-                                    RoundedRectangle(cornerRadius: 7)
-                                        .padding()
-                                        .frame(maxHeight: 80)
-                                        .foregroundColor(Color("aliceBlue"))
-                                    RoundedRectangle(cornerRadius: 7)
-                                        .padding()
-                                        .padding([.bottom],10)
-                                        .frame(maxHeight: 90)
-                                        .foregroundColor(Color("dropShadowBlue"))
-                                        .overlay{
-                                            Text("BACK")
-                                                .foregroundColor(Color("aliceBlue"))
-                                                .fontWeight(.heavy)
-                                                .font(.title2)
-                                                .padding(.bottom, 7)
-                                        }
-                                    
-                                }
-                                .frame(maxWidth: .infinity, alignment: .top)
-                            })
-                            if (currentIndex != (header![childModel.currentLessonCh1].count-1)){
-                                Button(action: {
-                                    currentIndex = (currentIndex + 1)
-                                    print(childModel.progressC1)
-                                }, label: {
-                                    ZStack{
-                                        RoundedRectangle(cornerRadius: 7)
-                                            .padding()
-                                            .frame(maxHeight: 80)
-                                            .foregroundColor(Color("dropShadowBlue"))
-                                        RoundedRectangle(cornerRadius: 7)
-                                            .padding()
-                                            .padding([.bottom],10)
-                                            .frame(maxHeight: 90)
-                                            .foregroundColor(Color("aliceBlue"))
-                                            .overlay{
-                                                Text("NEXT")
-                                                    .foregroundColor(Color("darkBlue"))
-                                                    .fontWeight(.heavy)
-                                                    .font(.title2)
-                                                    .padding(.bottom, 7)
-                                            }
-                                        
-                                    }
-                                    .frame(maxWidth: .infinity, alignment: .top)
-                                })
-                            } else if (currentIndex == (header![childModel.currentLessonCh1].count-1)) {
-                                Button(action: {
-                                    findNextLesson()
-                                    presentationMode.wrappedValue.dismiss()
-                                    
-                                    print(childModel.progressC1)
-                                }, label: {
-                                    ZStack{
-                                        RoundedRectangle(cornerRadius: 7)
-                                            .padding()
-                                            .frame(maxHeight: 80)
-                                            .foregroundColor(Color("dropShadowBlue"))
-                                        RoundedRectangle(cornerRadius: 7)
-                                            .padding()
-                                            .padding([.bottom],10)
-                                            .frame(maxHeight: 90)
-                                            .foregroundColor(Color("aliceBlue"))
-                                            .overlay{
-                                                Text("DONE")
-                                                    .foregroundColor(Color("darkBlue"))
-                                                    .fontWeight(.heavy)
-                                                    .font(.title2)
-                                                    .padding(.bottom, 7)
-                                            }
-                                        
-                                    }
-                                    .frame(maxWidth: .infinity, alignment: .top)
-                                    
-                                })
-                            }
-                        }
+                    default:
+                        Image(systemName: "party.popper")
                     }
+                    
                     //here
                     if (chapterLabel == "C2"){
                         
@@ -218,7 +231,7 @@ struct childLessonMaterial: View {
                                 }
                                 .frame(maxWidth: .infinity, alignment: .top)
                             })
-
+                            
                             if (currentIndex != (header![childModel.currentLessonCh2].count-1)){
                                 Button(action: {
                                     currentIndex = (currentIndex + 1)
@@ -299,7 +312,7 @@ struct childLessonMaterial: View {
                         HStack{
                             Button(action: {
                                 prevText()
-
+                                
                             }, label: {
                                 ZStack{
                                     RoundedRectangle(cornerRadius: 7)
@@ -377,16 +390,56 @@ struct childLessonMaterial: View {
                                     .frame(maxWidth: .infinity, alignment: .top)
                                     
                                 })
+                                
                             }
                         }
                     }
                     
                 }
             }
+            .overlay{
+                if (isLoading){
+                    // make this big and white
+                    ProgressView()
+                }
+            }
+        }
+        .overlay{
+            if (isLoading){
+                ProgressView()
+            }
+        }
+        .onAppear{
+            retrieveAndPlayText()
         }
         .padding([.horizontal], 25)
+        
     }
     
+    func retrieveAndPlayText() {
+        if childData.isToggleOn == false {
+            return
+        }
+        isLoading = true
+        let queue = DispatchQueue.global(qos: .userInitiated)
+        
+        let apiKey = "c2334380190db577a4edc94196080bf5"
+        
+        queue.async {
+            let data = convertTextToSpeechStream(text: content![childModel.currentLessonCh1][0], apiKey: apiKey)
+            do {
+                if (data != nil){
+                    audioPlayer = try AVAudioPlayer(data: data!, fileTypeHint: "mp3")
+                    audioPlayer?.prepareToPlay()
+                    isLoading = false
+                    audioPlayer?.play()
+                }
+            } catch {
+                print("Error playing audio: \(error.localizedDescription)")
+                isLoading = false
+            }
+        }
+    }
     func findNextLesson(){
         
         if (chapterLabel == "C1"){
@@ -451,10 +504,10 @@ struct childLessonMaterial: View {
     }
 }
 
-struct childLessonMaterial_Previews: PreviewProvider {
-    @State static var childModel = CurrentLesson()
-    @State static var chapterLabel: String? = "C1"
-    static var previews: some View {
-        childLessonMaterial(childModel: $childModel, chapterLabel: $chapterLabel)
-    }
-}
+//struct childLessonMaterial_Previews: PreviewProvider {
+//    @State static var childModel = CurrentLesson()
+//    @State static var chapterLabel: String? = "C1"
+//    static var previews: some View {
+//        childLessonMaterial(childModel: $childModel, chapterLabel: $chapterLabel)
+//    }
+//}

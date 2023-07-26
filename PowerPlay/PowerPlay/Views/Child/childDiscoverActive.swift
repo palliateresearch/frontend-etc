@@ -11,6 +11,7 @@ struct childDiscoverActive: View {
     
     @Binding var progress: CGFloat
     @Binding var childModel: CurrentLesson
+    @ObservedObject var childData: ChildViewData
     @State var chapterLabel: String?
     @State var image: String?
     @State var chapter: String?
@@ -50,12 +51,14 @@ struct childDiscoverActive: View {
                             content: content,
                             frameSize: frameSize,
                             childModel: $childModel,
-                            chapterLabel: $chapterLabel
+                            chapterLabel: $chapterLabel,
+                            childData: childData
                         ),
                         chapter: chapter,
                         lesson: $lesson,
                         lessonNumber: $lessonNumber,
-                        lessonName: $lessonName
+                        lessonName: $lessonName,
+                        content: $content
                     )
 //                } else if childModel.lessonStatus.first == "C1L2"{
 //                    childStartLesson(
@@ -139,13 +142,13 @@ struct childDiscoverActive: View {
     }
 }
 
-struct childDiscoverActive_Previews: PreviewProvider {
-    @State static var progress: CGFloat = 0.5
-    @State static var childModel = CurrentLesson()
-    static var previews: some View {
-        childDiscoverActive(progress: $progress, childModel: $childModel)
-    }
-}
+//struct childDiscoverActive_Previews: PreviewProvider {
+//    @State static var progress: CGFloat = 0.5
+//    @State static var childModel = CurrentLesson()
+//    static var previews: some View {
+//        childDiscoverActive(progress: $progress, childModel: $childModel)
+//    }
+//}
 
 
 
