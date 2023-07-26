@@ -159,10 +159,6 @@ struct Login: View {
             .onAppear {
                 model.load()
 
-                DispatchQueue.main.async {
-                    pv.username = model.myUsers.last?.username ?? ""
-                    pv.password = model.myUsers.last?.password ?? ""
-                }
             }
         }
     }

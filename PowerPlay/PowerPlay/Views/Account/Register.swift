@@ -233,21 +233,7 @@ struct Register: View {
                 .buttonStyle(PlainButtonStyle())
                 .padding(.horizontal, width * 0.1)
                 
-                Button(action: {
-                    pv.isParent = false
-                    model.myUsers.last?.isParent = pv.isParent
-                    model.save()
-                    isChildActive = true
-                    
-                }) {
-                    Text("Are you a child?")
-                        .fontDesign(.rounded)
-                        .font(.system(size: 22, weight: .bold))
-                        .foregroundColor(Color("lightningYellow"))
-                        .underline()
-                }
-                .padding(.top, 20)
-                .padding(.horizontal)
+              
             }
             .fullScreenCover(isPresented: $isLoggedIn) {
                 if pv.isParent {
@@ -256,9 +242,7 @@ struct Register: View {
                     FindPark()
                 }
             }
-            .fullScreenCover(isPresented: $isChildActive) {
-                    childStartView()
-            }
+            
             .fullScreenCover(isPresented: $isLogin) {
                 Login()
             }
