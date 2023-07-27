@@ -181,222 +181,29 @@ struct childLessonMaterial: View {
                             nextCallback: nextButtonCallback,
                             doneCallback: doneButtonCallback,
                             isDone: currentIndex == (header![childModel.currentLessonCh1].count-1))
+                    case "C2":
+                        ChildLessonMaterial(
+                            currentLessonHeader: header![childModel.currentLessonCh2][currentIndex],
+                            currentLessonContent: content![childModel.currentLessonCh2][currentIndex],
+                            currentLessonChapterIdx: childModel.currentLessonCh2,
+                            currentLessonChapterSectionIdx: currentIndex,
+                            backCallback: prevText,
+                            nextCallback: nextButtonCallback,
+                            doneCallback: doneButtonCallback,
+                            isDone: currentIndex == (header![childModel.currentLessonCh2].count-1))
+                    case "C3":
+                        ChildLessonMaterial(
+                            currentLessonHeader: header![childModel.currentLessonCh3][currentIndex],
+                            currentLessonContent: content![childModel.currentLessonCh3][currentIndex],
+                            currentLessonChapterIdx: childModel.currentLessonCh3,
+                            currentLessonChapterSectionIdx: currentIndex,
+                            backCallback: prevText,
+                            nextCallback: nextButtonCallback,
+                            doneCallback: doneButtonCallback,
+                            isDone: currentIndex == (header![childModel.currentLessonCh3].count-1))
                         
                     default:
                         Image(systemName: "party.popper")
-                    }
-                    
-                    //here
-                    if (chapterLabel == "C2"){
-                        
-                        Text(header![childModel.currentLessonCh2][currentIndex])
-                            .padding()
-                            .padding(.horizontal)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .bold()
-                            .foregroundColor(Color("lightningYellow"))
-                            .font(.title3)
-                        //.opacity(currentIndex == 0 ? 1 : 0)
-                        
-                        
-                        Text(content![childModel.currentLessonCh2][currentIndex])
-                            .padding(.horizontal,33)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .foregroundColor(Color("aliceBlue"))
-                        //.opacity(currentIndex == 0 ? 1 : 0)
-                        
-                        
-                        HStack{
-                            Button(action: {
-                                prevText()
-                            }, label: {
-                                ZStack{
-                                    RoundedRectangle(cornerRadius: 7)
-                                        .padding()
-                                        .frame(maxHeight: 80)
-                                        .foregroundColor(Color("aliceBlue"))
-                                    RoundedRectangle(cornerRadius: 7)
-                                        .padding()
-                                        .padding([.bottom],10)
-                                        .frame(maxHeight: 90)
-                                        .foregroundColor(Color("dropShadowBlue"))
-                                        .overlay{
-                                            Text("BACK")
-                                                .foregroundColor(Color("aliceBlue"))
-                                                .fontWeight(.heavy)
-                                                .font(.title2)
-                                                .padding(.bottom, 7)
-                                        }
-                                    
-                                }
-                                .frame(maxWidth: .infinity, alignment: .top)
-                            })
-                            
-                            if (currentIndex != (header![childModel.currentLessonCh2].count-1)){
-                                Button(action: {
-                                    currentIndex = (currentIndex + 1)
-                                    print(childModel.progressC2)
-                                }, label: {
-                                    ZStack{
-                                        RoundedRectangle(cornerRadius: 7)
-                                            .padding()
-                                            .frame(maxHeight: 80)
-                                            .foregroundColor(Color("dropShadowBlue"))
-                                        RoundedRectangle(cornerRadius: 7)
-                                            .padding()
-                                            .padding([.bottom],10)
-                                            .frame(maxHeight: 90)
-                                            .foregroundColor(Color("aliceBlue"))
-                                            .overlay{
-                                                Text("NEXT")
-                                                    .foregroundColor(Color("darkBlue"))
-                                                    .fontWeight(.heavy)
-                                                    .font(.title2)
-                                                    .padding(.bottom, 7)
-                                            }
-                                        
-                                    }
-                                    .frame(maxWidth: .infinity, alignment: .top)
-                                })
-                            } else if (currentIndex == (header![childModel.currentLessonCh2].count-1)) {
-                           
-                                    NavigationLink(destination: childCongrats(), label: {
-                                   
-                                        Button(action: {
-                                            findNextLesson()
-                                            //presentationMode.wrappedValue.dismiss()
-                                            
-                                            print(childModel.progressC2)
-                                        }, label: {
-                                            ZStack{
-                                                RoundedRectangle(cornerRadius: 7)
-                                                    .padding()
-                                                    .frame(maxHeight: 80)
-                                                    .foregroundColor(Color("dropShadowBlue"))
-                                                RoundedRectangle(cornerRadius: 7)
-                                                    .padding()
-                                                    .padding([.bottom],10)
-                                                    .frame(maxHeight: 90)
-                                                    .foregroundColor(Color("aliceBlue"))
-                                                    .overlay{
-                                                        Text("DONE")
-                                                            .foregroundColor(Color("darkBlue"))
-                                                            .fontWeight(.heavy)
-                                                            .font(.title2)
-                                                            .padding(.bottom, 7)
-                                                    }
-                                                
-                                            }
-                                            .frame(maxWidth: .infinity, alignment: .top)
-                                            
-                                        })
-                                })
-                            }
-                        }
-                    }
-                    if (chapterLabel == "C3"){
-                        
-                        Text(header![childModel.currentLessonCh3][currentIndex])
-                            .padding()
-                            .padding(.horizontal)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .bold()
-                            .foregroundColor(Color("lightningYellow"))
-                            .font(.title3)
-                        //.opacity(currentIndex == 0 ? 1 : 0)
-                        
-                        
-                        Text(content![childModel.currentLessonCh3][currentIndex])
-                            .padding(.horizontal,33)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .foregroundColor(Color("aliceBlue"))
-                        //.opacity(currentIndex == 0 ? 1 : 0)
-                        
-                        
-                        HStack{
-                            Button(action: {
-                                prevText()
-                                
-                            }, label: {
-                                ZStack{
-                                    RoundedRectangle(cornerRadius: 7)
-                                        .padding()
-                                        .frame(maxHeight: 80)
-                                        .foregroundColor(Color("aliceBlue"))
-                                    RoundedRectangle(cornerRadius: 7)
-                                        .padding()
-                                        .padding([.bottom],10)
-                                        .frame(maxHeight: 90)
-                                        .foregroundColor(Color("dropShadowBlue"))
-                                        .overlay{
-                                            Text("BACK")
-                                                .foregroundColor(Color("aliceBlue"))
-                                                .fontWeight(.heavy)
-                                                .font(.title2)
-                                                .padding(.bottom, 7)
-                                        }
-                                    
-                                }
-                                .frame(maxWidth: .infinity, alignment: .top)
-                            })
-                            if (currentIndex != (header![childModel.currentLessonCh3].count-1)){
-                                Button(action: {
-                                    currentIndex = (currentIndex + 1)
-                                    print(childModel.progressC3)
-                                }, label: {
-                                    ZStack{
-                                        RoundedRectangle(cornerRadius: 7)
-                                            .padding()
-                                            .frame(maxHeight: 80)
-                                            .foregroundColor(Color("dropShadowBlue"))
-                                        RoundedRectangle(cornerRadius: 7)
-                                            .padding()
-                                            .padding([.bottom],10)
-                                            .frame(maxHeight: 90)
-                                            .foregroundColor(Color("aliceBlue"))
-                                            .overlay{
-                                                Text("NEXT")
-                                                    .foregroundColor(Color("darkBlue"))
-                                                    .fontWeight(.heavy)
-                                                    .font(.title2)
-                                                    .padding(.bottom, 7)
-                                            }
-                                        
-                                    }
-                                    .frame(maxWidth: .infinity, alignment: .top)
-                                })
-                            } else if (currentIndex == (header![childModel.currentLessonCh3].count-1)) {
-                                Button(action: {
-                                    findNextLesson()
-                                    presentationMode.wrappedValue.dismiss()
-                                    
-                                    print(childModel.progressC3)
-                                }, label: {
-                                    ZStack{
-                                        RoundedRectangle(cornerRadius: 7)
-                                            .padding()
-                                            .frame(maxHeight: 80)
-                                            .foregroundColor(Color("dropShadowBlue"))
-                                        RoundedRectangle(cornerRadius: 7)
-                                            .padding()
-                                            .padding([.bottom],10)
-                                            .frame(maxHeight: 90)
-                                            .foregroundColor(Color("aliceBlue"))
-                                            .overlay{
-                                                Text("DONE")
-                                                    .foregroundColor(Color("darkBlue"))
-                                                    .fontWeight(.heavy)
-                                                    .font(.title2)
-                                                    .padding(.bottom, 7)
-                                            }
-                                        
-                                    }
-                                    .frame(maxWidth: .infinity, alignment: .top)
-                                    
-                                })
-                                
-                            }
-                        }
                     }
                     
                 }

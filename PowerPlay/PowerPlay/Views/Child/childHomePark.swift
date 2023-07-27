@@ -170,7 +170,7 @@ struct childHomePark: View{
                                                 .scaleEffect(2.5)
                                                 .aspectRatio(contentMode: .fit)
                                                 .padding(.top, 20)
-                                            Text("\( String(format: "%.2f", userData.jsonData.totalEnergy / 15)) hours")
+                                            Text("\( String(format: "%.2f", (userData.jsonData.totalEnergy / 15.0))) hours")
                                                 .foregroundColor(Color("lightningYellow"))
                                                 .font(.system(size: 24))
                                                 .fontWeight(.heavy)
