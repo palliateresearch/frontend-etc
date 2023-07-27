@@ -38,13 +38,16 @@ struct GuestHome: View {
                     }
                 }
                 ForEach (model.myParks) { park in
-                    Text("\(park.parkName ?? "") - January") // Using model to access park
-                        .fontDesign(.rounded)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Text("\(park.parkName ?? "") - July") // Using model to access
+                        .frame(alignment: .leading)
                         .font(.title3)
                         .bold()
                         .padding(.top)
                         .fontDesign(.rounded)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.2)
+                        .padding(.leading, 10)
+                        .padding(.trailing, 10)
                     HStack{
                         ZStack (alignment: .leading){
                             ZStack (alignment: .topLeading) {

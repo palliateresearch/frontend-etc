@@ -82,18 +82,18 @@ struct childAchievements: View {
                             .fontWeight(.heavy)
                             .fontDesign(.rounded)
                             .padding()
-                        ScrollView {
-                            LazyVGrid(columns: adaptiveColumns, spacing: 30) {
-                                ForEach(model.myParks.last?.badges ?? tempWattHrs, id: \.self) { image in
-                                    ZStack {
-                                        Image(image)
-                                            .scaleEffect(0.065)
-                                            .foregroundColor(Color.white)
-                                            .frame(width: 100, height: 100)
-                                    }
+                      
+                        LazyVGrid(columns: adaptiveColumns, spacing: 30) {
+                            ForEach(model.myParks.last?.badges ?? tempWattHrs, id: \.self) { image in
+                                ZStack {
+                                    Image(image)
+                                        .scaleEffect(0.065)
+                                        .foregroundColor(Color.white)
+                                        .frame(width: 100, height: 100)
                                 }
                             }
                         }.padding(.top, 25)
+                        
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
@@ -159,12 +159,10 @@ struct calculateAchievements {
     var model = TestModel()
     func appendBadgeToLastPark(name: String)  {
         if let lastPark = model.myParks.last {
-            print ("/n/n/n/n/n/n/n/n/n/n lalala /n/n/n/n//n/n/n/n/n/")
+         
             lastPark.badges = lastPark.badges ?? []
             lastPark.badges?.append(name)
-            print ("1: \(model.myParks.last?.badges)")
-        } else {
-            print ("/n/n/n/n/n/n/n/n/ OMG FOUND PROBLEM /n/n/n/n/n/n//n/n/n")
+          
         }
         model.save()
     }
@@ -189,7 +187,7 @@ struct calculateAchievements {
         if (wattHrs >= 50) {
             appendBadgeToLastPark(name: "PowerPlay Badges.exported.usdz")
         }
-        print (wattHrs)
+       
     }
     func calcBadgeStreaks() -> Int {
         var streak = 0
@@ -199,16 +197,16 @@ struct calculateAchievements {
             if let lastPark = model.myParks.last,
                dayIndex <= lastPark.wattHrsPerDay?.count ?? 1 {
                 let wattHrsForDay = lastPark.wattHrsPerDay?[dayIndex]
-                print ("\n\n\n\n\(wattHrsForDay)")
+              
                 if (wattHrsForDay ?? 50 > 50) {
                     streak += 1
                 } else {
-                    print ("It broke")
+                  
                     break
                 }
             }
         }
-        print (model.myParks.last?.wattHrsPerDay)
+       
         if (streak >= 15) {
             appendBadgeToLastPark(name: "badgeStreak3")
         }
@@ -217,7 +215,7 @@ struct calculateAchievements {
         }
         if (streak >= 5) {
             appendBadgeToLastPark(name: "badgeStreak1")
-            print ("lalalla")
+          
         }
         return streak
 
@@ -230,11 +228,11 @@ struct calculateAchievements {
             if let lastPark = model.myParks.last,
                dayIndex <= lastPark.wattHrsPerDay?.count ?? 1 {
                 let wattHrsForDay = lastPark.wattHrsPerDay?[dayIndex]
-                print ("\n\n\n\n\(wattHrsForDay)")
+              
                 if (wattHrsForDay ?? 0 > 0) {
                     streak += 1
                 } else {
-                    print ("It broke")
+                   
                     break
                 }
             }
@@ -250,11 +248,11 @@ struct calculateAchievements {
 
         if model.myParks.last?.wattHrsPerDay == nil {
             model.myParks.last?.wattHrsPerDay = [Float]()
-            print ("it is nil")
+         
         }
 
         for _ in range {
-            model.myParks.last?.wattHrsPerDay?.append(Float.random(in: -50..<500.0))
+            model.myParks.last?.wattHrsPerDay?.append(Float.random(in: -10..<500.0))
         }
     }
 

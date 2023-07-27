@@ -248,6 +248,7 @@ struct Register: View {
             }
             .onAppear {
                 pv.resetPV()
+                pv.isParent = true
                 model.load()
             }
         }

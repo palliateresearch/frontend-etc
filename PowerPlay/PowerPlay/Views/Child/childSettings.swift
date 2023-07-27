@@ -52,7 +52,12 @@ struct childSettings: View {
                             .padding()
                             .foregroundColor(Color.black)
                             .padding(.trailing, 50)
-                    }
+                    }.padding(.leading, 30)
+                    .padding(.trailing, 30)
+                    .multilineTextAlignment(.leading)
+                    Divider()
+                        .padding(.leading, 40)
+                        .padding(.trailing, 40)
                     HStack {
                         Text("Username")
                             .fontDesign(.rounded)
@@ -71,35 +76,35 @@ struct childSettings: View {
                                 .foregroundColor(Color.black)
                                 .padding(.trailing, 50)
                         }
-                    }
+                    }.padding(.leading, 30)
+                        .padding(.trailing, 30)
+                        .multilineTextAlignment(.leading)
+                    Divider()
+                        .padding(.leading, 40)
+                        .padding(.trailing, 40)
                     HStack {
                         Text("Parks")
                             .fontDesign(.rounded)
-                            .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.title2)
                             .foregroundColor(Color("darkBlue"))
-                            .padding()
                             .bold()
-                        
-                        Spacer()
-                        
-                        ScrollView(.vertical, showsIndicators: true) {
-                            VStack {
-                                VStack(alignment: .trailing, spacing: 5) {
-                                    ForEach(model.myParks) { park in
-                                        Text(park.parkName ?? "default park")
-                                            .fontDesign(.rounded)
-                                            .font(.title2)
-                                            .padding(.trailing)
-                                            .foregroundColor(Color.black)
-                                    }
-                                }
-                                
+                            .padding()
+                        Spacer() // Add a Spacer to push VStack to the right
+                        VStack(alignment: .leading, spacing: 8) { // Align VStack content to the left
+                            ForEach(model.myParks) { park in
+                                Text(park.parkName ?? "")
+                                    .fontDesign(.rounded)
+                                    .font(.title3)
+                                    .frame(minWidth: 0, alignment: .leading) // Ensure all Text elements start on the same vertical axis
                             }
-                        }
-                        .frame(width: 200, height: 200)
-                        .padding()
-                    }
+                        }.padding(.trailing, 30)
+                    }.padding(.leading, 30)
+                      
+                      .multilineTextAlignment(.leading)
+
+                    Divider()
+                        .padding(.leading, 40)
+                        .padding(.trailing, 40)
                     
                     Toggle("Lesson Dictation", isOn: $childData.isToggleOn)
                         .fontDesign(.rounded)
@@ -111,19 +116,14 @@ struct childSettings: View {
                         .onTapGesture {
                             print(childData.isToggleOn)
                         }
+                        .padding(.leading, 30)
+                        .padding(.trailing, 80)
                     
 
                 }
                 
                 
-                
-                VStack {
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                }
+               Spacer()
                 
                 Button {
                     isLogout = true
@@ -149,6 +149,7 @@ struct childSettings: View {
                 }
                 .padding([.bottom], 70)
                 .padding()
+                
                 
                 Button {
                     model.deleteAllEntitiesData()

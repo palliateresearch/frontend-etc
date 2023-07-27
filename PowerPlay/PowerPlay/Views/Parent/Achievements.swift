@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Achievements: View {
     
+    @EnvironmentObject var pv: PV
     @ObservedObject var userData: UserViewData
     var model = TestModel()
     
@@ -39,13 +40,30 @@ struct Achievements: View {
     var body: some View {
         NavigationStack{
             ScrollView{
-                    Text("Achievements")
-                    .fontDesign(.rounded)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.largeTitle)
-                        .bold()
-                        .padding()
-                        .padding(.horizontal)
+                VStack {
+                    HStack {
+                       
+                        Text("\(pv.selectedChild)")
+                            .fontDesign(.rounded)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .bold()
+                            .padding(.trailing, 20)
+                    }
+                    HStack {
+                        Text("Achievements")
+                            .fontDesign(.rounded)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .font(.largeTitle)
+                            .bold()
+                            .padding()
+                            .padding(.horizontal)
+                        Spacer()
+                        
+                
+                    }
+                    
+                }
+               
                     HStack{
                         Spacer()
                         VStack{
@@ -131,6 +149,17 @@ struct Achievements: View {
                 .background(Color("navyBlue"))
         }.foregroundColor(Color.white)
         .onAppear {
+            if (pv.selectedChild == nil || pv.selectedChild == "") {
+                for childName in pv.childrenNames.reversed() {
+                    if !childName.isEmpty {
+                        // Set the selectedChild to the first non-empty childName and break the loop
+                        pv.selectedChild = childName
+                        break
+                    }
+                }
+            }
+            print ("Index: \(pv.selectedOptionIndex)")
+            print ("Array: \(pv.childrenNames)")
             // This block will be triggered when userData.jsonData is updated
             c.autoPopulateCalendar()
             var wattHrs: Float = userData.jsonData.totalEnergy
@@ -166,6 +195,6 @@ struct Achievements: View {
 
 struct Achievements_Previews: PreviewProvider {
     static var previews: some View {
-        Achievements(userData: UserViewData())
+        Achievements(userData: UserViewData()).environmentObject(PV())
     }
 }
