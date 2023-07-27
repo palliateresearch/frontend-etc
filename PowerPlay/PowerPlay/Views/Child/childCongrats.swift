@@ -155,7 +155,7 @@ struct EmitterView: UIViewRepresentable{
     
     func getImage(index: Int) -> String{
         if index < 4{
-            return "blankBolt"
+            return "Sparkybolt"
         }
         else if index > 5 && index <= 8{
             return "Sparky"

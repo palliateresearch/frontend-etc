@@ -7,16 +7,17 @@ struct PowerPlayApp: App {
     var model = TestModel()
     var body: some Scene {
         WindowGroup {
-            if let choose = model.myUsers.last?.isParent {
-                if (choose) {
-                    StartView().environmentObject(pv)
-                } else {
-                    childStartView().environmentObject(pv)
-                }
-              
-            } else {
-                childStartView().environmentObject(pv)
-            }
+            childContentView()
+//            if let choose = model.myUsers.last?.isParent {
+//                if (choose) {
+//                    StartView().environmentObject(pv)
+//                } else {
+//                    childStartView().environmentObject(pv)
+//                }
+//
+//            } else {
+//                childStartView().environmentObject(pv)
+//            }
         }
     }
 }
