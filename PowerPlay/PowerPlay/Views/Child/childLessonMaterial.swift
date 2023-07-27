@@ -103,7 +103,7 @@ struct childLessonMaterial: View {
         isLoading = true
         let queue = DispatchQueue.global(qos: .userInitiated)
 
-        let apiKey = "c2334380190db577a4edc94196080bf5"
+        let apiKey = "df7679cf757737481e9fd4958f852bce"
 
         queue.async {
             let data = convertTextToSpeechStream(text: content![childModel.currentLessonCh1][currentIndex], apiKey: apiKey)
