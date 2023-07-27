@@ -46,7 +46,7 @@ struct childHomePark: View{
                                 .foregroundColor(Color("lightBlue"))
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(Color("darkBlue"))
-                                .frame(maxWidth: 245, maxHeight: .infinity, alignment: .leading)
+                                .frame(maxWidth: 220, maxHeight: .infinity, alignment: .leading)
                         }
                         
                         HStack{
@@ -323,10 +323,10 @@ struct childHomePark: View{
     }
     
     func happinessRating(wattHrs: Float) -> String{
-        if(wattHrs > 70){
+        if(wattHrs > 1.5){
             return ""
         }
-        else if (wattHrs > 35){
+        else if (wattHrs > 1){
             return "sad"
         }
         else{
