@@ -11,11 +11,11 @@ import Charts
 struct Home: View {
     var model = TestModel()
     @ObservedObject var userData: UserViewData
-    @State var testTimer: Int = 0
     
     @State var progress: CGFloat = 0.75
     @State var isSettings = false
-    //@State
+    @State var timer: Timer?
+
     
     func getMonth() -> String {
         let calendar = Calendar.current
@@ -169,11 +169,14 @@ struct Home: View {
                                                 .frame(maxHeight: .infinity,alignment:.center)
                                         }
                                         .padding()
-                                        .onDisappear(perform: {
-                                            userData.stopDataLoop()
-                                        })
                                         .onAppear(perform: {
-                                            userData.startDataLoop()
+                                            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                                                userData.loadData()
+                                                print(userData.jsonData.totalEnergy)
+                                            }
+                                        })
+                                        .onDisappear(perform: {
+                                            timer?.invalidate()
                                         })
                                         
                                             

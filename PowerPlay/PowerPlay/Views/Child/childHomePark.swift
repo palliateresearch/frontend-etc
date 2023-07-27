@@ -10,6 +10,7 @@ import SwiftUI
 struct childHomePark: View{
     @ObservedObject var userData: UserViewData
     @State var selectedTab: Int = 0
+    @State var timer: Timer?
     
     var model = TestModel()
     
@@ -62,7 +63,7 @@ struct childHomePark: View{
                                 .fontDesign(.rounded)
                             VStack{
                                
-                                Text("\(String(format: "%.2f", userData.jsonData.totalEnergy / 15))")
+                                Text("\(String(format: "%.2f", userData.jsonData.totalEnergy))")
                                     .font(.system(size:35))
                                     .bold()
                                     .fontDesign(.rounded)
@@ -76,13 +77,16 @@ struct childHomePark: View{
                                     .frame(maxWidth: .infinity, alignment: .trailing)
                             }
                         }
-                        .onDisappear(perform: {
-                            userData.stopDataLoop()
-                        })
                         .onAppear(perform: {
-                            userData.startDataLoop()
-                           
+                            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                                userData.loadData()
+                                print(userData.jsonData.totalEnergy)
+                            }
                         })
+                        .onDisappear(perform: {
+                            timer?.invalidate()
+                        })
+                        
                         
                     }.padding()
                     Spacer()

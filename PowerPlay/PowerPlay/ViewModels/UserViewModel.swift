@@ -20,19 +20,10 @@ class UserViewData: ObservableObject {
     @Published var data: Float = 0.0
     var timer: Timer?
 
-    func startDataLoop(){
-        self.timer = Timer(timeInterval: 1, repeats: true, block: { _ in
-            self.loadData()
-        })
-    }
-    
-    func stopDataLoop(){
-        self.timer?.invalidate()
-    }
     
     func loadData(){
         
-        guard let url = URL(string: "http://172.20.10.7:5000/get") else {return}
+        guard let url = URL(string: "http://172.20.10.10:5000/get") else {return}
         
         
         URLSession.shared.dataTask(with: url) { (data, res, err) in
