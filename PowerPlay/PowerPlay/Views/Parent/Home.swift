@@ -9,12 +9,13 @@ import SwiftUI
 import Charts
 
 struct Home: View {
+    @EnvironmentObject var pv: PV
     var model = TestModel()
     @ObservedObject var userData: UserViewData
+    @State var tempName: String = ""
     
     @State var progress: CGFloat = 0.75
     @State var isSettings = false
-    //@State
     
     func getMonth() -> String {
         let calendar = Calendar.current
@@ -38,7 +39,22 @@ struct Home: View {
                     }
                     , label: {
                         HStack {
-                            Text(model.myUsers.last?.firstName ?? "").fontDesign(.rounded)
+                            
+                            Picker("Select an option", selection: $pv.selectedOptionIndex) {
+                                        ForEach(0..<model.myChildren.count, id: \.self) { index in
+                                            if (model.myChildren[index].childName != nil && model.myChildren[index].childName != "") {
+                                                Text(model.myChildren[index].childName ?? "")
+                                            }
+                                        }
+                                    }
+                                    .onChange(of: pv.selectedOptionIndex, perform: { newIndex in
+                                        pv.selectedChild = model.myChildren[newIndex].childName ?? ""
+                                    })
+                                    .onAppear {
+                                        pv.selectedChild = model.myChildren[pv.selectedOptionIndex].childName ?? ""
+                                    }
+                                    .pickerStyle(.menu) 
+                    
                             Image(systemName: "person.crop.circle.fill")
                                 .scaleEffect(2.3)
                                 .padding()
@@ -55,6 +71,11 @@ struct Home: View {
                             .bold()
                             .padding(.top)
                             .fontDesign(.rounded)
+                            .lineLimit(1) // Set maximum number of lines
+                            .minimumScaleFactor(0.2) // Set the minimum scale factor (adjust as needed)
+                            .padding(.leading, 10)
+                            .padding(.trailing, 10)
+
                     } else {
                         // Handle the case when parkName is nil (optional is not set)
                         // You can display a default value or show a different message
@@ -239,9 +260,8 @@ struct Home: View {
             
         }.padding()
         .background(Color("darkModeBackground"))
-            .fullScreenCover(isPresented: $isSettings) {
-                Settings()
-            }
+        
+
     }
 }
 

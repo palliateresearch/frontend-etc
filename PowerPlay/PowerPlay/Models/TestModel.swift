@@ -37,6 +37,7 @@ class TestModel: ObservableObject {
         myParks.append(newPark)
         return newPark
     }
+    
 
     func getParks() -> [Park] {
         return myParks
@@ -65,6 +66,10 @@ class TestModel: ObservableObject {
         myParks.last?.badges?.append(name)
     }
 
+    func addToChildren(name: String) {
+        myUsers.last?.children?.append(name)
+    }
+
     func deleteAllEntitiesData() {
         let childFetchRequest: NSFetchRequest<NSFetchRequestResult> = Child.fetchRequest()
         let deleteChildRequest = NSBatchDeleteRequest(fetchRequest: childFetchRequest)
@@ -88,6 +93,18 @@ class TestModel: ObservableObject {
     func deleteParkEntitiesData() {
         let parkFetchRequest: NSFetchRequest<NSFetchRequestResult> = Park.fetchRequest()
         let deleteParkRequest = NSBatchDeleteRequest(fetchRequest: parkFetchRequest)
+
+        do {
+            try container.viewContext.execute(deleteParkRequest)
+
+            try container.viewContext.save()
+        } catch {
+            print("Error deleting all entities data: \(error)")
+        }
+    }
+    func deleteChildrenEntitiesData() {
+        let childrenFetchRequest: NSFetchRequest<NSFetchRequestResult> = Child.fetchRequest()
+        let deleteParkRequest = NSBatchDeleteRequest(fetchRequest: childrenFetchRequest)
 
         do {
             try container.viewContext.execute(deleteParkRequest)

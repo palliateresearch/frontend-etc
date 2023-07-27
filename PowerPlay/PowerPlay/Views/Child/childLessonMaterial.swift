@@ -197,7 +197,7 @@ struct childLessonMaterial: View {
                             .foregroundColor(Color("lightningYellow"))
                             .font(.title3)
                         //.opacity(currentIndex == 0 ? 1 : 0)
-                        
+                    
                         
                         Text(content![childModel.currentLessonCh2][currentIndex])
                             .padding(.horizontal,33)

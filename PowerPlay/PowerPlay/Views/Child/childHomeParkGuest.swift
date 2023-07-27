@@ -51,7 +51,7 @@ struct childHomeParkGuest: View{
                         }
                         
                         HStack{
-                            Text(model.myUsers.last?.firstName ?? "Guest")
+                            Text("Guest")
                                 .minimumScaleFactor(0.03)
                                 .fontWeight(.heavy)
                                 .lineLimit(1)
@@ -306,7 +306,7 @@ struct childHomeParkGuest: View{
                     
         }.onAppear{
             model.load()
-            print (model.myParks.last?.parkName)
+      
             print ("Test worked")
             userData.loadData()
             for park in model.myParks {

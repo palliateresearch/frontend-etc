@@ -30,8 +30,7 @@ struct FindParkGuest: View {
                                 ForEach(searchResults, id: \.self) { name in
                                     Button(action: {
                                         
-                                        print(String(name))
-                                        print("Park name: \n\n\n\n\n\n")
+                                      
                                         
 
                                         if selectedParks.contains(name) {

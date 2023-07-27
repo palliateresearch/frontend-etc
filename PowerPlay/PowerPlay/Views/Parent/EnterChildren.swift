@@ -26,6 +26,7 @@ struct EnterChildren: View {
                     Spacer()
                     Button(action: {
                         pv.childrenNames.append("")
+                        
                     }) {
                         Image(systemName: "plus.circle")
                             .font(.system(size: 24))
@@ -67,10 +68,13 @@ struct EnterChildren: View {
                 }
 
                 Button(action: {
+                    pv.childrenNames = Array(Set(pv.childrenNames))
                     isSubmit = true
-                    // Save children to CoreData when submitted
                     registerChildren()
+                
+                    
                     model.save()
+                
                 }) {
                     Text("Submit")
                         .font(.system(size: width * 0.06, weight: .bold))
@@ -102,11 +106,21 @@ struct EnterChildren: View {
 
     // Function to register children to CoreData
     private func registerChildren() {
+        // Step 1: Remove all existing children from Core Data
+        model.deleteChildrenEntitiesData()
+        
         for childName in pv.childrenNames {
             let child = model.createChild()
             child.childName = childName
         }
+        model.save()
+        
     }
+
+
+
+
+
 }
 
 
@@ -153,6 +167,6 @@ struct ChildView: View {
 
 struct EnterChildren_Previews: PreviewProvider {
     static var previews: some View {
-        EnterChildren().environment(\.colorScheme, .dark)
+        EnterChildren().environmentObject(PV())
     }
 }

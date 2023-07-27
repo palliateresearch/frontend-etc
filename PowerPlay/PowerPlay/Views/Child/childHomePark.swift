@@ -305,7 +305,7 @@ struct childHomePark: View{
                     
         }.onAppear{
             model.load()
-            print (model.myParks.last?.parkName)
+          
             print ("Test worked")
             userData.loadData()
             for park in model.myParks {

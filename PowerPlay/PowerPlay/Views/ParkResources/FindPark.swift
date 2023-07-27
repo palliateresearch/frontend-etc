@@ -29,9 +29,7 @@ struct FindPark: View {
                             List {
                                 ForEach(searchResults, id: \.self) { name in
                                     Button(action: {
-                                        
-                                        print(String(name))
-                                        print("Park name: \n\n\n\n\n\n")
+                                       
                                         
 
                                         if selectedParks.contains(name) {
@@ -77,6 +75,7 @@ struct FindPark: View {
                         } else {
                             showHome = true
                         }
+                        
                     })
                     .font(.system(size: width * 0.06, weight: .bold))
                     .foregroundColor(Color.black)
@@ -91,7 +90,9 @@ struct FindPark: View {
                 }
 
                 .fullScreenCover(isPresented: $showHome) {
+                    
                     if (model.myUsers.last?.isParent) == true {
+                        
                         ContentView()
                     } else {
                         childContentView()
