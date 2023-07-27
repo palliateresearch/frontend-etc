@@ -55,7 +55,7 @@ struct ChildMascot: View {
                 ZStack(alignment: .center){
                     Image("Sparkybolt")
                         .scaleEffect(size).border(.red)
-                        .rotationEffect(.degrees(isTilting ? 10 : 0))
+                        .rotationEffect(.degrees(isTilting ? 5 : 0))
                     ChildMascotFace(
 //                        isBlinking: isBlinking,
                         isEyebrows: isEyebrows,
@@ -72,6 +72,7 @@ struct ChildMascot: View {
                     }
                     .onAppear(perform: updateVariables)
                     .onAppear(perform: eyebrowToggle)
+                    .onAppear(perform: tilt)
             }
         }
     
@@ -89,6 +90,13 @@ struct ChildMascot: View {
         Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
             withAnimation(.easeOut(duration: 0.2).delay(0.25).repeatCount(5, autoreverses: true)){
                   isEyebrows.toggle()
+              }
+        }
+    }
+    func tilt() {
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+            withAnimation(.easeOut(duration: 0.1).delay(0.25).repeatCount(5, autoreverses: true)){
+                  isTilting.toggle()
               }
         }
     }
