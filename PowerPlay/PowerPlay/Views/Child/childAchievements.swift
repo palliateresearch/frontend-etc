@@ -260,9 +260,9 @@ struct calculateAchievements {
 
 }
 
-struct childAchievements_Previews: PreviewProvider {
-    static var previews: some View {
-        childAchievements(userData: UserViewData())
-    }
-}
+//struct childAchievements_Previews: PreviewProvider {
+//    static var previews: some View {
+//        childAchievements(userData: UserViewData())
+//    }
+//}
 

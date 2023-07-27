@@ -35,7 +35,7 @@ struct childHomePark: View{
     
     
     var body: some View {
-        let roundedValue = String(format: "%.2f", userData.jsonData.totalEnergy / 15)
+        
         NavigationStack{
             ScrollView{
                 
@@ -62,7 +62,7 @@ struct childHomePark: View{
                                 .fontDesign(.rounded)
                             VStack{
                                
-                                Text("\(roundedValue)")
+                                Text("\(String(format: "%.2f", userData.jsonData.totalEnergy / 15))")
                                     .font(.system(size:35))
                                     .bold()
                                     .fontDesign(.rounded)
@@ -76,6 +76,13 @@ struct childHomePark: View{
                                     .frame(maxWidth: .infinity, alignment: .trailing)
                             }
                         }
+                        .onDisappear(perform: {
+                            userData.stopDataLoop()
+                        })
+                        .onAppear(perform: {
+                            userData.startDataLoop()
+                           
+                        })
                         
                     }.padding()
                     Spacer()
@@ -105,7 +112,6 @@ struct childHomePark: View{
                 }
                 TabView{
                     ForEach (model.myParks) { park in
-                        //HStack{
                         VStack {
                             ZStack {
                                 ZStack (alignment: .topLeading) {
@@ -160,7 +166,7 @@ struct childHomePark: View{
                                                 .scaleEffect(2.5)
                                                 .aspectRatio(contentMode: .fit)
                                                 .padding(.top, 20)
-                                            Text("\(roundedValue) hours")
+                                            Text("\( String(format: "%.2f", userData.jsonData.totalEnergy / 15)) hours")
                                                 .foregroundColor(Color("lightningYellow"))
                                                 .font(.system(size: 24))
                                                 .fontWeight(.heavy)
@@ -172,8 +178,6 @@ struct childHomePark: View{
                                 }
                             }.padding(.top, 30)
                                 .padding(.horizontal)
-                            //end of Apple Park block
-                            //}
                             
                             ZStack{
                                 RoundedRectangle(cornerRadius: 20)

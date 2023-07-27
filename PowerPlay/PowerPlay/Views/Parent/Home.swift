@@ -11,6 +11,7 @@ import Charts
 struct Home: View {
     var model = TestModel()
     @ObservedObject var userData: UserViewData
+    @State var testTimer: Int = 0
     
     @State var progress: CGFloat = 0.75
     @State var isSettings = false
@@ -168,9 +169,13 @@ struct Home: View {
                                                 .frame(maxHeight: .infinity,alignment:.center)
                                         }
                                         .padding()
-                                        .onAppear(perform: {
-                                            userData.loadData()
+                                        .onDisappear(perform: {
+                                            userData.stopDataLoop()
                                         })
+                                        .onAppear(perform: {
+                                            userData.startDataLoop()
+                                        })
+                                        
                                             
                                     }
                                 }
