@@ -16,11 +16,12 @@ struct childCongrats: View {
             ZStack{
                 VStack{
                     Spacer()
-                    Image("Sparky")
-                        .scaleEffect(0.2)
-                        .frame(width: 200, height: 300)
-                        .aspectRatio(contentMode: .fit)
-                        .padding()
+//                    Image("Sparky")
+//                        .scaleEffect(0.2)
+//                        .frame(width: 200, height: 300)
+//                        .aspectRatio(contentMode: .fit)
+//                        .padding()
+                    ChildMascot(emotion: "", size: 0.2)
                     ZStack{
                         RoundedRectangle(cornerRadius: 20)
                             .foregroundColor(Color("aliceBlue"))
@@ -150,14 +151,14 @@ struct EmitterView: UIViewRepresentable{
     }
     
     func getImage(index: Int) -> String{
-        if index < 4{
-            return "blankBolt"
+        if index < 6{
+            return "Sparkybolt"
         }
-        else if index > 5 && index <= 8{
-            return "Sparky"
+        else if index > 7 && index <= 8{
+            return "SparkyeyebrowL"
         }
         else{
-            return "sparkyWithClouds"
+            return "Sparkymouth"
         }
     }
     

@@ -36,7 +36,7 @@ struct childHomePark: View{
     
     
     var body: some View {
-        let roundedValue = String(format: "%.2f", userData.jsonData.totalEnergy / 15)
+        let roundedValue = String(format: "%.2f", userData.jsonData.totalEnergy)
         NavigationStack{
             ScrollView{
                 
@@ -47,7 +47,7 @@ struct childHomePark: View{
                                 .foregroundColor(Color("lightBlue"))
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(Color("darkBlue"))
-                                .frame(maxWidth: 245, maxHeight: .infinity, alignment: .leading)
+                                .frame(maxWidth: 220, maxHeight: .infinity, alignment: .leading)
                         }
                         
                         HStack{
@@ -80,13 +80,21 @@ struct childHomePark: View{
                         
                     }.padding()
                     Spacer()
-                    Image("Sparky")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: .infinity, maxHeight: 225, alignment: .center)
-                        .padding(.top)
                     Spacer()
-                    Spacer()
+                    VStack(alignment: .center){
+                        Spacer()
+                        //                    Image("Sparky")
+                        //                        .resizable()
+                        //                        .aspectRatio(contentMode: .fit)
+                        //                        .frame(maxWidth: .infinity, maxHeight: 225, alignment: .center)
+                        //                        .padding(.top)
+                        HStack(alignment: .center){
+                            Spacer()
+                            ChildMascot(emotion: happinessRating(wattHrs: Float(roundedValue) ?? 0), size: 0.15)
+                            Spacer()
+                        }
+                        Spacer()
+                    }.aspectRatio(contentMode: .fit) .frame(maxWidth: .infinity, maxHeight: 225, alignment: .center)
                     Spacer()
                     Spacer()
                 }.background(LinearGradient(
@@ -313,6 +321,19 @@ struct childHomePark: View{
             }
         }
     }
+    
+    func happinessRating(wattHrs: Float) -> String{
+        if(wattHrs > 1.5){
+            return ""
+        }
+        else if (wattHrs > 1){
+            return "sad"
+        }
+        else{
+            return "angry"
+        }
+    }
+    
 }
 
 struct childHomePark_Previews: PreviewProvider {

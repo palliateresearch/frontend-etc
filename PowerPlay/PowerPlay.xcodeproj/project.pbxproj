@@ -10,6 +10,7 @@
 		493D94512A6AE38E0079FAE1 /* childCongrats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493D94502A6AE38E0079FAE1 /* childCongrats.swift */; };
 		493D94532A6B1EB90079FAE1 /* PV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493D94522A6B1EB90079FAE1 /* PV.swift */; };
 		493D94552A6B1FC40079FAE1 /* childRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493D94542A6B1FC40079FAE1 /* childRegister.swift */; };
+		49BDA10D2A71D78A00638A2A /* childMascot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BDA10C2A71D78A00638A2A /* childMascot.swift */; };
 		49C2EFD12A69D69100814F4F /* childHomePark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C2EFD02A69D69100814F4F /* childHomePark.swift */; };
 		49C2EFD32A69E5C900814F4F /* childStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C2EFD22A69E5C900814F4F /* childStartView.swift */; };
 		49C2EFD52A69F69000814F4F /* childAchievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C2EFD42A69F69000814F4F /* childAchievements.swift */; };
@@ -32,7 +33,6 @@
 		9BAAB0692A673578000BAF23 /* Learning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAB0682A673578000BAF23 /* Learning.swift */; };
 		9BBF53732A70777600C06D04 /* childHomeParkGuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBF53722A70777600C06D04 /* childHomeParkGuest.swift */; };
 		9BD1575E2A706B7500E25AB7 /* FindParkGuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD1575D2A706B7500E25AB7 /* FindParkGuest.swift */; };
-		9BD9A68F2A6750090053E482 /* childHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD9A68E2A6750090053E482 /* childHome.swift */; };
 		9BD9A6912A6750BE0053E482 /* childSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD9A6902A6750BE0053E482 /* childSettings.swift */; };
 		C905D6232A5F4613009BF5DB /* Achievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6222A5F4613009BF5DB /* Achievements.swift */; };
 		C905D6262A5F4CA6009BF5DB /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = C905D6252A5F4CA6009BF5DB /* Discover.swift */; };
@@ -87,6 +87,7 @@
 		493D94502A6AE38E0079FAE1 /* childCongrats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childCongrats.swift; sourceTree = "<group>"; };
 		493D94522A6B1EB90079FAE1 /* PV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PV.swift; sourceTree = "<group>"; };
 		493D94542A6B1FC40079FAE1 /* childRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childRegister.swift; sourceTree = "<group>"; };
+		49BDA10C2A71D78A00638A2A /* childMascot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childMascot.swift; sourceTree = "<group>"; };
 		49C2EFD02A69D69100814F4F /* childHomePark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childHomePark.swift; sourceTree = "<group>"; };
 		49C2EFD22A69E5C900814F4F /* childStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childStartView.swift; sourceTree = "<group>"; };
 		49C2EFD42A69F69000814F4F /* childAchievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childAchievements.swift; sourceTree = "<group>"; };
@@ -109,7 +110,6 @@
 		9BAAB0682A673578000BAF23 /* Learning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Learning.swift; sourceTree = "<group>"; };
 		9BBF53722A70777600C06D04 /* childHomeParkGuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childHomeParkGuest.swift; sourceTree = "<group>"; };
 		9BD1575D2A706B7500E25AB7 /* FindParkGuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindParkGuest.swift; sourceTree = "<group>"; };
-		9BD9A68E2A6750090053E482 /* childHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childHome.swift; sourceTree = "<group>"; };
 		9BD9A6902A6750BE0053E482 /* childSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childSettings.swift; sourceTree = "<group>"; };
 		C905D6222A5F4613009BF5DB /* Achievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievements.swift; sourceTree = "<group>"; };
 		C905D6252A5F4CA6009BF5DB /* Discover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discover.swift; sourceTree = "<group>"; };
@@ -211,7 +211,7 @@
 		9BD9A68B2A674F900053E482 /* Child */ = {
 			isa = PBXGroup;
 			children = (
-				9BD9A68E2A6750090053E482 /* childHome.swift */,
+				49BDA10C2A71D78A00638A2A /* childMascot.swift */,
 				493D94502A6AE38E0079FAE1 /* childCongrats.swift */,
 				49C2EFD02A69D69100814F4F /* childHomePark.swift */,
 				49C2EFD42A69F69000814F4F /* childAchievements.swift */,
@@ -499,12 +499,12 @@
 				C905D62C2A5F609D009BF5DB /* HomeModel.swift in Sources */,
 				49C2EFD12A69D69100814F4F /* childHomePark.swift in Sources */,
 				49C2EFD32A69E5C900814F4F /* childStartView.swift in Sources */,
+				49BDA10D2A71D78A00638A2A /* childMascot.swift in Sources */,
 				9B094E0D2A65997C008C39B3 /* EnterChildren.swift in Sources */,
 				9B094E0F2A659B4E008C39B3 /* Settings.swift in Sources */,
 				C905D6512A69A1E8009BF5DB /* childDiscoverScroll.swift in Sources */,
 				C905D6552A69EB5F009BF5DB /* childDiscoverUnactive.swift in Sources */,
 				9BD9A6912A6750BE0053E482 /* childSettings.swift in Sources */,
-				9BD9A68F2A6750090053E482 /* childHome.swift in Sources */,
 				C905D6392A60EFAE009BF5DB /* CalendarView.swift in Sources */,
 				C905D64F2A69922D009BF5DB /* childCustomNavBar.swift in Sources */,
 				9BBF53732A70777600C06D04 /* childHomeParkGuest.swift in Sources */,

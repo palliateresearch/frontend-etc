@@ -13,7 +13,7 @@ struct PowerPlayApp: App {
                 } else {
                     childStartView().environmentObject(pv)
                 }
-              
+
             } else {
                 childStartView().environmentObject(pv)
             }

@@ -18,10 +18,13 @@ struct childSettings: View {
                         Spacer()
                     }
                     VStack {
-                        Image("Sparky")
-                            .scaleEffect(0.1)
-                            .frame(width: 200, height: 125)
-                            .aspectRatio(contentMode: .fit)
+//                        Image("Sparky")
+//                            .scaleEffect(0.1)
+//                            .frame(width: 200, height: 125)
+//                            .aspectRatio(contentMode: .fit)
+                        ChildMascot(emotion: "", size: 0.1)
+                                .frame(maxWidth: .infinity, maxHeight: 125, alignment: .center)
+                    .aspectRatio(contentMode: .fit)
                         
                         if let firstName = model.myUsers.last?.firstName,
                            let lastName = model.myUsers.last?.lastName {
