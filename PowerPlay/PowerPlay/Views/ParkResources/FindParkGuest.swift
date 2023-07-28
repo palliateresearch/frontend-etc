@@ -88,12 +88,11 @@ struct FindParkGuest: View {
                 .fullScreenCover(isPresented: $showHome) {
                     
                     childHomeParkGuest(userData: UserViewData())
-                    
+                   
                 }
             }
         }
         .onAppear {
-            
             model.load()
             model.deleteParkEntitiesData()
             model.save()

@@ -307,7 +307,7 @@ struct childHomeParkGuest: View{
                     
         }.onAppear{
             model.load()
-      
+            print("inFindParkGuest")
             print ("Test worked")
             userData.loadData()
             for park in model.myParks {
@@ -320,7 +320,7 @@ struct childHomeParkGuest: View{
 
 struct childHomeParkGuest_Previews: PreviewProvider {
     static var previews: some View {
-        childHomePark(userData: UserViewData())
+        childHomeParkGuest(userData: UserViewData())
     }
 }
 

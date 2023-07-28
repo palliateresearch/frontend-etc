@@ -16,6 +16,23 @@ struct Home: View {
     
     @State var progress: CGFloat = 0.75
     @State var isSettings = false
+    @State var timer: Timer?
+    
+    @State var progress1: CGFloat = 0.75/*CGFloat(Float.random(in: 0, 1))*/
+    
+    @State var viewDays: [ViewDays] = [
+        .init(date: Date.from(month: 7, day: 18), viewCount: 3),
+        .init(date: Date.from(month: 7, day: 19), viewCount: 2),
+        .init(date: Date.from(month: 7, day: 20), viewCount: 1),
+        .init(date: Date.from(month: 7, day: 21), viewCount: 0),
+        .init(date: Date.from(month: 7, day: 22), viewCount: 4),
+        .init(date: Date.from(month: 7, day: 23), viewCount: 1),
+        .init(date: Date.from(month: 7, day: 24), viewCount: 0),
+        .init(date: Date.from(month: 7, day: 25), viewCount: 3),
+        .init(date: Date.from(month: 7, day: 26), viewCount: 2),
+        .init(date: Date.from(month: 7, day: 27), viewCount: 3),
+        .init(date: Date.from(month: 7, day: 28), viewCount: 0)
+        ]
     
     func getMonth() -> String {
         let calendar = Calendar.current
@@ -190,7 +207,11 @@ struct Home: View {
                                         }
                                         .padding()
                                         .onAppear(perform: {
-                                            userData.loadData()
+                                            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                                                userData.loadData()
+                                                viewDays.removeLast()
+                                                viewDays.append(.init(date: Date.from(month: 7, day: 28), viewCount: Int(userData.jsonData.totalEnergy)))
+                                            }
                                         })
                                             
                                     }
@@ -208,7 +229,7 @@ struct Home: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 12))
                                 
                                 VStack {
-                                    Text("Weekly Watt Hours")
+                                    Text("Monthly Watt Hours")
                                         .bold()
                                         .cornerRadius(7)
                                         .foregroundColor(Color.black)
@@ -219,19 +240,19 @@ struct Home: View {
                                         .fontDesign(.rounded)
                                        
                                     Chart {
-                                        ForEach(HomeData().viewDays) { viewDay in
+                                        ForEach(viewDays) { viewDay in
                                             LineMark(x: .value("Date", viewDay.date, unit: .day), y: .value("Views", viewDay.viewCount))
                                         }
                                         .foregroundStyle(Color.white)
                                     }
-                                    .frame(width: CGFloat(HomeData().viewDays.count)*35)
+                                    .frame(width: CGFloat(viewDays.count)*35)
                                     .chartXAxisLabel(position: .bottom, alignment: .center) {
                                         Text("July")
                                             .foregroundColor(Color.white)
                                             .fontDesign(.rounded)
                                     }
                                     .chartXAxis {
-                                        AxisMarks(values: HomeData().viewDays.map {$0.date}) { date in
+                                        AxisMarks(values: viewDays.map {$0.date}) { date in
                                             AxisValueLabel(format: .dateTime.day()).foregroundStyle(Color.white)
                                             AxisGridLine().foregroundStyle(Color("lightningYellow"))
                                         }
@@ -254,12 +275,14 @@ struct Home: View {
                 }
                 
             }
-            .background(Color("darkModeBackground"))
+//            .background(Color("darkModeBackground"))
+            .background(Color.black)
             .foregroundColor(Color.white)
             .scrollIndicators(.hidden)
             
         }.padding()
-        .background(Color("darkModeBackground"))
+            .background(Color.black)
+//        .background(Color("darkModeBackground"))
         
 
     }

@@ -12,6 +12,8 @@ struct childStartView: View {
     @EnvironmentObject private var pv: PV
     var model = TestModel()
     
+    @State var isParent: Bool = false
+    
     @State private var loginViewActive = false
     @State private var registerViewAction = false
     @State private var guestViewActive = false
@@ -36,7 +38,7 @@ struct childStartView: View {
             .aspectRatio(contentMode: .fit)
                 Text("PowerPlay")
                     .fontDesign(.rounded)
-                    .font(.system(size: 64))
+                    .font(.system(size: 60))
                     .fontWeight(.heavy)
                     .foregroundColor(Color("darkBlue"))
                     .padding()
@@ -111,9 +113,11 @@ struct childStartView: View {
                         }
                     }).frame(maxHeight: 75)
                     Button(action: {
-                        pv.isParent = true
-                        model.myUsers.last?.isParent = pv.isParent
+                        model.myUsers.last?.isParent = true
                         model.save()
+                        isParent = true
+                        
+                        print ("isParent is true")
                         
                     }) {
                         Text("Are you a parent?")
@@ -142,9 +146,12 @@ struct childStartView: View {
         .fullScreenCover(isPresented: $guestViewActive) {
                 FindParkGuest()
         }
-        .fullScreenCover(isPresented: $pv.isParent) {
+        .fullScreenCover(isPresented: $isParent) {
                 StartView()
         }
+
+        
+            
     }
 }
 

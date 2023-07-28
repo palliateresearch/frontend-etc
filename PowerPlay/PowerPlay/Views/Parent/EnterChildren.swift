@@ -6,6 +6,7 @@ import Charts
 struct EnterChildren: View {
     @EnvironmentObject private var pv: PV
     var model = TestModel()
+    var thing : String
 
     @State private var isSubmit = false
 
@@ -96,7 +97,15 @@ struct EnterChildren: View {
             }
             .onAppear {
                 model.load()
-
+                print(thing)
+                print("")
+                print("")
+                print("")
+                print("")
+                print("")
+                print("")
+                print("")
+                print("")
                 DispatchQueue.main.async {
                     pv.childrenNames = model.myChildren.map { $0.childName ?? "" }
                 }
@@ -167,6 +176,6 @@ struct ChildView: View {
 
 struct EnterChildren_Previews: PreviewProvider {
     static var previews: some View {
-        EnterChildren().environmentObject(PV())
+        EnterChildren(thing: "itself").environmentObject(PV())
     }
 }

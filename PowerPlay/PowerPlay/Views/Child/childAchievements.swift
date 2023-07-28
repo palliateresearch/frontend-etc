@@ -17,6 +17,7 @@ struct childAchievements: View {
     @State var x: Int
     @State var y: Int
     @State var tempWattHrs: [String] = []
+    var badges: [String] = [ "badgeStreak1", "badgeStreak2", "badgeStreak3", "badgeWh1", "badgeWh2", "badgeWh3", "badge100Elec", "badge100Ener", "badge100Green"]
 
        init(userData: UserViewData) {
            self.userData = userData
@@ -84,7 +85,7 @@ struct childAchievements: View {
                             .padding()
                       
                         LazyVGrid(columns: adaptiveColumns, spacing: 30) {
-                            ForEach(model.myParks.last?.badges ?? tempWattHrs, id: \.self) { image in
+                            ForEach(/*model.myParks.last?.badges ?? tempWattHrs */ badges, id: \.self) { image in
                                 ZStack {
                                     Image(image)
                                         .scaleEffect(0.065)
@@ -93,6 +94,7 @@ struct childAchievements: View {
                                 }
                             }
                         }.padding(.top, 25)
+                            .padding(.horizontal)
                         
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -252,7 +254,7 @@ struct calculateAchievements {
         }
 
         for _ in range {
-            model.myParks.last?.wattHrsPerDay?.append(Float.random(in: -10..<500.0))
+            model.myParks.last?.wattHrsPerDay?.append(Float.random(in: -50..<500.0))
         }
     }
 

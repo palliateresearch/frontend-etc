@@ -424,23 +424,70 @@ struct childLessonMaterial: View {
         if childData.isToggleOn == false {
             return
         }
-        isLoading = true
-        let queue = DispatchQueue.global(qos: .userInitiated)
-        
-        let apiKey = "c2334380190db577a4edc94196080bf5"
-        
-        queue.async {
-            let data = convertTextToSpeechStream(text: content![childModel.currentLessonCh1][0], apiKey: apiKey)
-            do {
-                if (data != nil){
-                    audioPlayer = try AVAudioPlayer(data: data!, fileTypeHint: "mp3")
-                    audioPlayer?.prepareToPlay()
+        if chapterLabel == "C1"{
+            
+            isLoading = true
+            let queue = DispatchQueue.global(qos: .userInitiated)
+            
+            let apiKey = "df7679cf757737481e9fd4958f852bce"
+            
+            queue.async {
+                let data = convertTextToSpeechStream(text: content![childModel.currentLessonCh1][0], apiKey: apiKey)
+                do {
+                    if (data != nil){
+                        audioPlayer = try AVAudioPlayer(data: data!, fileTypeHint: "mp3")
+                        audioPlayer?.prepareToPlay()
+                        isLoading = false
+                        audioPlayer?.play()
+                    }
+                } catch {
+                    print("Error playing audio: \(error.localizedDescription)")
                     isLoading = false
-                    audioPlayer?.play()
                 }
-            } catch {
-                print("Error playing audio: \(error.localizedDescription)")
-                isLoading = false
+            }
+        }
+        if chapterLabel == "C2"{
+            
+            isLoading = true
+            let queue = DispatchQueue.global(qos: .userInitiated)
+            
+            let apiKey = "df7679cf757737481e9fd4958f852bce"
+            
+            queue.async {
+                let data = convertTextToSpeechStream(text: content![childModel.currentLessonCh2][0], apiKey: apiKey)
+                do {
+                    if (data != nil){
+                        audioPlayer = try AVAudioPlayer(data: data!, fileTypeHint: "mp3")
+                        audioPlayer?.prepareToPlay()
+                        isLoading = false
+                        audioPlayer?.play()
+                    }
+                } catch {
+                    print("Error playing audio: \(error.localizedDescription)")
+                    isLoading = false
+                }
+            }
+        }
+        if chapterLabel == "C3"{
+            
+            isLoading = true
+            let queue = DispatchQueue.global(qos: .userInitiated)
+            
+            let apiKey = "df7679cf757737481e9fd4958f852bce"
+            
+            queue.async {
+                let data = convertTextToSpeechStream(text: content![childModel.currentLessonCh3][0], apiKey: apiKey)
+                do {
+                    if (data != nil){
+                        audioPlayer = try AVAudioPlayer(data: data!, fileTypeHint: "mp3")
+                        audioPlayer?.prepareToPlay()
+                        isLoading = false
+                        audioPlayer?.play()
+                    }
+                } catch {
+                    print("Error playing audio: \(error.localizedDescription)")
+                    isLoading = false
+                }
             }
         }
     }

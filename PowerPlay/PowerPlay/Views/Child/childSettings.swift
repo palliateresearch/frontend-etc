@@ -54,7 +54,6 @@ struct childSettings: View {
                             .font(.title2)
                             .padding()
                             .foregroundColor(Color.black)
-                            .padding(.trailing, 50)
                     }.padding(.leading, 30)
                     .padding(.trailing, 30)
                     .multilineTextAlignment(.leading)
@@ -77,7 +76,6 @@ struct childSettings: View {
                                 .font(.title2)
                                 .padding()
                                 .foregroundColor(Color.black)
-                                .padding(.trailing, 50)
                         }
                     }.padding(.leading, 30)
                         .padding(.trailing, 30)
@@ -93,7 +91,7 @@ struct childSettings: View {
                             .bold()
                             .padding()
                         Spacer() // Add a Spacer to push VStack to the right
-                        VStack(alignment: .leading, spacing: 8) { // Align VStack content to the left
+                        VStack(alignment: .trailing, spacing: 8) { // Align VStack content to the left
                             ForEach(model.myParks) { park in
                                 Text(park.parkName ?? "")
                                     .fontDesign(.rounded)
@@ -120,7 +118,7 @@ struct childSettings: View {
                             print(childData.isToggleOn)
                         }
                         .padding(.leading, 30)
-                        .padding(.trailing, 80)
+                        .padding(.trailing, 30)
                     
 
                 }
@@ -129,18 +127,19 @@ struct childSettings: View {
                Spacer()
                 
                 Button {
+                    model.deleteAllEntitiesData()
                     isLogout = true
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 7)
                             .padding()
                             .frame(minHeight: 80)
-                            .foregroundColor(Color("dropShadowLogoutRed"))
+                            .foregroundColor(Color("dropShadowBlue"))
                         RoundedRectangle(cornerRadius: 7)
                             .padding()
                             .padding([.bottom], 6)
                             .frame(minHeight: 90)
-                            .foregroundColor(Color("logoutRed"))
+                            .foregroundColor(Color("darkBlue"))
                             .overlay{
                                 Text("LOGOUT")
                                     .foregroundColor(Color.white)
@@ -149,9 +148,8 @@ struct childSettings: View {
                                     .font(.title2)
                             }
                     }
-                }
-                .padding([.bottom], 70)
-                .padding()
+                }.padding(.horizontal)
+                    .padding(.top)
                 
                 
                 Button {
@@ -178,7 +176,8 @@ struct childSettings: View {
                     }
                 }
                 .padding([.bottom], 70)
-                .padding()
+                .padding(.horizontal)
+                .padding(.bottom)
             }
             .fullScreenCover(isPresented: $isLogout) {
                 childStartView()

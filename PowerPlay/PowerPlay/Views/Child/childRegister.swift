@@ -234,9 +234,10 @@ struct childRegister: View {
                 .padding(.horizontal, width * 0.1)
             }
             .fullScreenCover(isPresented: $isLoggedIn) {
-                if pv.isParent {
-                    EnterChildren()
-                } else if let user = model.myUsers.last, !(user.parks?[0].isEmpty ?? true) {
+//                if pv.isParent {
+//                    EnterChildren(thing: "childRegister")
+//                } else
+                if let user = model.myUsers.last, !(user.parks?[0].isEmpty ?? true) {
                     childContentView()
                 } else {
                     FindPark()
@@ -246,6 +247,7 @@ struct childRegister: View {
                 childLogin()
             }
             .onAppear {
+                isLoggedIn = false
                 pv.resetPV()
                 model.load()
                 print ("is model true?")

@@ -46,15 +46,15 @@ struct ChildMascot: View {
     @State private var isSad: Bool = false
     @State private var isAngry: Bool = false
     @State private var isTilting : Bool = false
-        
-        let emotion : String
-        let size : Double
+    @State var emotion: String
+
+    let size : Double
         
         var body: some View {
             GeometryReader { geometry in
                 ZStack(alignment: .center){
                     Image("Sparkybolt")
-                        .scaleEffect(size).border(.red)
+                        .scaleEffect(size)
                         .rotationEffect(.degrees(isTilting ? 5 : 0))
                     ChildMascotFace(
 //                        isBlinking: isBlinking,

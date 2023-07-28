@@ -9,6 +9,8 @@ struct Register: View {
     @State private var firstSelect: Bool = false
     @State private var lastSelect: Bool = false
     
+    @State private var isParent: Bool = true
+    
     @State private var isChildActive: Bool = false
 
     @State private var isLoggedIn: Bool = false
@@ -176,7 +178,7 @@ struct Register: View {
                     alignment: .topLeading
                 )
 
-                Toggle(isOn: $pv.isParent) {
+                Toggle(isOn: $isParent) {
                     Text("Are You a Parent?")
                         .fontDesign(.rounded)
                 }
@@ -186,6 +188,7 @@ struct Register: View {
                 .padding(.top, height * 0.03)
 
                 Button(action: {
+                    pv.isParent = true
                     isFirstNameValid = !pv.lastName.isEmpty
                     isLastNameValid = !pv.lastName.isEmpty
                     isUsernameValid = pv.username.count >= 4
@@ -198,12 +201,13 @@ struct Register: View {
                         newUser.lastName = pv.lastName
                         newUser.username = pv.username
                         newUser.password = pv.password
-                        newUser.isParent = pv.isParent
+                        newUser.isParent = true
                 
 
                         model.save()
 
                         isLoggedIn = true
+                        print ("lalalalalalallalaalalalalalal")
                         
                        
                     }
@@ -235,25 +239,24 @@ struct Register: View {
                 
               
             }
+            .onAppear {
+                isLoggedIn = false
+                pv.resetPV()
+                pv.isParent = true
+                model.load()
+            }
             .fullScreenCover(isPresented: $isLoggedIn) {
-                if pv.isParent {
-                    EnterChildren()
-                } else {
-                    FindPark()
-                }
+                EnterChildren(thing: "register")
             }
             
             .fullScreenCover(isPresented: $isLogin) {
                 Login()
             }
-            .onAppear {
-                pv.resetPV()
-                pv.isParent = true
-                model.load()
-            }
+            
         }
         .background(Color("darkModeBackground"))
         .preferredColorScheme(.dark)
+        
     }
 }
 

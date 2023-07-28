@@ -13,7 +13,7 @@ struct ArduinoData: Decodable {
     
     init() {
         //self.unix_timestamp = 200
-        self.totalEnergy = 200
+        self.totalEnergy = 0
         //self.unique_id = "uniqe id"
     }
     

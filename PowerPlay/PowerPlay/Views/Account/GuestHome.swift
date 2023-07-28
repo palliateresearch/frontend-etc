@@ -13,6 +13,20 @@ struct GuestHome: View {
     
     @State var progress: CGFloat = 0.75
     @State var toStart = false
+    
+    @State var viewDays: [ViewDays] = [
+        .init(date: Date.from(month: 7, day: 18), viewCount: 3),
+        .init(date: Date.from(month: 7, day: 19), viewCount: 2),
+        .init(date: Date.from(month: 7, day: 20), viewCount: 1),
+        .init(date: Date.from(month: 7, day: 21), viewCount: 0),
+        .init(date: Date.from(month: 7, day: 22), viewCount: 4),
+        .init(date: Date.from(month: 7, day: 23), viewCount: 1),
+        .init(date: Date.from(month: 7, day: 24), viewCount: 0),
+        .init(date: Date.from(month: 7, day: 25), viewCount: 3),
+        .init(date: Date.from(month: 7, day: 26), viewCount: 2),
+        .init(date: Date.from(month: 7, day: 27), viewCount: 3),
+        .init(date: Date.from(month: 7, day: 28), viewCount: 0)
+        ]
 
     var body: some View {
         NavigationStack{
@@ -190,18 +204,18 @@ struct GuestHome: View {
                                         .font(.title3)
                                        
                                     Chart{
-                                        ForEach(HomeData().viewDays){ viewDay in
+                                        ForEach(viewDays){ viewDay in
                                             LineMark(x: .value("Date", viewDay.date, unit: .day), y: .value("Views", viewDay.viewCount))
                                         }
                                         .foregroundStyle(Color.white)
                                     }
-                                    .frame(width: CGFloat(HomeData().viewDays.count)*35)
+                                    .frame(width: CGFloat(viewDays.count)*35)
                                     .chartXAxisLabel(position: .bottom, alignment: .center) {
                                         Text("July")
                                             .foregroundColor(Color.white)
                                     }
                                     .chartXAxis{
-                                        AxisMarks(values: HomeData().viewDays.map {$0.date}) {date in
+                                        AxisMarks(values: viewDays.map {$0.date}) {date in
                                             AxisValueLabel(format: .dateTime.day()).foregroundStyle(Color.white)
                                             AxisGridLine().foregroundStyle(Color("lightningYellow"))
                                         }

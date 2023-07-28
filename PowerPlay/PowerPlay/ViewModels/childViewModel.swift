@@ -10,7 +10,9 @@ import AVFoundation
 
 class ChildViewData: ObservableObject{
     @Published var isToggleOn = false
+    @Published var emotion: String?
 }
+
 
 enum TextToSpeechError: Error {
     case invalidURL

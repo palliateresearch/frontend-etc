@@ -183,6 +183,7 @@ struct StartView: View {
         .fullScreenCover(isPresented: $isChildActive) {
                 childStartView()
         }
+        
             
     }
     

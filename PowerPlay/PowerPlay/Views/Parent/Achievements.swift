@@ -47,7 +47,8 @@ struct Achievements: View {
                             .fontDesign(.rounded)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                             .bold()
-                            .padding(.trailing, 20)
+                            .padding(.trailing, 30)
+                            .foregroundColor(Color("lightningYellow"))
                     }
                     HStack {
                         Text("Achievements")
