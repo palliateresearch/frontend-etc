@@ -102,8 +102,7 @@ struct Login: View {
                     isUsernameValid = !pv.username.isEmpty
                     isPasswordValid = !pv.password.isEmpty
 
-                    if isUsernameValid && isPasswordValid {
-                        model.load()
+                    if isUsernameValid && isPasswordValid { 
                         let savedUsername = model.myUsers.last?.username ?? ""
                         let savedPassword = model.myUsers.last?.password ?? ""
 
@@ -158,7 +157,10 @@ struct Login: View {
             .preferredColorScheme(.dark)
             .onAppear {
                 model.load()
-
+                DispatchQueue.main.async {
+                    pv.firstName = model.myUsers.last?.firstName ?? ""
+                    pv.lastName = model.myUsers.last?.lastName ?? "" // Load lastName from Core Data model
+                }
             }
         }
     }

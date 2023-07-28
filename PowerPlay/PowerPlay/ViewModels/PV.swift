@@ -25,6 +25,32 @@ class PV: ObservableObject {
     }
 
     
+    func resetMaxPV() {
+        firstName = ""
+        lastName = ""
+        username = ""
+        password = ""
+        isParent = false
+        childrenNames = []
+        badgesComplete = []
+        selectedOptionIndex = 0
+        isLoggedOut = true
+        
+    }
+    
+    func printAll() {
+        print ("firstName: \(firstName)")
+        print ("lastName: \(lastName)")
+        print ("username: \(username)")
+        print ("password: \(password)")
+        print ("isParent: \(isParent)")
+        print ("childrenNames: \(childrenNames)")
+        print ("badgesComplete: \(badgesComplete)")
+        print ("selectedOptionIndex: \(selectedOptionIndex)")
+        print ("isLoggedOut: \(isLoggedOut)")
+       
+    }
+    
     func setChild(x: String) {
         selectedChild = x
     }

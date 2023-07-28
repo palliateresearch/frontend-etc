@@ -94,7 +94,7 @@ struct FindParkGuest: View {
         }
         .onAppear {
             model.load()
-            model.deleteParkEntitiesData()
+            
             model.save()
         }
     }

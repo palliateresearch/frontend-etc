@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct childHomePark: View{
+    @EnvironmentObject var pv: PV
     @ObservedObject var userData: UserViewData
     @State var selectedTab: Int = 0
     @State private var displayedParkNames = Set<String>()
@@ -18,8 +19,11 @@ struct childHomePark: View{
     @State var unit: String = "minutes"
     @State var roundedValue: String = "1.00"
     
+    @State var transfer: Bool = false
+    
     @State var timer: Timer?
     @State var timer2: Timer?
+    @State private var counter = 0.0
     
     var model = TestModel()
      
@@ -342,8 +346,9 @@ struct childHomePark: View{
             
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
                 userData.loadData()
-                
-                childViewData.emotion = happinessRating(wattHrs:userData.jsonData.totalEnergy)
+                self.counter += 0.01
+                childViewData.emotion = happinessRating(wattHrs:Float(self.counter)/*userData.jsonData.totalEnergy*/)
+                print(self.counter)
                 print(userData.jsonData.totalEnergy)
                 
                 if (userData.jsonData.totalEnergy * 4 < 1) {
@@ -365,6 +370,8 @@ struct childHomePark: View{
             }
             
         })
+       
+        
         .onDisappear(perform: {
             timer?.invalidate()
         })

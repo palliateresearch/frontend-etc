@@ -128,6 +128,7 @@ struct childSettings: View {
                 
                 Button {
                     model.deleteAllEntitiesData()
+                    pv.resetMaxPV()
                     isLogout = true
                 } label: {
                     ZStack {
@@ -153,7 +154,8 @@ struct childSettings: View {
                 
                 
                 Button {
-                    model.deleteAllEntitiesData()
+                 
+                    pv.resetMaxPV()
                     isLogout = true
                 } label: {
                     ZStack {

@@ -68,7 +68,10 @@ struct Home: View {
                                         pv.selectedChild = model.myChildren[newIndex].childName ?? ""
                                     })
                                     .onAppear {
-                                        pv.selectedChild = model.myChildren[pv.selectedOptionIndex].childName ?? ""
+                                        if !(model.myChildren.isEmpty) {
+                                            pv.selectedChild = model.myChildren[pv.selectedOptionIndex].childName ?? ""
+                                        }
+                                       
                                     }
                                     .pickerStyle(.menu) 
                     

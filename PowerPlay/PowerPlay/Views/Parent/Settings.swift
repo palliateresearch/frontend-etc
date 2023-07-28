@@ -104,7 +104,7 @@ struct Settings: View {
                     Spacer()
                 }
                 Button {
-                    model.deleteAllEntitiesData()
+                   
                     isLogout = true
                 } label: {
                     Text("Delete Account")

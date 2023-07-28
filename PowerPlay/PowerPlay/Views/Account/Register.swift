@@ -188,7 +188,7 @@ struct Register: View {
                 .padding(.top, height * 0.03)
 
                 Button(action: {
-                    pv.isParent = true
+                  
                     isFirstNameValid = !pv.lastName.isEmpty
                     isLastNameValid = !pv.lastName.isEmpty
                     isUsernameValid = pv.username.count >= 4
@@ -240,10 +240,11 @@ struct Register: View {
               
             }
             .onAppear {
+                
                 isLoggedIn = false
                 pv.resetPV()
-                pv.isParent = true
-                model.load()
+               
+               
             }
             .fullScreenCover(isPresented: $isLoggedIn) {
                 EnterChildren(thing: "register")

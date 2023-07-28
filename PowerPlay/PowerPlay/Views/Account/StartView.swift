@@ -183,8 +183,10 @@ struct StartView: View {
         .fullScreenCover(isPresented: $isChildActive) {
                 childStartView()
         }
-        
-            
+        .onAppear {
+            pv.resetMaxPV()
+            pv.printAll()
+        }
     }
     
 }

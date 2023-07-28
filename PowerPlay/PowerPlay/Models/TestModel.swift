@@ -8,7 +8,7 @@ class TestModel: ObservableObject {
     var myChildren: [Child] = []
     @Published var myParks: [Park] = []
 
-    let container: NSPersistentContainer = NSPersistentContainer(name: "Model")
+    var container: NSPersistentContainer = NSPersistentContainer(name: "Model")
 
     init() {
         container.loadPersistentStores { _, error in
@@ -66,30 +66,66 @@ class TestModel: ObservableObject {
         myParks.last?.badges?.append(name)
     }
 
-    func addToChildren(name: String) {
-        myUsers.last?.children?.append(name)
-    }
-
+//    func addToChildren(name: String) {
+//        myUsers.last?.children?.append(name)
+//    }
+    
     func deleteAllEntitiesData() {
-        let childFetchRequest: NSFetchRequest<NSFetchRequestResult> = Child.fetchRequest()
-        let deleteChildRequest = NSBatchDeleteRequest(fetchRequest: childFetchRequest)
+        // Get a reference to a NSPersistentStoreCoordinator
+        let storeContainer = container.persistentStoreCoordinator
 
-        let userFetchRequest: NSFetchRequest<NSFetchRequestResult> = User.fetchRequest()
-        let deleteUserRequest = NSBatchDeleteRequest(fetchRequest: userFetchRequest)
-
-        let parkFetchRequest: NSFetchRequest<NSFetchRequestResult> = Park.fetchRequest()
-        let deleteParkRequest = NSBatchDeleteRequest(fetchRequest: parkFetchRequest)
-
-        do {
-            try container.viewContext.execute(deleteChildRequest)
-            try container.viewContext.execute(deleteUserRequest)
-            try container.viewContext.execute(deleteParkRequest)
-
-            try container.viewContext.save()
-        } catch {
-            print("Error deleting all entities data: \(error)")
+        // Delete each existing persistent store
+        for store in storeContainer.persistentStores {
+             do {
+                 try storeContainer.destroyPersistentStore(
+                    at: store.url!,
+                    ofType: store.type,
+                    options: nil
+                )
+            } catch {
+                print("Destruction got error: \(error)")
+            }
         }
+
+        // Re-create the persistent container
+        self.container = NSPersistentContainer(
+            name: "Model" // the name of
+            // a .xcdatamodeld file
+        )
+
+        // Calling loadPersistentStores will re-create the
+        // persistent stores
+        self.container.loadPersistentStores {
+            (store, error) in
+            if let error {
+                print("ERROR! Hey Aadit, there was this error \(error)")
+            }
+            // Handle errors
+        }
+
     }
+//    func deleteAllEntitiesData() {
+//        let childFetchRequest: NSFetchRequest<NSFetchRequestResult> = Child.fetchRequest()
+//        let deleteChildRequest = NSBatchDeleteRequest(fetchRequest: childFetchRequest)
+//
+//        let userFetchRequest: NSFetchRequest<NSFetchRequestResult> = User.fetchRequest()
+//        let deleteUserRequest = NSBatchDeleteRequest(fetchRequest: userFetchRequest)
+//
+//        let parkFetchRequest: NSFetchRequest<NSFetchRequestResult> = Park.fetchRequest()
+//        let deleteParkRequest = NSBatchDeleteRequest(fetchRequest: parkFetchRequest)
+//
+//        do {
+//            try container.viewContext.execute(deleteChildRequest)
+//            try container.viewContext.execute(deleteUserRequest)
+//            try container.viewContext.execute(deleteParkRequest)
+//
+//            try container.viewContext.save()
+//            self.myChildren = []
+//            self.myUsers = []
+//        } catch {
+//            print("Error deleting all entities data: \(error)")
+//        }
+//    }
     func deleteParkEntitiesData() {
         let parkFetchRequest: NSFetchRequest<NSFetchRequestResult> = Park.fetchRequest()
         let deleteParkRequest = NSBatchDeleteRequest(fetchRequest: parkFetchRequest)
