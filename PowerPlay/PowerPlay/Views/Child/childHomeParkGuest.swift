@@ -85,7 +85,7 @@ struct childHomeParkGuest: View{
 //                        .aspectRatio(contentMode: .fit)
 //                        .frame(maxWidth: .infinity, maxHeight: 225, alignment: .center)
 //                        .padding(.top)
-                    ChildMascot(emotion: "", size: 0.15)
+                    ChildMascot(childViewData: ChildViewData(), size: 0.15, isHomePage: false)
                     Spacer()
                     Spacer()
                     Spacer()

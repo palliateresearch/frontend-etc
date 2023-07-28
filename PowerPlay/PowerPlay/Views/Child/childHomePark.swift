@@ -108,9 +108,7 @@ struct childHomePark: View{
                         //                        .padding(.top)
                         HStack(alignment: .center){
                             Spacer()
-                            if let emotion = childViewData.emotion{
-                                ChildMascot(emotion: emotion ?? "sad", size: 0.15)
-                            }
+                            ChildMascot(childViewData: childViewData, size: 0.15, isHomePage: true)
                             Spacer()
                         }
                         Spacer()
@@ -358,7 +356,6 @@ struct childHomePark: View{
                 }
                 roundedValue = String(format: "%.2f", userData.jsonData.totalEnergy)
                 display = String(format: "%.2f", hrs)
-                print (happinessRating(wattHrs: userData.jsonData.totalEnergy))
                 if let emotion = childViewData.emotion{
                     print(emotion)
                 }

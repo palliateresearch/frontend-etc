@@ -21,7 +21,7 @@ struct childCongrats: View {
 //                        .frame(width: 200, height: 300)
 //                        .aspectRatio(contentMode: .fit)
 //                        .padding()
-                    ChildMascot(emotion: "", size: 0.2)
+                    ChildMascot(childViewData: ChildViewData(), size: 0.2, isHomePage: false)
                     ZStack{
                         RoundedRectangle(cornerRadius: 20)
                             .foregroundColor(Color("aliceBlue"))

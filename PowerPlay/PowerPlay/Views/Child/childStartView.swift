@@ -33,7 +33,7 @@ struct childStartView: View {
 //                    .aspectRatio(contentMode: .fit)
 //                    .frame(width: 250, height: 250)
 //                    .padding(.bottom, 10)
-                ChildMascot(emotion: "", size: 0.18)
+                ChildMascot(childViewData: ChildViewData(), size: 0.18, isHomePage: false)
                         .frame(maxWidth: .infinity, maxHeight: 250, alignment: .center)
             .aspectRatio(contentMode: .fit)
                 Text("PowerPlay")

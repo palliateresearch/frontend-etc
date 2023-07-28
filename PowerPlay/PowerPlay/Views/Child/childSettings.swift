@@ -22,7 +22,7 @@ struct childSettings: View {
 //                            .scaleEffect(0.1)
 //                            .frame(width: 200, height: 125)
 //                            .aspectRatio(contentMode: .fit)
-                        ChildMascot(emotion: "", size: 0.1)
+                        ChildMascot(childViewData: ChildViewData(), size: 0.1, isHomePage: false)
                                 .frame(maxWidth: .infinity, maxHeight: 125, alignment: .center)
                     .aspectRatio(contentMode: .fit)
                         

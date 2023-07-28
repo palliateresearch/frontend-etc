@@ -46,9 +46,12 @@ struct ChildMascot: View {
     @State private var isSad: Bool = false
     @State private var isAngry: Bool = false
     @State private var isTilting : Bool = false
-    @State var emotion: String
+    @ObservedObject var childViewData: ChildViewData
+    
+    @State var timer: Timer?
 
     let size : Double
+    let isHomePage : Bool
         
         var body: some View {
             GeometryReader { geometry in
@@ -70,20 +73,35 @@ struct ChildMascot: View {
 //                            isBlinking.toggle()
 //                        }
                     }
-                    .onAppear(perform: updateVariables)
+                    .onAppear(perform: {
+                        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                            updateVariables()
+                        }
+                    })
+                    .onDisappear(perform: {
+                        timer?.invalidate()
+                    })
                     .onAppear(perform: eyebrowToggle)
                     .onAppear(perform: tilt)
             }
         }
     
     func updateVariables(){
-        if(emotion == "sad"){
+        if(isHomePage){
+            if(childViewData.emotion == "sad"){
                 isSad = true
+                isAngry = false
             }
-        else if (emotion == "angry"){
-            isAngry = true
+            else if (childViewData.emotion == "angry"){
+                isAngry = true
+                isSad = false
+            }
+            else{
+                isAngry = false
+                isSad = false
+            }
         }
-        }
+    }
     func eyebrowToggle() {
         isEyebrows = true
         
@@ -104,7 +122,7 @@ struct ChildMascot: View {
 
 struct childMascot_Previews: PreviewProvider {
     static var previews: some View {
-        ChildMascot(emotion: "sad", size: 0.2)
+        ChildMascot(childViewData: ChildViewData(), size: 0.2, isHomePage: false)
     }
 }
 
